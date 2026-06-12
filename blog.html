@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conceito Prime | Agência de Marketing Digital Premium</title>
+  <meta name="description" content="Agência de Marketing Digital de Alta Performance. Gestão de Redes Sociais, Google Ads, Criação de Sites, Branding e Estratégia Digital.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          },
+          colors: {
+            prime: { 50:'#fafafa', 100:'#f4f4f5', 200:'#e4e4e7', 300:'#d4d4d8', 400:'#a1a1aa', 500:'#71717a', 600:'#52525b', 700:'#3f3f46', 800:'#18181b', 900:'#09090b', 950:'#000000' },
+            gold:  { 300:'#E8CE98', 400:'#D4AF37', 500:'#C5A028', 600:'#A68621' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #fafafa; }
+
+    .hero-bg {
+      background-image: url('assets/hero-bg-dark.png');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+    
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(9,9,11,0.9) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Elegant Underline Hover Effect for Nav */
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -4px;
+      left: 0;
+      background-color: #D4AF37;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Nav */
+    #header { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: all .4s; }
+    #header.scrolled { border-bottom: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 30px rgba(0,0,0,.03); }
+
+    /* Service cards */
+    .service-card { transition: all .4s ease; border: 1px solid rgba(0,0,0,0.04); }
+    .service-card:hover { transform: translateY(-4px); border-color: #D4AF37; box-shadow: 0 20px 40px rgba(0,0,0,.03); }
+    .service-icon-wrap { transition: all .4s ease; }
+    .service-card:hover .service-icon-wrap { background-color: #09090b; color: #D4AF37; }
+
+    /* Button Animations */
+    .btn-luxury {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      z-index: 1;
+    }
+    .btn-luxury::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 0; height: 100%;
+      background-color: #D4AF37;
+      z-index: -1;
+      transition: width 0.4s ease;
+    }
+    .btn-luxury:hover::before {
+      width: 100%;
+    }
+    .btn-luxury:hover {
+      color: #000;
+      border-color: #D4AF37;
+    }
+
+    /* Carousel */
+    .carousel-container {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+      position: relative;
+    }
+    .carousel-track {
+      display: inline-flex;
+      animation: scroll 40s linear infinite;
+    }
+    .carousel-container:hover .carousel-track {
+      animation-play-state: paused;
+    }
+    .carousel-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 2.5rem;
+      padding-right: 2.5rem;
+    }
+    .carousel-item {
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 220px;
+    }
+    .carousel-item img {
+      max-height: 120px;
+      max-width: 100%;
+      object-fit: contain;
+      transition: all 0.4s ease;
+    }
+    .carousel-item:hover {
+      transform: scale(1.15);
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    /* Section lines */
+    .section-line {
+      width: 1px;
+      height: 60px;
+      background-color: #D4AF37;
+      margin: 0 auto 2rem auto;
+    }
+  </style>
+</head>
+<body class="font-sans text-gray-900 antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header id="header" class="fixed inset-x-0 top-0 z-50 py-4">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <nav class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center h-10">
+          <img src="assets/asset 1.png" alt="Conceito Prime" class="h-full object-contain">
+        </a>
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center gap-10">
+          <a href="index.html"       class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Início</a>
+          <a href="quem-somos.html"  class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Quem somos</a>
+          <a href="blog.html"        class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Blog</a>
+          <a href="contato.html"     class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Contato</a>
+        </div>
+
+        <!-- CTA + burger -->
+        <div class="flex items-center gap-4">
+          <a href="contato.html"
+             class="hidden md:inline-flex items-center justify-center border border-prime-900 text-prime-900 font-medium text-[11px] px-7 py-3 rounded-none uppercase tracking-[0.2em] hover:bg-prime-900 hover:text-white transition-all duration-300">
+            Consultoria
+          </a>
+          <button id="menu-btn" class="md:hidden text-prime-900 focus:outline-none">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-100 pt-4 flex flex-col gap-4 bg-white/95">
+        <a href="index.html"       class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Início</a>
+        <a href="quem-somos.html"  class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Quem somos</a>
+        <a href="blog.html"        class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Blog</a>
+        <a href="contato.html"     class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Contato</a>
+        <a href="contato.html"
+           class="inline-flex justify-center items-center bg-prime-900 text-white font-medium text-xs px-6 py-4 mt-2 uppercase tracking-[0.2em]">
+          Solicitar Consultoria
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== PAGE HERO ========== -->
+  <section class="hero-bg pt-48 pb-32">
+    <div class="hero-content max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block border border-gold-400/30 text-gold-400 font-bold tracking-widest uppercase text-xs px-5 py-2 rounded-full mb-6">Conteúdo</span>
+      <h1 class="text-5xl sm:text-6xl font-serif font-normal text-white mb-6 leading-tight">Blog</h1>
+      <p class="text-white/60 text-lg max-w-xl mx-auto leading-relaxed">
+        Estratégias, dicas e conteúdos sobre marketing digital, vendas e gestão para impulsionar seu negócio.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== CATEGORIES FILTER ========== -->
+  <section class="bg-white border-b border-gray-100 sticky top-[72px] z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex flex-wrap gap-2 items-center">
+        <span class="text-xs font-semibold text-gray-400 uppercase tracking-wide mr-2">Filtrar:</span>
+        <button class="cat-btn active bg-prime-900 text-white text-xs font-semibold px-4 py-2 rounded-full transition" data-cat="all">Todos</button>
+        <button class="cat-btn bg-gray-100 text-gray-600 hover:bg-prime-50 text-prime-900 text-xs font-semibold px-4 py-2 rounded-full transition" data-cat="Vendas">Vendas</button>
+        <button class="cat-btn bg-gray-100 text-gray-600 hover:bg-prime-50 text-prime-900 text-xs font-semibold px-4 py-2 rounded-full transition" data-cat="Marketing Digital">Marketing Digital</button>
+        <button class="cat-btn bg-gray-100 text-gray-600 hover:bg-prime-50 text-prime-900 text-xs font-semibold px-4 py-2 rounded-full transition" data-cat="Estratégias de Marketing">Estratégias</button>
+        <button class="cat-btn bg-gray-100 text-gray-600 hover:bg-prime-50 text-prime-900 text-xs font-semibold px-4 py-2 rounded-full transition" data-cat="Gestão">Gestão</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOG POSTS ========== -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="posts-grid">
+
+        <!-- Post 1 -->
+        <article class="post-card group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer" data-cat="Vendas">
+          <div class="aspect-video overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
+            <img src="blog/assets/blog-img-1.jpg" alt="Blog thumbnail" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="bg-orange-100 text-orange-700 font-semibold text-xs px-3 py-1 rounded-full">Vendas</span>
+              <span class="text-gray-400 text-xs">30/05/2022</span>
+            </div>
+            <h2 class="font-bold font-serif text-prime-900 text-lg leading-snug mb-3">
+              Marketing e Vendas para potencializar seus resultados
+            </h2>
+            <p class="text-gray-500 text-sm leading-relaxed line-clamp-3">
+              A união do setor de marketing e vendas é uma excelente estratégia para atrair novos clientes e potencializar os resultados da sua empresa.
+            </p>
+            <a href="contato.html" class="inline-flex items-center gap-1 text-prime-900 font-semibold text-sm mt-4 hover:text-gold-400 uppercase tracking-widest transition">
+              Ler mais <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="post-card group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer" data-cat="Marketing Digital">
+          <div class="aspect-video overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
+            <img src="blog/assets/blog-img-2.jpg" alt="Blog thumbnail" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="bg-blue-100 text-blue-700 font-semibold text-xs px-3 py-1 rounded-full">Marketing Digital</span>
+              <span class="text-gray-400 text-xs">22/03/2022</span>
+            </div>
+            <h2 class="font-bold font-serif text-prime-900 text-lg leading-snug mb-3">
+              15 termos úteis para quem precisa saber mais sobre marketing digital
+            </h2>
+            <p class="text-gray-500 text-sm leading-relaxed line-clamp-3">
+              Conheça os principais termos e conceitos do marketing digital que todo profissional e empresário precisa saber para navegar nesse universo.
+            </p>
+            <a href="contato.html" class="inline-flex items-center gap-1 text-prime-900 font-semibold text-sm mt-4 hover:text-gold-400 uppercase tracking-widest transition">
+              Ler mais <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="post-card group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer" data-cat="Marketing Digital">
+          <div class="aspect-video overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
+            <img src="blog/assets/blog-img-3.jpg" alt="Blog thumbnail" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="bg-blue-100 text-blue-700 font-semibold text-xs px-3 py-1 rounded-full">Marketing Digital</span>
+              <span class="text-gray-400 text-xs">17/02/2022</span>
+            </div>
+            <h2 class="font-bold font-serif text-prime-900 text-lg leading-snug mb-3">
+              Como as marcas influenciam as decisões de compra
+            </h2>
+            <p class="text-gray-500 text-sm leading-relaxed line-clamp-3">
+              As marcas desempenham um papel importante na sociedade e têm grande influência nas decisões de compra dos consumidores. Entenda como isso funciona.
+            </p>
+            <a href="contato.html" class="inline-flex items-center gap-1 text-prime-900 font-semibold text-sm mt-4 hover:text-gold-400 uppercase tracking-widest transition">
+              Ler mais <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Post 4 -->
+        <article class="post-card group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer" data-cat="Estratégias de Marketing">
+          <div class="aspect-video overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
+            <img src="blog/assets/blog-img-4.jpg" alt="Blog thumbnail" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="bg-purple-100 text-purple-700 font-semibold text-xs px-3 py-1 rounded-full">Estratégias de Marketing</span>
+              <span class="text-gray-400 text-xs">01/02/2022</span>
+            </div>
+            <h2 class="font-bold font-serif text-prime-900 text-lg leading-snug mb-3">
+              Hashtag: como usar no Instagram?
+            </h2>
+            <p class="text-gray-500 text-sm leading-relaxed line-clamp-3">
+              Saiba como utilizar as hashtags de forma estratégica no Instagram para aumentar o alcance das suas publicações e atrair o público certo.
+            </p>
+            <a href="contato.html" class="inline-flex items-center gap-1 text-prime-900 font-semibold text-sm mt-4 hover:text-gold-400 uppercase tracking-widest transition">
+              Ler mais <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Post 5 -->
+        <article class="post-card group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer" data-cat="Estratégias de Marketing">
+          <div class="aspect-video overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
+            <img src="blog/assets/blog-img-5.jpg" alt="Blog thumbnail" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="bg-yellow-100 text-yellow-700 font-semibold text-xs px-3 py-1 rounded-full">Calendário de promoções</span>
+              <span class="text-gray-400 text-xs">26/01/2022</span>
+            </div>
+            <h2 class="font-bold font-serif text-prime-900 text-lg leading-snug mb-3">
+              Como incluir datas sazonais no calendário de promoções
+            </h2>
+            <p class="text-gray-500 text-sm leading-relaxed line-clamp-3">
+              Datas sazonais são oportunidades de ouro para impulsionar as vendas. Veja como incluí-las estrategicamente no calendário de promoções do seu negócio.
+            </p>
+            <a href="contato.html" class="inline-flex items-center gap-1 text-prime-900 font-semibold text-sm mt-4 hover:text-gold-400 uppercase tracking-widest transition">
+              Ler mais <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Post 6 -->
+        <article class="post-card group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer" data-cat="Gestão">
+          <div class="aspect-video overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
+            <img src="blog/assets/blog-img-6.jpg" alt="Blog thumbnail" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="bg-teal-100 text-teal-700 font-semibold text-xs px-3 py-1 rounded-full">Gestão</span>
+              <span class="text-gray-400 text-xs">19/01/2022</span>
+            </div>
+            <h2 class="font-bold font-serif text-prime-900 text-lg leading-snug mb-3">
+              Cultura organizacional: práticas para o bom relacionamento com colaboradores
+            </h2>
+            <p class="text-gray-500 text-sm leading-relaxed line-clamp-3">
+              Uma cultura organizacional saudável é o alicerce do sucesso empresarial. Confira práticas essenciais para cultivar um ambiente de trabalho positivo.
+            </p>
+            <a href="contato.html" class="inline-flex items-center gap-1 text-prime-900 font-semibold text-sm mt-4 hover:text-gold-400 uppercase tracking-widest transition">
+              Ler mais <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Post 7 -->
+        <article class="post-card group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer" data-cat="Gestão">
+          <div class="aspect-video overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
+            <img src="blog/assets/blog-img-7.jpg" alt="Blog thumbnail" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="bg-teal-100 text-teal-700 font-semibold text-xs px-3 py-1 rounded-full">Gestão</span>
+              <span class="text-gray-400 text-xs">11/01/2022</span>
+            </div>
+            <h2 class="font-bold font-serif text-prime-900 text-lg leading-snug mb-3">
+              10 dicas para fazer um feedback de sucesso
+            </h2>
+            <p class="text-gray-500 text-sm leading-relaxed line-clamp-3">
+              O feedback é uma ferramenta poderosa para o desenvolvimento da equipe. Aprenda 10 práticas para dar um retorno eficaz e construtivo.
+            </p>
+            <a href="contato.html" class="inline-flex items-center gap-1 text-prime-900 font-semibold text-sm mt-4 hover:text-gold-400 uppercase tracking-widest transition">
+              Ler mais <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Post 8 -->
+        <article class="post-card group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer" data-cat="Estratégias de Marketing">
+          <div class="aspect-video overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
+            <img src="blog/assets/blog-img-8.jpg" alt="Blog thumbnail" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="bg-purple-100 text-purple-700 font-semibold text-xs px-3 py-1 rounded-full">Estratégias de Marketing</span>
+              <span class="text-gray-400 text-xs">17/12/2021</span>
+            </div>
+            <h2 class="font-bold font-serif text-prime-900 text-lg leading-snug mb-3">
+              Estratégias de SEO para blog
+            </h2>
+            <p class="text-gray-500 text-sm leading-relaxed line-clamp-3">
+              Aprenda estratégias de SEO para fazer seu blog ranquear melhor no Google e atrair visitantes qualificados de forma orgânica e consistente.
+            </p>
+            <a href="contato.html" class="inline-flex items-center gap-1 text-prime-900 font-semibold text-sm mt-4 hover:text-gold-400 uppercase tracking-widest transition">
+              Ler mais <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Post 9 -->
+        <article class="post-card group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer" data-cat="Vendas">
+          <div class="aspect-video overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
+            <img src="blog/assets/blog-img-9.jpg" alt="Blog thumbnail" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="bg-orange-100 text-orange-700 font-semibold text-xs px-3 py-1 rounded-full">Vendas</span>
+              <span class="text-gray-400 text-xs">10/12/2021</span>
+            </div>
+            <h2 class="font-bold font-serif text-prime-900 text-lg leading-snug mb-3">
+              Vender pela internet: e-commerce na prática
+            </h2>
+            <p class="text-gray-500 text-sm leading-relaxed line-clamp-3">
+              Descubra tudo o que você precisa saber para começar a vender pela internet de forma profissional, desde a escolha da plataforma até as estratégias de marketing.
+            </p>
+            <a href="contato.html" class="inline-flex items-center gap-1 text-prime-900 font-semibold text-sm mt-4 hover:text-gold-400 uppercase tracking-widest transition">
+              Ler mais <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Post 10 -->
+        <article class="post-card group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer" data-cat="Vendas">
+          <div class="aspect-video overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
+            <img src="blog/assets/blog-img-10.jpg" alt="Blog thumbnail" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="bg-orange-100 text-orange-700 font-semibold text-xs px-3 py-1 rounded-full">Vendas</span>
+              <span class="text-gray-400 text-xs">02/12/2021</span>
+            </div>
+            <h2 class="font-bold font-serif text-prime-900 text-lg leading-snug mb-3">
+              Vendas: alcance melhores resultados por meio do seu atendimento
+            </h2>
+            <p class="text-gray-500 text-sm leading-relaxed line-clamp-3">
+              Um cliente atendido de forma excelente se torna fiel ao seu negócio. Descubra como um atendimento de qualidade pode ser seu maior diferencial competitivo.
+            </p>
+            <a href="contato.html" class="inline-flex items-center gap-1 text-prime-900 font-semibold text-sm mt-4 hover:text-gold-400 uppercase tracking-widest transition">
+              Ler mais <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Pagination -->
+      <div class="flex justify-center gap-2 mt-14">
+        <button class="w-10 h-10 rounded-full bg-prime-900 text-white font-bold text-sm flex items-center justify-center">1</button>
+        <button class="w-10 h-10 rounded-full border border-gray-200 text-gray-500 hover:border-prime-900 text-prime-900 font-bold text-sm flex items-center justify-center transition">2</button>
+        <button class="w-10 h-10 rounded-full border border-gray-200 text-gray-500 hover:border-prime-900 text-prime-900 font-bold text-sm flex items-center justify-center transition">
+          <i class="fas fa-chevron-right text-xs"></i>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== NEWSLETTER BANNER ========== -->
+  <section class="bg-prime-950 py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block border border-gold-400/30 text-gold-400 font-bold tracking-widest uppercase text-xs px-5 py-2 rounded-full mb-6">#SejaPrime</span>
+      <h2 class="text-3xl font-extrabold text-white mb-4">Precisa de ajuda com marketing digital?</h2>
+      <p class="text-white/60 mb-8">
+        Nossa equipe está pronta para criar uma estratégia personalizada para o seu negócio.
+      </p>
+      <a href="contato.html"
+         class="inline-flex items-center gap-2 btn-luxury border border-white text-white bg-transparent font-bold px-8 py-4 rounded-full transition-all  uppercase tracking-wide text-sm">
+        Fale com a gente <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-prime-950 pt-24 pb-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 mb-20 items-start border-b border-white/10 pb-20">
+        
+        <!-- Logo & About -->
+        <div class="lg:col-span-5">
+          <img src="assets/asset 1.png" alt="Conceito Prime" class="h-8 object-contain mb-8 filter brightness-0 invert opacity-90">
+          <p class="text-prime-400 font-light text-[13px] leading-[1.8] max-w-sm">
+            Especialistas em posicionamento, branding e tráfego para marcas que buscam autoridade, elegância e resultados de altíssimo padrão.
+          </p>
+        </div>
+
+        <!-- Nav -->
+        <div class="lg:col-span-3 lg:col-start-7">
+          <h4 class="text-white font-serif text-lg mb-6">Menu</h4>
+          <ul class="space-y-4">
+            <li><a href="index.html"       class="text-prime-400 hover:text-gold-400 transition text-[13px] font-light">Início</a></li>
+            <li><a href="quem-somos.html"  class="text-prime-400 hover:text-gold-400 transition text-[13px] font-light">A Agência</a></li>
+            <li><a href="blog.html"        class="text-prime-400 hover:text-gold-400 transition text-[13px] font-light">Journal</a></li>
+            <li><a href="contato.html"     class="text-prime-400 hover:text-gold-400 transition text-[13px] font-light">Contato</a></li>
+          </ul>
+        </div>
+
+        <!-- Social / Extra -->
+        <div class="lg:col-span-3">
+           <h4 class="text-white font-serif text-lg mb-6">Social</h4>
+           <div class="flex gap-4">
+             <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-gold-400 hover:text-gold-400 transition-all duration-300">
+               <i class="fab fa-instagram"></i>
+             </a>
+             <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-gold-400 hover:text-gold-400 transition-all duration-300">
+               <i class="fab fa-linkedin-in"></i>
+             </a>
+           </div>
+        </div>
+
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] text-prime-500 uppercase tracking-widest font-light">
+        <p>© 2026 Conceito Prime.</p>
+        <p>Design & Code por Conceito Prime</p>
+      </div>
+      
+    </div>
+  </footer>
+
+  <!-- ========== JS ========== -->
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      const icon = menuBtn.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    // Sticky nav shadow
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Shadow animation on scroll for Nossa Estrutura
+    const estruturaContainer = document.getElementById('estrutura-img-container');
+    const estruturaShadow = document.getElementById('estrutura-shadow');
+    
+    if (estruturaContainer && estruturaShadow) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Wait 2 seconds, then animate the shadow
+            setTimeout(() => {
+              estruturaShadow.classList.remove('opacity-0', 'translate-x-0', 'translate-y-0');
+              estruturaShadow.classList.add('opacity-100', 'translate-x-6', 'translate-y-6');
+            }, 2000);
+            observer.disconnect(); // Animate only once
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      observer.observe(estruturaContainer);
+    }
+  </script>
+
+</body>
+</html>

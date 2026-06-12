@@ -1,0 +1,13 @@
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/servicos/*/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin

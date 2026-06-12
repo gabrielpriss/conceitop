@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://conceitop.com.br/sitemap.xml
