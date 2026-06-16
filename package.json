@@ -1,16 +1,16 @@
 {
-  "name": "conceito-prime",
+  "name": "conceitop",
   "version": "1.0.0",
   "private": true,
   "description": "Site institucional da Conceito Prime — marketing digital em Curitiba",
-  "scripts": {
-    "build": "node -e \"console.log('Site estático pronto para deploy')\"",
-    "dev": "wrangler pages dev . --port 8788",
-    "deploy": "wrangler pages deploy . --project-name=conceitop --branch=main",
-    "deploy:preview": "wrangler pages deploy . --project-name=conceitop"
+  "engines": {
+    "node": ">=18"
   },
-  "devDependencies": {
-    "wrangler": "^4.100.0"
+  "scripts": {
+    "build": "node scripts/verify.js",
+    "dev": "wrangler pages dev . --port 8788",
+    "deploy": "npm run build && wrangler pages deploy . --project-name=conceitop --branch=main",
+    "deploy:preview": "npm run build && wrangler pages deploy . --project-name=conceitop"
   },
   "devDependencies": {
     "wrangler": "^4.100.0"

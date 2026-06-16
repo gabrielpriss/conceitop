@@ -1,7 +1,33 @@
 node_modules/
 .wrangler/
 .dev.vars
-*.log
+.env
+.env.*
 .DS_Store
-__pycache__/
-*.pyc
+*.log
+Thumbs.db
+
+# Arquivos legados / rascunhos (produção usa pastas com clean URLs)
+blog.html
+contato.html
+quem-somos.html
+hero_bg.jpeg
+favicon.png
+WhatsApp Image*.jpeg
+1._Rafael_-_Desktop.png
+2._Philipe_-_Desktop.png
+3._Ruan_-_Desktop.png
+4._Heloise_-_Desktop.png
+
+# Originais raster já convertidos para WebP
+assets/asset *.png
+assets/asset *.jpeg
+assets/hero-bg-dark.png
+assets/marcas/
+assets/portfolio/
+blog/assets/blog-img-*.jpg
+
+# Scripts de geração (dev only)
+scripts/*.py
+scripts/__pycache__/
+scripts/*.md
