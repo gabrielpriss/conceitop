@@ -2,15 +2,16 @@
   "name": "conceitop",
   "version": "1.0.0",
   "private": true,
-  "description": "Site institucional da Conceito Prime — marketing digital em Curitiba",
+  "description": "Site institucional da Conceito Prime — Cloudflare Pages",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "build": "node scripts/verify.js",
-    "dev": "wrangler pages dev . --port 8788",
-    "deploy": "npm run build && wrangler pages deploy . --project-name=conceitop --branch=main",
-    "deploy:preview": "npm run build && wrangler pages deploy . --project-name=conceitop"
+    "build": "bash scripts/build.sh && node scripts/verify.js",
+    "dev": "npm run build && wrangler pages dev dist --port 8788",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:pages": "npm run build && wrangler pages deploy dist --project-name=conceitop --branch=main",
+    "deploy:preview": "npm run build && wrangler pages deploy dist --project-name=conceitop"
   },
   "devDependencies": {
     "wrangler": "^4.100.0"

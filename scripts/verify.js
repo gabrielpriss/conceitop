@@ -4,30 +4,26 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.join(__dirname, '..');
+const DIST = path.join(__dirname, '..', 'dist');
 
-function walk(dir, skip) {
+function walk(dir) {
   const out = [];
   if (!fs.existsSync(dir)) return out;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
-    const rel = path.relative(ROOT, full);
-    if (entry.isDirectory()) {
-      if (skip.some(function (s) { return rel.startsWith(s); })) continue;
-      out.push(...walk(full, skip));
-    } else {
-      out.push(full);
-    }
+    if (entry.isDirectory()) out.push(...walk(full));
+    else out.push(full);
   }
   return out;
 }
 
-const skipDirs = ['node_modules', 'scripts', 'assets/marcas', 'assets/portfolio'];
-const htmlFiles = walk(ROOT, skipDirs).filter(function (f) {
-  return f.endsWith('.html') && !f.includes(path.sep + 'scripts' + path.sep);
-}).filter(function (f) {
-  const rel = path.relative(ROOT, f);
-  return !/^(blog|contato|quem-somos)\.html$/.test(rel);
+if (!fs.existsSync(path.join(DIST, 'index.html'))) {
+  console.error('[verify] ERRO: dist/index.html ausente — execute npm run build');
+  process.exit(1);
+}
+
+const htmlFiles = walk(DIST).filter(function (f) {
+  return f.endsWith('.html');
 });
 
 const badRefs = [];
@@ -36,17 +32,26 @@ htmlFiles.forEach(function (file) {
   const matches = html.match(/(?:src|href|url\()\s*['"]?[^'")\s]*\.(?:jpe?g|png)(?!\.webp)/gi) || [];
   matches.forEach(function (m) {
     if (!/favicon|apple-touch|data:image/i.test(m)) {
-      badRefs.push(path.relative(ROOT, file) + ': ' + m);
+      badRefs.push(path.relative(DIST, file) + ': ' + m);
     }
   });
 });
 
-if (badRefs.length) {
-  console.error('[verify] ERRO: referências raster (exceto favicons):');
-  badRefs.forEach(function (r) {
-    console.error('  ' + r);
+const raster = walk(path.join(DIST, 'assets')).filter(function (f) {
+  return /\.(jpe?g|png)$/i.test(f) && !/favicon|apple-touch/i.test(f);
+});
+
+const blogRaster = walk(path.join(DIST, 'blog', 'assets')).filter(function (f) {
+  return /\.(jpe?g|png)$/i.test(f);
+});
+
+if (badRefs.length || raster.length || blogRaster.length) {
+  console.error('[verify] ERRO: arquivos ou referências raster na saída de produção');
+  badRefs.forEach(function (r) { console.error('  ref: ' + r); });
+  raster.concat(blogRaster).forEach(function (f) {
+    console.error('  file: ' + path.relative(DIST, f));
   });
   process.exit(1);
 }
 
-console.log('[verify] Site estático pronto para deploy (' + htmlFiles.length + ' páginas)');
+console.log('[verify] Site pronto para deploy em dist/ (' + htmlFiles.length + ' páginas)');

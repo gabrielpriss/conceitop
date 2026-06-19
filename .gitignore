@@ -1,4 +1,5 @@
 node_modules/
+dist/
 .wrangler/
 .dev.vars
 .env
@@ -6,6 +7,9 @@ node_modules/
 .DS_Store
 *.log
 Thumbs.db
+
+# Configuração Vercel (migrado para Cloudflare Pages)
+vercel.json
 
 # Arquivos legados / rascunhos (produção usa pastas com clean URLs)
 blog.html
