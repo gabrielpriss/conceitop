@@ -249,7 +249,7 @@ footer.bg-prime-950 .border-white\/10 {
   color: #fff;
 }
 
-.carousel-faixas { display: flex; flex-direction: column; gap: 2.5rem; }
+.carousel-faixas { display: flex; flex-direction: column; gap: 1.25rem; }
 .carousel-container {
   overflow: hidden;
   white-space: nowrap;
@@ -267,26 +267,35 @@ footer.bg-prime-950 .border-white\/10 {
 .carousel-group {
   display: inline-flex;
   align-items: center;
-  gap: 3.5rem;
-  padding: 0 1.75rem;
+  gap: 1.25rem;
+  padding: 0 .625rem;
   margin: 0;
   list-style: none;
 }
+/* Cartão de logo: cores reais do cliente; logos brancos vão no cartão escuro */
 .carousel-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 96px;
-  min-width: 120px;
+  flex: none;
+  width: 184px;
+  height: 88px;
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(22, 22, 22, .04);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
-.carousel-item img {
-  max-height: 80px;
-  width: auto;
-  object-fit: contain;
-  opacity: .72;
-  transition: opacity .3s ease, transform .3s ease;
+.carousel-item--escuro { background: var(--brand-dark); border-color: var(--brand-dark); }
+.carousel-item img { max-width: 148px; max-height: 56px; width: auto; height: auto; object-fit: contain; }
+.carousel-item:hover { transform: translateY(-3px); border-color: #dcdcdc; box-shadow: 0 8px 20px rgba(22, 22, 22, .08); }
+.carousel-item--escuro:hover { border-color: var(--brand-dark); }
+@media (max-width: 640px) {
+  .carousel-faixas { gap: 1rem; }
+  .carousel-group { gap: .75rem; padding: 0 .375rem; }
+  .carousel-item { width: 148px; height: 72px; border-radius: 12px; }
+  .carousel-item img { max-width: 120px; max-height: 46px; }
 }
-.carousel-item:hover img { opacity: 1; transform: scale(1.06); }
 @media (prefers-reduced-motion: reduce) { .carousel-track { animation: none; } .carousel-container { overflow-x: auto; } }
 
 @keyframes scroll {
@@ -956,6 +965,11 @@ footer.bg-prime-950 .border-white\/10 {
   min-width: 0;
   box-sizing: border-box;
 }
+@media (min-width: 1024px) {
+  .video-carousel-slide { flex-basis: 50%; width: 50%; padding: 0 0.625rem; }
+  .video-carousel { margin: 0 -0.625rem; }
+}
+.video-dot[hidden] { display: none; }
 .video-thumb {
   position: relative;
   aspect-ratio: 997 / 534;
@@ -984,15 +998,18 @@ footer.bg-prime-950 .border-white\/10 {
   transition: background 0.3s;
 }
 .video-thumb:hover::after { background: rgba(22,22,22,.35); }
+/* Play no canto inferior da foto: não cobre o rosto nem o texto da arte */
 .video-play {
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 1rem;
   z-index: 2;
   pointer-events: none;
 }
+@media (max-width: 640px) { .video-play { padding: .625rem; } .video-play i { width: 3rem; height: 3rem; font-size: 1rem; } }
 .video-play i {
   width: 4rem;
   height: 4rem;

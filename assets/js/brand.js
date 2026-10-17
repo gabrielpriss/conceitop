@@ -362,14 +362,19 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
   let idx = 0;
   let timer;
 
-  const slideWidth = () => viewport.clientWidth;
+  /* 2 depoimentos por vez no desktop, 1 no celular e tablet */
+  const desktop = window.matchMedia('(min-width: 1024px)');
+  const porVez = () => (desktop.matches ? 2 : 1);
+  const posicoes = () => Math.max(1, track.children.length - porVez() + 1);
 
   const go = (n) => {
-    const total = track.children.length;
-    if (!total) return;
-    idx = (n + total) % total;
-    track.style.transform = `translateX(-${idx * slideWidth()}px)`;
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    const total = posicoes();
+    idx = ((n % total) + total) % total;
+    track.style.transform = `translateX(-${idx * (viewport.clientWidth / porVez())}px)`;
+    dots.forEach((d, i) => {
+      d.hidden = i >= total;
+      d.classList.toggle('active', i === idx);
+    });
   };
 
   const start = () => { timer = setInterval(() => go(idx + 1), 6000); };

@@ -12,6 +12,8 @@ mkdir -p "$DIST"
 
 cp "$ROOT/index.html" "$ROOT/404.html" "$ROOT/robots.txt" "$ROOT/sitemap.xml" "$DIST/"
 cp "$ROOT/_headers" "$ROOT/_redirects" "$DIST/"
+# /favicon.ico na raiz: navegadores e buscadores pedem esse caminho mesmo sem <link>
+cp "$ROOT/assets/images/favicon.ico" "$DIST/favicon.ico"
 
 # Páginas: copia só HTML e WebP de cada pasta publicada (rascunhos e originais ficam de fora)
 for dir in quem-somos contato trabalhe-conosco blog servicos; do

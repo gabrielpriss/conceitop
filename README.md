@@ -24,7 +24,7 @@ O build só copia o que vai ao ar e coloca hash de conteúdo em `site.css` e `br
 | Classe Tailwind em HTML/JS ou `assets/css/src/brand.css` | `TAILWIND_BIN=/caminho/tailwindcss bash scripts/build-css.sh` | `assets/css/site.css` |
 | Fonte ou ícone novo (`fa-*`) | `python3 scripts/build-assets.py --fonts <google/fonts> --fa <fontawesome-web>` | `assets/fonts/*.woff2`, `assets/css/src/fonts-icons.css` |
 | Artigo do blog | editar `conteudo/blog/posts.json` e `<slug>.raw.html`, depois `python3 scripts/generate-blog-covers.py --fonts <google/fonts>` e `python3 scripts/generate-blog.py` | `blog/<slug>/`, `blog/index.html`, capas, `sitemap.xml` |
-| Logo de cliente | tratar com `_logos/tratar.py` (Mac), salvar em `assets/images/clientes/<slug>.webp`, editar `conteudo/clientes.json`, `python3 scripts/generate-clientes.py` | carrossel da home |
+| Logo de cliente | editar `conteudo/clientes.json` (origem e fundo claro ou escuro), `python3 scripts/tratar-logos.py <pasta dos originais>` e `python3 scripts/generate-clientes.py` | `assets/images/clientes/*.webp`, carrossel da home |
 | Página de serviço | `python3 scripts/generate-services.py` | `servicos/<slug>/` |
 
 Depois de qualquer um deles, rodar `build-css.sh` de novo se surgiram classes novas.

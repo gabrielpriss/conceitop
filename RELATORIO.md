@@ -20,11 +20,13 @@
 - Números animados (+1.000 clientes atendidos, +10.000 serviços realizados, objetivo: 1, vender mais) com valores informados pelo Gabriel em 17/10/2026.
 - Rodapé "Desenvolvido por Conceito Prime".
 - Headers de segurança (HSTS, CSP compatível com GTM e Google Ads, Permissions-Policy) e cache com hash.
+- Favicon igual ao do site atual (símbolo amarelo no quadrado escuro), com `/favicon.ico` na raiz.
+- Depoimentos em vídeo: dois por vez no desktop.
 - Remoção dos links `tel:`. O evento `click_to_call` deixa de existir.
 
 ## Pendências (dependem de informação ou ação)
 
-1. **Logos do carrossel:** 24 de 26 localizados; tratamento em silhueta pronto no Mac (`~/conceitop/_logos`). Faltam **Naciopetro** (sem site encontrado) e **Espaço Pirâmide** (site fora do ar). O carrossel novo entra quando os arquivos chegarem ao repositório.
+1. **Logos do carrossel:** 29 logos com as cores reais, em cartões (logos brancos no cartão escuro). Faltam **Naciopetro** (sem site encontrado), **Espaço Pirâmide** (site fora do ar) e **Emunah** (só encontramos o ícone branco de 64px, pequeno demais). Entram assim que recebermos os arquivos. Cerimonial do Valle aparece só com o símbolo, que é o único arquivo que temos.
 2. **GTM:** sem contêiner no site atual. Precisamos do ID GTM-XXXX da Conceito Prime.
 3. **Endereço:** divergência entre fontes. Rodapé: R. Antônio Rodrigues, 76, Campina do Siqueira. Link do Maps: Seminário. Mapa incorporado: Av. Visconde de Guarapuava, Centro. Falta confirmar qual vale.
 4. **Planilha de leads e de currículos:** criar os Apps Scripts (código em `worker.js`) e cadastrar os segredos `LEAD_WEBHOOK` e `TRABALHE_WEBHOOK` no Worker.
