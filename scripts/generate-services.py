@@ -10,7 +10,7 @@ from social_links_snippet import render_footer_social
 BUSINESS_NAME = "Conceito Prime"
 BUSINESS_LOCATION = "Curitiba, PR"
 MAP_EMBED = f"https://maps.google.com/maps?q={BUSINESS_NAME.replace(' ', '+')},+{BUSINESS_LOCATION.replace(' ', '+').replace(',', '%2C')}&hl=pt-BR&z=14&output=embed"
-WA_URL = "https://wa.me/554130574764?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20atendente."
+WA_URL = "https://wa.me/5541999904764?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20atendente."
 WA_CTA_HEADER = f'''<a href="{WA_URL}" target="_blank" rel="noopener" class="btn-wa text-xs px-6 py-3 uppercase tracking-[0.15em]"><i class="fab fa-whatsapp" aria-hidden="true"></i> Falar com atendente</a>'''
 WA_CTA_MOBILE = f'''<a href="{WA_URL}" target="_blank" rel="noopener" class="btn-wa inline-flex justify-center text-xs px-6 py-4 mt-2 uppercase tracking-[0.2em]"><i class="fab fa-whatsapp" aria-hidden="true"></i> Falar com atendente</a>'''
 
@@ -196,9 +196,10 @@ def render_footer():
           <h2 class="text-white font-serif text-lg mb-6">Menu</h2>
           <ul class="space-y-4">
             <li><a href="/" class="text-prime-400 hover:text-gold-400 transition text-[15px] font-light">Início</a></li>
-            <li><a href="/quem-somos/" class="text-prime-400 hover:text-gold-400 transition text-[15px] font-light">A Agência</a></li>
-            <li><a href="/blog/" class="text-prime-400 hover:text-gold-400 transition text-[15px] font-light">Journal</a></li>
+            <li><a href="/quem-somos/" class="text-prime-400 hover:text-gold-400 transition text-[15px] font-light">Quem somos</a></li>
+            <li><a href="/blog/" class="text-prime-400 hover:text-gold-400 transition text-[15px] font-light">Blog</a></li>
             <li><a href="/contato/" class="text-prime-400 hover:text-gold-400 transition text-[15px] font-light">Contato</a></li>
+            <li><a href="/trabalhe-conosco/" class="text-prime-400 hover:text-gold-400 transition text-[15px] font-light">Trabalhe conosco</a></li>
           </ul>
         </div>
         <div class="lg:col-span-3">
@@ -208,7 +209,7 @@ def render_footer():
       </div>
       <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] text-prime-500 uppercase tracking-widest font-light">
         <p>© 2026 Conceito Prime.</p>
-        <p>Design & Code por Conceito Prime</p>
+        <p>Desenvolvido por <a href="https://conceitop.com.br" target="_blank" rel="noopener" class="footer-credit">Conceito Prime</a></p>
       </div>
     </div>
   </footer>

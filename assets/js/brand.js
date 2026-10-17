@@ -1,9 +1,9 @@
 /* Conceito Prime: scripts compartilhados */
 
 /* ========== CONTATO: número único do WhatsApp ==========
-   PENDENTE: confirmar o número. O site antigo usa (41) 99990-4764; aqui está o fixo (41) 3057-4764,
-   definido no briefing de junho. Trocar só esta constante. */
-const WA_NUMERO = '554130574764';
+   Comercial (José), o mesmo número do botão do site anterior. Trocar só aqui. */
+const WA_NUMERO = '5541999904764';
+const WA_ADMINISTRATIVO = '5541998863226';
 
 window.dataLayer = window.dataLayer || [];
 function track(event, data) { window.dataLayer.push(Object.assign({ event: event }, data || {})); }
@@ -275,24 +275,44 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
   a.addEventListener('click', function () { track('whatsapp_open', { posicao: a.dataset.cta || 'link' }); });
 });
 
-/* Botão flutuante WhatsApp: Comercial / Administrativo */
+/* Botão flutuante WhatsApp: painel Fale Conosco (mesmo formato do site anterior, sem RH) */
 (function initWhatsAppFloat() {
-  const WA = {
-    comercial: waLink('Olá! Gostaria de falar com o Comercial.'),
-    administrativo: waLink('Olá! Gostaria de falar com o Administrativo.')
-  };
+  const contatos = [
+    { setor: 'Comercial', nome: 'José', fone: '(41) 99990-4764', numero: WA_NUMERO, msg: 'Olá! Vim pelo site da Conceito Prime e gostaria de falar com o Comercial.' },
+    { setor: 'Administrativo', nome: 'Vitor', fone: '(41) 99886-3226', numero: WA_ADMINISTRATIVO, msg: 'Olá! Vim pelo site da Conceito Prime e gostaria de falar com o Administrativo.' }
+  ];
+  const itens = contatos.map(function (c) {
+    const url = 'https://wa.me/' + c.numero + '?text=' + encodeURIComponent(c.msg);
+    return `
+        <a href="${url}" target="_blank" rel="noopener" class="wa-contact" data-cta="flutuante-${c.setor.toLowerCase()}">
+          <span class="wa-contact-avatar" aria-hidden="true"><i class="fab fa-whatsapp"></i></span>
+          <span class="wa-contact-text">
+            <span class="wa-contact-name">${c.setor} - ${c.nome}</span>
+            <span class="wa-contact-phone">${c.fone}</span>
+          </span>
+          <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </a>`;
+  }).join('');
 
   const widget = document.createElement('div');
   widget.id = 'wa-float';
   widget.className = 'wa-float';
   widget.innerHTML = `
-    <div class="wa-float-menu hidden" id="wa-float-menu" aria-label="Opções de WhatsApp">
-      <a href="${WA.comercial}" target="_blank" rel="noopener" class="wa-float-option" data-cta="flutuante-comercial">
-        <i class="fab fa-whatsapp" aria-hidden="true"></i> Comercial
-      </a>
-      <a href="${WA.administrativo}" target="_blank" rel="noopener" class="wa-float-option" data-cta="flutuante-administrativo">
-        <i class="fab fa-whatsapp" aria-hidden="true"></i> Administrativo
-      </a>
+    <div class="wa-panel hidden" id="wa-float-menu" role="dialog" aria-labelledby="wa-panel-title">
+      <div class="wa-panel-head">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <div>
+          <p class="wa-panel-title" id="wa-panel-title">Fale Conosco</p>
+          <p class="wa-panel-sub">Entre em contato pelo número oficial da Conceito Prime.</p>
+        </div>
+      </div>
+      <div class="wa-panel-body">
+        <p class="wa-panel-note">Nosso time costuma responder em poucos minutos.</p>
+        ${itens}
+      </div>
+      <div class="wa-panel-foot">
+        <strong>Currículos e propostas de fornecedores</strong> não são atendidos pelo WhatsApp: envie pelo formulário <a href="/trabalhe-conosco/">Trabalhe Conosco</a>.
+      </div>
     </div>
     <button type="button" class="wa-float-btn" id="wa-float-btn" aria-label="Falar no WhatsApp" aria-expanded="false" aria-controls="wa-float-menu">
       <i class="fab fa-whatsapp" aria-hidden="true"></i>
@@ -302,19 +322,23 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
 
   const btn = document.getElementById('wa-float-btn');
   const menu = document.getElementById('wa-float-menu');
-  menu.querySelectorAll('a').forEach(function (a) {
+  const icone = btn.querySelector('i');
+  const definir = function (aberto) {
+    menu.classList.toggle('hidden', !aberto);
+    btn.setAttribute('aria-expanded', String(aberto));
+    btn.setAttribute('aria-label', aberto ? 'Fechar contatos do WhatsApp' : 'Falar no WhatsApp');
+    icone.className = aberto ? 'fas fa-times' : 'fab fa-whatsapp';
+  };
+  menu.querySelectorAll('a.wa-contact').forEach(function (a) {
     a.addEventListener('click', function () { track('whatsapp_open', { posicao: a.dataset.cta }); });
   });
   btn.addEventListener('click', function () {
-    const fechado = menu.classList.toggle('hidden');
-    btn.setAttribute('aria-expanded', String(!fechado));
+    const abrir = menu.classList.contains('hidden');
+    definir(abrir);
+    if (abrir) track('cta_click', { posicao: 'flutuante', texto: 'Fale Conosco' });
   });
-  document.addEventListener('click', function (e) {
-    if (!widget.contains(e.target)) {
-      menu.classList.add('hidden');
-      btn.setAttribute('aria-expanded', 'false');
-    }
-  });
+  document.addEventListener('click', function (e) { if (!widget.contains(e.target)) definir(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.classList.contains('hidden')) { definir(false); btn.focus(); } });
 })();
 
 /* Eventos de engajamento */
@@ -431,4 +455,161 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
   window.addEventListener('resize', () => go(idx));
   go(0);
   start();
+})();
+
+/* Trabalhe Conosco: currículos e fornecedores com anexo (POST /api/trabalhe-conosco) */
+(function initTrabalheConosco() {
+  const form = document.getElementById('form-trabalhe');
+  if (!form) return;
+  const EMAIL_FALLBACK = 'contato@conceitop.com.br';
+  const LIMITE = 5 * 1024 * 1024;
+  const erroBox = form.querySelector('[data-lead-error]');
+  const sucesso = document.querySelector('[data-tc-sucesso]');
+  const arquivo = form.querySelector('#tc-arquivo');
+  const rotuloArquivo = form.querySelector('[data-rotulo-arquivo]');
+  const anexoOpcional = form.querySelector('[data-anexo-opcional]');
+  const botao = form.querySelector('button[type="submit"]');
+  maskPhone(form.querySelector('[data-phone-mask]'));
+
+  const tipoAtual = function () { return form.querySelector('input[name="tipo"]:checked').value; };
+  const aplicarTipo = function () {
+    const t = tipoAtual();
+    form.querySelectorAll('.tc-bloco').forEach(function (b) { b.classList.toggle('hidden', b.dataset.tipo !== t); });
+    rotuloArquivo.textContent = t === 'curriculo' ? 'Currículo' : 'Apresentação ou catálogo';
+    anexoOpcional.hidden = t === 'curriculo';
+  };
+  form.querySelectorAll('input[name="tipo"]').forEach(function (r) { r.addEventListener('change', aplicarTipo); });
+  try { if (new URLSearchParams(location.search).get('tipo') === 'fornecedor') form.querySelector('input[value="fornecedor"]').checked = true; } catch (e) { /* ignora */ }
+  aplicarTipo();
+
+  let iniciou = false;
+  form.addEventListener('input', function () { if (!iniciou) { iniciou = true; track('form_start', { formulario: 'trabalhe-conosco' }); } });
+
+  function marcar(el, ok) { el.classList.toggle('is-invalid', !ok); el.setAttribute('aria-invalid', String(!ok)); return ok; }
+
+  function validar() {
+    const t = tipoAtual();
+    const erros = [];
+    form.querySelectorAll('[required], [data-obrigatorio-' + t + ']').forEach(function (el) {
+      let ok = !!String(el.value || '').trim();
+      if (ok && el.type === 'email') ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim());
+      if (ok && el.name === 'telefone') ok = el.value.replace(/\D/g, '').length >= 10;
+      if (!marcar(el, ok)) erros.push(el);
+    });
+    form.querySelectorAll('[data-obrigatorio-curriculo], [data-obrigatorio-fornecedor]').forEach(function (el) {
+      if (!el.hasAttribute('data-obrigatorio-' + t)) marcar(el, true);
+    });
+    const f = arquivo.files[0];
+    let msgArquivo = '';
+    if (t === 'curriculo' && !f) msgArquivo = 'Anexe o seu currículo.';
+    if (f && f.size > LIMITE) msgArquivo = 'O arquivo passa de 5 MB. Envie uma versão menor.';
+    if (f && !/\.(pdf|docx?|jpe?g|png)$/i.test(f.name)) msgArquivo = 'Formato não aceito. Use PDF, Word, JPG ou PNG.';
+    if (!marcar(arquivo, !msgArquivo)) erros.push(arquivo);
+    return { erros: erros, msgArquivo: msgArquivo };
+  }
+
+  function lerArquivo(f) {
+    return new Promise(function (ok, falha) {
+      if (!f) return ok(null);
+      const r = new FileReader();
+      r.onload = function () { ok({ nome: f.name, tipo: f.type || 'application/octet-stream', base64: String(r.result).split(',')[1] }); };
+      r.onerror = falha;
+      r.readAsDataURL(f);
+    });
+  }
+
+  function mostrarFalha(dados) {
+    const assunto = encodeURIComponent((dados.tipo === 'curriculo' ? 'Currículo: ' : 'Fornecedor: ') + (dados.nome || ''));
+    erroBox.innerHTML = 'Não conseguimos receber o envio agora. Envie o mesmo conteúdo, com o anexo, para ' +
+      '<a href="mailto:' + EMAIL_FALLBACK + '?subject=' + assunto + '">' + EMAIL_FALLBACK + '</a>.';
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (form.website.value) return;
+    const v = validar();
+    if (v.erros.length) {
+      erroBox.textContent = v.msgArquivo || 'Confira os campos destacados. O telefone precisa ter DDD.';
+      v.erros[0].focus();
+      return;
+    }
+    erroBox.textContent = '';
+    const dados = {};
+    new FormData(form).forEach(function (val, chave) { if (chave !== 'arquivo' && chave !== 'website' && String(val).trim()) dados[chave] = String(val).trim(); });
+    dados.pagina = location.pathname;
+    botao.disabled = true;
+    botao.dataset.texto = botao.innerHTML;
+    botao.textContent = 'Enviando...';
+    try {
+      dados.anexo = await lerArquivo(arquivo.files[0]);
+      const r = await fetch('/api/trabalhe-conosco', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dados) });
+      if (!r.ok) throw new Error('status ' + r.status);
+      track('form_submit', { formulario: 'trabalhe-conosco', tipo: dados.tipo });
+      form.classList.add('hidden');
+      sucesso.classList.remove('hidden');
+      sucesso.setAttribute('tabindex', '-1');
+      sucesso.focus();
+    } catch (err) {
+      mostrarFalha(dados);
+    } finally {
+      botao.disabled = false;
+      botao.innerHTML = botao.dataset.texto;
+    }
+  });
+})();
+
+/* Números que sobem gradualmente quando a seção entra na tela */
+(function initContadores() {
+  const alvos = document.querySelectorAll('[data-count]');
+  if (!alvos.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const fmt = new Intl.NumberFormat('pt-BR');
+  const render = function (el, v) { el.textContent = (el.dataset.prefix || '') + fmt.format(v); };
+  const animar = function (el) {
+    const fim = Number(el.dataset.count);
+    const dur = fim > 1 ? 2000 : 900;
+    const t0 = performance.now();
+    const passo = function (t) {
+      const p = Math.min(1, (t - t0) / dur);
+      const e = 1 - Math.pow(1 - p, 3);
+      render(el, Math.round(fim * e));
+      if (p < 1) requestAnimationFrame(passo);
+    };
+    requestAnimationFrame(passo);
+  };
+  const obs = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (en) {
+      if (en.isIntersecting) { animar(en.target); obs.unobserve(en.target); }
+    });
+  }, { threshold: 0.4 });
+  alvos.forEach(function (el) { render(el, 0); obs.observe(el); });
+})();
+
+/* Blog: filtro por categoria */
+(function initFiltroBlog() {
+  const grade = document.getElementById('posts-grid');
+  const botoes = document.querySelectorAll('.cat-btn');
+  if (!grade || !botoes.length) return;
+  const vazio = document.querySelector('[data-sem-resultado]');
+  botoes.forEach(function (b) {
+    b.setAttribute('aria-pressed', String(b.classList.contains('active')));
+    b.addEventListener('click', function () {
+      const cat = b.dataset.cat;
+      botoes.forEach(function (x) {
+        const ativo = x === b;
+        x.classList.toggle('active', ativo);
+        x.classList.toggle('bg-prime-900', ativo);
+        x.classList.toggle('text-white', ativo);
+        x.classList.toggle('bg-gray-100', !ativo);
+        x.setAttribute('aria-pressed', String(ativo));
+      });
+      let visiveis = 0;
+      grade.querySelectorAll('.post-card').forEach(function (c) {
+        const mostra = cat === 'all' || c.dataset.cat === cat;
+        c.hidden = !mostra;
+        if (mostra) visiveis++;
+      });
+      if (vazio) vazio.classList.toggle('hidden', visiveis > 0);
+    });
+  });
 })();

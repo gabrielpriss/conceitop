@@ -11,7 +11,7 @@ Use este documento como base em **todo** projeto novo. Cole no início do prompt
 | Nome da empresa | Conceito Prime |
 | Segmento | Agência de marketing digital |
 | Cidade/UF | Curitiba, PR |
-| WhatsApp (somente números) | 554130574764 |
+| WhatsApp (somente números) | 5541999904764 |
 | Domínio | conceitop.com.br |
 | Fonte principal | Cairo (ou definir conforme segmento) |
 | Google Meu Negócio | Nome exato do perfil no Google |

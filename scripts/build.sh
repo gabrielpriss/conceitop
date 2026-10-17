@@ -14,7 +14,7 @@ cp "$ROOT/index.html" "$ROOT/404.html" "$ROOT/robots.txt" "$ROOT/sitemap.xml" "$
 cp "$ROOT/_headers" "$ROOT/_redirects" "$DIST/"
 
 # Páginas: copia só HTML e WebP de cada pasta publicada (rascunhos e originais ficam de fora)
-for dir in quem-somos contato blog servicos; do
+for dir in quem-somos contato trabalhe-conosco blog servicos; do
   (cd "$ROOT" && find "$dir" -type f \( -name '*.html' -o -name '*.webp' -o -name '*.avif' \) -print0) |
     while IFS= read -r -d '' f; do
       mkdir -p "$DIST/$(dirname "$f")"

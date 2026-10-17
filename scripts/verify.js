@@ -66,7 +66,7 @@ for (const file of htmls) {
 
   // raster fora do padrão
   const raster = (html.match(/(?:src|href|url\()\s*['"]?[^'")\s]*\.(?:jpe?g|png)(?=['")\s])/gi) || [])
-    .filter((m) => !/favicon|apple-touch|og-image/i.test(m));
+    .filter((m) => !/favicon|apple-touch|og-image|\/og\//i.test(m));
   raster.forEach((m) => erros.push(`${rel}: imagem raster ${m}`));
 
   // travessões no texto visível (fora de scripts, estilos e comentários)
@@ -91,7 +91,7 @@ for (const file of htmls) {
 }
 
 // .md, rascunhos e originais não podem ir ao ar
-arquivos.filter((f) => /\.(md|py|sh|psd|ai)$|\.(jpe?g|png)$/i.test(f) && !/favicon|apple-touch|og-image/i.test(f))
+arquivos.filter((f) => /\.(md|py|sh|psd|ai)$|\.(jpe?g|png)$/i.test(f) && !/favicon|apple-touch|og-image|[\\/]og[\\/]/i.test(f))
   .forEach((f) => erros.push(`arquivo que não deveria publicar: ${path.relative(DIST, f)}`));
 
 avisos.forEach((a) => console.warn('[verify] aviso: ' + a));
