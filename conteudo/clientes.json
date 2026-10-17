@@ -1,0 +1,32 @@
+{
+  "faixa1": [
+    ["plasfix", "Plasfix"],
+    ["naciopetro", "Naciopetro"],
+    ["cactos", "Cactos Solutions"],
+    ["m8-pneus", "M8 Pneus"],
+    ["performance-recovery", "Performance Recovery"],
+    ["barbearia-montreal", "Barbearia Montreal"],
+    ["4-barras-jets", "4 Barras Jets"],
+    ["agis", "AGIS Autocenter"],
+    ["auto-torque", "Auto Torque"],
+    ["bw-printer", "BW Printer"],
+    ["atlas-eletromotores", "Atlas Eletromotores"],
+    ["espaco-piramide", "Espaço Pirâmide Eventos"],
+    ["arteiros", "Arteiros Personalizados"],
+    ["ana-mariana", "Ana Mariana Madeiras"],
+    ["rolpro", "Rolpro"],
+    ["odonto-coser", "Odonto Coser"]
+  ],
+  "faixa2": [
+    ["luzago", "Luzago Alimentos"],
+    ["personal", "Personal Centro Automotivo"],
+    ["cerimonial-do-valle", "Cerimonial do Valle"],
+    ["doutor-hernia", "Doutor Hérnia"],
+    ["dracos", "Draco's Sur América"],
+    ["emunah", "Emunah"],
+    ["giatti", "Clínica Giatti"],
+    ["reda", "Reda Engenharia"],
+    ["herveda", "Herveda Farma"],
+    ["ladaniuski", "Ladaniuski"]
+  ]
+}
