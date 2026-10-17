@@ -31,7 +31,5 @@ assets/marcas/
 assets/portfolio/
 blog/assets/blog-img-*.jpg
 
-# Scripts de geração (dev only)
-scripts/*.py
+# Scripts de geração ficam no repositório (não vão para dist/)
 scripts/__pycache__/
-scripts/*.md

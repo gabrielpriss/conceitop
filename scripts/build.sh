@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
+# Build de produção: monta dist/ só com o que vai ao ar e põe hash de conteúdo em CSS e JS.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DIST="$ROOT/dist"
 
-echo "→ Build produção Conceito Prime para Cloudflare Pages"
+echo "→ Build Conceito Prime (Cloudflare)"
 
 rm -rf "$DIST"
 mkdir -p "$DIST"
@@ -12,39 +13,29 @@ mkdir -p "$DIST"
 cp "$ROOT/index.html" "$ROOT/404.html" "$ROOT/robots.txt" "$ROOT/sitemap.xml" "$DIST/"
 cp "$ROOT/_headers" "$ROOT/_redirects" "$DIST/"
 
-for dir in blog contato quem-somos; do
-  mkdir -p "$DIST/$dir"
-  cp "$ROOT/$dir/index.html" "$DIST/$dir/"
+# Páginas: copia só HTML e WebP de cada pasta publicada (rascunhos e originais ficam de fora)
+for dir in quem-somos contato blog servicos; do
+  (cd "$ROOT" && find "$dir" -type f \( -name '*.html' -o -name '*.webp' -o -name '*.avif' \) -print0) |
+    while IFS= read -r -d '' f; do
+      mkdir -p "$DIST/$(dirname "$f")"
+      cp "$ROOT/$f" "$DIST/$f"
+    done
 done
 
-mkdir -p "$DIST/servicos"
-for svc in "$ROOT/servicos"/*/; do
-  name=$(basename "$svc")
-  mkdir -p "$DIST/servicos/$name/assets"
-  cp "$svc/index.html" "$DIST/servicos/$name/"
-  if compgen -G "$svc/assets/*.webp" > /dev/null; then
-    cp "$svc/assets/"*.webp "$DIST/servicos/$name/assets/"
-  fi
-done
+mkdir -p "$DIST/assets/css" "$DIST/assets/js" "$DIST/assets/fonts" "$DIST/assets/images"
+cp -r "$ROOT/assets/images/." "$DIST/assets/images/"
+cp "$ROOT/assets/fonts/"*.woff2 "$DIST/assets/fonts/"
 
-mkdir -p "$DIST/assets/css" "$DIST/assets/js"
-cp "$ROOT/assets/css/"* "$DIST/assets/css/"
-cp "$ROOT/assets/js/"* "$DIST/assets/js/"
+# Hash de conteúdo: permite cache imutável de um ano sem servir versão antiga
+hash() { md5sum "$1" | cut -c1-10; }
+CSS_H=$(hash "$ROOT/assets/css/site.css")
+JS_H=$(hash "$ROOT/assets/js/brand.js")
+cp "$ROOT/assets/css/site.css" "$DIST/assets/css/site.$CSS_H.css"
+cp "$ROOT/assets/js/brand.js" "$DIST/assets/js/brand.$JS_H.js"
 
-if command -v rsync >/dev/null 2>&1; then
-  rsync -a "$ROOT/assets/images/" "$DIST/assets/images/"
-else
-  mkdir -p "$DIST/assets/images"
-  cp -r "$ROOT/assets/images/." "$DIST/assets/images/"
-fi
-
-if [ -d "$ROOT/assets/fonts" ]; then
-  mkdir -p "$DIST/assets/fonts"
-  cp -r "$ROOT/assets/fonts/." "$DIST/assets/fonts/"
-fi
-
-mkdir -p "$DIST/blog/assets"
-cp "$ROOT/blog/assets/"*.webp "$DIST/blog/assets/"
+find "$DIST" -name '*.html' -print0 | xargs -0 sed -i \
+  -e "s#/assets/css/site\.css#/assets/css/site.$CSS_H.css#g" \
+  -e "s#/assets/js/brand\.js#/assets/js/brand.$JS_H.js#g"
 
 BYTES=$(du -sh "$DIST" | cut -f1)
 FILES=$(find "$DIST" -type f | wc -l)

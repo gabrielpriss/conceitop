@@ -11,8 +11,8 @@ BUSINESS_NAME = "Conceito Prime"
 BUSINESS_LOCATION = "Curitiba, PR"
 MAP_EMBED = f"https://maps.google.com/maps?q={BUSINESS_NAME.replace(' ', '+')},+{BUSINESS_LOCATION.replace(' ', '+').replace(',', '%2C')}&hl=pt-BR&z=14&output=embed"
 WA_URL = "https://wa.me/554130574764?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20atendente."
-WA_CTA_HEADER = f'''<a href="{WA_URL}" target="_blank" rel="noopener" class="btn-wa text-xs px-6 py-3 uppercase tracking-[0.15em]">Falar com atendente</a>'''
-WA_CTA_MOBILE = f'''<a href="{WA_URL}" target="_blank" rel="noopener" class="btn-wa inline-flex justify-center text-xs px-6 py-4 mt-2 uppercase tracking-[0.2em]">Falar com atendente</a>'''
+WA_CTA_HEADER = f'''<a href="{WA_URL}" target="_blank" rel="noopener" class="btn-wa text-xs px-6 py-3 uppercase tracking-[0.15em]"><i class="fab fa-whatsapp" aria-hidden="true"></i> Falar com atendente</a>'''
+WA_CTA_MOBILE = f'''<a href="{WA_URL}" target="_blank" rel="noopener" class="btn-wa inline-flex justify-center text-xs px-6 py-4 mt-2 uppercase tracking-[0.2em]"><i class="fab fa-whatsapp" aria-hidden="true"></i> Falar com atendente</a>'''
 
 FAVICON = '''  <link rel="icon" href="/assets/images/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png">
@@ -34,7 +34,7 @@ SERVICES = [
             "Gestão de Instagram, Facebook e LinkedIn",
             "Relatório de métricas e insights",
         ],
-        "image_src": "assets/images/portfolio/portfolio-01.webp",
+        "image_src": "/assets/images/portfolio/portfolio-01.webp",
         "image_alt": "Projeto de social media da Conceito Prime",
     },
     {
@@ -52,7 +52,7 @@ SERVICES = [
             "Relatórios semanais de performance",
             "Reuniões de alinhamento estratégico",
         ],
-        "image_src": "assets/images/portfolio/portfolio-02.webp",
+        "image_src": "/assets/images/portfolio/portfolio-02.webp",
         "image_alt": "Campanha de mídia paga gerenciada pela Conceito Prime",
     },
     {
@@ -70,7 +70,7 @@ SERVICES = [
             "Integração com formulários e analytics",
             "SEO técnico on-page",
         ],
-        "image_src": "assets/images/portfolio/portfolio-02.webp",
+        "image_src": "/assets/images/portfolio/portfolio-02.webp",
         "image_alt": "Projeto de web design da Conceito Prime",
     },
     {
@@ -88,7 +88,7 @@ SERVICES = [
             "Arquivos CMYK para impressão",
             "Acompanhamento na produção gráfica",
         ],
-        "image_src": "assets/images/portfolio/portfolio-04.webp",
+        "image_src": "/assets/images/portfolio/portfolio-04.webp",
         "image_alt": "Projeto de papelaria corporativa da Conceito Prime",
     },
     {
@@ -106,7 +106,7 @@ SERVICES = [
             "Manual de identidade visual",
             "Aplicações em mockups e materiais",
         ],
-        "image_src": "assets/images/portfolio/portfolio-06.webp",
+        "image_src": "/assets/images/portfolio/portfolio-06.webp",
         "image_alt": "Projeto de branding corporativo da Conceito Prime",
     },
     {
@@ -124,7 +124,7 @@ SERVICES = [
             "Avaliação de desempenho pós-treinamento",
             "Suporte pós-entrega por 30 dias",
         ],
-        "image_src": "assets/images/estrutura.webp",
+        "image_src": "/assets/images/estrutura.webp",
         "image_alt": "Equipe em treinamento na Conceito Prime",
     },
     {
@@ -142,7 +142,7 @@ SERVICES = [
             "Relatório executivo com insights",
             "Plano de ação recomendado",
         ],
-        "image_src": "assets/images/portfolio/portfolio-03.webp",
+        "image_src": "/assets/images/portfolio/portfolio-03.webp",
         "image_alt": "Análise de dados e pesquisa de mercado",
     },
     {
@@ -160,7 +160,7 @@ SERVICES = [
             "Integração com ferramentas de gestão",
             "Treinamento da equipe de atendimento",
         ],
-        "image_src": "assets/images/portfolio/portfolio-05.webp",
+        "image_src": "/assets/images/portfolio/portfolio-05.webp",
         "image_alt": "Automação de atendimento via WhatsApp",
     },
 ]
@@ -189,7 +189,7 @@ def render_footer():
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 mb-20 items-start border-b border-white/10 pb-20">
         <div class="lg:col-span-5">
-          <img src="../../assets/images/logo-footer.webp" alt="Conceito Prime - Marketing Digital" width="400" height="114" class="footer-logo mb-8">
+          <img src="/assets/images/logo-footer.webp" alt="Conceito Prime - Marketing Digital" width="400" height="114" class="footer-logo mb-8">
           <p class="text-prime-400 font-light text-[15px] leading-[1.8] max-w-sm">Especialistas em posicionamento, branding e tráfego para marcas que buscam autoridade e resultados de altíssimo padrão.</p>
         </div>
         <div class="lg:col-span-3 lg:col-start-7">
@@ -216,7 +216,9 @@ def render_footer():
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+      const aberto = mobileMenu.classList.toggle('hidden') === false;
+      menuBtn.setAttribute('aria-expanded', String(aberto));
+      menuBtn.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
       const icon = menuBtn.querySelector('i');
       icon.classList.toggle('fa-bars');
       icon.classList.toggle('fa-times');
@@ -224,7 +226,7 @@ def render_footer():
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20));
   </script>
-  <script src="../../assets/js/brand.js" defer></script>
+  <script src="/assets/js/brand.js" defer></script>
 </body>
 </html>'''
 
@@ -245,30 +247,8 @@ def render_head(svc, schema):
   <meta name="robots" content="index, follow">
   <meta name="description" content="{s['summary']}">
 {FAVICON}
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Share+Tech&family=Michroma&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="../../assets/css/brand.css">
-  <script>
-    tailwind.config = {{
-      theme: {{
-        extend: {{
-          fontFamily: {{
-            sans: ['Cairo', 'sans-serif'],
-            serif: ['Tachyon', 'Share Tech', 'sans-serif'],
-            display: ['Cosild', 'Michroma', 'sans-serif']
-          }},
-          colors: {{
-            prime: {{ 50:'#fafafa', 100:'#f0f0f0', 200:'#d9d9d9', 300:'#a3a3a3', 400:'#6b6b6b', 500:'#4a4a4a', 600:'#353535', 700:'#2a2a2a', 800:'#1f1f1f', 900:'#161616', 950:'#0d0d0d' }},
-            gold:  {{ 300:'#fce88a', 400:'#f7cc19', 500:'#e5b800', 600:'#c9a000' }},
-            accent: {{ DEFAULT:'#ff4c01', light:'#ff7a3d', pale:'#ffd4b8' }}
-          }}
-        }}
-      }}
-    }}
-  </script>
+  <link rel="preload" href="/assets/fonts/cairo.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
   <script type="application/ld+json">{schema}</script>
 </head>
 <body class="font-sans text-prime-800 antialiased">
@@ -277,7 +257,7 @@ def render_head(svc, schema):
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <nav class="flex items-center justify-between gap-4" aria-label="Navegação principal">
         <a href="/" class="site-logo-link">
-          <img src="../../assets/images/logo.webp" alt="Conceito Prime - Marketing Digital" width="1250" height="356" class="site-logo">
+          <img src="/assets/images/logo.webp" alt="Conceito Prime - Marketing Digital" width="1250" height="356" class="site-logo">
         </a>
         <div class="header-nav-right hidden md:flex">
           <div class="header-nav-links">

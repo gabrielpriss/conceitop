@@ -11,33 +11,11 @@
   <meta property="og:url" content="https://conceitop.com.br/quem-somos/">
   <meta name="robots" content="index, follow">
   <meta name="description" content="Conheça a Conceito Prime: agência de marketing digital em Curitiba.">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Share+Tech&family=Michroma&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="../assets/css/brand.css">
+  <link rel="preload" href="/assets/fonts/cairo.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
   <link rel="icon" href="/assets/images/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Cairo', 'sans-serif'],
-            serif: ['Tachyon', 'Share Tech', 'sans-serif'],
-            display: ['Cosild', 'Michroma', 'sans-serif']
-          },
-          colors: {
-            prime: { 50:'#fafafa', 100:'#f0f0f0', 200:'#d9d9d9', 300:'#a3a3a3', 400:'#6b6b6b', 500:'#4a4a4a', 600:'#353535', 700:'#2a2a2a', 800:'#1f1f1f', 900:'#161616', 950:'#0d0d0d' },
-            gold:  { 300:'#fce88a', 400:'#f7cc19', 500:'#e5b800', 600:'#c9a000' },
-            accent: { DEFAULT:'#ff4c01', light:'#ff7a3d', pale:'#ffd4b8' }
-          }
-        }
-      }
-    }
-  </script>
 </head>
 <body class="font-sans text-gray-900 antialiased">
 
@@ -47,7 +25,7 @@
       <nav class="flex items-center justify-between gap-4" aria-label="Navegação principal">
 
         <a href="/" class="site-logo-link">
-          <img src="../assets/images/logo.webp" alt="Conceito Prime - Marketing Digital" width="1250" height="356" class="site-logo">
+          <img src="/assets/images/logo.webp" alt="Conceito Prime - Marketing Digital" width="1250" height="356" class="site-logo">
         </a>
 
         <div class="header-nav-right hidden md:flex">
@@ -57,9 +35,9 @@
             <a href="/blog/"        class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Blog</a>
             <a href="/contato/"     class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Contato</a>
           </div>
-          <a href="#"
+          <a href="/contato/"
              class="btn-wa text-[11px] px-6 py-3 uppercase tracking-[0.15em]">
-            Solicitar orçamento
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> Solicitar orçamento
           </a>
         </div>
 
@@ -74,9 +52,9 @@
         <a href="/quem-somos/"  class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Quem somos</a>
         <a href="/blog/"        class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Blog</a>
         <a href="/contato/"     class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Contato</a>
-        <a href="#"
+        <a href="/contato/"
            class="btn-wa inline-flex justify-center text-xs px-6 py-4 mt-2 uppercase tracking-[0.2em]">
-          Solicitar orçamento
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> Solicitar orçamento
         </a>
       </div>
     </div>
@@ -105,7 +83,7 @@
         <!-- Visual -->
         <div class="relative">
           <div class="aspect-[16/10] max-w-xl rounded-3xl overflow-hidden shadow-xl border border-gray-100">
-            <img src="../assets/images/equipe/equipe.webp" alt="Equipe da Conceito Prime no escritório em Curitiba" width="1024" height="576" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            <img src="/assets/images/equipe/equipe.webp" alt="Equipe da Conceito Prime no escritório em Curitiba" width="1024" height="576" class="w-full h-full object-cover" loading="lazy" decoding="async">
           </div>
           <div class="absolute -bottom-5 -right-5 w-24 h-24 rounded-2xl bg-gold-400/10 -z-10"></div>
           <div class="absolute -top-5 -left-5 w-16 h-16 rounded-full bg-prime-100 -z-10"></div>
@@ -148,7 +126,7 @@
       <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
         <div class="grid md:grid-cols-2">
           <div class="relative min-h-[18rem] md:min-h-[22rem] bg-prime-950">
-            <img src="../assets/images/equipe/jose-coutinho.webp" alt="José Augusto Coutinho, fundador e CEO da Conceito Prime" width="1024" height="598" class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" decoding="async">
+            <img src="/assets/images/equipe/jose-coutinho.webp" alt="José Augusto Coutinho, fundador e CEO da Conceito Prime" width="1024" height="598" class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" decoding="async">
             <div class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-prime-950/90 via-prime-950/50 to-transparent md:hidden">
               <h3 class="text-white font-black text-xl">José Augusto Coutinho</h3>
               <p class="text-gold-400 text-sm font-semibold mt-1">Fundador & CEO</p>
@@ -248,7 +226,7 @@
         <p class="text-gray-500 text-[15px] mt-3 max-w-xl mx-auto">Profissionais dedicados a transformar a presença digital da sua marca.</p>
       </div>
       <figure class="max-w-4xl mx-auto m-0 overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
-        <img src="../assets/images/equipe/equipe.webp" alt="Equipe da Conceito Prime no escritório em Curitiba" width="1024" height="576" class="w-full object-cover aspect-[16/9]" loading="lazy" decoding="async">
+        <img src="/assets/images/equipe/equipe.webp" alt="Equipe da Conceito Prime no escritório em Curitiba" width="1024" height="576" class="w-full object-cover aspect-[16/9]" loading="lazy" decoding="async">
       </figure>
     </div>
   </section>
@@ -264,9 +242,9 @@
         Entre em contato com nossa equipe e descubra como a Conceito Prime pode impulsionar seu negócio.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#"
+        <a href="/contato/"
            class="btn-wa px-8 py-4 uppercase tracking-wide text-sm">
-          Solicitar orçamento
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> Solicitar orçamento
         </a>
         <a href="/contato/"
            class="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-semibold px-8 py-4 transition-all uppercase tracking-wide text-sm hover:border-white">
@@ -285,7 +263,7 @@
         
         <!-- Logo & About -->
         <div class="lg:col-span-5">
-          <img src="../assets/images/logo-footer.webp" alt="Conceito Prime - Marketing Digital" width="400" height="114" class="footer-logo mb-8">
+          <img src="/assets/images/logo-footer.webp" alt="Conceito Prime - Marketing Digital" width="400" height="114" class="footer-logo mb-8">
           <p class="text-prime-400 font-light text-[13px] leading-[1.8] max-w-sm">
             Especialistas em posicionamento, branding e tráfego para marcas que buscam autoridade, elegância e resultados de altíssimo padrão.
           </p>
@@ -329,7 +307,9 @@
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+      const aberto = mobileMenu.classList.toggle('hidden') === false;
+      menuBtn.setAttribute('aria-expanded', String(aberto));
+      menuBtn.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
       const icon = menuBtn.querySelector('i');
       icon.classList.toggle('fa-bars');
       icon.classList.toggle('fa-times');
@@ -362,7 +342,7 @@
       observer.observe(estruturaContainer);
     }
   </script>
-  <script src="../assets/js/brand.js" defer></script>
+  <script src="/assets/js/brand.js" defer></script>
 
 </body>
 </html>

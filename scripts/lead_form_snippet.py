@@ -1,16 +1,16 @@
 """HTML do formulário de lead (mesmo do popup). Usado nas páginas internas."""
 
 LEAD_FORM_FIELDS = """
-        <input type="text"  name="nome"     placeholder="Primeiro nome"               required autocomplete="given-name">
-        <input type="email" name="email"    placeholder="Qual seu e-mail?"            required autocomplete="email">
-        <input type="text"  name="empresa"  placeholder="Qual o nome da sua empresa?" required autocomplete="organization">
+        <input type="text"  name="nome" aria-label="Primeiro nome"     placeholder="Primeiro nome"               required autocomplete="given-name">
+        <input type="email" name="email" aria-label="E-mail"    placeholder="Qual seu e-mail?"            required autocomplete="email">
+        <input type="text"  name="empresa" aria-label="Nome da empresa"  placeholder="Qual o nome da sua empresa?" required autocomplete="organization">
 
         <div class="lead-phone-row">
           <span class="lead-flag" aria-hidden="true">🇧🇷</span>
-          <input type="tel" name="telefone" placeholder="Qual seu telefone?" required data-phone-mask autocomplete="tel">
+          <input type="tel" name="telefone" aria-label="Telefone com DDD" placeholder="Qual seu telefone?" required data-phone-mask autocomplete="tel">
         </div>
 
-        <select name="faturamento" required>
+        <select name="faturamento" aria-label="Faturamento mensal" required>
           <option value="" disabled selected>Qual o faturamento mensal da sua empresa?</option>
           <option value="ate-10k">Até R$ 10.000</option>
           <option value="10k-50k">De R$ 10.000 a R$ 50.000</option>
@@ -22,7 +22,7 @@ LEAD_FORM_FIELDS = """
           <option value="nao-faturou">Ainda não faturou</option>
         </select>
 
-        <select name="segmento" required>
+        <select name="segmento" aria-label="Segmento" required>
           <option value="" disabled selected>Qual o seu segmento?</option>
           <option value="ecommerce">E-commerce</option>
           <option value="servicos">Serviços</option>
@@ -36,7 +36,7 @@ LEAD_FORM_FIELDS = """
           <option value="outros">Outros</option>
         </select>
 
-        <button type="submit" class="lead-submit">Receber mais informações <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+        <button type="submit" class="lead-submit"><i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar pelo WhatsApp</button>
 """
 
 
@@ -57,8 +57,8 @@ def render_lead_form_block(hidden_servico="", form_id="", aria_label="Formulári
     return f"""
       <div class="lead-success" data-lead-success aria-live="polite">
         <i class="fas fa-check-circle" aria-hidden="true"></i>
-        <p>Obrigado! Recebemos seu contato.</p>
-        <span>Em breve nossa equipe entrará em contato.</span>
+        <p>Pronto! Abrimos o WhatsApp com os seus dados.</p>
+        <span>É só enviar a mensagem por lá. Se o WhatsApp não abriu, <a href="#" data-wa-fallback target="_blank" rel="noopener">toque aqui</a>.</span>
       </div>
       <form class="lead-form" data-lead-form{id_attr} novalidate aria-label="{aria_label}">
         {hidden}

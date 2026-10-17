@@ -16,24 +16,9 @@
   --brand-gray-400: #6b6b6b;
 }
 
-/* Fontes proprietárias — adicione os arquivos em assets/fonts/ */
-@font-face {
-  font-family: 'Tachyon';
-  src: url('../fonts/Tachyon.woff2') format('woff2'),
-       url('../fonts/Tachyon.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Cosild';
-  src: url('../fonts/Cosild.woff2') format('woff2'),
-       url('../fonts/Cosild.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+/* Fontes proprietárias Tachyon e Cosild: PENDENTE receber os arquivos.
+   Quando chegarem, gerar woff2 em assets/fonts/ e declarar o @font-face aqui.
+   Até lá os títulos usam Share Tech e Michroma (autohospedadas). */
 
 .sr-only {
   position: absolute;
@@ -1182,3 +1167,18 @@ footer.bg-prime-950 .border-white\/10 {
   transition: background 0.3s, transform 0.3s;
 }
 .reviews-dot.active { background: var(--brand-yellow); transform: scale(1.2); }
+
+/* Validação do formulário de lead */
+.lead-error:empty { display: none; }
+.lead-error {
+  color: #b42318;
+  background: #fef3f2;
+  border: 1px solid #fecdca;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+.is-invalid { border-color: #d92d20 !important; box-shadow: 0 0 0 1px #d92d20; }
+.lead-success a { text-decoration: underline; font-weight: 600; }
+.contact-form-card .lead-success { padding: 1.5rem 0; }

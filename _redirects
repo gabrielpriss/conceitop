@@ -1,4 +1,39 @@
-/index.html / 301
-/blog.html /blog/ 301
-/contato.html /contato/ 301
-/quem-somos.html /quem-somos/ 301
+# Arquivos legados do próprio projeto
+# (Workers assets já serve / a partir de index.html)
+/blog.html                  /blog/                     301
+/contato.html               /contato/                  301
+/quem-somos.html            /quem-somos/               301
+
+# URLs do WordPress antigo (conceitop.com.br) para não perder o que já está indexado
+/criacao-de-sites/          /servicos/plataformas-web/ 301
+/termos-condicoes/          /                          301
+/politica-de-cookies-br/    /                          301
+/mid-connection/            /                          301
+/teste-kaue/                /                          301
+/metform-form/*             /                          301
+/category/*                 /blog/                     301
+/tag/*                      /blog/                     301
+/author/*                   /blog/                     301
+/feed/*                     /blog/                     301
+/feed                       /blog/                     301
+/wp-sitemap.xml             /sitemap.xml               301
+/wp-admin/*                 /                          301
+/wp-login.php               /                          301
+
+# Artigos do blog: saíram da raiz e foram para /blog/
+/como-qualificar-um-lead-e-por-que-isso-e-importante/                          /blog/como-qualificar-um-lead-e-por-que-isso-e-importante/                          301
+/fidelizar-e-reter-clientes-estar-presente-e-o-primeiro-passo/                 /blog/fidelizar-e-reter-clientes-estar-presente-e-o-primeiro-passo/                 301
+/vale-a-pena-contratar-um-digital-influencer/                                  /blog/vale-a-pena-contratar-um-digital-influencer/                                  301
+/como-potencializar-o-seu-negocio-usando-o-google-a-seu-favor/                 /blog/como-potencializar-o-seu-negocio-usando-o-google-a-seu-favor/                 301
+/member-get-member-estrategia-de-marketing-para-o-seu-negocio/                 /blog/member-get-member-estrategia-de-marketing-para-o-seu-negocio/                 301
+/9-dicas-para-realizar-o-melhor-atendimento-por-telefone/                      /blog/9-dicas-para-realizar-o-melhor-atendimento-por-telefone/                      301
+/vender-pela-internet-com-e-commerce/                                          /blog/vender-pela-internet-com-e-commerce/                                          301
+/vendas-alcance-melhores-resultados-por-meio-do-seu-atendimento/               /blog/vendas-alcance-melhores-resultados-por-meio-do-seu-atendimento/               301
+/estrategias-de-seo-para-blog/                                                 /blog/estrategias-de-seo-para-blog/                                                 301
+/dicas-para-fazer-um-feedback-de-sucesso/                                      /blog/dicas-para-fazer-um-feedback-de-sucesso/                                      301
+/cultura-organizacional-praticas-para-o-bom-relacionamento-com-colaboradores/  /blog/cultura-organizacional-praticas-para-o-bom-relacionamento-com-colaboradores/  301
+/como-incluir-datas-sazonais-no-calendario-de-promocoes/                       /blog/como-incluir-datas-sazonais-no-calendario-de-promocoes/                       301
+/hashtag-como-usar-no-instagram/                                               /blog/hashtag-como-usar-no-instagram/                                               301
+/como-as-marcas-influenciam-as-decisoes-de-compra/                             /blog/como-as-marcas-influenciam-as-decisoes-de-compra/                             301
+/15-termos-uteis-para-quem-precisa-saber-mais-sobre-marketing-digital/         /blog/15-termos-uteis-para-quem-precisa-saber-mais-sobre-marketing-digital/         301
+/marketing-e-vendas-para-potencializar-seus-resultados/                        /blog/marketing-e-vendas-para-potencializar-seus-resultados/                        301

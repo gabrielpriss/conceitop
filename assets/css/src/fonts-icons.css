@@ -1,0 +1,43 @@
+/* Gerado por scripts/build-assets.py: não editar à mão */
+@font-face{font-family:'Cairo';src:url('/assets/fonts/cairo.woff2') format('woff2');font-weight:300 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Share Tech';src:url('/assets/fonts/share-tech.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Michroma';src:url('/assets/fonts/michroma.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Font Awesome 6 Free';src:url('/assets/fonts/fa-solid.woff2') format('woff2');font-weight:900;font-style:normal;font-display:block}
+@font-face{font-family:'Font Awesome 6 Brands';src:url('/assets/fonts/fa-brands.woff2') format('woff2');font-weight:400;font-style:normal;font-display:block}
+.fa,.fas,.fa-solid,.fab,.fa-brands{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:inline-block;font-style:normal;font-variant:normal;line-height:1;text-rendering:auto}
+.fa,.fas,.fa-solid{font-family:'Font Awesome 6 Free';font-weight:900}
+.fab,.fa-brands{font-family:'Font Awesome 6 Brands';font-weight:400}
+.fa-spin{animation:fa-spin 1s linear infinite}@keyframes fa-spin{to{transform:rotate(360deg)}}
+.fa-arrow-right:before{content:"\f061"}
+.fa-bars:before{content:"\f0c9"}
+.fa-bullseye:before{content:"\f140"}
+.fa-chalkboard-user:before{content:"\f51c"}
+.fa-chart-line:before{content:"\f201"}
+.fa-check:before{content:"\f00c"}
+.fa-check-circle:before{content:"\f058"}
+.fa-chevron-left:before{content:"\f053"}
+.fa-chevron-right:before{content:"\f054"}
+.fa-clock:before{content:"\f017"}
+.fa-envelope:before{content:"\f0e0"}
+.fa-external-link-alt:before{content:"\f35d"}
+.fa-eye:before{content:"\f06e"}
+.fa-facebook:before{content:"\f09a"}
+.fa-facebook-f:before{content:"\f39e"}
+.fa-file-invoice:before{content:"\f570"}
+.fa-google:before{content:"\f1a0"}
+.fa-heart:before{content:"\f004"}
+.fa-instagram:before{content:"\f16d"}
+.fa-laptop-code:before{content:"\f5fc"}
+.fa-lightbulb:before{content:"\f0eb"}
+.fa-linkedin:before{content:"\f08c"}
+.fa-linkedin-in:before{content:"\f0e1"}
+.fa-map-marker-alt:before{content:"\f3c5"}
+.fa-paper-plane:before{content:"\f1d8"}
+.fa-phone:before{content:"\f095"}
+.fa-play:before{content:"\f04b"}
+.fa-quote-right:before{content:"\f10e"}
+.fa-share-nodes:before{content:"\f1e0"}
+.fa-times:before{content:"\f00d"}
+.fa-user:before{content:"\f007"}
+.fa-whatsapp:before{content:"\f232"}
+.fa-youtube:before{content:"\f167"}
