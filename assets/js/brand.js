@@ -79,6 +79,7 @@ function leadFormHeaderHTML() {
       </div>`;
 }
 
+const FAIXAS_QUALIFICADAS = ['100k-500k', '500k-1m', '1m-5m', 'acima-5m'];
 const ROTULOS = { nome: 'Nome', empresa: 'Empresa', email: 'E-mail', telefone: 'Telefone', faturamento: 'Faturamento mensal', segmento: 'Segmento', servico: 'Interesse', area: 'Interesse', mensagem: 'Mensagem' };
 
 function validarLead(form) {
@@ -143,7 +144,11 @@ function setupLeadForm(form, onSuccess) {
     if (erroBox) erroBox.textContent = '';
     const msg = montarMensagem(form);
     const url = waLink(msg.texto);
-    track('form_submit', { formulario: form.id || 'inline', faturamento: msg.dados.faturamento || '', segmento: msg.dados.segmento || '' });
+    const qualificado = FAIXAS_QUALIFICADAS.indexOf(msg.dados.faturamento) !== -1;
+    const evento = { formulario: form.id || 'inline', pagina: location.pathname, faturamento: msg.dados.faturamento || '', segmento: msg.dados.segmento || '', lead_qualificado: qualificado };
+    track('form_submit', evento);
+    /* Conversão principal do Google Ads: só empresa a partir de R$ 100 mil/mês (gatilho no GTM pelo evento lead_qualificado) */
+    if (qualificado) track('lead_qualificado', evento);
     enviarParaPlanilha(msg.dados);
     abrirWhatsApp(url, 'formulario');
     form.style.display = 'none';
@@ -429,37 +434,6 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
       document.body.style.overflow = 'hidden';
     });
   });
-})();
-
-/* Carrossel depoimentos em texto */
-(function initQuotesCarousel() {
-  const track = document.getElementById('quotes-track');
-  const viewport = track?.parentElement;
-  const dots = document.querySelectorAll('.quotes-dots .quotes-dot');
-  if (!track || !viewport || !dots.length) return;
-
-  let idx = 0;
-  let timer;
-  const slideWidth = () => viewport.clientWidth;
-
-  const go = (n) => {
-    const total = track.children.length;
-    if (!total) return;
-    idx = (n + total) % total;
-    track.style.transform = `translateX(-${idx * slideWidth()}px)`;
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-  };
-
-  const start = () => { timer = setInterval(() => go(idx + 1), 7000); };
-  const stop = () => clearInterval(timer);
-
-  dots.forEach((d, i) => d.addEventListener('click', () => { stop(); go(i); start(); }));
-  const wrap = track.closest('.quotes-carousel');
-  wrap?.addEventListener('mouseenter', stop);
-  wrap?.addEventListener('mouseleave', start);
-  window.addEventListener('resize', () => go(idx));
-  go(0);
-  start();
 })();
 
 /* Trabalhe Conosco: currículos e fornecedores com anexo (POST /api/trabalhe-conosco) */

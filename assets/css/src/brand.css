@@ -1313,3 +1313,24 @@ footer.bg-prime-950 .border-white\/10 {
 }
 /* Rede de segurança contra rolagem horizontal causada por decorações posicionadas */
 html, body { overflow-x: clip; }
+
+/* ===== Páginas da campanha: /industrial/ e /b2b/ (scripts/generate-segmentos.py) ===== */
+.seg-logos { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.seg-logos .carousel-item { width: auto; }
+@media (max-width: 640px) { .seg-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; } }
+.seg-card { background: #fff; border: 1px solid #ececec; border-radius: 16px; padding: 2rem 1.75rem; transition: transform .3s ease, box-shadow .3s ease; }
+.seg-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(22, 22, 22, .08); }
+.seg-card-icon { display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; border-radius: 12px; background: var(--brand-dark); color: var(--brand-yellow); font-size: 1.15rem; margin-bottom: 1.25rem; }
+.seg-steps { display: grid; gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 768px) { .seg-steps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .seg-steps { grid-template-columns: repeat(4, 1fr); } }
+.seg-step { border: 1px solid rgba(255, 255, 255, .1); border-radius: 16px; padding: 2rem 1.75rem; background: rgba(255, 255, 255, .02); }
+.seg-step-num { display: block; font-family: 'Share Tech', sans-serif; font-size: 2.25rem; line-height: 1; color: var(--brand-yellow); margin-bottom: 1.25rem; }
+.seg-faqs { display: flex; flex-direction: column; gap: .75rem; }
+.seg-faq { border: 1px solid #ececec; border-radius: 14px; background: #fff; }
+.seg-faq summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; cursor: pointer; list-style: none; font-weight: 700; color: var(--brand-dark); }
+.seg-faq summary::-webkit-details-marker { display: none; }
+.seg-faq summary i { color: #9a9a9a; font-size: .8rem; transition: transform .3s ease; }
+.seg-faq[open] summary i { transform: rotate(180deg); }
+.seg-faq p { padding: 0 1.5rem 1.35rem; margin: 0; color: #4a4a4a; font-weight: 300; font-size: 15px; line-height: 1.8; }
+.seg-form-nota { text-align: center; font-size: 13px; color: #4a4a4a; margin-top: 1.25rem; }

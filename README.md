@@ -26,6 +26,7 @@ O build só copia o que vai ao ar e coloca hash de conteúdo em `site.css` e `br
 | Artigo do blog | editar `conteudo/blog/posts.json` e `<slug>.raw.html`, depois `python3 scripts/generate-blog-covers.py --fonts <google/fonts>` e `python3 scripts/generate-blog.py` | `blog/<slug>/`, `blog/index.html`, capas, `sitemap.xml` |
 | Logo de cliente | editar `conteudo/clientes.json` (origem e fundo claro ou escuro), `python3 scripts/tratar-logos.py <pasta dos originais>` e `python3 scripts/generate-clientes.py` | `assets/images/clientes/*.webp`, carrossel da home |
 | Página de serviço | `python3 scripts/generate-services.py` | `servicos/<slug>/` |
+| Páginas da campanha (indústria e B2B) | editar `scripts/generate-segmentos.py` e rodar o script | `industrial/`, `b2b/` |
 | Cabeçalho (menu, logo, botão) | editar `partials/header.html` e rodar `python3 scripts/sync-header.py` | cabeçalho de todas as páginas (o QA falha se alguma ficar diferente) |
 
 Depois de qualquer um deles, rodar `build-css.sh` de novo se surgiram classes novas.
@@ -39,8 +40,14 @@ Depois de qualquer um deles, rodar `build-css.sh` de novo se surgiram classes no
 
 ## Eventos no dataLayer
 
-`cta_click {posicao, texto}`, `form_start {formulario}`, `form_submit {formulario, faturamento, segmento | tipo}`, `whatsapp_open {posicao}`, `scroll_75`, `time_on_page_60s`. O GTM ainda não está instalado (pendente o ID do contêiner).
+`cta_click {posicao, texto}`, `form_start {formulario}`, `form_submit {formulario, pagina, faturamento, segmento, lead_qualificado | tipo}`, `lead_qualificado` (só faturamento a partir de R$ 100 mil/mês: é a conversão principal do Google Ads da campanha), `whatsapp_open {posicao}`, `scroll_75`, `time_on_page_60s`. O GTM ainda não está instalado (pendente o ID do contêiner).
 
 ## Redirecionamentos
 
 `_redirects` leva as URLs do WordPress antigo para as novas: artigos da raiz para `/blog/<slug>/`, categorias e tags para `/blog/`, `/criacao-de-sites/` para `/servicos/plataformas-web/` e páginas vazias para a home.
+
+## Campanha de Google Ads da agência
+
+- Destinos: `/industrial/` e `/b2b/`. A home segue como apresentação geral da empresa, com todos os serviços.
+- Conversão principal: evento `lead_qualificado` no dataLayer (formulário enviado com faturamento a partir de R$ 100 mil). `form_submit` fica como secundária.
+- Depende do GTM: o ID do contêiner ainda não foi informado.

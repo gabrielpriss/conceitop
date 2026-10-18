@@ -8,7 +8,7 @@ import os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HEADER = open(os.path.join(ROOT, 'partials/header.html'), encoding='utf-8').read().strip()
-PASTAS = ['index.html', 'quem-somos', 'contato', 'trabalhe-conosco', 'blog', 'servicos']
+PASTAS = ['index.html', 'quem-somos', 'contato', 'trabalhe-conosco', 'blog', 'servicos', 'industrial', 'b2b']
 PADRAO = re.compile(r'<header id="header".*?</header>', re.S)
 
 
