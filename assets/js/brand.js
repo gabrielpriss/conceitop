@@ -618,3 +618,91 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
     });
   });
 })();
+
+/* Carrossel de clientes: anda sozinho sem pausar no hover e pode ser arrastado (mouse e toque) */
+(function initCarrosselClientes() {
+  const faixas = document.querySelectorAll('.carousel-faixas .carousel-container');
+  if (!faixas.length || !window.requestAnimationFrame) return;
+  const reduzMovimento = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  faixas.forEach(function (faixa) {
+    const trilho = faixa.querySelector('.carousel-track');
+    const grupo = trilho && trilho.querySelector('.carousel-group');
+    if (!grupo) return;
+    faixa.classList.add('is-js');
+    faixa.querySelectorAll('img').forEach(function (img) { img.draggable = false; });
+
+    const reversa = trilho.classList.contains('carousel-reverse');
+    const duracao = reversa ? 45 : 55; // segundos para uma volta completa, como no CSS
+    let largura = grupo.offsetWidth;
+    let x = reversa ? -largura : 0;
+    let arrastando = false, inicioX = 0, inicioPos = 0, ultimoX = 0, ultimoT = 0, inercia = 0;
+    let visivel = true, anterior = 0;
+
+    function normaliza() {
+      if (largura > 0) x = ((x % largura) - largura) % largura;
+    }
+    function aplica() { trilho.style.transform = 'translate3d(' + x + 'px,0,0)'; }
+
+    function quadro(t) {
+      const dt = anterior ? Math.min((t - anterior) / 1000, 0.05) : 0;
+      anterior = t;
+      if (!arrastando && visivel) {
+        const auto = reduzMovimento.matches ? 0 : (largura / duracao) * (reversa ? 1 : -1);
+        x += (auto + inercia) * dt;
+        inercia *= Math.pow(0.04, dt); // a inércia do arraste some em cerca de 1 segundo
+        if (Math.abs(inercia) < 1) inercia = 0;
+        normaliza();
+        aplica();
+      }
+      requestAnimationFrame(quadro);
+    }
+
+    faixa.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      arrastando = true;
+      inercia = 0;
+      inicioX = ultimoX = e.clientX;
+      inicioPos = x;
+      ultimoT = e.timeStamp;
+      faixa.setPointerCapture(e.pointerId);
+      faixa.classList.add('is-arrastando');
+    });
+    faixa.addEventListener('pointermove', function (e) {
+      if (!arrastando) return;
+      const dt = (e.timeStamp - ultimoT) / 1000;
+      if (dt > 0) inercia = (e.clientX - ultimoX) / dt;
+      ultimoX = e.clientX;
+      ultimoT = e.timeStamp;
+      x = inicioPos + (e.clientX - inicioX);
+      normaliza();
+      aplica();
+    });
+    function solta(e) {
+      if (!arrastando) return;
+      arrastando = false;
+      if (e.timeStamp - ultimoT > 80) inercia = 0; // segurou parado antes de soltar
+      inercia = Math.max(-2500, Math.min(2500, inercia));
+      faixa.classList.remove('is-arrastando');
+    }
+    faixa.addEventListener('pointerup', solta);
+    faixa.addEventListener('pointercancel', solta);
+    faixa.addEventListener('lostpointercapture', solta);
+
+    window.addEventListener('resize', function () {
+      largura = grupo.offsetWidth;
+      normaliza();
+      aplica();
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { visivel = es[0].isIntersecting; }).observe(faixa);
+    }
+    // As imagens são lazy: recalcula a largura quando terminarem de carregar
+    faixa.querySelectorAll('img').forEach(function (img) {
+      if (!img.complete) img.addEventListener('load', function () { largura = grupo.offsetWidth; }, { once: true });
+    });
+
+    aplica();
+    requestAnimationFrame(quadro);
+  });
+})();

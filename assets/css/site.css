@@ -307,7 +307,12 @@ footer.bg-prime-950 .border-white\/10 {
   animation: scroll 55s linear infinite;
 }
 .carousel-reverse { animation-direction: reverse; animation-duration: 45s; }
-.carousel-container:hover .carousel-track { animation-play-state: paused; }
+/* Com JS o movimento passa para o brand.js (arrastável, sem pausa no hover); o CSS fica de reserva */
+.carousel-container.is-js { cursor: grab; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
+.carousel-container.is-js .carousel-track { animation: none; will-change: transform; }
+.carousel-container.is-arrastando { cursor: grabbing; }
+.carousel-container.is-arrastando .carousel-item { transform: none; }
+.carousel-item img { -webkit-user-drag: none; }
 .carousel-group {
   display: inline-flex;
   align-items: center;
@@ -340,7 +345,7 @@ footer.bg-prime-950 .border-white\/10 {
   .carousel-item { width: 148px; height: 72px; border-radius: 12px; }
   .carousel-item img { max-width: 120px; max-height: 46px; }
 }
-@media (prefers-reduced-motion: reduce) { .carousel-track { animation: none; } .carousel-container { overflow-x: auto; } }
+@media (prefers-reduced-motion: reduce) { .carousel-track { animation: none; } .carousel-container:not(.is-js) { overflow-x: auto; } }
 
 @keyframes scroll {
   0% { transform: translateX(0); }
