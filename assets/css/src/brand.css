@@ -1394,3 +1394,24 @@ html, body { overflow-x: clip; }
 .servico-link { margin-top: 1.25rem; color: #c9a000; font-size: 10px; text-transform: uppercase; letter-spacing: .2em; font-weight: 700; }
 .servico-link i { font-size: 9px; margin-left: .35rem; transition: transform .3s ease; }
 .servico-card:hover .servico-link i { transform: translateX(3px); }
+
+/* Nossa estrutura: mapa + fotos do escritório (partials/estrutura.html) */
+.estrutura-grade { display: grid; gap: 1.25rem; }
+@media (min-width: 1024px) { .estrutura-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; } }
+.estrutura-mapa, .estrutura-fotos { position: relative; overflow: hidden; border-radius: 16px; background: #f0f0f0; aspect-ratio: 16 / 10; box-shadow: 0 12px 32px rgba(22, 22, 22, .08); }
+.estrutura-mapa iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.estrutura-trilho { display: flex; height: 100%; transition: transform .6s ease; }
+.estrutura-slide { flex: 0 0 100%; margin: 0; height: 100%; }
+.estrutura-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.estrutura-seta { position: absolute; top: 50%; transform: translateY(-50%); width: 2.5rem; height: 2.5rem; border-radius: 50%; border: 0; background: rgba(22, 22, 22, .55); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .3s; }
+.estrutura-seta:hover { background: var(--brand-dark); }
+.estrutura-seta--ant { left: .75rem; } .estrutura-seta--prox { right: .75rem; }
+.estrutura-endereco { text-align: center; margin-top: 1.5rem; color: #4a4a4a; font-size: 14px; }
+.estrutura-endereco i { color: #c9a000; margin-right: .35rem; }
+@media (prefers-reduced-motion: reduce) { .estrutura-trilho { transition: none; } }
+
+/* Contato sem mapa ao lado do formulário (o mapa fica na seção Nossa estrutura) */
+.contact-section--sem-mapa .contact-map-wrap { display: none; }
+@media (min-width: 1024px) {
+  .contact-section--sem-mapa .contact-layered { grid-template-columns: minmax(0, 30rem); justify-content: center; }
+}

@@ -17,6 +17,7 @@ from PIL import Image
 
 SITE = 'https://conceitop.com.br'
 HEADER = open(os.path.join(ROOT, 'partials/header.html'), encoding='utf-8').read().strip()
+ESTRUTURA = open(os.path.join(ROOT, 'partials/estrutura.html'), encoding='utf-8').read().rstrip()
 _base = open(os.path.join(ROOT, 'servicos/branding/index.html'), encoding='utf-8').read()
 FOOTER = _base[_base.index('  </main>'):]
 CLIENTES = {c['slug']: c for faixa in ('faixa1', 'faixa2')
@@ -313,7 +314,9 @@ def pagina(pg):
     </div>
   </section>
 
-  <section class="py-24 bg-white" aria-labelledby="seg-faq">
+{ESTRUTURA}
+
+  <section class="py-24 bg-prime-50" aria-labelledby="seg-faq">
     <div class="max-w-3xl mx-auto px-6 lg:px-8">
       <h2 id="seg-faq" class="font-serif text-3xl sm:text-4xl text-prime-900 uppercase text-center leading-tight mb-12">Perguntas <span class="text-gold-400">frequentes</span></h2>
       <div class="seg-faqs">

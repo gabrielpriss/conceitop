@@ -712,3 +712,19 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
     requestAnimationFrame(quadro);
   });
 })();
+
+/* Fotos da estrutura: carrossel simples com setas e troca automática */
+(function initSliders() {
+  document.querySelectorAll('[data-slider]').forEach(function (box) {
+    const trilho = box.querySelector('[data-slider-trilho]');
+    if (!trilho) return;
+    const total = trilho.children.length;
+    let i = 0, timer = null;
+    const ir = function (n) { i = (n + total) % total; trilho.style.transform = 'translateX(-' + (i * 100) + '%)'; };
+    const auto = function () { clearInterval(timer); if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(function () { ir(i + 1); }, 5000); };
+    const ant = box.querySelector('[data-slider-ant]'), prox = box.querySelector('[data-slider-prox]');
+    if (ant) ant.addEventListener('click', function () { ir(i - 1); auto(); });
+    if (prox) prox.addEventListener('click', function () { ir(i + 1); auto(); });
+    auto();
+  });
+})();

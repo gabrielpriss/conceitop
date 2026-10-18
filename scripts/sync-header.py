@@ -10,6 +10,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HEADER = open(os.path.join(ROOT, 'partials/header.html'), encoding='utf-8').read().strip()
 PASTAS = ['index.html', 'quem-somos', 'contato', 'trabalhe-conosco', 'blog', 'servicos', 'industrial', 'b2b']
 PADRAO = re.compile(r'<header id="header".*?</header>', re.S)
+ESTRUTURA = open(os.path.join(ROOT, 'partials/estrutura.html'), encoding='utf-8').read().strip()
+PADRAO_ESTRUTURA = re.compile(r'<!-- NOSSA ESTRUTURA.*?<!-- /NOSSA ESTRUTURA -->', re.S)
 
 
 def paginas():
@@ -32,6 +34,7 @@ def main():
             sem_header.append(os.path.relpath(p, ROOT))
             continue
         novo = PADRAO.sub(lambda m: HEADER, s, count=1)
+        novo = PADRAO_ESTRUTURA.sub(lambda m: ESTRUTURA, novo)
         if novo != s:
             diferentes.append(os.path.relpath(p, ROOT))
             if not conferir:

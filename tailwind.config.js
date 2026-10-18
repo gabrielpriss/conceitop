@@ -11,6 +11,7 @@ module.exports = {
     './industrial/**/*.html',
     './b2b/**/*.html',
     './trabalhe-conosco/**/*.html',
+    './partials/*.html',
     './assets/js/**/*.js',
     './scripts/*.py',
     './scripts/*.mjs',

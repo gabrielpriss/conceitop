@@ -262,7 +262,33 @@
     </div>
   </section>
 
-  <section class="py-24 bg-white" aria-labelledby="seg-faq">
+  <!-- NOSSA ESTRUTURA: partials/estrutura.html (aplicado por scripts/sync-header.py) -->
+  <section class="estrutura-sec py-24 bg-white" aria-labelledby="estrutura-titulo">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="w-12 h-[1px] bg-gold-400 mb-8 mx-auto" aria-hidden="true"></div>
+        <h2 id="estrutura-titulo" class="font-serif text-3xl sm:text-4xl text-prime-900 uppercase leading-tight mb-5">Nossa <span class="text-gold-400">estrutura</span></h2>
+        <p class="text-prime-600 font-light text-[15px] leading-[1.8]">Nosso escritório fica em uma região estratégica de Curitiba, preparado para atendimento consultivo e reuniões presenciais com total comodidade.</p>
+      </div>
+      <div class="estrutura-grade">
+        <div class="estrutura-mapa">
+          <iframe src="https://maps.google.com/maps?q=Conceito+Prime+Antonio+Rodrigues+76+Curitiba&amp;hl=pt-BR&amp;z=14&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Escritório da Conceito Prime no Google Maps"></iframe>
+        </div>
+        <div class="estrutura-fotos" data-slider aria-roledescription="carrossel" aria-label="Fotos do escritório">
+          <div class="estrutura-trilho" data-slider-trilho>
+            <figure class="estrutura-slide"><img src="/assets/images/estrutura/escritorio-interno.webp" srcset="/assets/images/estrutura/escritorio-interno-720.webp 720w, /assets/images/estrutura/escritorio-interno.webp 1200w" sizes="(min-width: 1024px) 560px, 100vw" alt="Equipe da Conceito Prime trabalhando no escritório em Curitiba" width="1200" height="675" loading="lazy" decoding="async"></figure>
+            <figure class="estrutura-slide"><img src="/assets/images/estrutura/fachada.webp" srcset="/assets/images/estrutura/fachada-720.webp 720w, /assets/images/estrutura/fachada.webp 1200w" sizes="(min-width: 1024px) 560px, 100vw" alt="Fachada do prédio do escritório da Conceito Prime em Curitiba" width="1200" height="627" loading="lazy" decoding="async"></figure>
+          </div>
+          <button type="button" class="estrutura-seta estrutura-seta--ant" data-slider-ant aria-label="Foto anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+          <button type="button" class="estrutura-seta estrutura-seta--prox" data-slider-prox aria-label="Próxima foto"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <p class="estrutura-endereco"><i class="fas fa-location-dot" aria-hidden="true"></i> R. Antônio Rodrigues, 76, Curitiba/PR</p>
+    </div>
+  </section>
+  <!-- /NOSSA ESTRUTURA -->
+
+  <section class="py-24 bg-prime-50" aria-labelledby="seg-faq">
     <div class="max-w-3xl mx-auto px-6 lg:px-8">
       <h2 id="seg-faq" class="font-serif text-3xl sm:text-4xl text-prime-900 uppercase text-center leading-tight mb-12">Perguntas <span class="text-gold-400">frequentes</span></h2>
       <div class="seg-faqs">

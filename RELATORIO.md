@@ -26,9 +26,9 @@
 
 ## Pendências (dependem de informação ou ação)
 
-1. **Logos do carrossel:** 40 logos com as cores reais. Faltam **Espaço Pirâmide** (site fora do ar), **Emunah** (só ícone de 64px) e **Easy Lipo** (sem site; só Instagram). Conferir: o logo da **2A** veio de 2a.com.br (2A Soluções Elétricas) e o da **Pontual** de pontualpetroleo.com.br; confirmar se são as mesmas empresas da carteira.
+1. **Logos do carrossel:** 41 logos com as cores reais. Falta só **Easy Lipo** (sem site; só Instagram). Conferir: o logo da **2A** veio de 2a.com.br (2A Soluções Elétricas) e o da **Pontual** de pontualpetroleo.com.br.
 2. **GTM:** sem contêiner no site atual. Precisamos do ID GTM-XXXX da Conceito Prime.
-3. **Endereço:** divergência entre fontes. Rodapé: R. Antônio Rodrigues, 76, Campina do Siqueira. Link do Maps: Seminário. Mapa incorporado: Av. Visconde de Guarapuava, Centro. Falta confirmar qual vale.
+3. **Endereço:** o mapa da página contato.conceitoprime.com.br usa R. Antônio Rodrigues, 76 (o Google mostra bairro Seminário), que é o endereço usado na seção Nossa estrutura. Divergência entre fontes, ainda a confirmar o bairro: Rodapé: R. Antônio Rodrigues, 76, Campina do Siqueira. Link do Maps: Seminário. Mapa incorporado: Av. Visconde de Guarapuava, Centro. Falta confirmar qual vale.
 4. **Planilha de leads e de currículos:** criar os Apps Scripts (código em `worker.js`) e cadastrar os segredos `LEAD_WEBHOOK` e `TRABALHE_WEBHOOK` no Worker.
 5. **Fontes Tachyon e Cosild** do manual de marca: arquivos não estão no projeto; títulos usam Share Tech e Michroma.
 6. **Textos das páginas de serviço** (listas "o que inclui") foram escritos em jun/2026 e não vieram do cliente. Vale revisar se refletem a entrega real.
