@@ -32,10 +32,10 @@
     {"slug": "doutor-hernia", "nome": "Doutor Hérnia", "origem": "LPs/DR HERNIA/TOLEDO/src/assets/img/logo-branco-132.png", "cores": {"base": "#243f97"}},
     {"slug": "pizzaria-da-hora", "nome": "Pizzaria Da Hora", "origem": "assets/marcas/asset 15.png"},
     {"slug": "dracos", "nome": "Draco's Sur América", "origem": "LPs/Dracos/dracos-site/images/logo.png"},
-    {"slug": "german-financial", "nome": "German Financial", "origem": "assets/marcas/asset 16.png"},
+    {"slug": "german-financial", "nome": "German Financial", "origem": "assets/marcas/german-financial-colorido.png"},
     {"slug": "giatti", "nome": "Clínica Giatti", "origem": "LPs/giatti/assets/img/marca-giatti.png"},
     {"slug": "reda", "nome": "Reda Engenharia", "origem": "Downloads/logo-reda-01.png", "cores": {"base": "#1a4246", "regioes": [{"caixa": [0, 0, 0.22, 1], "cor": "#86a48a"}]}},
-    {"slug": "silaqua", "nome": "Siláqua", "origem": "assets/marcas/asset 18.png"},
+    {"slug": "silaqua", "nome": "Siláqua", "origem": "Downloads/logo-silaqua-colorido.png"},
     {"slug": "herveda", "nome": "Herveda Farma", "origem": "Downloads/20260715_herveda_2638f4b56bb88a6b9669_20261017042024_archive/wp-content/uploads/2026/05/LOGO-PRINCIPAL-01.png"},
     {"slug": "wyllis", "nome": "Wyllis Ferramentas", "origem": "assets/marcas/asset 23.png"},
     {"slug": "ladaniuski", "nome": "Ladaniuski", "origem": "Downloads/logo-ladaniuski-render.png"},
@@ -44,6 +44,7 @@
     {"slug": "2a", "nome": "2A Materiais Elétricos", "origem": "Downloads/logo-2a.png"},
     {"slug": "aiss", "nome": "AISS do Brasil", "origem": "Downloads/logo-aiss.png"},
     {"slug": "pontual", "nome": "Pontual Brasil Petróleo", "origem": "Downloads/logo-pontual.png"},
+    {"slug": "do-valle", "nome": "Do Valle Engenharia", "origem": "Downloads/logo-do-valle-engenharia.png"},
     {"slug": "easy-lipo", "nome": "Easy Lipo"}
   ]
 }
