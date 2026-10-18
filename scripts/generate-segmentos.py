@@ -26,6 +26,7 @@ VIDEOS = {
     'kuzma': ('W2THQatKpyQ', 'depoimento-rafael.webp', 'Depoimento de Rafael Kuzma, Diretor da Molas Kuzma'),
     'german': ('iaNFzlWoXDo', 'depoimento-philipe.webp', 'Depoimento de Philippe Enke, CEO da German Financial'),
     'ruan': ('hCFMWFbYoZc', 'depoimento-ruan.webp', 'Depoimento de Ruan Ançay, Diretor da Nova Direção Negócios'),
+    'heloise': ('UDBxL5vSQcI', 'depoimento-heloise.webp', 'Depoimento de Heloise Biscaia, Diretora do Grupo Nuele'),
 }
 
 # Serviços da página de indústria: foco no que a campanha vende (a home continua com todos)
@@ -72,7 +73,7 @@ PAGINAS = [
             ('Página que qualifica', 'Formulário no lugar do WhatsApp aberto, com empresa, volume e produto. O contato chega pronto para o orçamento.'),
             ('Medição pelo comercial', 'Conversão só de pedido enviado, leads na planilha ou no CRM e leitura mensal cruzada com o que virou venda.'),
         ],
-        'videos': ['kuzma', 'german'],
+        'videos': ['kuzma', 'german', 'ruan', 'heloise'],
         'faq': [
             ('Atendem indústrias fora de Curitiba?', 'Sim. Temos campanhas rodando para o Brasil inteiro e também fora do país. A região de cada campanha segue as praças onde vocês querem vender.'),
             ('Vocês só fazem os anúncios?', 'Não. Cuidamos da campanha, da página de captação e da medição. Sem as três juntas, o painel mostra resultado que o comercial não enxerga.'),
@@ -110,7 +111,7 @@ PAGINAS = [
             ('Geração de demanda', 'Google Ads para quem já procura, Meta Ads e conteúdo para quem ainda não conhece, e formulário que filtra por faturamento, segmento e empresa.'),
             ('Conversão e leitura', 'Leads no CRM com origem, atendimento organizado, time treinado e conferência mensal de reuniões, propostas e contratos.'),
         ],
-        'videos': ['german', 'kuzma', 'ruan'],
+        'videos': ['german', 'kuzma', 'ruan', 'heloise'],
         'faq': [
             ('Vocês fazem só anúncios?', 'Não. Trabalhamos marca, site, mídia paga, conteúdo, atendimento e CRM, treinamento comercial e materiais de venda. O diagnóstico mostra por onde começar no caso de vocês.'),
             ('Funciona para venda consultiva com ciclo longo?', 'Sim. Medimos o lead qualificado na entrada e acompanhamos com vocês o que vira reunião e contrato, para o trabalho não ser julgado só pelo volume.'),
@@ -156,7 +157,7 @@ def videos_html(chaves):
     slides, dots = [], []
     for i, k in enumerate(chaves):
         yt, img, alt = VIDEOS[k]
-        titulo = alt.replace(', Diretor da ', ', ').replace(', CEO da ', ', ')
+        titulo = alt.replace(', Diretora do ', ', ').replace(', Diretor da ', ', ').replace(', CEO da ', ', ')
         slides.append(f'''          <div class="video-carousel-slide">
             <button type="button" class="video-thumb" data-youtube-id="{yt}" data-video-title="{titulo}">
               <img src="/assets/images/depoimentos/{img}" alt="{alt}" width="997" height="534" loading="lazy" decoding="async">
