@@ -25,6 +25,10 @@ export default {
       if (request.method !== 'POST') return new Response(null, { status: 405, headers: { Allow: 'POST' } });
       return receberTrabalheConosco(request, env);
     }
+    if (url.pathname === '/api/lead-b2b') {
+      if (request.method !== 'POST') return new Response(null, { status: 405, headers: { Allow: 'POST' } });
+      return receberLeadB2B(request, env);
+    }
     if (url.pathname === '/api/lead') {
       if (request.method !== 'POST') return new Response(null, { status: 405, headers: { Allow: 'POST' } });
       return receberLead(request, env, ctx);
@@ -98,6 +102,45 @@ async function receberTrabalheConosco(request, env) {
   try {
     const r = await fetch(env.TRABALHE_WEBHOOK, {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(envio), redirect: 'follow',
+    });
+    if (!r.ok) return new Response(null, { status: 502 });
+  } catch {
+    return new Response(null, { status: 502 });
+  }
+  return new Response(null, { status: 204 });
+}
+
+/* Leads das páginas da campanha (/b2b e /industrial). Rota própria: não muda o /api/lead das outras páginas.
+   Envia para o segredo LEAD_B2B_WEBHOOK (ou LEAD_WEBHOOK, se o B2B não existir) e só responde 204 quando o
+   webhook aceitou o lead. Sem webhook configurado responde 503 e a página mostra erro, para nenhum lead se perder
+   em silêncio. O Apps Script de leads (topo deste arquivo) grava as colunas novas sem mudança: cada chave vira coluna. */
+const CAMPOS_B2B = ['nome', 'empresa', 'cargo', 'telefone', 'email', 'site', 'segmento', 'faturamento', 'investimento', 'procura',
+  'pagina', 'lead_qualificado', 'email_gratuito', 'origem', 'gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign',
+  'utm_term', 'utm_content'];
+
+async function receberLeadB2B(request, env) {
+  let corpo;
+  try {
+    const txt = await request.text();
+    if (txt.length > 8000) return new Response(null, { status: 413 });
+    corpo = JSON.parse(txt);
+  } catch {
+    return new Response(null, { status: 400 });
+  }
+  if (corpo.hp) return new Response(null, { status: 204 }); // honeypot
+  if (!corpo.nome || !corpo.email || !corpo.telefone || !corpo.faturamento) return new Response(null, { status: 422 });
+  const destino = env.LEAD_B2B_WEBHOOK || env.LEAD_WEBHOOK;
+  if (!destino) return new Response(null, { status: 503 });
+
+  const lead = { recebido_em: new Date().toISOString() };
+  for (const k of CAMPOS_B2B) if (corpo[k] != null) lead[k] = String(corpo[k]).slice(0, 300);
+  try {
+    const r = await fetch(destino, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(lead),
+      redirect: 'follow',
+      signal: AbortSignal.timeout(7000),
     });
     if (!r.ok) return new Response(null, { status: 502 });
   } catch {

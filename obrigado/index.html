@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recebemos seus dados | Conceito Prime</title>
+  <link rel="canonical" href="https://conceitop.com.br/obrigado/">
+  <meta name="description" content="Recebemos seus dados. O time da Conceito Prime analisa cada pedido e retorna pelo e-mail ou telefone informado no formulário.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Recebemos seus dados | Conceito Prime">
+  <meta property="og:description" content="Recebemos seus dados. O time da Conceito Prime analisa cada pedido e retorna pelo e-mail ou telefone informado no formulário.">
+  <meta property="og:url" content="https://conceitop.com.br/obrigado/">
+  <meta property="og:image" content="https://conceitop.com.br/assets/images/og-image.jpg">
+  <link rel="icon" href="/assets/images/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/cairo.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+/* Estilos locais das páginas da campanha (/b2b, /industrial, /obrigado e /obrigado-qualificado).
+   Embutidos no <head> de cada página por scripts/generate-segmentos.py: não fazem parte do CSS global. */
+#wa-float { display: none !important; }
+.cb-cta { display: inline-flex; align-items: center; gap: .6rem; background: var(--brand-yellow); color: var(--brand-dark); font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: 12px; padding: 1.15rem 2.4rem; box-shadow: 0 8px 32px rgba(247, 204, 25, .4); transition: transform .2s ease, background .2s ease; }
+.cb-cta:hover { transform: translateY(-2px); background: #ffd84a; }
+.cb-selo { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid rgba(247, 204, 25, .45); color: var(--brand-yellow); border-radius: 999px; padding: .45rem 1rem; font-size: 12px; font-weight: 600; letter-spacing: .04em; margin-bottom: 1.5rem; }
+
+/* Faixa com as promessas dos anúncios, logo abaixo do topo */
+.cb-promessas { background: var(--brand-dark); border-top: 1px solid rgba(255, 255, 255, .08); }
+.cb-promessas ul { max-width: 72rem; margin: 0 auto; padding: 1.5rem 1.5rem; list-style: none; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.cb-promessas li { display: flex; gap: .75rem; align-items: flex-start; color: rgba(255, 255, 255, .85); font-size: 14px; line-height: 1.5; }
+.cb-promessas li i { color: var(--brand-yellow); margin-top: .2rem; }
+.cb-promessas strong { color: #fff; font-weight: 700; }
+
+/* Destaque dos 9 anos (só /b2b) */
+.cb-nove-sec { background: #fff; padding: 4.5rem 1.5rem 1rem; }
+.cb-nove-grade { max-width: 64rem; margin: 0 auto; display: grid; gap: 1.5rem; align-items: stretch; }
+@media (min-width: 900px) { .cb-nove-grade { grid-template-columns: 1.6fr 1fr; } }
+.cb-placa { background: var(--brand-dark); border-radius: 20px; padding: 2.25rem 2.25rem 2rem; color: #fff; display: grid; gap: 1.5rem; align-items: center; grid-template-columns: auto 1fr; box-shadow: 0 20px 50px rgba(22, 22, 22, .18); }
+.cb-placa-num { font-family: 'Share Tech', sans-serif; font-size: clamp(6rem, 14vw, 9.5rem); line-height: .8; color: var(--brand-yellow); }
+.cb-placa-txt { font-family: 'Share Tech', sans-serif; text-transform: uppercase; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.05; letter-spacing: .02em; }
+.cb-placa-txt small { display: block; font-family: 'Cairo', sans-serif; text-transform: none; font-size: 14px; color: rgba(255, 255, 255, .7); margin-top: .6rem; letter-spacing: 0; line-height: 1.5; }
+.cb-regua { grid-column: 1 / -1; position: relative; padding-top: .5rem; }
+.cb-regua ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(10, 1fr); border-top: 2px solid rgba(255, 255, 255, .25); }
+.cb-regua li { position: relative; text-align: center; font-size: 11px; color: rgba(255, 255, 255, .6); padding-top: .9rem; }
+.cb-regua li::before { content: ''; position: absolute; top: -2px; left: 50%; width: 2px; height: .6rem; background: var(--brand-yellow); transform: translateX(-50%); }
+.cb-regua li:first-child, .cb-regua li:last-child { color: var(--brand-yellow); font-weight: 700; }
+@media (max-width: 520px) { .cb-regua li { font-size: 0; } .cb-regua li:first-child, .cb-regua li:last-child { font-size: 11px; } .cb-placa { grid-template-columns: 1fr; text-align: center; } }
+.cb-apoio { display: grid; gap: 1rem; }
+.cb-apoio div { background: #f4f4f4; border-radius: 16px; padding: 1.4rem 1.5rem; display: flex; flex-direction: column; justify-content: center; }
+.cb-apoio b { font-family: 'Share Tech', sans-serif; font-size: 2.2rem; line-height: 1; color: var(--brand-dark); font-weight: 400; }
+.cb-apoio span { font-size: 12px; text-transform: uppercase; letter-spacing: .15em; color: #4a4a4a; margin-top: .4rem; }
+
+/* Filtro de público */
+.cb-filtro-sec { background: #fff; padding: 6rem 1.5rem; }
+.cb-filtro { max-width: 64rem; margin: 0 auto; display: grid; gap: 1.5rem; }
+@media (min-width: 900px) { .cb-filtro { grid-template-columns: 1fr 1fr; } }
+.cb-filtro-col { border-radius: 18px; padding: 2rem 1.9rem; }
+.cb-filtro-col h3 { font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 1.2rem; margin: 0 0 1.25rem; }
+.cb-filtro-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .9rem; }
+.cb-filtro-col li { display: flex; gap: .75rem; font-size: 15px; line-height: 1.6; }
+.cb-filtro-col li i { margin-top: .3rem; flex: none; }
+.cb-sim { background: var(--brand-dark); color: rgba(255, 255, 255, .85); }
+.cb-sim h3 { color: var(--brand-yellow); }
+.cb-sim li i { color: var(--brand-yellow); }
+.cb-nao { background: #f4f4f4; color: #353535; }
+.cb-nao h3 { color: var(--brand-dark); }
+.cb-nao li i { color: #9a9a9a; }
+
+/* Formulário próprio da campanha */
+.cb-form-sec { background: var(--brand-yellow); padding: 5rem 1.25rem; }
+.cb-form-card { max-width: 40rem; margin: 0 auto; background: #fff; border-radius: 18px; padding: 2.5rem 2rem 2rem; box-shadow: 0 20px 56px rgba(22, 22, 22, .16); }
+.cb-form-card h2 { font-family: 'Share Tech', sans-serif; text-transform: uppercase; font-size: 1.9rem; line-height: 1.1; color: var(--brand-dark); margin: 0 0 .5rem; }
+.cb-form-card > p { color: #4a4a4a; font-size: 14px; margin: 0 0 1.75rem; }
+.cb-form { display: grid; gap: 1rem 1.25rem; }
+@media (min-width: 640px) { .cb-form { grid-template-columns: 1fr 1fr; } .cb-campo--full { grid-column: 1 / -1; } }
+.cb-campo label, .cb-campo legend { display: block; font-size: 12px; font-weight: 700; color: var(--brand-dark); margin-bottom: .35rem; letter-spacing: .02em; }
+.cb-campo label small, .cb-campo legend small { font-weight: 400; color: #6b6b6b; }
+.cb-campo input, .cb-campo select { width: 100%; border: 1px solid #d9d9d9; border-radius: 10px; padding: .8rem .9rem; font: inherit; font-size: 15px; color: var(--brand-dark); background: #fff; transition: border-color .2s, box-shadow .2s; }
+.cb-campo input:focus, .cb-campo select:focus { outline: none; border-color: var(--brand-dark); box-shadow: 0 0 0 3px rgba(247, 204, 25, .45); }
+.cb-campo fieldset { border: 0; margin: 0; padding: 0; }
+.cb-opcoes { display: flex; flex-wrap: wrap; gap: .6rem; }
+.cb-opcoes label { display: inline-flex; align-items: center; gap: .55rem; border: 1px solid #d9d9d9; border-radius: 999px; padding: .6rem 1rem; font-weight: 600; font-size: 14px; cursor: pointer; margin: 0; }
+.cb-opcoes input { width: 1.05rem; height: 1.05rem; accent-color: var(--brand-dark); }
+.cb-opcoes label:has(input:checked) { border-color: var(--brand-dark); background: #fff8d6; }
+.cb-invalido input, .cb-invalido select, .cb-invalido .cb-opcoes label { border-color: #c62828; }
+.cb-erro { grid-column: 1 / -1; color: #c62828; font-size: 13px; min-height: 1em; margin: 0; }
+.cb-enviar { grid-column: 1 / -1; background: var(--brand-dark); color: #fff; border: 0; border-radius: 10px; padding: 1.05rem 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: 12px; cursor: pointer; display: inline-flex; justify-content: center; align-items: center; gap: .6rem; transition: background .2s; }
+.cb-enviar:hover { background: #000; }
+.cb-enviar[disabled] { opacity: .65; cursor: wait; }
+.cb-aviso { grid-column: 1 / -1; font-size: 12px; color: #6b6b6b; margin: 0; text-align: center; }
+.cb-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Páginas de obrigado */
+.cb-obrigado { min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 9rem 1.25rem 5rem; background: #fafafa; }
+.cb-obrigado-card { max-width: 40rem; background: #fff; border-radius: 20px; padding: 3rem 2.25rem; text-align: center; box-shadow: 0 20px 56px rgba(22, 22, 22, .1); }
+.cb-obrigado-card > i { font-size: 3rem; color: #c9a000; margin-bottom: 1.25rem; display: block; }
+.cb-obrigado-card h1 { font-family: 'Share Tech', sans-serif; text-transform: uppercase; font-size: 2rem; line-height: 1.1; color: var(--brand-dark); margin: 0 0 1rem; }
+.cb-obrigado-card p { color: #4a4a4a; font-size: 15px; line-height: 1.7; margin: 0 0 1rem; }
+.cb-acoes { display: grid; gap: .75rem; margin-top: 1.75rem; }
+@media (min-width: 560px) { .cb-acoes { grid-template-columns: 1fr 1fr; } }
+.cb-btn-wa, .cb-btn-agenda { display: inline-flex; justify-content: center; align-items: center; gap: .6rem; border-radius: 10px; padding: 1rem 1.25rem; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .12em; }
+.cb-btn-wa { background: #137a3a; color: #fff; }
+.cb-btn-wa:hover { background: #0f6430; }
+.cb-btn-agenda { background: var(--brand-dark); color: #fff; }
+.cb-btn-agenda:hover { background: #000; }
+.cb-link { color: var(--brand-dark); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Cabeçalho e rodapé próprios das páginas da campanha (sem menu, sem WhatsApp, sem telefone) */
+.cb-topo { position: fixed; inset: 0 0 auto 0; z-index: 50; background: #fff; box-shadow: 0 1px 0 rgba(22, 22, 22, .06), 0 8px 24px rgba(22, 22, 22, .05); }
+.cb-topo-in { max-width: 80rem; margin: 0 auto; padding: .9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.cb-topo-logo img { height: 40px; width: auto; display: block; }
+.cb-topo-cta { background: var(--brand-dark); color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: .15em; font-size: 11px; padding: .85rem 1.4rem; white-space: nowrap; transition: background .2s; }
+.cb-topo-cta:hover { background: #000; }
+@media (max-width: 420px) { .cb-topo-logo img { height: 32px; } .cb-topo-cta { letter-spacing: .08em; padding: .75rem 1rem; } }
+.cb-rodape { background: #0d0d0d; color: rgba(255, 255, 255, .7); padding: 3rem 1.5rem; }
+.cb-rodape-in { max-width: 72rem; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: .75rem; text-align: center; font-size: 14px; }
+.cb-rodape-in img { width: 150px; height: auto; margin-bottom: .5rem; }
+.cb-rodape-in i { color: var(--brand-yellow); margin-right: .35rem; }
+.cb-rodape-in a { color: rgba(255, 255, 255, .7); text-decoration: underline; text-underline-offset: 3px; }
+.cb-rodape-in a:hover { color: var(--brand-yellow); }
+.cb-rodape-in p { margin: 0; }
+@media (max-width: 899px) { .cb-apoio { grid-template-columns: 1fr 1fr; } .cb-apoio b { font-size: 1.7rem; } }
+  </style>
+</head>
+<body class="font-sans text-prime-800 antialiased" data-contato="formulario" data-lp="obrigado" data-conversoes="" data-tipos-conversao="todos">
+
+  <header class="cb-topo">
+    <div class="cb-topo-in">
+      <span class="cb-topo-logo"><img src="/assets/images/logo.webp" alt="Conceito Prime" width="1250" height="356"></span>
+      
+    </div>
+  </header>
+
+  <main class="cb-obrigado">
+    <div class="cb-obrigado-card">
+      <i class="fas fa-check-circle" aria-hidden="true"></i>
+      <h1>Recebemos seus dados<span data-lead-nome></span></h1>
+      <p>Obrigado pelo interesse. Nosso time analisa cada pedido e retorna pelo e-mail ou telefone que você informou.</p>
+      <p>Enquanto isso, separamos conteúdos do nosso blog sobre marketing e vendas para empresas.</p>
+      <p><a class="cb-link" href="/blog/">Ver os artigos do blog</a></p>
+    </div>
+  </main>
+
+  <footer class="cb-rodape">
+    <div class="cb-rodape-in">
+      <img src="/assets/images/logo-footer.webp" alt="Conceito Prime" width="400" height="114" loading="lazy" decoding="async">
+      <p><i class="fas fa-location-dot" aria-hidden="true"></i> R. Antônio Rodrigues, 76, Curitiba/PR</p>
+      <p><a href="/quem-somos/" target="_blank" rel="noopener">Quem somos</a> <span aria-hidden="true">·</span> © 2026 Conceito Prime</p>
+    </div>
+  </footer>
+  <script src="/assets/js/brand.js" defer></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+/* Páginas de obrigado da campanha: personaliza com o lead enviado e dispara as conversões do Google Ads
+   uma única vez por envio (recarregar a página não conta de novo; visita direta sem envio não conta). */
+(function () {
+  var lead = null;
+  try { lead = JSON.parse(sessionStorage.getItem('cp_lead_b2b') || 'null'); } catch (e) { lead = null; }
+  var nome = document.querySelector('[data-lead-nome]');
+  if (lead && lead.nome && nome) nome.textContent = ', ' + lead.nome.split(' ')[0];
+
+  var wa = document.querySelectorAll('[data-wa-msg]');
+  wa.forEach(function (a) {
+    var msg = a.getAttribute('data-wa-msg');
+    if (lead) msg += ' Sou ' + (lead.nome || '') + (lead.empresa ? ', da ' + lead.empresa : '') + '.';
+    a.href = 'https://wa.me/' + a.getAttribute('data-wa-numero') + '?text=' + encodeURIComponent(msg);
+    a.addEventListener('click', function () { (window.dataLayer = window.dataLayer || []).push({ event: 'whatsapp_open', posicao: a.dataset.cta || 'obrigado' }); });
+  });
+
+  if (!lead) return;
+  var chave = 'cp_conv_' + lead.t + '_' + location.pathname;
+  try { if (sessionStorage.getItem(chave)) return; sessionStorage.setItem(chave, '1'); } catch (e) { /* segue */ }
+
+  /* GTM: gatilho "Evento personalizado" conversao_lead_b2b. tipo = qualificado (Lead Qualificado B2B) ou todos (Lead B2B Todos).
+     Na página qualificada saem os dois eventos, porque "Lead B2B Todos" conta todo lead enviado. */
+  var tipos = (document.body.getAttribute('data-tipos-conversao') || '').split(',').filter(Boolean);
+  window.dataLayer = window.dataLayer || [];
+  tipos.forEach(function (tipo) {
+    window.dataLayer.push({ event: 'conversao_lead_b2b', tipo: tipo, lead_id: String(lead.t), faturamento: lead.faturamento, pagina_origem: lead.pagina });
+  });
+
+  /* Tag do Google direta (só se GOOGLE_TAG_ID estiver preenchido no gerador, sem GTM) */
+  var conversoes = (document.body.getAttribute('data-conversoes') || '').split(',').filter(Boolean);
+  if (!conversoes.length || typeof window.gtag !== 'function') return;
+  conversoes.forEach(function (envio) { window.gtag('event', 'conversion', { send_to: envio, transaction_id: String(lead.t) }); });
+})();
+});
+  </script>
+</body>
+</html>

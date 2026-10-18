@@ -49,6 +49,7 @@ Depois de qualquer um deles, rodar `build-css.sh` de novo se surgiram classes no
 
 ## Campanha de Google Ads da agência
 
-- Destinos: `/industrial/` e `/b2b/`. A home segue como apresentação geral da empresa, com todos os serviços.
-- Conversão principal: evento `lead_qualificado` no dataLayer (formulário enviado com faturamento a partir de R$ 100 mil). `form_submit` fica como secundária.
-- Depende do GTM: o ID do contêiner ainda não foi informado.
+- Destinos: `/b2b/` e `/industrial/`. Páginas de obrigado: `/obrigado-qualificado/` (faturamento a partir de R$ 100 mil) e `/obrigado/` (demais). Todas geradas por `scripts/generate-segmentos.py`, com cabeçalho, rodapé, CSS e JS próprios (`scripts/campanha/`), sem tocar nos componentes globais.
+- Formulário próprio envia para `/api/lead-b2b` (worker.js), que repassa ao segredo **LEAD_B2B_WEBHOOK** (ou LEAD_WEBHOOK). Sem segredo configurado a rota responde 503 e a página mostra erro: a campanha não pode ir ao ar antes disso.
+- dataLayer: `lead_b2b {lead_qualificado, faturamento, segmento, pagina}` no envio; `conversao_lead_b2b {tipo: qualificado | todos}` nas páginas de obrigado (uma vez por envio).
+- GTM: preencher o ID em `conteudo/rastreamento.json`; o build instala em todas as páginas (`scripts/inject-gtm.js`).

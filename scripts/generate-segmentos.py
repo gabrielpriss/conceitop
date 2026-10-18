@@ -1,25 +1,34 @@
 #!/usr/bin/env python3
-"""Páginas de destino da campanha de Google Ads: /industrial/ e /b2b/.
+"""Páginas da campanha de Google Ads B2B: /industrial/, /b2b/, /obrigado-qualificado/ e /obrigado/.
 
 Uso: python3 scripts/generate-segmentos.py
 
-Cabeçalho vem de partials/header.html e o rodapé é copiado da página de serviço
-(servicos/branding/index.html), para as páginas seguirem o resto do site.
-O formulário é o mesmo das páginas internas, com faturamento obrigatório: o
-evento lead_qualificado (brand.js) só dispara a partir de R$ 100 mil por mês.
+Tudo o que é específico da campanha fica dentro destas páginas: cabeçalho e rodapé próprios (sem menu,
+sem WhatsApp), CSS e JavaScript embutidos (scripts/campanha/), formulário próprio que envia para
+/api/lead-b2b e redireciona para a página de obrigado certa. O CSS global, o brand.js, o cabeçalho e o
+rodapé compartilhados não são alterados por este script.
 """
 import json, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from lead_form_snippet import render_lead_form_block, render_lead_header
 from PIL import Image
 
 SITE = 'https://conceitop.com.br'
 HEADER = open(os.path.join(ROOT, 'partials/header.html'), encoding='utf-8').read().strip()
 ESTRUTURA = open(os.path.join(ROOT, 'partials/estrutura.html'), encoding='utf-8').read().rstrip()
-_base = open(os.path.join(ROOT, 'servicos/branding/index.html'), encoding='utf-8').read()
-FOOTER = _base[_base.index('  </main>'):]
+CSS_LOCAL = open(os.path.join(ROOT, 'scripts/campanha/campanha.css'), encoding='utf-8').read().strip()
+JS_FORM = open(os.path.join(ROOT, 'scripts/campanha/form.js'), encoding='utf-8').read().strip()
+JS_OBRIGADO = open(os.path.join(ROOT, 'scripts/campanha/obrigado.js'), encoding='utf-8').read().strip()
+
+# Tag do Google da conta Cprime 2026 (404-812-7952), só nestas 4 páginas.
+# Preencher com o ID da tag (AW-...) e com o "send_to" (AW-.../rótulo) de cada conversão. Vazio = sem tag.
+GOOGLE_TAG_ID = ''
+CONVERSAO_QUALIFICADO = ''   # "Lead Qualificado B2B" (primária)
+CONVERSAO_TODOS = ''         # "Lead B2B Todos" (secundária)
+
+WA_COMERCIAL = '5541999904764'
+ENDERECO = 'R. Antônio Rodrigues, 76, Curitiba/PR'
 CLIENTES = {c['slug']: c for faixa in ('faixa1', 'faixa2')
             for c in json.load(open(os.path.join(ROOT, 'conteudo/clientes.json'), encoding='utf-8'))[faixa]}
 
@@ -32,19 +41,36 @@ VIDEOS = {
 
 # Serviços da página de indústria: foco no que a campanha vende (a home continua com todos)
 SERVICOS_INDUSTRIA = [
-    ('fab fa-google', 'Google Ads de intenção', 'Campanhas de pesquisa com termos de quem procura fornecedor, negativas de varejo e consumidor final e região definida pela praça comercial.'),
-    ('fas fa-laptop-code', 'Página de captação', 'Página rápida, com o portfólio que importa e formulário que pergunta o que o comercial precisa saber antes de responder.'),
+    ('fab fa-google', 'Google Ads e Meta Ads', 'Google Ads para quem já procura fornecedor, com termos de compra B2B e negativas de varejo, e Meta Ads para alcançar compradores que ainda não conhecem a sua indústria.'),
+    ('fas fa-laptop-code', 'Site e página de captação', 'Sites institucionais e páginas de campanha em WordPress ou código próprio, rápidos e integrados ao Google Ads, com formulário que qualifica o contato.'),
     ('fas fa-chart-line', 'Medição e CRM', 'Conversão contada só quando chega pedido de verdade, com cada contato registrado na planilha ou no CRM e a origem de cada um.'),
 ]
 
 # Página B2B: mostra a agência completa, não só anúncios
 SERVICOS_B2B = [
     ('fas fa-chess-knight', 'Posicionamento e marca', 'Proposta de valor clara para o decisor, identidade visual e discurso alinhados entre site, proposta e time comercial.'),
-    ('fas fa-laptop-code', 'Site e páginas de captação', 'Site institucional que passa confiança para quem compra de empresa e páginas de campanha com formulário que qualifica o contato.'),
-    ('fas fa-bullseye', 'Mídia paga', 'Google Ads para quem já procura fornecedor e Meta Ads para quem ainda não conhece a sua marca, com verba e região definidas pelo comercial.'),
+    ('fas fa-laptop-code', 'Site e páginas de captação', 'Sites institucionais em WordPress ou código próprio, integrados ao Google Ads, e páginas de campanha com formulário que qualifica o contato.'),
+    ('fas fa-bullseye', 'Google Ads e Meta Ads', 'Google Ads para quem já procura fornecedor e Meta Ads para quem ainda não conhece a sua marca, com verba e região definidas pelo comercial.'),
     ('fas fa-share-nodes', 'Conteúdo e redes sociais', 'LinkedIn e Instagram com conteúdo técnico e de autoridade, para o decisor reconhecer a sua empresa quando chega a hora de comprar.'),
     ('fas fa-comments', 'Atendimento e CRM', 'WhatsApp organizado, leads registrados com origem e funil visível, para nenhum contato se perder entre o marketing e o vendedor.'),
     ('fas fa-chalkboard-user', 'Treinamento e materiais de venda', 'Capacitação do time comercial e apresentações e materiais impressos que sustentam a negociação depois do primeiro contato.'),
+]
+
+# O que os anúncios prometem: cada item precisa aparecer na página de destino
+PROMESSAS = [
+    ('fas fa-check', '<strong>Para empresas com faturamento acima de R$ 100 mil/mês</strong>'),
+    ('fas fa-location-dot', 'Escritório em Curitiba e <strong>atendimento em todo o Paraná</strong>'),
+    ('fab fa-google', 'Gestão de <strong>Google Ads e Meta Ads</strong>'),
+    ('fas fa-laptop-code', 'Sites em <strong>WordPress ou código próprio</strong>, integrados ao Google Ads'),
+    ('fas fa-filter', 'Foco em <strong>lead qualificado</strong>, não em volume'),
+    ('fas fa-hourglass-half', 'Trabalho de médio prazo, com <strong>resultado consistente em 3 a 6 meses</strong>'),
+]
+
+NAO_FAZ_SENTIDO = [
+    'A empresa ainda não fatura ou está validando o produto.',
+    'A expectativa é resultado garantido na primeira semana.',
+    'O objetivo é só seguidor e curtida, sem ligação com vendas.',
+    'Não há ninguém para responder os contatos que chegarem.',
 ]
 
 PAGINAS = [
@@ -52,9 +78,16 @@ PAGINAS = [
         'slug': 'industrial',
         'title': 'Marketing para Indústrias com Google Ads | Conceito Prime',
         'description': 'Marketing para indústrias: Google Ads com termos de compra B2B, página de captação e medição para receber pedidos de orçamento de empresas, não de curiosos.',
-        'eyebrow': 'Marketing para indústrias',
+        'eyebrow': 'Marketing para indústrias e distribuidores',
+        'logos_eyebrow': 'Já atendemos indústrias no Paraná',
+        'faz_sentido': [
+            'Vocês são indústria ou distribuidor e vendem para outras empresas.',
+            'A empresa fatura acima de R$ 100 mil por mês.',
+            'Existe um comercial para atender e orçar os pedidos que chegarem.',
+            'O objetivo é pedido qualificado, mesmo com volume menor, num trabalho de 3 a 6 meses.',
+        ],
         'h1': 'Pedidos de orçamento de quem <span class="text-gold-400">compra em volume</span>',
-        'sub': 'Estruturamos Google Ads, página de captação e medição para a sua indústria receber contatos de empresas compradoras, e não de consumidor final atrás de peça avulsa.',
+        'sub': 'Estruturamos Google Ads, Meta Ads, site e medição para a sua indústria receber contatos de empresas compradoras, e não de consumidor final atrás de peça avulsa. Escritório em Curitiba, atendimento em todo o Paraná.',
         'logos_titulo': 'Algumas indústrias e distribuidores que <span class="text-gold-400">trabalham com a gente</span>',
         'logos': ['plasfix', 'naciopetro', 'rolpro', 'ladaniuski', 'atlas-eletromotores', 'cactos',
                   'tech-composites', 'rgm-service', 'serquip', 'mais-madeiras', 'pontual', 'm8-pneus',
@@ -76,8 +109,10 @@ PAGINAS = [
         ],
         'videos': ['kuzma', 'german', 'ruan', 'heloise'],
         'faq': [
-            ('Atendem indústrias fora de Curitiba?', 'Sim. Temos campanhas rodando para o Brasil inteiro e também fora do país. A região de cada campanha segue as praças onde vocês querem vender.'),
-            ('Vocês só fazem os anúncios?', 'Não. Cuidamos da campanha, da página de captação e da medição. Sem as três juntas, o painel mostra resultado que o comercial não enxerga.'),
+            ('Para que tipo de empresa é esse trabalho?', 'Para indústrias e distribuidores com faturamento acima de R$ 100 mil por mês que vendem para outras empresas. Já atendemos indústrias no Paraná em segmentos como fitas adesivas, rolamentos, correias industriais, motores elétricos e usinagem.'),
+            ('Em quanto tempo aparece resultado?', 'É um trabalho de médio prazo. As primeiras semanas servem para calibrar termos, negativas e página com o que o comercial de vocês considera pedido bom, e o resultado fica consistente entre 3 e 6 meses.'),
+            ('Atendem indústrias fora de Curitiba?', 'Sim. Nosso escritório fica em Curitiba e atendemos todo o Paraná, com reuniões presenciais ou online. Também temos clientes em outros estados.'),
+            ('Vocês só fazem os anúncios?', 'Não. Cuidamos de Google Ads e Meta Ads, do site ou da página de captação, em WordPress ou código próprio e integrados ao Google Ads, e da medição. Sem essas peças juntas, o painel mostra resultado que o comercial não enxerga.'),
             ('Como sabemos se a campanha está dando resultado?', 'Cada contato chega com a origem registrada e conferimos com vocês quais viraram orçamento e venda. O relatório parte desse dado, não só do que o Google mostra.'),
             ('Qual o investimento em mídia?', 'Definimos no diagnóstico, a partir do volume de busca do seu mercado, das praças e do ticket. A proposta mostra a verba sugerida antes de qualquer contratação.'),
         ],
@@ -91,8 +126,15 @@ PAGINAS = [
         'title': 'Marketing B2B e Geração de Leads Qualificados | Conceito Prime',
         'description': 'Marketing B2B completo: marca, site, mídia paga, conteúdo, CRM e treinamento comercial para quem vende para empresas gerar e fechar mais negócios.',
         'eyebrow': 'Marketing B2B',
+        'logos_eyebrow': '',
+        'faz_sentido': [
+            'A empresa vende para outras empresas e fatura acima de R$ 100 mil por mês.',
+            'Existe um comercial (ou alguém dedicado) para atender os contatos.',
+            'O objetivo é lead qualificado e venda, mesmo com volume menor.',
+            'Vocês topam um trabalho de médio prazo, de 3 a 6 meses, para o resultado ficar consistente.',
+        ],
         'h1': 'Marketing B2B do posicionamento ao <span class="text-gold-400">contrato fechado</span>',
-        'sub': 'Marca, site, mídia, conteúdo e processo comercial trabalhando juntos para a sua empresa atrair decisores com perfil de compra e transformar esses contatos em contratos.',
+        'sub': 'Google Ads, Meta Ads, site, marca e processo comercial trabalhando juntos para a sua empresa atrair decisores com perfil de compra e transformar esses contatos em contratos. Escritório em Curitiba, atendimento em todo o Paraná.',
         'logos_titulo': 'Algumas empresas B2B que <span class="text-gold-400">trabalham com a gente</span>',
         'logos': ['reda', 'german-financial', 'rgm-service', 'naciopetro', 'cactos', 'ice-cargo',
                   'tech-composites', 'aiss', 'pontual', 'serquip', 'dracos', 'rolpro', 'ladaniuski',
@@ -114,10 +156,12 @@ PAGINAS = [
         ],
         'videos': ['german', 'kuzma', 'ruan', 'heloise'],
         'faq': [
-            ('Vocês fazem só anúncios?', 'Não. Trabalhamos marca, site, mídia paga, conteúdo, atendimento e CRM, treinamento comercial e materiais de venda. O diagnóstico mostra por onde começar no caso de vocês.'),
+            ('Vocês fazem só anúncios?', 'Não. Além da gestão de Google Ads e Meta Ads, trabalhamos sites em WordPress ou código próprio integrados ao Google Ads, marca, conteúdo, atendimento e CRM, treinamento comercial e materiais de venda. O diagnóstico mostra por onde começar no caso de vocês.'),
+            ('Para que tipo de empresa é esse trabalho?', 'Para empresas que vendem para outras empresas e faturam acima de R$ 100 mil por mês. O foco é lead qualificado, não volume: preferimos menos contatos com perfil de compra do que muitos contatos que o comercial descarta.'),
+            ('Em quanto tempo aparece resultado?', 'É um trabalho de médio prazo. As primeiras semanas servem para calibrar campanhas, página e filtro de leads, e o resultado fica consistente entre 3 e 6 meses.'),
             ('Funciona para venda consultiva com ciclo longo?', 'Sim. Medimos o lead qualificado na entrada e acompanhamos com vocês o que vira reunião e contrato, para o trabalho não ser julgado só pelo volume.'),
             ('Precisamos contratar tudo de uma vez?', 'Não. Montamos a entrega pelo que mais trava as vendas hoje e ampliamos conforme o resultado aparece.'),
-            ('Atendem empresas fora do Paraná?', 'Sim. Temos clientes e campanhas no Brasil inteiro e também fora do país.'),
+            ('Atendem empresas fora de Curitiba?', 'Sim. Nosso escritório fica em Curitiba e atendemos todo o Paraná, com reuniões presenciais ou online. Também temos clientes em outros estados.'),
             ('Qual o investimento?', 'Definimos no diagnóstico, a partir do que vocês já têm, do mercado e do ticket. A proposta mostra escopo e verba sugerida antes de qualquer contratação.'),
         ],
         'servico_hidden': 'Campanha B2B',
@@ -177,40 +221,83 @@ def faq_html(lista):
         </details>''' for i, (p, r) in enumerate(lista))
 
 
+def opcoes(lista, placeholder):
+    return f'<option value="" disabled selected>{placeholder}</option>' + ''.join(f'<option value="{v}">{t}</option>' for v, t in lista)
+
+
+FATURAMENTO = [('ate-10k', 'Até R$ 10 mil'), ('10k-50k', 'De R$ 10 mil a R$ 50 mil'), ('50k-100k', 'De R$ 50 mil a R$ 100 mil'),
+               ('100k-500k', 'De R$ 100 mil a R$ 500 mil'), ('500k-1m', 'De R$ 500 mil a R$ 1 milhão'),
+               ('1m-5m', 'De R$ 1 milhão a R$ 5 milhões'), ('acima-5m', 'Acima de R$ 5 milhões'), ('nao-faturou', 'Ainda não faturou')]
+SEGMENTOS = [('industria', 'Indústria'), ('distribuidor', 'Distribuidor ou atacado'), ('servicos', 'Serviços'), ('tecnologia', 'Tecnologia'),
+             ('saude', 'Saúde e Bem-estar'), ('imobiliario', 'Imobiliário e construção'), ('alimentacao', 'Alimentação'),
+             ('ecommerce', 'E-commerce'), ('varejo', 'Varejo'), ('educacao', 'Educação'), ('outros', 'Outros')]
+CARGOS = [('socio-diretor', 'Sócio ou Diretor'), ('gerente-mkt-comercial', 'Gerente de Marketing ou Comercial'), ('analista', 'Analista'), ('outro', 'Outro')]
+INVESTIMENTO = [('nao-investe', 'Ainda não investimos'), ('ate-2k', 'Até R$ 2 mil'), ('2k-5k', 'De R$ 2 mil a R$ 5 mil'),
+                ('5k-15k', 'De R$ 5 mil a R$ 15 mil'), ('acima-15k', 'Acima de R$ 15 mil')]
+
+
 def formulario(pg):
-    form_id = f'form-{pg["slug"]}'
-    bloco = render_lead_form_block(hidden_servico=pg['servico_hidden'], form_id=form_id,
-                                   aria_label=f'Formulário de diagnóstico {pg["eyebrow"].lower()}')
+    seg = opcoes(SEGMENTOS, 'Selecione')
     if pg['segmento']:
-        bloco = bloco.replace('<option value="" disabled selected>Qual o seu segmento?</option>',
-                              '<option value="" disabled>Qual o seu segmento?</option>')
-        bloco = bloco.replace(f'<option value="{pg["segmento"]}">', f'<option value="{pg["segmento"]}" selected>')
-    cab = render_lead_header(title=pg['form_titulo'], subtitle=pg['form_desc'], title_id=f'{form_id}-title')
-    return form_id, cab, bloco
+        seg = seg.replace('<option value="" disabled selected>', '<option value="" disabled>').replace(
+            f'<option value="{pg["segmento"]}">', f'<option value="{pg["segmento"]}" selected>')
+    ocultos = ''.join(f'<input type="hidden" name="{k}">' for k in
+                      ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'])
+    return f'''  <section id="orcamento" class="cb-form-sec" aria-labelledby="cb-form-titulo">
+    <div class="cb-form-card">
+      <h2 id="cb-form-titulo">{pg['form_titulo']}</h2>
+      <p>{pg['form_desc']} Nosso trabalho é pensado para empresas que já faturam a partir de R$ 100 mil por mês.</p>
+      <form id="cb-form" class="cb-form" data-pagina="{pg['slug']}" novalidate aria-label="Formulário de diagnóstico">
+        <div class="cb-campo"><label for="cb-nome">Nome</label><input id="cb-nome" name="nome" type="text" required autocomplete="name"></div>
+        <div class="cb-campo"><label for="cb-empresa">Empresa</label><input id="cb-empresa" name="empresa" type="text" required autocomplete="organization"></div>
+        <div class="cb-campo"><label for="cb-cargo">Cargo</label><select id="cb-cargo" name="cargo" required>{opcoes(CARGOS, 'Selecione')}</select></div>
+        <div class="cb-campo"><label for="cb-telefone">WhatsApp</label><input id="cb-telefone" name="telefone" type="tel" inputmode="tel" required autocomplete="tel" placeholder="(41) 99999-9999"></div>
+        <div class="cb-campo"><label for="cb-email">E-mail corporativo</label><input id="cb-email" name="email" type="email" required autocomplete="email" placeholder="voce@suaempresa.com.br"></div>
+        <div class="cb-campo"><label for="cb-site">Site da empresa <small>(opcional)</small></label><input id="cb-site" name="site" type="text" inputmode="url" autocomplete="url" placeholder="suaempresa.com.br"></div>
+        <div class="cb-campo"><label for="cb-segmento">Segmento</label><select id="cb-segmento" name="segmento" required>{seg}</select></div>
+        <div class="cb-campo"><label for="cb-faturamento">Faturamento mensal</label><select id="cb-faturamento" name="faturamento" required>{opcoes(FATURAMENTO, 'Selecione')}</select></div>
+        <div class="cb-campo cb-campo--full"><label for="cb-investimento">Investimento atual em mídia por mês</label><select id="cb-investimento" name="investimento" required>{opcoes(INVESTIMENTO, 'Selecione')}</select></div>
+        <div class="cb-campo cb-campo--full">
+          <fieldset data-obrigatorio-grupo>
+            <legend>O que vocês procuram <small>(pode marcar os dois)</small></legend>
+            <div class="cb-opcoes">
+              <label><input type="checkbox" name="procura" value="trafego-pago"> Tráfego pago</label>
+              <label><input type="checkbox" name="procura" value="site-landing-page"> Site ou landing page</label>
+            </div>
+          </fieldset>
+        </div>
+        <input type="hidden" name="pagina" value="{pg['slug']}">
+        {ocultos}
+        <div class="cb-hp" aria-hidden="true"><label for="cb-hp">Não preencha</label><input id="cb-hp" name="hp" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="cb-erro" role="alert" aria-live="assertive"></p>
+        <button type="submit" class="cb-enviar"><i class="fas fa-paper-plane" aria-hidden="true"></i> Solicitar diagnóstico</button>
+        <p class="cb-aviso">Usamos seus dados só para o contato da Conceito Prime sobre este pedido.</p>
+      </form>
+    </div>
+  </section>'''
 
 
-def pagina(pg):
-    url = f'{SITE}/{pg["slug"]}/'
-    schema = json.dumps([
-        {'@context': 'https://schema.org', '@type': 'Service', 'name': pg['eyebrow'], 'description': pg['description'],
-         'provider': {'@type': 'Organization', 'name': 'Conceito Prime', 'url': SITE}, 'areaServed': 'BR', 'url': url},
-        {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
-            {'@type': 'Question', 'name': p, 'acceptedAnswer': {'@type': 'Answer', 'text': r}} for p, r in pg['faq']]},
-    ], ensure_ascii=False)
-    slides, dots = videos_html(pg['videos'])
-    form_id, form_cab, form_bloco = formulario(pg)
+def tag_google():
+    if not GOOGLE_TAG_ID:
+        return ''
+    return (f'\n  <script async src="https://www.googletagmanager.com/gtag/js?id={GOOGLE_TAG_ID}"></script>\n'
+            f"  <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GOOGLE_TAG_ID}');</script>")
+
+
+def cabeca(titulo, descricao, url, robots, schema=''):
+    sch = f'\n  <script type="application/ld+json">{schema}</script>' if schema else ''
     return f'''<!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{pg['title']}</title>
+  <title>{titulo}</title>
   <link rel="canonical" href="{url}">
-  <meta name="description" content="{pg['description']}">
-  <meta name="robots" content="index, follow">
+  <meta name="description" content="{descricao}">
+  <meta name="robots" content="{robots}">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="{pg['title']}">
-  <meta property="og:description" content="{pg['description']}">
+  <meta property="og:title" content="{titulo}">
+  <meta property="og:description" content="{descricao}">
   <meta property="og:url" content="{url}">
   <meta property="og:image" content="{SITE}/assets/images/og-image.jpg">
   <link rel="icon" href="/assets/images/favicon.ico" sizes="32x32">
@@ -218,34 +305,70 @@ def pagina(pg):
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
   <link rel="preload" href="/assets/fonts/cairo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
-  <script type="application/ld+json">{schema}</script>
-</head>
-<body class="font-sans text-prime-800 antialiased" data-contato="formulario">
+  <style>
+{CSS_LOCAL}
+  </style>{sch}{tag_google()}
+</head>'''
 
-  {HEADER}
 
-  <main>
-  <section class="hero-bg seg-hero pt-36 pb-24 lg:pt-44 lg:pb-32" aria-labelledby="seg-titulo">
-    <div class="hero-content max-w-4xl mx-auto px-6 lg:px-8 text-center">
-      <p class="text-gold-400 font-semibold uppercase tracking-[0.3em] text-[11px] mb-6">{pg['eyebrow']}</p>
-      <h1 id="seg-titulo" class="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.1] mb-8 uppercase">{pg['h1']}</h1>
-      <p class="text-white/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10">{pg['sub']}</p>
-      <a href="#orcamento" class="btn-wa px-10 py-5 uppercase tracking-[0.2em] text-[12px] font-bold" data-cta="hero-{pg['slug']}" style="background:var(--brand-yellow);color:var(--brand-dark);box-shadow:0 8px 32px rgba(247,204,25,.45);">
-        <i class="fas fa-magnifying-glass" aria-hidden="true"></i> Solicitar diagnóstico
-      </a>
+def topo(link_logo, com_cta):
+    logo = '<img src="/assets/images/logo.webp" alt="Conceito Prime" width="1250" height="356">'
+    logo = f'<a href="{link_logo}" class="cb-topo-logo">{logo}</a>' if link_logo else f'<span class="cb-topo-logo">{logo}</span>'
+    cta = '<a href="#orcamento" class="cb-topo-cta" data-cta="topo">Solicitar diagnóstico</a>' if com_cta else ''
+    return f'''  <header class="cb-topo">
+    <div class="cb-topo-in">
+      {logo}
+      {cta}
     </div>
-  </section>
+  </header>'''
 
-  <section class="py-20 bg-white" aria-labelledby="seg-logos">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <h2 id="seg-logos" class="font-serif text-2xl sm:text-3xl text-prime-900 uppercase text-center mb-12">{pg['logos_titulo']}</h2>
-      <ul class="seg-logos" role="list">
-          {logos_html(pg['logos'])}
-      </ul>
+
+def rodape(js):
+    return f'''  <footer class="cb-rodape">
+    <div class="cb-rodape-in">
+      <img src="/assets/images/logo-footer.webp" alt="Conceito Prime" width="400" height="114" loading="lazy" decoding="async">
+      <p><i class="fas fa-location-dot" aria-hidden="true"></i> {ENDERECO}</p>
+      <p><a href="/quem-somos/" target="_blank" rel="noopener">Quem somos</a> <span aria-hidden="true">·</span> © 2026 Conceito Prime</p>
     </div>
-  </section>
+  </footer>
+  <script src="/assets/js/brand.js" defer></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {{
+{js}
+}});
+  </script>
+</body>
+</html>'''
 
-  <section class="bg-prime-900 py-16" aria-label="Números da Conceito Prime">
+
+def promessas_html():
+    itens = '\n'.join(f'      <li><i class="{i}" aria-hidden="true"></i><span>{t}</span></li>' for i, t in PROMESSAS)
+    return f'''  <section class="cb-promessas" aria-label="Como trabalhamos">
+    <ul role="list">
+{itens}
+    </ul>
+  </section>'''
+
+
+def nove_anos_html():
+    anos = ''.join(f'<li>{a}</li>' for a in range(2017, 2027))
+    return f'''  <section class="cb-nove-sec" aria-label="Nove anos no mercado">
+    <div class="cb-nove-grade">
+      <div class="cb-placa">
+        <span class="cb-placa-num" aria-hidden="true">9</span>
+        <p class="cb-placa-txt">Anos no mercado<small>Desde 2017 ajudando empresas a transformar marketing em pedidos de orçamento e vendas.</small></p>
+        <div class="cb-regua" aria-hidden="true"><ol>{anos}</ol></div>
+      </div>
+      <div class="cb-apoio">
+        <div><b>+1.000</b><span>Clientes atendidos</span></div>
+        <div><b>+10.000</b><span>Serviços realizados</span></div>
+      </div>
+    </div>
+  </section>'''
+
+
+def numeros_html():
+    return '''  <section class="bg-prime-900 py-16" aria-label="Números da Conceito Prime">
     <div class="max-w-5xl mx-auto px-6 lg:px-8 grid grid-cols-3 gap-6 text-center">
       <div>
         <p class="font-serif text-4xl sm:text-5xl text-white mb-2 stat-num"><span class="sr-only">9 anos</span><span aria-hidden="true" data-count="9">9</span></p>
@@ -260,9 +383,102 @@ def pagina(pg):
         <p class="text-gold-400 font-medium uppercase tracking-[0.2em] text-[11px]">Serviços realizados</p>
       </div>
     </div>
+  </section>'''
+
+
+def filtro_html(pg):
+    sim = '\n'.join(f'          <li><i class="fas fa-check" aria-hidden="true"></i><span>{t}</span></li>' for t in pg['faz_sentido'])
+    nao = '\n'.join(f'          <li><i class="fas fa-times" aria-hidden="true"></i><span>{t}</span></li>' for t in NAO_FAZ_SENTIDO)
+    return f'''  <section class="cb-filtro-sec" aria-labelledby="cb-filtro-titulo">
+    <h2 id="cb-filtro-titulo" class="font-serif text-3xl sm:text-4xl text-prime-900 uppercase text-center leading-tight mb-14">A conversa vale <span class="text-gold-400">para os dois lados</span></h2>
+    <div class="cb-filtro">
+      <div class="cb-filtro-col cb-sim">
+        <h3>Faz sentido conversarmos se</h3>
+        <ul role="list">
+{sim}
+        </ul>
+      </div>
+      <div class="cb-filtro-col cb-nao">
+        <h3>Provavelmente não somos a melhor opção se</h3>
+        <ul role="list">
+{nao}
+        </ul>
+      </div>
+    </div>
+  </section>'''
+
+
+def videos_secao(pg):
+    slides, dots = videos_html(pg['videos'])
+    return f'''  <section id="depoimentos" class="py-24 bg-prime-950 border-b border-prime-800" aria-labelledby="video-depoimentos-title">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 id="video-depoimentos-title" class="font-serif text-2xl sm:text-3xl text-white uppercase">Quem trabalha com a gente <span class="text-gold-400">conta</span></h2>
+      </div>
+      <div class="video-carousel-wrap">
+        <button type="button" class="video-arrow video-arrow-prev" id="video-prev" aria-label="Depoimento anterior">
+          <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <div class="video-carousel">
+        <div id="video-carousel-track" class="video-carousel-track">
+{slides}
+        </div>
+        </div>
+        <button type="button" class="video-arrow video-arrow-next" id="video-next" aria-label="Próximo depoimento">
+          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="video-dots" role="tablist" aria-label="Navegar depoimentos em vídeo">
+        {dots}
+      </div>
+    </div>
+  </section>'''
+
+
+def pagina(pg):
+    url = f'{SITE}/{pg["slug"]}/'
+    schema = json.dumps([
+        {'@context': 'https://schema.org', '@type': 'Service', 'name': pg['eyebrow'], 'description': pg['description'],
+         'provider': {'@type': 'Organization', 'name': 'Conceito Prime', 'url': SITE,
+                      'address': {'@type': 'PostalAddress', 'streetAddress': 'R. Antônio Rodrigues, 76', 'addressLocality': 'Curitiba',
+                                  'addressRegion': 'PR', 'addressCountry': 'BR'}},
+         'areaServed': {'@type': 'State', 'name': 'Paraná'}, 'url': url},
+        {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
+            {'@type': 'Question', 'name': p, 'acceptedAnswer': {'@type': 'Answer', 'text': r}} for p, r in pg['faq']]},
+    ], ensure_ascii=False)
+    eyebrow_logos = (f'\n      <p class="text-gold-500 font-semibold uppercase tracking-[0.3em] text-[11px] text-center mb-4">{pg["logos_eyebrow"]}</p>'
+                     if pg['logos_eyebrow'] else '')
+    b2b = pg['slug'] == 'b2b'
+    antes_logos = nove_anos_html() + '\n\n' if b2b else ''
+    depois_logos = '' if b2b else numeros_html() + '\n\n'
+    return cabeca(pg['title'], pg['description'], url, 'index, follow', schema) + f'''
+<body class="font-sans text-prime-800 antialiased" data-contato="formulario" data-lp="{pg['slug']}">
+
+{topo(f"/{pg['slug']}/", True)}
+
+  <main>
+  <section class="hero-bg seg-hero pt-36 pb-24 lg:pt-44 lg:pb-28" aria-labelledby="seg-titulo">
+    <div class="hero-content max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <p class="cb-selo"><i class="fas fa-check" aria-hidden="true"></i> Para empresas com faturamento acima de R$ 100 mil/mês</p>
+      <p class="text-gold-400 font-semibold uppercase tracking-[0.3em] text-[11px] mb-6">{pg['eyebrow']}</p>
+      <h1 id="seg-titulo" class="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.1] mb-8 uppercase">{pg['h1']}</h1>
+      <p class="text-white/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10">{pg['sub']}</p>
+      <a href="#orcamento" class="cb-cta" data-cta="hero-{pg['slug']}"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> Solicitar diagnóstico</a>
+    </div>
   </section>
 
-  <section class="py-24 bg-prime-50" aria-labelledby="seg-problema">
+{promessas_html()}
+
+{antes_logos}  <section class="py-20 bg-white" aria-labelledby="seg-logos">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">{eyebrow_logos}
+      <h2 id="seg-logos" class="font-serif text-2xl sm:text-3xl text-prime-900 uppercase text-center mb-12">{pg['logos_titulo']}</h2>
+      <ul class="seg-logos" role="list">
+          {logos_html(pg['logos'])}
+      </ul>
+    </div>
+  </section>
+
+{depois_logos}  <section class="py-24 bg-prime-50" aria-labelledby="seg-problema">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="w-12 h-[1px] bg-gold-400 mb-8 mx-auto" aria-hidden="true"></div>
       <h2 id="seg-problema" class="font-serif text-3xl sm:text-4xl text-prime-900 uppercase text-center leading-tight max-w-3xl mx-auto mb-14">{pg['problema_titulo']}</h2>
@@ -290,29 +506,9 @@ def pagina(pg):
     </div>
   </section>
 
-  <section id="depoimentos" class="py-24 bg-prime-950 border-b border-prime-800" aria-labelledby="video-depoimentos-title">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 id="video-depoimentos-title" class="font-serif text-2xl sm:text-3xl text-white uppercase">Quem trabalha com a gente <span class="text-gold-400">conta</span></h2>
-      </div>
-      <div class="video-carousel-wrap">
-        <button type="button" class="video-arrow video-arrow-prev" id="video-prev" aria-label="Depoimento anterior">
-          <i class="fas fa-chevron-left" aria-hidden="true"></i>
-        </button>
-        <div class="video-carousel">
-        <div id="video-carousel-track" class="video-carousel-track">
-{slides}
-        </div>
-        </div>
-        <button type="button" class="video-arrow video-arrow-next" id="video-next" aria-label="Próximo depoimento">
-          <i class="fas fa-chevron-right" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="video-dots" role="tablist" aria-label="Navegar depoimentos em vídeo">
-        {dots}
-      </div>
-    </div>
-  </section>
+{videos_secao(pg)}
+
+{filtro_html(pg)}
 
 {ESTRUTURA}
 
@@ -325,16 +521,58 @@ def pagina(pg):
     </div>
   </section>
 
-  <section id="orcamento" class="lead-form-section py-24" aria-labelledby="{form_id}-title">
-    <div class="max-w-md mx-auto px-6 lg:px-8">
-      <div class="lead-card lead-card-inline">
-        {form_cab}
-        {form_bloco}
-      </div>
-      <p class="seg-form-nota">Nosso trabalho é pensado para empresas que já faturam a partir de R$ 100 mil por mês.</p>
+{formulario(pg)}
+  </main>
+
+''' + rodape(JS_FORM)
+
+
+OBRIGADO = [
+    {
+        'slug': 'obrigado-qualificado',
+        'title': 'Recebemos seu pedido de diagnóstico | Conceito Prime',
+        'description': 'Recebemos seu pedido de diagnóstico. Fale agora com o comercial da Conceito Prime pelo WhatsApp ou deixe uma reunião agendada.',
+        'conversoes': [CONVERSAO_QUALIFICADO, CONVERSAO_TODOS],
+        'tipos': 'qualificado,todos',
+        'corpo': f'''      <i class="fas fa-check-circle" aria-hidden="true"></i>
+      <h1>Recebemos seu pedido<span data-lead-nome></span></h1>
+      <p>Pelo que vocês contaram, o perfil da empresa tem tudo a ver com o nosso trabalho. Nosso time comercial já recebeu os dados e vai preparar a leitura do seu mercado.</p>
+      <p>Se quiser adiantar, fale agora com a gente ou já deixe uma conversa agendada:</p>
+      <div class="cb-acoes">
+        <a class="cb-btn-wa" href="https://wa.me/{WA_COMERCIAL}" target="_blank" rel="noopener" data-cta="obrigado-whatsapp" data-wa-numero="{WA_COMERCIAL}" data-wa-msg="Olá! Acabei de pedir um diagnóstico pelo site da Conceito Prime e quero adiantar a conversa."><i class="fab fa-whatsapp" aria-hidden="true"></i> Falar no WhatsApp</a>
+        <a class="cb-btn-agenda" href="https://wa.me/{WA_COMERCIAL}" target="_blank" rel="noopener" data-cta="obrigado-agendar" data-wa-numero="{WA_COMERCIAL}" data-wa-msg="Olá! Acabei de pedir um diagnóstico pelo site da Conceito Prime e quero agendar uma reunião."><i class="fas fa-clock" aria-hidden="true"></i> Agendar reunião</a>
+      </div>''',
+    },
+    {
+        'slug': 'obrigado',
+        'title': 'Recebemos seus dados | Conceito Prime',
+        'description': 'Recebemos seus dados. O time da Conceito Prime analisa cada pedido e retorna pelo e-mail ou telefone informado no formulário.',
+        'conversoes': [CONVERSAO_TODOS],
+        'tipos': 'todos',
+        'corpo': '''      <i class="fas fa-check-circle" aria-hidden="true"></i>
+      <h1>Recebemos seus dados<span data-lead-nome></span></h1>
+      <p>Obrigado pelo interesse. Nosso time analisa cada pedido e retorna pelo e-mail ou telefone que você informou.</p>
+      <p>Enquanto isso, separamos conteúdos do nosso blog sobre marketing e vendas para empresas.</p>
+      <p><a class="cb-link" href="/blog/">Ver os artigos do blog</a></p>''',
+    },
+]
+
+
+def pagina_obrigado(ob):
+    url = f'{SITE}/{ob["slug"]}/'
+    conv = ','.join(c for c in ob['conversoes'] if c)
+    return cabeca(ob['title'], ob['description'], url, 'noindex, nofollow') + f'''
+<body class="font-sans text-prime-800 antialiased" data-contato="formulario" data-lp="{ob['slug']}" data-conversoes="{conv}" data-tipos-conversao="{ob['tipos']}">
+
+{topo('', False)}
+
+  <main class="cb-obrigado">
+    <div class="cb-obrigado-card">
+{ob['corpo']}
     </div>
-  </section>
-''' + FOOTER
+  </main>
+
+''' + rodape(JS_OBRIGADO)
 
 
 def main():
@@ -344,6 +582,14 @@ def main():
         with open(os.path.join(destino, 'index.html'), 'w', encoding='utf-8') as f:
             f.write(pagina(pg))
         print(f'Criada /{pg["slug"]}/')
+    for ob in OBRIGADO:
+        destino = os.path.join(ROOT, ob['slug'])
+        os.makedirs(destino, exist_ok=True)
+        with open(os.path.join(destino, 'index.html'), 'w', encoding='utf-8') as f:
+            f.write(pagina_obrigado(ob))
+        print(f'Criada /{ob["slug"]}/')
+    if not GOOGLE_TAG_ID:
+        print('Info: conversões saem como evento conversao_lead_b2b no dataLayer, para o GTM (conteudo/rastreamento.json).')
 
 
 if __name__ == '__main__':

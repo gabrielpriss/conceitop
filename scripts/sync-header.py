@@ -8,7 +8,8 @@ import os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HEADER = open(os.path.join(ROOT, 'partials/header.html'), encoding='utf-8').read().strip()
-PASTAS = ['index.html', 'quem-somos', 'contato', 'trabalhe-conosco', 'blog', 'servicos', 'industrial', 'b2b']
+# /b2b, /industrial e as páginas de obrigado têm cabeçalho próprio (scripts/generate-segmentos.py)
+PASTAS = ['index.html', 'quem-somos', 'contato', 'trabalhe-conosco', 'blog', 'servicos']
 PADRAO = re.compile(r'<header id="header".*?</header>', re.S)
 ESTRUTURA = open(os.path.join(ROOT, 'partials/estrutura.html'), encoding='utf-8').read().strip()
 PADRAO_ESTRUTURA = re.compile(r'<!-- NOSSA ESTRUTURA.*?<!-- /NOSSA ESTRUTURA -->', re.S)

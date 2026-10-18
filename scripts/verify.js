@@ -91,7 +91,7 @@ for (const file of htmls) {
   if (semDim) avisos.push(`${rel}: ${semDim} <img> sem width/height`);
 
   // cabeçalho único: todas as páginas iguais ao partials/header.html (scripts/sync-header.py)
-  if (!is404) {
+  if (!is404 && !/<body[^>]*data-lp=/.test(html)) {
     const header = (html.match(/<header id="header"[\s\S]*?<\/header>/) || [])[0];
     if (!header) erros.push(`${rel}: sem o cabeçalho padrão`);
     else if (header.replace(/\/assets\/(css|js)\/[^"]+/g, '') !== HEADER_PADRAO) erros.push(`${rel}: cabeçalho diferente de partials/header.html (rodar scripts/sync-header.py)`);

@@ -16,7 +16,7 @@ cp "$ROOT/_headers" "$ROOT/_redirects" "$DIST/"
 cp "$ROOT/assets/images/favicon.ico" "$DIST/favicon.ico"
 
 # Páginas: copia só HTML e WebP de cada pasta publicada (rascunhos e originais ficam de fora)
-for dir in quem-somos contato trabalhe-conosco blog servicos industrial b2b; do
+for dir in quem-somos contato trabalhe-conosco blog servicos industrial b2b obrigado obrigado-qualificado; do
   (cd "$ROOT" && find "$dir" -type f \( -name '*.html' -o -name '*.webp' -o -name '*.avif' \) -print0) |
     while IFS= read -r -d '' f; do
       mkdir -p "$DIST/$(dirname "$f")"
@@ -38,6 +38,9 @@ cp "$ROOT/assets/js/brand.js" "$DIST/assets/js/brand.$JS_H.js"
 find "$DIST" -name '*.html' -print0 | xargs -0 sed -i \
   -e "s#/assets/css/site\.css#/assets/css/site.$CSS_H.css#g" \
   -e "s#/assets/js/brand\.js#/assets/js/brand.$JS_H.js#g"
+
+# Google Tag Manager em todas as páginas (só quando conteudo/rastreamento.json tiver o ID)
+node "$ROOT/scripts/inject-gtm.js"
 
 BYTES=$(du -sh "$DIST" | cut -f1)
 FILES=$(find "$DIST" -type f | wc -l)
