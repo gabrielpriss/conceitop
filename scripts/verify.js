@@ -7,6 +7,7 @@ const path = require('path');
 
 const DIST = path.join(__dirname, '..', 'dist');
 const erros = [];
+const HEADER_PADRAO = fs.readFileSync(path.join(__dirname, '..', 'partials', 'header.html'), 'utf8').trim();
 const avisos = [];
 
 function walk(dir) {
@@ -88,6 +89,13 @@ for (const file of htmls) {
   if (semAlt) erros.push(`${rel}: ${semAlt} <img> sem alt`);
   const semDim = (html.match(/<img(?![^>]*\bwidth=)[^>]*>/g) || []).length;
   if (semDim) avisos.push(`${rel}: ${semDim} <img> sem width/height`);
+
+  // cabeçalho único: todas as páginas iguais ao partials/header.html (scripts/sync-header.py)
+  if (!is404) {
+    const header = (html.match(/<header id="header"[\s\S]*?<\/header>/) || [])[0];
+    if (!header) erros.push(`${rel}: sem o cabeçalho padrão`);
+    else if (header.replace(/\/assets\/(css|js)\/[^"]+/g, '') !== HEADER_PADRAO) erros.push(`${rel}: cabeçalho diferente de partials/header.html (rodar scripts/sync-header.py)`);
+  }
 }
 
 // .md, rascunhos e originais não podem ir ao ar

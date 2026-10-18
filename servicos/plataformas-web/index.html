@@ -23,26 +23,39 @@
   <header id="header" class="fixed inset-x-0 top-0 z-50 py-4">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <nav class="flex items-center justify-between gap-4" aria-label="Navegação principal">
+
         <a href="/" class="site-logo-link">
           <img src="/assets/images/logo.webp" alt="Conceito Prime - Marketing Digital" width="1250" height="356" class="site-logo">
         </a>
+
         <div class="header-nav-right hidden md:flex">
           <div class="header-nav-links">
-            <a href="/" class="nav-link text-prime-900 text-[15px] uppercase tracking-widest font-medium transition">Início</a>
-            <a href="/quem-somos/" class="nav-link text-prime-900 text-[15px] uppercase tracking-widest font-medium transition">Quem somos</a>
-            <a href="/blog/" class="nav-link text-prime-900 text-[15px] uppercase tracking-widest font-medium transition">Blog</a>
-            <a href="/contato/" class="nav-link text-prime-900 text-[15px] uppercase tracking-widest font-medium transition">Contato</a>
+            <a href="/"       class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Início</a>
+            <a href="/quem-somos/"  class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Quem somos</a>
+            <a href="/blog/"        class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Blog</a>
+            <a href="/contato/"     class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Contato</a>
           </div>
-          <a href="https://wa.me/5541999904764?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20atendente." target="_blank" rel="noopener" class="btn-wa text-xs px-6 py-3 uppercase tracking-[0.15em]"><i class="fab fa-whatsapp" aria-hidden="true"></i> Falar com atendente</a>
+          <a href="/contato/"
+             class="btn-wa text-[11px] px-6 py-3 uppercase tracking-[0.15em]">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> Solicitar orçamento
+          </a>
         </div>
-        <button id="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" class="md:hidden text-prime-900 focus:outline-none"><i class="fas fa-bars text-xl"></i></button>
+
+        <button id="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" class="md:hidden text-prime-900 focus:outline-none">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
       </nav>
+
+      <!-- Mobile menu -->
       <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-100 pt-4 flex flex-col gap-4 bg-white">
-        <a href="/" class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Início</a>
-        <a href="/quem-somos/" class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Quem somos</a>
-        <a href="/blog/" class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Blog</a>
-        <a href="/contato/" class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Contato</a>
-        <a href="https://wa.me/5541999904764?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20atendente." target="_blank" rel="noopener" class="btn-wa inline-flex justify-center text-xs px-6 py-4 mt-2 uppercase tracking-[0.2em]"><i class="fab fa-whatsapp" aria-hidden="true"></i> Falar com atendente</a>
+        <a href="/"       class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Início</a>
+        <a href="/quem-somos/"  class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Quem somos</a>
+        <a href="/blog/"        class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Blog</a>
+        <a href="/contato/"     class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Contato</a>
+        <a href="/contato/"
+           class="btn-wa inline-flex justify-center text-xs px-6 py-4 mt-2 uppercase tracking-[0.2em]">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> Solicitar orçamento
+        </a>
       </div>
     </div>
   </header>

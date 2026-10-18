@@ -11,8 +11,8 @@ BUSINESS_NAME = "Conceito Prime"
 BUSINESS_LOCATION = "Curitiba, PR"
 MAP_EMBED = f"https://maps.google.com/maps?q={BUSINESS_NAME.replace(' ', '+')},+{BUSINESS_LOCATION.replace(' ', '+').replace(',', '%2C')}&hl=pt-BR&z=14&output=embed"
 WA_URL = "https://wa.me/5541999904764?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20atendente."
-WA_CTA_HEADER = f'''<a href="{WA_URL}" target="_blank" rel="noopener" class="btn-wa text-xs px-6 py-3 uppercase tracking-[0.15em]"><i class="fab fa-whatsapp" aria-hidden="true"></i> Falar com atendente</a>'''
-WA_CTA_MOBILE = f'''<a href="{WA_URL}" target="_blank" rel="noopener" class="btn-wa inline-flex justify-center text-xs px-6 py-4 mt-2 uppercase tracking-[0.2em]"><i class="fab fa-whatsapp" aria-hidden="true"></i> Falar com atendente</a>'''
+# Cabeçalho único do site: partials/header.html (o mesmo que scripts/sync-header.py aplica em todas as páginas)
+HEADER = open(os.path.join(ROOT, 'partials/header.html'), encoding='utf-8').read().strip()
 
 FAVICON = '''  <link rel="icon" href="/assets/images/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png">
@@ -254,32 +254,7 @@ def render_head(svc, schema):
 </head>
 <body class="font-sans text-prime-800 antialiased">
 
-  <header id="header" class="fixed inset-x-0 top-0 z-50 py-4">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <nav class="flex items-center justify-between gap-4" aria-label="Navegação principal">
-        <a href="/" class="site-logo-link">
-          <img src="/assets/images/logo.webp" alt="Conceito Prime - Marketing Digital" width="1250" height="356" class="site-logo">
-        </a>
-        <div class="header-nav-right hidden md:flex">
-          <div class="header-nav-links">
-            <a href="/" class="nav-link text-prime-900 text-[15px] uppercase tracking-widest font-medium transition">Início</a>
-            <a href="/quem-somos/" class="nav-link text-prime-900 text-[15px] uppercase tracking-widest font-medium transition">Quem somos</a>
-            <a href="/blog/" class="nav-link text-prime-900 text-[15px] uppercase tracking-widest font-medium transition">Blog</a>
-            <a href="/contato/" class="nav-link text-prime-900 text-[15px] uppercase tracking-widest font-medium transition">Contato</a>
-          </div>
-          {WA_CTA_HEADER}
-        </div>
-        <button id="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" class="md:hidden text-prime-900 focus:outline-none"><i class="fas fa-bars text-xl"></i></button>
-      </nav>
-      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-100 pt-4 flex flex-col gap-4 bg-white">
-        <a href="/" class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Início</a>
-        <a href="/quem-somos/" class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Quem somos</a>
-        <a href="/blog/" class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Blog</a>
-        <a href="/contato/" class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Contato</a>
-        {WA_CTA_MOBILE}
-      </div>
-    </div>
-  </header>
+  {HEADER}
 
   <main>
   <nav aria-label="Breadcrumb" class="pt-28 pb-4 bg-prime-50">
