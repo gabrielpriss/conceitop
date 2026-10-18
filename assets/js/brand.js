@@ -70,6 +70,17 @@ function leadFormFieldsHTML() {
         <button type="submit" class="lead-submit"><i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar pelo WhatsApp</button>`;
 }
 
+function leadFormHeaderWaHTML() {
+  return `
+      <div class="lead-card-header lead-wa-head">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <div>
+          <h2 class="lead-card-title" id="lead-title">Fale com a gente no WhatsApp</h2>
+          <p class="lead-card-desc">Preencha os dados e abrimos o WhatsApp com a sua mensagem pronta.</p>
+        </div>
+      </div>`;
+}
+
 function leadFormHeaderHTML() {
   return `
       <div class="lead-card-header">
@@ -214,8 +225,13 @@ function resetLeadForm(form) {
   };
   setupLeadForm(modalForm, function () { setTimeout(closeModal, 6000); });
 
-  window.openLeadModal = function () {
+  const cabecalho = overlay.querySelector('.lead-card-header');
+  const cabPadrao = cabecalho.outerHTML;
+  window.openLeadModal = function (modo) {
     ultimoFoco = document.activeElement;
+    const wa = modo === 'whatsapp';
+    overlay.classList.toggle('lead-overlay--wa', wa);
+    overlay.querySelector('.lead-card-header').outerHTML = wa ? leadFormHeaderWaHTML() : cabPadrao;
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     setTimeout(function () { const f = modalForm.querySelector('input'); if (f) f.focus(); }, 50);
@@ -282,6 +298,22 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
 
 /* Botão flutuante WhatsApp: painel Fale Conosco (mesmo formato do site anterior, sem RH) */
 (function initWhatsAppFloat() {
+  /* Páginas da campanha (body data-contato="formulario"): o formulário é o único ponto de contato.
+     O botão continua com a cara do WhatsApp, mas abre o formulário e só depois redireciona com a mensagem pronta. */
+  if (document.body.dataset.contato === 'formulario') {
+    const botao = document.createElement('div');
+    botao.id = 'wa-float';
+    botao.className = 'wa-float';
+    botao.innerHTML = '<button type="button" class="wa-float-btn" id="wa-float-btn" aria-label="Falar no WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></button>';
+    document.body.appendChild(botao);
+    document.getElementById('wa-float-btn').addEventListener('click', function () {
+      track('cta_click', { posicao: 'whatsapp-flutuante', texto: 'WhatsApp' });
+      const f = document.getElementById('lead-form');
+      if (f) resetLeadForm(f);
+      if (window.openLeadModal) window.openLeadModal('whatsapp');
+    });
+    return;
+  }
   const contatos = [
     { setor: 'Comercial', nome: 'José', fone: '(41) 99990-4764', numero: WA_NUMERO, msg: 'Olá! Vim pelo site da Conceito Prime e gostaria de falar com o Comercial.' },
     { setor: 'Administrativo', nome: 'Vitor', fone: '(41) 99886-3226', numero: WA_ADMINISTRATIVO, msg: 'Olá! Vim pelo site da Conceito Prime e gostaria de falar com o Administrativo.' }

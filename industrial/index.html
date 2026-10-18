@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/assets/css/site.css">
   <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Service", "name": "Marketing para indústrias", "description": "Marketing para indústrias: Google Ads com termos de compra B2B, página de captação e medição para receber pedidos de orçamento de empresas, não de curiosos.", "provider": {"@type": "Organization", "name": "Conceito Prime", "url": "https://conceitop.com.br"}, "areaServed": "BR", "url": "https://conceitop.com.br/industrial/"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Atendem indústrias fora de Curitiba?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Temos campanhas rodando para o Brasil inteiro e também fora do país. A região de cada campanha segue as praças onde vocês querem vender."}}, {"@type": "Question", "name": "Vocês só fazem os anúncios?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Cuidamos da campanha, da página de captação e da medição. Sem as três juntas, o painel mostra resultado que o comercial não enxerga."}}, {"@type": "Question", "name": "Como sabemos se a campanha está dando resultado?", "acceptedAnswer": {"@type": "Answer", "text": "Cada contato chega com a origem registrada e conferimos com vocês quais viraram orçamento e venda. O relatório parte desse dado, não só do que o Google mostra."}}, {"@type": "Question", "name": "Qual o investimento em mídia?", "acceptedAnswer": {"@type": "Answer", "text": "Definimos no diagnóstico, a partir do volume de busca do seu mercado, das praças e do ticket. A proposta mostra a verba sugerida antes de qualquer contratação."}}]}]</script>
 </head>
-<body class="font-sans text-prime-800 antialiased">
+<body class="font-sans text-prime-800 antialiased" data-contato="formulario">
 
   <header id="header" class="fixed inset-x-0 top-0 z-50 py-4">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
@@ -75,21 +75,49 @@
 
   <section class="py-20 bg-white" aria-labelledby="seg-logos">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <h2 id="seg-logos" class="font-serif text-2xl sm:text-3xl text-prime-900 uppercase text-center mb-12">Indústrias e distribuidores que <span class="text-gold-400">trabalham com a gente</span></h2>
+      <h2 id="seg-logos" class="font-serif text-2xl sm:text-3xl text-prime-900 uppercase text-center mb-12">Algumas <span class="text-gold-400">indústrias e distribuidores</span></h2>
       <ul class="seg-logos" role="list">
           <li class="carousel-item"><img src="/assets/images/clientes/plasfix.webp" alt="Plasfix" width="113" height="37" loading="lazy" decoding="async"></li>
+          <li class="carousel-item"><img src="/assets/images/clientes/naciopetro.webp" alt="Naciopetro" width="131" height="32" loading="lazy" decoding="async"></li>
           <li class="carousel-item"><img src="/assets/images/clientes/rolpro.webp" alt="Rolpro" width="83" height="50" loading="lazy" decoding="async"></li>
           <li class="carousel-item"><img src="/assets/images/clientes/ladaniuski.webp" alt="Ladaniuski" width="148" height="16" loading="lazy" decoding="async"></li>
           <li class="carousel-item"><img src="/assets/images/clientes/atlas-eletromotores.webp" alt="Atlas Eletromotores" width="115" height="36" loading="lazy" decoding="async"></li>
           <li class="carousel-item carousel-item--escuro"><img src="/assets/images/clientes/cactos.webp" alt="Cactos Solutions" width="41" height="56" loading="lazy" decoding="async"></li>
+          <li class="carousel-item"><img src="/assets/images/clientes/tech-composites.webp" alt="Tech Composites" width="92" height="45" loading="lazy" decoding="async"></li>
+          <li class="carousel-item carousel-item--escuro"><img src="/assets/images/clientes/rgm-service.webp" alt="RGM Service" width="130" height="32" loading="lazy" decoding="async"></li>
+          <li class="carousel-item carousel-item--escuro"><img src="/assets/images/clientes/serquip.webp" alt="Serquip PR" width="139" height="30" loading="lazy" decoding="async"></li>
+          <li class="carousel-item carousel-item--escuro"><img src="/assets/images/clientes/mais-madeiras.webp" alt="Mais Madeiras" width="133" height="31" loading="lazy" decoding="async"></li>
+          <li class="carousel-item"><img src="/assets/images/clientes/pontual.webp" alt="Pontual Brasil Petróleo" width="124" height="33" loading="lazy" decoding="async"></li>
           <li class="carousel-item"><img src="/assets/images/clientes/m8-pneus.webp" alt="M8 Pneus" width="111" height="37" loading="lazy" decoding="async"></li>
           <li class="carousel-item"><img src="/assets/images/clientes/luzago.webp" alt="Luzago Alimentos" width="102" height="41" loading="lazy" decoding="async"></li>
+          <li class="carousel-item"><img src="/assets/images/clientes/ivankio.webp" alt="Ivankio Chás e Condimentos" width="81" height="51" loading="lazy" decoding="async"></li>
+          <li class="carousel-item carousel-item--escuro"><img src="/assets/images/clientes/pinhapel.webp" alt="Pinhapel" width="116" height="36" loading="lazy" decoding="async"></li>
+          <li class="carousel-item"><img src="/assets/images/clientes/2a.webp" alt="2A Materiais Elétricos" width="84" height="49" loading="lazy" decoding="async"></li>
+          <li class="carousel-item"><img src="/assets/images/clientes/aiss.webp" alt="AISS do Brasil" width="130" height="32" loading="lazy" decoding="async"></li>
+          <li class="carousel-item carousel-item--escuro"><img src="/assets/images/clientes/ice-cargo.webp" alt="Ice Cargo" width="144" height="29" loading="lazy" decoding="async"></li>
           <li class="carousel-item"><img src="/assets/images/clientes/ana-mariana.webp" alt="Ana Mariana Madeiras" width="81" height="51" loading="lazy" decoding="async"></li>
           <li class="carousel-item"><img src="/assets/images/clientes/dracos.webp" alt="Draco's Sur América" width="61" height="56" loading="lazy" decoding="async"></li>
           <li class="carousel-item"><img src="/assets/images/clientes/molas-kuzma.webp" alt="Molas Kuzma" width="85" height="49" loading="lazy" decoding="async"></li>
           <li class="carousel-item"><img src="/assets/images/clientes/wyllis.webp" alt="Wyllis Ferramentas" width="107" height="39" loading="lazy" decoding="async"></li>
           <li class="carousel-item"><img src="/assets/images/clientes/bw-printer.webp" alt="BW Printer" width="83" height="50" loading="lazy" decoding="async"></li>
       </ul>
+    </div>
+  </section>
+
+  <section class="bg-prime-900 py-16" aria-label="Números da Conceito Prime">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8 grid grid-cols-3 gap-6 text-center">
+      <div>
+        <p class="font-serif text-4xl sm:text-5xl text-white mb-2 stat-num"><span class="sr-only">9 anos</span><span aria-hidden="true" data-count="9">9</span></p>
+        <p class="text-gold-400 font-medium uppercase tracking-[0.2em] text-[11px]">Anos de mercado</p>
+      </div>
+      <div>
+        <p class="font-serif text-4xl sm:text-5xl text-white mb-2 stat-num"><span class="sr-only">Mais de 1.000</span><span aria-hidden="true" data-count="1000" data-prefix="+">+1.000</span></p>
+        <p class="text-gold-400 font-medium uppercase tracking-[0.2em] text-[11px]">Clientes atendidos</p>
+      </div>
+      <div>
+        <p class="font-serif text-4xl sm:text-5xl text-white mb-2 stat-num"><span class="sr-only">Mais de 10.000</span><span aria-hidden="true" data-count="10000" data-prefix="+">+10.000</span></p>
+        <p class="text-gold-400 font-medium uppercase tracking-[0.2em] text-[11px]">Serviços realizados</p>
+      </div>
     </div>
   </section>
 
@@ -148,7 +176,7 @@
   <section class="py-24 bg-white" aria-labelledby="seg-servicos">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <h2 id="seg-servicos" class="font-serif text-3xl sm:text-4xl text-prime-900 uppercase text-center leading-tight mb-14">O que <span class="text-gold-400">entregamos</span></h2>
-      <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <article class="seg-card">
           <span class="seg-card-icon" aria-hidden="true"><i class="fab fa-google"></i></span>
           <h3 class="font-serif text-lg text-prime-900 uppercase mb-3">Google Ads de intenção</h3>
@@ -208,7 +236,7 @@
     <div class="max-w-3xl mx-auto px-6 lg:px-8">
       <h2 id="seg-faq" class="font-serif text-3xl sm:text-4xl text-prime-900 uppercase text-center leading-tight mb-12">Perguntas <span class="text-gold-400">frequentes</span></h2>
       <div class="seg-faqs">
-        <details class="seg-faq">
+        <details class="seg-faq" open>
           <summary>Atendem indústrias fora de Curitiba?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
           <p>Sim. Temos campanhas rodando para o Brasil inteiro e também fora do país. A região de cada campanha segue as praças onde vocês querem vender.</p>
         </details>

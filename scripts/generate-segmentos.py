@@ -28,11 +28,21 @@ VIDEOS = {
     'ruan': ('hCFMWFbYoZc', 'depoimento-ruan.webp', 'Depoimento de Ruan Ançay, Diretor da Nova Direção Negócios'),
 }
 
-# Serviços da campanha: só o que a página vende (a home continua com todos)
-SERVICOS = [
+# Serviços da página de indústria: foco no que a campanha vende (a home continua com todos)
+SERVICOS_INDUSTRIA = [
     ('fab fa-google', 'Google Ads de intenção', 'Campanhas de pesquisa com termos de quem procura fornecedor, negativas de varejo e consumidor final e região definida pela praça comercial.'),
     ('fas fa-laptop-code', 'Página de captação', 'Página rápida, com o portfólio que importa e formulário que pergunta o que o comercial precisa saber antes de responder.'),
     ('fas fa-chart-line', 'Medição e CRM', 'Conversão contada só quando chega pedido de verdade, com cada contato registrado na planilha ou no CRM e a origem de cada um.'),
+]
+
+# Página B2B: mostra a agência completa, não só anúncios
+SERVICOS_B2B = [
+    ('fas fa-chess-knight', 'Posicionamento e marca', 'Proposta de valor clara para o decisor, identidade visual e discurso alinhados entre site, proposta e time comercial.'),
+    ('fas fa-laptop-code', 'Site e páginas de captação', 'Site institucional que passa confiança para quem compra de empresa e páginas de campanha com formulário que qualifica o contato.'),
+    ('fas fa-bullseye', 'Mídia paga', 'Google Ads para quem já procura fornecedor e Meta Ads para quem ainda não conhece a sua marca, com verba e região definidas pelo comercial.'),
+    ('fas fa-share-nodes', 'Conteúdo e redes sociais', 'LinkedIn e Instagram com conteúdo técnico e de autoridade, para o decisor reconhecer a sua empresa quando chega a hora de comprar.'),
+    ('fas fa-comments', 'Atendimento e CRM', 'WhatsApp organizado, leads registrados com origem e funil visível, para nenhum contato se perder entre o marketing e o vendedor.'),
+    ('fas fa-chalkboard-user', 'Treinamento e materiais de venda', 'Capacitação do time comercial e apresentações e materiais impressos que sustentam a negociação depois do primeiro contato.'),
 ]
 
 PAGINAS = [
@@ -43,9 +53,13 @@ PAGINAS = [
         'eyebrow': 'Marketing para indústrias',
         'h1': 'Pedidos de orçamento de quem <span class="text-gold-400">compra em volume</span>',
         'sub': 'Estruturamos Google Ads, página de captação e medição para a sua indústria receber contatos de empresas compradoras, e não de consumidor final atrás de peça avulsa.',
-        'logos_titulo': 'Indústrias e distribuidores que <span class="text-gold-400">trabalham com a gente</span>',
-        'logos': ['plasfix', 'rolpro', 'ladaniuski', 'atlas-eletromotores', 'cactos', 'm8-pneus',
-                  'luzago', 'ana-mariana', 'dracos', 'molas-kuzma', 'wyllis', 'bw-printer'],
+        'logos_titulo': 'Algumas <span class="text-gold-400">indústrias e distribuidores</span>',
+        'logos': ['plasfix', 'naciopetro', 'rolpro', 'ladaniuski', 'atlas-eletromotores', 'cactos',
+                  'tech-composites', 'rgm-service', 'serquip', 'mais-madeiras', 'pontual', 'm8-pneus',
+                  'luzago', 'ivankio', 'pinhapel', '2a', 'aiss', 'ice-cargo', 'ana-mariana', 'dracos',
+                  'molas-kuzma', 'wyllis', 'bw-printer'],
+        'servicos_titulo': 'O que <span class="text-gold-400">entregamos</span>',
+        'servicos': SERVICOS_INDUSTRIA,
         'problema_titulo': 'Por que o tráfego da indústria costuma trazer <span class="text-gold-400">contato errado</span>',
         'problemas': [
             ('fas fa-user-slash', 'Busca de consumidor final', 'Termos abertos trazem quem quer uma unidade, um conserto caseiro ou o preço do varejo. O comercial perde tempo e a verba vai embora.'),
@@ -73,13 +87,17 @@ PAGINAS = [
     {
         'slug': 'b2b',
         'title': 'Marketing B2B e Geração de Leads Qualificados | Conceito Prime',
-        'description': 'Marketing B2B com Google Ads: campanhas de intenção, página de captação e medição para empresas que vendem para empresas receberem leads com perfil de compra.',
+        'description': 'Marketing B2B completo: marca, site, mídia paga, conteúdo, CRM e treinamento comercial para quem vende para empresas gerar e fechar mais negócios.',
         'eyebrow': 'Marketing B2B',
-        'h1': 'Leads qualificados para quem <span class="text-gold-400">vende para empresas</span>',
-        'sub': 'Google Ads, página de captação e medição para a sua empresa receber contatos de decisores com perfil de compra, e menos curiosos ocupando o comercial.',
-        'logos_titulo': 'Empresas B2B que <span class="text-gold-400">trabalham com a gente</span>',
-        'logos': ['reda', 'german-financial', 'dracos', 'rolpro', 'ladaniuski', 'atlas-eletromotores',
-                  'plasfix', 'bw-printer', 'luzago', 'm8-pneus', 'giga', 'molas-kuzma'],
+        'h1': 'Marketing B2B do posicionamento ao <span class="text-gold-400">contrato fechado</span>',
+        'sub': 'Marca, site, mídia, conteúdo e processo comercial trabalhando juntos para a sua empresa atrair decisores com perfil de compra e transformar esses contatos em contratos.',
+        'logos_titulo': 'Algumas <span class="text-gold-400">empresas</span>',
+        'logos': ['reda', 'german-financial', 'rgm-service', 'naciopetro', 'cactos', 'ice-cargo',
+                  'tech-composites', 'aiss', 'pontual', 'serquip', 'dracos', 'rolpro', 'ladaniuski',
+                  'atlas-eletromotores', 'plasfix', 'bw-printer', 'luzago', 'm8-pneus', 'mais-madeiras',
+                  'pinhapel', 'ivankio', '2a', 'giga', 'molas-kuzma'],
+        'servicos_titulo': 'Uma agência para <span class="text-gold-400">toda a jornada</span>',
+        'servicos': SERVICOS_B2B,
         'problema_titulo': 'Onde a geração de leads B2B <span class="text-gold-400">costuma travar</span>',
         'problemas': [
             ('fas fa-user-xmark', 'Lead sem perfil', 'Pessoa física, estudante e concorrente entram no mesmo funil que o decisor. O volume parece bom e a agenda do comercial não enche.'),
@@ -87,22 +105,23 @@ PAGINAS = [
             ('fas fa-comment-slash', 'Primeiro contato frio', 'Sem saber porte, segmento e necessidade, o time abre a conversa do zero e perde para quem responde com proposta.'),
         ],
         'passos': [
-            ('Definição do cliente ideal', 'Porte, segmento, cargo de quem decide e ticket mínimo que vale a pena atender. Essa definição orienta termos, página e filtro do formulário.'),
-            ('Campanha de intenção', 'Pesquisa no Google com termos de quem já procura fornecedor do seu serviço, negativas de emprego, curso e pessoa física, e horário comercial.'),
-            ('Página e formulário que filtram', 'Faturamento, segmento e empresa antes do contato. O comercial recebe quem tem perfil e sabe o que responder.'),
-            ('Leitura de ponta a ponta', 'Origem registrada em cada lead e conferência mensal de reuniões, propostas e contratos, para investir mais no que fecha.'),
+            ('Diagnóstico e cliente ideal', 'Porte, segmento, cargo de quem decide e ticket mínimo que vale a pena atender. Olhamos também marca, site e processo comercial de hoje.'),
+            ('Presença que gera confiança', 'Posicionamento, site e conteúdo ajustados para o decisor entender rápido o que vocês fazem e por que vale a reunião.'),
+            ('Geração de demanda', 'Google Ads para quem já procura, Meta Ads e conteúdo para quem ainda não conhece, e formulário que filtra por faturamento, segmento e empresa.'),
+            ('Conversão e leitura', 'Leads no CRM com origem, atendimento organizado, time treinado e conferência mensal de reuniões, propostas e contratos.'),
         ],
         'videos': ['german', 'kuzma', 'ruan'],
         'faq': [
-            ('Funciona para venda consultiva com ciclo longo?', 'Sim. Medimos o lead qualificado na entrada e acompanhamos com vocês o que vira reunião e contrato, para a campanha não ser julgada só pelo volume.'),
-            ('Atendem empresas fora do Paraná?', 'Sim. Temos campanhas rodando para o Brasil inteiro e também fora do país, sempre com a região definida pelo mercado de vocês.'),
-            ('Vocês só fazem os anúncios?', 'Não. Cuidamos da campanha, da página de captação e da medição. Sem as três juntas, o painel mostra resultado que o comercial não enxerga.'),
-            ('Qual o investimento em mídia?', 'Definimos no diagnóstico, a partir do volume de busca do seu mercado e do ticket. A proposta mostra a verba sugerida antes de qualquer contratação.'),
+            ('Vocês fazem só anúncios?', 'Não. Trabalhamos marca, site, mídia paga, conteúdo, atendimento e CRM, treinamento comercial e materiais de venda. O diagnóstico mostra por onde começar no caso de vocês.'),
+            ('Funciona para venda consultiva com ciclo longo?', 'Sim. Medimos o lead qualificado na entrada e acompanhamos com vocês o que vira reunião e contrato, para o trabalho não ser julgado só pelo volume.'),
+            ('Precisamos contratar tudo de uma vez?', 'Não. Montamos a entrega pelo que mais trava as vendas hoje e ampliamos conforme o resultado aparece.'),
+            ('Atendem empresas fora do Paraná?', 'Sim. Temos clientes e campanhas no Brasil inteiro e também fora do país.'),
+            ('Qual o investimento?', 'Definimos no diagnóstico, a partir do que vocês já têm, do mercado e do ticket. A proposta mostra escopo e verba sugerida antes de qualquer contratação.'),
         ],
         'servico_hidden': 'Campanha B2B',
         'segmento': '',
         'form_titulo': 'Solicite um diagnóstico',
-        'form_desc': 'Respondemos com uma leitura do seu mercado no Google e o próximo passo.',
+        'form_desc': 'Respondemos com uma leitura do seu marketing e comercial hoje e o próximo passo.',
     },
 ]
 
@@ -150,10 +169,10 @@ def videos_html(chaves):
 
 
 def faq_html(lista):
-    return '\n'.join(f'''        <details class="seg-faq">
+    return '\n'.join(f'''        <details class="seg-faq"{" open" if i == 0 else ""}>
           <summary>{p}<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
           <p>{r}</p>
-        </details>''' for p, r in lista)
+        </details>''' for i, (p, r) in enumerate(lista))
 
 
 def formulario(pg):
@@ -199,7 +218,7 @@ def pagina(pg):
   <link rel="stylesheet" href="/assets/css/site.css">
   <script type="application/ld+json">{schema}</script>
 </head>
-<body class="font-sans text-prime-800 antialiased">
+<body class="font-sans text-prime-800 antialiased" data-contato="formulario">
 
   {HEADER}
 
@@ -224,6 +243,23 @@ def pagina(pg):
     </div>
   </section>
 
+  <section class="bg-prime-900 py-16" aria-label="Números da Conceito Prime">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8 grid grid-cols-3 gap-6 text-center">
+      <div>
+        <p class="font-serif text-4xl sm:text-5xl text-white mb-2 stat-num"><span class="sr-only">9 anos</span><span aria-hidden="true" data-count="9">9</span></p>
+        <p class="text-gold-400 font-medium uppercase tracking-[0.2em] text-[11px]">Anos de mercado</p>
+      </div>
+      <div>
+        <p class="font-serif text-4xl sm:text-5xl text-white mb-2 stat-num"><span class="sr-only">Mais de 1.000</span><span aria-hidden="true" data-count="1000" data-prefix="+">+1.000</span></p>
+        <p class="text-gold-400 font-medium uppercase tracking-[0.2em] text-[11px]">Clientes atendidos</p>
+      </div>
+      <div>
+        <p class="font-serif text-4xl sm:text-5xl text-white mb-2 stat-num"><span class="sr-only">Mais de 10.000</span><span aria-hidden="true" data-count="10000" data-prefix="+">+10.000</span></p>
+        <p class="text-gold-400 font-medium uppercase tracking-[0.2em] text-[11px]">Serviços realizados</p>
+      </div>
+    </div>
+  </section>
+
   <section class="py-24 bg-prime-50" aria-labelledby="seg-problema">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="w-12 h-[1px] bg-gold-400 mb-8 mx-auto" aria-hidden="true"></div>
@@ -245,9 +281,9 @@ def pagina(pg):
 
   <section class="py-24 bg-white" aria-labelledby="seg-servicos">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <h2 id="seg-servicos" class="font-serif text-3xl sm:text-4xl text-prime-900 uppercase text-center leading-tight mb-14">O que <span class="text-gold-400">entregamos</span></h2>
-      <div class="grid md:grid-cols-3 gap-6">
-{cards_html(SERVICOS)}
+      <h2 id="seg-servicos" class="font-serif text-3xl sm:text-4xl text-prime-900 uppercase text-center leading-tight mb-14">{pg['servicos_titulo']}</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+{cards_html(pg['servicos'])}
       </div>
     </div>
   </section>

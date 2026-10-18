@@ -1315,9 +1315,9 @@ footer.bg-prime-950 .border-white\/10 {
 html, body { overflow-x: clip; }
 
 /* ===== Páginas da campanha: /industrial/ e /b2b/ (scripts/generate-segmentos.py) ===== */
-.seg-logos { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
-.seg-logos .carousel-item { width: auto; }
-@media (max-width: 640px) { .seg-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; } }
+.seg-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.seg-logos .carousel-item { width: 168px; }
+@media (max-width: 640px) { .seg-logos { gap: .75rem; } .seg-logos .carousel-item { width: calc(50% - .375rem); } }
 .seg-card { background: #fff; border: 1px solid #ececec; border-radius: 16px; padding: 2rem 1.75rem; transition: transform .3s ease, box-shadow .3s ease; }
 .seg-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(22, 22, 22, .08); }
 .seg-card-icon { display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; border-radius: 12px; background: var(--brand-dark); color: var(--brand-yellow); font-size: 1.15rem; margin-bottom: 1.25rem; }
@@ -1334,3 +1334,45 @@ html, body { overflow-x: clip; }
 .seg-faq[open] summary i { transform: rotate(180deg); }
 .seg-faq p { padding: 0 1.5rem 1.35rem; margin: 0; color: #4a4a4a; font-weight: 300; font-size: 15px; line-height: 1.8; }
 .seg-form-nota { text-align: center; font-size: 13px; color: #4a4a4a; margin-top: 1.25rem; }
+
+/* Contato da home no desktop: formulário e mapa lado a lado, dentro do container (sem sobrepor) */
+@media (min-width: 1024px) {
+  .contact-section { padding: 5rem 0; }
+  .contact-layered {
+    display: grid;
+    grid-template-columns: minmax(0, 27rem) minmax(0, 1fr);
+    gap: 2.5rem;
+    max-width: 80rem;
+    min-height: 0;
+    margin: 0 auto;
+    padding: 0 2rem;
+    align-items: stretch;
+  }
+  .contact-front { grid-column: 1; grid-row: 1; min-height: 0; padding: 0; }
+  .contact-social-rail { display: none; }
+  .contact-form-card { width: auto; max-width: none; margin: 0; align-self: stretch; flex: 1; border-radius: 16px; }
+  .contact-social-mobile { display: flex; justify-content: flex-start; padding-top: 1.5rem; }
+  .contact-map-wrap {
+    grid-column: 2; grid-row: 1;
+    position: relative; inset: auto; left: auto;
+    min-height: 32rem;
+    border-radius: 16px;
+    box-shadow: 0 16px 56px rgba(22, 22, 22, .14);
+  }
+}
+
+/* Formulário com identidade do WhatsApp (botão flutuante das páginas da campanha) */
+.lead-overlay--wa .lead-card { border-top: 0; padding-top: 0; overflow: hidden; }
+.lead-wa-head {
+  display: flex; gap: .875rem; align-items: center;
+  background: #137a3a; color: #fff;
+  margin: 0 -2rem 1.5rem; padding: 1.25rem 3.5rem 1.25rem 2rem;
+}
+.lead-wa-head > i { font-size: 2.25rem; line-height: 1; flex: none; }
+.lead-wa-head .lead-card-title { color: #fff; font-family: 'Cairo', sans-serif; font-size: 1.25rem; letter-spacing: 0; text-transform: none; margin: 0 0 .25rem; }
+.lead-wa-head .lead-card-desc { color: rgba(255, 255, 255, .9); margin: 0; font-size: .875rem; }
+.lead-overlay--wa .lead-close { background: rgba(255, 255, 255, .18); color: #fff; z-index: 2; }
+.lead-overlay--wa .lead-close:hover { background: rgba(255, 255, 255, .32); color: #fff; }
+.lead-overlay--wa .lead-submit { background: #137a3a; }
+.lead-overlay--wa .lead-submit:hover { background: #0f6430; }
+.lead-overlay--wa .lead-success i { color: #137a3a; }

@@ -26,7 +26,7 @@
 
 ## Pendências (dependem de informação ou ação)
 
-1. **Logos do carrossel:** 29 logos com as cores reais, em cartões (logos brancos no cartão escuro). Faltam **Naciopetro** (sem site encontrado), **Espaço Pirâmide** (site fora do ar) e **Emunah** (só encontramos o ícone branco de 64px, pequeno demais). Entram assim que recebermos os arquivos. Cerimonial do Valle aparece só com o símbolo, que é o único arquivo que temos.
+1. **Logos do carrossel:** 40 logos com as cores reais. Faltam **Espaço Pirâmide** (site fora do ar), **Emunah** (só ícone de 64px) e **Easy Lipo** (sem site; só Instagram). Conferir: o logo da **2A** veio de 2a.com.br (2A Soluções Elétricas) e o da **Pontual** de pontualpetroleo.com.br; confirmar se são as mesmas empresas da carteira.
 2. **GTM:** sem contêiner no site atual. Precisamos do ID GTM-XXXX da Conceito Prime.
 3. **Endereço:** divergência entre fontes. Rodapé: R. Antônio Rodrigues, 76, Campina do Siqueira. Link do Maps: Seminário. Mapa incorporado: Av. Visconde de Guarapuava, Centro. Falta confirmar qual vale.
 4. **Planilha de leads e de currículos:** criar os Apps Scripts (código em `worker.js`) e cadastrar os segredos `LEAD_WEBHOOK` e `TRABALHE_WEBHOOK` no Worker.

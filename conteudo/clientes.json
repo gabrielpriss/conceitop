@@ -2,7 +2,7 @@
   "_leia": "origem: arquivo original (relativo à pasta passada ao tratar-logos.py, ou assets/... do repositório). fundo: claro (padrão) ou escuro, para logos brancos.",
   "faixa1": [
     {"slug": "plasfix", "nome": "Plasfix", "origem": "Downloads/logo-plasfix.png"},
-    {"slug": "naciopetro", "nome": "Naciopetro"},
+    {"slug": "naciopetro", "nome": "Naciopetro", "origem": "Downloads/logo-naciopetro.png"},
     {"slug": "cactos", "nome": "Cactos Solutions", "origem": "Downloads/logo-cactos.png", "fundo": "escuro"},
     {"slug": "m8-pneus", "nome": "M8 Pneus", "origem": "LPs/m8-drive-ahead/src/assets/m8-logo.png"},
     {"slug": "performance-recovery", "nome": "Performance Recovery", "origem": "Downloads/logo-performance-recovery.png"},
@@ -16,7 +16,13 @@
     {"slug": "arteiros", "nome": "Arteiros Personalizados", "origem": "Downloads/logo-arteiros.webp", "fundo": "escuro"},
     {"slug": "ana-mariana", "nome": "Ana Mariana Madeiras", "origem": "Downloads/logo-ana-mariana.webp"},
     {"slug": "rolpro", "nome": "Rolpro", "origem": "Downloads/logo-rolpro.jpg"},
-    {"slug": "odonto-coser", "nome": "Odonto Coser", "origem": "LPs/odontocoser/assets/odonto-coser-logo.webp"}
+    {"slug": "odonto-coser", "nome": "Odonto Coser", "origem": "LPs/odontocoser/assets/odonto-coser-logo.webp"},
+    {"slug": "rgm-service", "nome": "RGM Service", "origem": "Downloads/logo-rgm-service.png", "fundo": "escuro"},
+    {"slug": "mais-madeiras", "nome": "Mais Madeiras", "origem": "Downloads/logo-mais-madeiras.png", "fundo": "escuro"},
+    {"slug": "ice-cargo", "nome": "Ice Cargo", "origem": "Downloads/logo-ice-cargo-branco.png", "fundo": "escuro"},
+    {"slug": "tech-composites", "nome": "Tech Composites", "origem": "Downloads/logo-tech-composites.png"},
+    {"slug": "serquip", "nome": "Serquip PR", "origem": "Downloads/logo-serquip.png", "fundo": "escuro"},
+    {"slug": "pinhapel", "nome": "Pinhapel", "origem": "Downloads/logo-pinhapel.png", "fundo": "escuro"}
   ],
   "faixa2": [
     {"slug": "luzago", "nome": "Luzago Alimentos", "origem": "LPs/luzago/assets/icones/logo-luzago.webp"},
@@ -34,6 +40,11 @@
     {"slug": "herveda", "nome": "Herveda Farma", "origem": "Downloads/logo-herveda.png", "fundo": "escuro"},
     {"slug": "wyllis", "nome": "Wyllis Ferramentas", "origem": "assets/marcas/asset 23.png"},
     {"slug": "ladaniuski", "nome": "Ladaniuski", "origem": "Downloads/logo-ladaniuski-render.png"},
-    {"slug": "molas-kuzma", "nome": "Molas Kuzma", "origem": "assets/marcas/asset 22.png"}
+    {"slug": "molas-kuzma", "nome": "Molas Kuzma", "origem": "assets/marcas/asset 22.png"},
+    {"slug": "ivankio", "nome": "Ivankio Chás e Condimentos", "origem": "Downloads/logo-ivankio.png"},
+    {"slug": "2a", "nome": "2A Materiais Elétricos", "origem": "Downloads/logo-2a.png"},
+    {"slug": "aiss", "nome": "AISS do Brasil", "origem": "Downloads/logo-aiss.png"},
+    {"slug": "pontual", "nome": "Pontual Brasil Petróleo", "origem": "Downloads/logo-pontual.png"},
+    {"slug": "easy-lipo", "nome": "Easy Lipo"}
   ]
 }
