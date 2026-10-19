@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recebemos seus dados | Conceito Prime</title>
   <link rel="canonical" href="https://conceitop.com.br/obrigado/">
-  <meta name="description" content="Recebemos seus dados. O time da Conceito Prime analisa cada pedido e retorna pelo e-mail ou telefone informado no formulário.">
+  <meta name="description" content="Recebemos seus dados. O time da Conceito Prime analisa cada pedido e retorna pelo WhatsApp informado no formulário.">
   <meta name="robots" content="noindex, nofollow">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Recebemos seus dados | Conceito Prime">
-  <meta property="og:description" content="Recebemos seus dados. O time da Conceito Prime analisa cada pedido e retorna pelo e-mail ou telefone informado no formulário.">
+  <meta property="og:description" content="Recebemos seus dados. O time da Conceito Prime analisa cada pedido e retorna pelo WhatsApp informado no formulário.">
   <meta property="og:url" content="https://conceitop.com.br/obrigado/">
   <meta property="og:image" content="https://conceitop.com.br/assets/images/og-image.jpg">
   <link rel="icon" href="/assets/images/favicon.ico" sizes="32x32">
@@ -20,7 +20,8 @@
   <style>
 /* Estilos locais das páginas da campanha (/b2b, /industrial, /obrigado e /obrigado-qualificado).
    Embutidos no <head> de cada página por scripts/generate-segmentos.py: não fazem parte do CSS global. */
-#wa-float { display: none !important; }
+/* Páginas de obrigado: o lead já foi enviado, então o botão flutuante (que abre o formulário) não aparece */
+body[data-tipos-conversao] #wa-float { display: none !important; }
 .cb-cta { display: inline-flex; align-items: center; gap: .6rem; background: var(--brand-yellow); color: var(--brand-dark); font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: 12px; padding: 1.15rem 2.4rem; box-shadow: 0 8px 32px rgba(247, 204, 25, .4); transition: transform .2s ease, background .2s ease; }
 .cb-cta:hover { transform: translateY(-2px); background: #ffd84a; }
 .cb-selo { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid rgba(247, 204, 25, .45); color: var(--brand-yellow); border-radius: 999px; padding: .45rem 1rem; font-size: 12px; font-weight: 600; letter-spacing: .04em; margin-bottom: 1.5rem; }
@@ -67,29 +68,10 @@
 .cb-nao h3 { color: var(--brand-dark); }
 .cb-nao li i { color: #9a9a9a; }
 
-/* Formulário próprio da campanha */
+/* Seção do formulário (o formulário em si é o do site inteiro: brand.js, initDiagnostico) */
 .cb-form-sec { background: var(--brand-yellow); padding: 5rem 1.25rem; }
-.cb-form-card { max-width: 40rem; margin: 0 auto; background: #fff; border-radius: 18px; padding: 2.5rem 2rem 2rem; box-shadow: 0 20px 56px rgba(22, 22, 22, .16); }
+.cb-form-card { max-width: 32rem; margin: 0 auto; background: #fff; border-radius: 18px; padding: 2.5rem 2rem 2rem; box-shadow: 0 20px 56px rgba(22, 22, 22, .16); }
 .cb-form-card h2 { font-family: 'Share Tech', sans-serif; text-transform: uppercase; font-size: 1.9rem; line-height: 1.1; color: var(--brand-dark); margin: 0 0 .5rem; }
-.cb-form-card > p { color: #4a4a4a; font-size: 14px; margin: 0 0 1.75rem; }
-.cb-form { display: grid; gap: 1rem 1.25rem; }
-@media (min-width: 640px) { .cb-form { grid-template-columns: 1fr 1fr; } .cb-campo--full { grid-column: 1 / -1; } }
-.cb-campo label, .cb-campo legend { display: block; font-size: 12px; font-weight: 700; color: var(--brand-dark); margin-bottom: .35rem; letter-spacing: .02em; }
-.cb-campo label small, .cb-campo legend small { font-weight: 400; color: #6b6b6b; }
-.cb-campo input, .cb-campo select { width: 100%; border: 1px solid #d9d9d9; border-radius: 10px; padding: .8rem .9rem; font: inherit; font-size: 15px; color: var(--brand-dark); background: #fff; transition: border-color .2s, box-shadow .2s; }
-.cb-campo input:focus, .cb-campo select:focus { outline: none; border-color: var(--brand-dark); box-shadow: 0 0 0 3px rgba(247, 204, 25, .45); }
-.cb-campo fieldset { border: 0; margin: 0; padding: 0; }
-.cb-opcoes { display: flex; flex-wrap: wrap; gap: .6rem; }
-.cb-opcoes label { display: inline-flex; align-items: center; gap: .55rem; border: 1px solid #d9d9d9; border-radius: 999px; padding: .6rem 1rem; font-weight: 600; font-size: 14px; cursor: pointer; margin: 0; }
-.cb-opcoes input { width: 1.05rem; height: 1.05rem; accent-color: var(--brand-dark); }
-.cb-opcoes label:has(input:checked) { border-color: var(--brand-dark); background: #fff8d6; }
-.cb-invalido input, .cb-invalido select, .cb-invalido .cb-opcoes label { border-color: #c62828; }
-.cb-erro { grid-column: 1 / -1; color: #c62828; font-size: 13px; min-height: 1em; margin: 0; }
-.cb-enviar { grid-column: 1 / -1; background: var(--brand-dark); color: #fff; border: 0; border-radius: 10px; padding: 1.05rem 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: 12px; cursor: pointer; display: inline-flex; justify-content: center; align-items: center; gap: .6rem; transition: background .2s; }
-.cb-enviar:hover { background: #000; }
-.cb-enviar[disabled] { opacity: .65; cursor: wait; }
-.cb-aviso { grid-column: 1 / -1; font-size: 12px; color: #6b6b6b; margin: 0; text-align: center; }
-.cb-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 /* Páginas de obrigado */
 .cb-obrigado { min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 9rem 1.25rem 5rem; background: #fafafa; }
@@ -136,7 +118,7 @@
     <div class="cb-obrigado-card">
       <i class="fas fa-check-circle" aria-hidden="true"></i>
       <h1>Recebemos seus dados<span data-lead-nome></span></h1>
-      <p>Obrigado pelo interesse. Nosso time analisa cada pedido e retorna pelo e-mail ou telefone que você informou.</p>
+      <p>Obrigado pelo interesse. Nosso time analisa cada pedido e retorna pelo WhatsApp que você informou.</p>
       <p>Enquanto isso, separamos conteúdos do nosso blog sobre marketing e vendas para empresas.</p>
       <p><a class="cb-link" href="/blog/">Ver os artigos do blog</a></p>
     </div>

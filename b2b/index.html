@@ -20,7 +20,8 @@
   <style>
 /* Estilos locais das páginas da campanha (/b2b, /industrial, /obrigado e /obrigado-qualificado).
    Embutidos no <head> de cada página por scripts/generate-segmentos.py: não fazem parte do CSS global. */
-#wa-float { display: none !important; }
+/* Páginas de obrigado: o lead já foi enviado, então o botão flutuante (que abre o formulário) não aparece */
+body[data-tipos-conversao] #wa-float { display: none !important; }
 .cb-cta { display: inline-flex; align-items: center; gap: .6rem; background: var(--brand-yellow); color: var(--brand-dark); font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: 12px; padding: 1.15rem 2.4rem; box-shadow: 0 8px 32px rgba(247, 204, 25, .4); transition: transform .2s ease, background .2s ease; }
 .cb-cta:hover { transform: translateY(-2px); background: #ffd84a; }
 .cb-selo { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid rgba(247, 204, 25, .45); color: var(--brand-yellow); border-radius: 999px; padding: .45rem 1rem; font-size: 12px; font-weight: 600; letter-spacing: .04em; margin-bottom: 1.5rem; }
@@ -67,29 +68,10 @@
 .cb-nao h3 { color: var(--brand-dark); }
 .cb-nao li i { color: #9a9a9a; }
 
-/* Formulário próprio da campanha */
+/* Seção do formulário (o formulário em si é o do site inteiro: brand.js, initDiagnostico) */
 .cb-form-sec { background: var(--brand-yellow); padding: 5rem 1.25rem; }
-.cb-form-card { max-width: 40rem; margin: 0 auto; background: #fff; border-radius: 18px; padding: 2.5rem 2rem 2rem; box-shadow: 0 20px 56px rgba(22, 22, 22, .16); }
+.cb-form-card { max-width: 32rem; margin: 0 auto; background: #fff; border-radius: 18px; padding: 2.5rem 2rem 2rem; box-shadow: 0 20px 56px rgba(22, 22, 22, .16); }
 .cb-form-card h2 { font-family: 'Share Tech', sans-serif; text-transform: uppercase; font-size: 1.9rem; line-height: 1.1; color: var(--brand-dark); margin: 0 0 .5rem; }
-.cb-form-card > p { color: #4a4a4a; font-size: 14px; margin: 0 0 1.75rem; }
-.cb-form { display: grid; gap: 1rem 1.25rem; }
-@media (min-width: 640px) { .cb-form { grid-template-columns: 1fr 1fr; } .cb-campo--full { grid-column: 1 / -1; } }
-.cb-campo label, .cb-campo legend { display: block; font-size: 12px; font-weight: 700; color: var(--brand-dark); margin-bottom: .35rem; letter-spacing: .02em; }
-.cb-campo label small, .cb-campo legend small { font-weight: 400; color: #6b6b6b; }
-.cb-campo input, .cb-campo select { width: 100%; border: 1px solid #d9d9d9; border-radius: 10px; padding: .8rem .9rem; font: inherit; font-size: 15px; color: var(--brand-dark); background: #fff; transition: border-color .2s, box-shadow .2s; }
-.cb-campo input:focus, .cb-campo select:focus { outline: none; border-color: var(--brand-dark); box-shadow: 0 0 0 3px rgba(247, 204, 25, .45); }
-.cb-campo fieldset { border: 0; margin: 0; padding: 0; }
-.cb-opcoes { display: flex; flex-wrap: wrap; gap: .6rem; }
-.cb-opcoes label { display: inline-flex; align-items: center; gap: .55rem; border: 1px solid #d9d9d9; border-radius: 999px; padding: .6rem 1rem; font-weight: 600; font-size: 14px; cursor: pointer; margin: 0; }
-.cb-opcoes input { width: 1.05rem; height: 1.05rem; accent-color: var(--brand-dark); }
-.cb-opcoes label:has(input:checked) { border-color: var(--brand-dark); background: #fff8d6; }
-.cb-invalido input, .cb-invalido select, .cb-invalido .cb-opcoes label { border-color: #c62828; }
-.cb-erro { grid-column: 1 / -1; color: #c62828; font-size: 13px; min-height: 1em; margin: 0; }
-.cb-enviar { grid-column: 1 / -1; background: var(--brand-dark); color: #fff; border: 0; border-radius: 10px; padding: 1.05rem 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: 12px; cursor: pointer; display: inline-flex; justify-content: center; align-items: center; gap: .6rem; transition: background .2s; }
-.cb-enviar:hover { background: #000; }
-.cb-enviar[disabled] { opacity: .65; cursor: wait; }
-.cb-aviso { grid-column: 1 / -1; font-size: 12px; color: #6b6b6b; margin: 0; text-align: center; }
-.cb-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 /* Páginas de obrigado */
 .cb-obrigado { min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 9rem 1.25rem 5rem; background: #fafafa; }
@@ -429,34 +411,7 @@
 
   <section id="orcamento" class="cb-form-sec" aria-labelledby="cb-form-titulo">
     <div class="cb-form-card">
-      <h2 id="cb-form-titulo">Solicite um diagnóstico</h2>
-      <p>Respondemos com uma leitura do seu marketing e comercial hoje e o próximo passo. Nosso trabalho é pensado para empresas que já faturam a partir de R$ 100 mil por mês.</p>
-      <form id="cb-form" class="cb-form" data-pagina="b2b" novalidate aria-label="Formulário de diagnóstico">
-        <div class="cb-campo"><label for="cb-nome">Nome</label><input id="cb-nome" name="nome" type="text" required autocomplete="name"></div>
-        <div class="cb-campo"><label for="cb-empresa">Empresa</label><input id="cb-empresa" name="empresa" type="text" required autocomplete="organization"></div>
-        <div class="cb-campo"><label for="cb-cargo">Cargo</label><select id="cb-cargo" name="cargo" required><option value="" disabled selected>Selecione</option><option value="socio-diretor">Sócio ou Diretor</option><option value="gerente-mkt-comercial">Gerente de Marketing ou Comercial</option><option value="analista">Analista</option><option value="outro">Outro</option></select></div>
-        <div class="cb-campo"><label for="cb-telefone">WhatsApp</label><input id="cb-telefone" name="telefone" type="tel" inputmode="tel" required autocomplete="tel" placeholder="(41) 99999-9999"></div>
-        <div class="cb-campo"><label for="cb-email">E-mail corporativo</label><input id="cb-email" name="email" type="email" required autocomplete="email" placeholder="voce@suaempresa.com.br"></div>
-        <div class="cb-campo"><label for="cb-site">Site da empresa <small>(opcional)</small></label><input id="cb-site" name="site" type="text" inputmode="url" autocomplete="url" placeholder="suaempresa.com.br"></div>
-        <div class="cb-campo"><label for="cb-segmento">Segmento</label><select id="cb-segmento" name="segmento" required><option value="" disabled selected>Selecione</option><option value="industria">Indústria</option><option value="distribuidor">Distribuidor ou atacado</option><option value="servicos">Serviços</option><option value="tecnologia">Tecnologia</option><option value="saude">Saúde e Bem-estar</option><option value="imobiliario">Imobiliário e construção</option><option value="alimentacao">Alimentação</option><option value="ecommerce">E-commerce</option><option value="varejo">Varejo</option><option value="educacao">Educação</option><option value="outros">Outros</option></select></div>
-        <div class="cb-campo"><label for="cb-faturamento">Faturamento mensal</label><select id="cb-faturamento" name="faturamento" required><option value="" disabled selected>Selecione</option><option value="ate-10k">Até R$ 10 mil</option><option value="10k-50k">De R$ 10 mil a R$ 50 mil</option><option value="50k-100k">De R$ 50 mil a R$ 100 mil</option><option value="100k-500k">De R$ 100 mil a R$ 500 mil</option><option value="500k-1m">De R$ 500 mil a R$ 1 milhão</option><option value="1m-5m">De R$ 1 milhão a R$ 5 milhões</option><option value="acima-5m">Acima de R$ 5 milhões</option><option value="nao-faturou">Ainda não faturou</option></select></div>
-        <div class="cb-campo cb-campo--full"><label for="cb-investimento">Investimento atual em mídia por mês</label><select id="cb-investimento" name="investimento" required><option value="" disabled selected>Selecione</option><option value="nao-investe">Ainda não investimos</option><option value="ate-2k">Até R$ 2 mil</option><option value="2k-5k">De R$ 2 mil a R$ 5 mil</option><option value="5k-15k">De R$ 5 mil a R$ 15 mil</option><option value="acima-15k">Acima de R$ 15 mil</option></select></div>
-        <div class="cb-campo cb-campo--full">
-          <fieldset data-obrigatorio-grupo>
-            <legend>O que vocês procuram <small>(pode marcar os dois)</small></legend>
-            <div class="cb-opcoes">
-              <label><input type="checkbox" name="procura" value="trafego-pago"> Tráfego pago</label>
-              <label><input type="checkbox" name="procura" value="site-landing-page"> Site ou landing page</label>
-            </div>
-          </fieldset>
-        </div>
-        <input type="hidden" name="pagina" value="b2b">
-        <input type="hidden" name="gclid"><input type="hidden" name="gbraid"><input type="hidden" name="wbraid"><input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content">
-        <div class="cb-hp" aria-hidden="true"><label for="cb-hp">Não preencha</label><input id="cb-hp" name="hp" type="text" tabindex="-1" autocomplete="off"></div>
-        <p class="cb-erro" role="alert" aria-live="assertive"></p>
-        <button type="submit" class="cb-enviar"><i class="fas fa-paper-plane" aria-hidden="true"></i> Solicitar diagnóstico</button>
-        <p class="cb-aviso">Usamos seus dados só para o contato da Conceito Prime sobre este pedido.</p>
-      </form>
+      <form id="cb-form" class="diag" data-diagnostico data-pagina="b2b" data-titulo-id="cb-form-titulo" data-desc="Respondemos com uma leitura do seu marketing e comercial hoje e o próximo passo. Nosso trabalho é pensado para empresas que já faturam a partir de R$ 100 mil por mês." aria-label="Solicite um diagnóstico"></form>
     </div>
   </section>
   </main>
@@ -469,111 +424,5 @@
     </div>
   </footer>
   <script src="/assets/js/brand.js" defer></script>
-  <script>
-document.addEventListener('DOMContentLoaded', function () {
-/* Formulário próprio das páginas /b2b e /industrial (embutido na página; não usa o formulário global).
-   Envia para /api/lead-b2b (worker.js) e redireciona: faturamento a partir de R$ 100 mil vai para
-   /obrigado-qualificado/, o resto para /obrigado/. Nada de WhatsApp aqui. */
-(function () {
-  var QUALIFICADAS = ['100k-500k', '500k-1m', '1m-5m', 'acima-5m'];
-  var GRATUITOS = /@(gmail|hotmail|outlook|live|yahoo|icloud|bol|uol|terra|ig)\./i;
-  var CHAVES = ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-  window.dataLayer = window.dataLayer || [];
-
-  /* gclid e UTMs: lidos da URL e guardados na sessão, para não se perderem se a pessoa navegar antes de enviar */
-  var rastreio = {};
-  try { rastreio = JSON.parse(sessionStorage.getItem('cp_campanha_rastreio') || '{}'); } catch (e) { rastreio = {}; }
-  var params = new URLSearchParams(location.search);
-  CHAVES.forEach(function (k) { var v = params.get(k); if (v) rastreio[k] = v.slice(0, 200); });
-  try { sessionStorage.setItem('cp_campanha_rastreio', JSON.stringify(rastreio)); } catch (e) { /* sessão indisponível */ }
-
-  var form = document.getElementById('cb-form');
-  if (!form) return;
-  CHAVES.forEach(function (k) { var el = form.querySelector('[name="' + k + '"]'); if (el && rastreio[k]) el.value = rastreio[k]; });
-
-  var tel = form.querySelector('[name="telefone"]');
-  tel.addEventListener('input', function () {
-    var d = tel.value.replace(/\D/g, '').slice(0, 11);
-    tel.value = d.length > 6 ? '(' + d.slice(0, 2) + ') ' + d.slice(2, d.length - 4) + '-' + d.slice(-4) : d.length > 2 ? '(' + d.slice(0, 2) + ') ' + d.slice(2) : d;
-  });
-
-  var iniciou = false;
-  form.addEventListener('input', function () {
-    if (!iniciou) { iniciou = true; window.dataLayer.push({ event: 'form_start', formulario: 'lp-' + form.dataset.pagina }); }
-  });
-
-  function campo(el) { return el.closest('.cb-campo'); }
-  function validar() {
-    var erros = [];
-    form.querySelectorAll('[required]').forEach(function (el) {
-      var ok = String(el.value || '').trim() !== '';
-      if (ok && el.type === 'email') ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim());
-      if (ok && el.name === 'telefone') ok = el.value.replace(/\D/g, '').length >= 10;
-      campo(el).classList.toggle('cb-invalido', !ok);
-      el.setAttribute('aria-invalid', String(!ok));
-      if (!ok) erros.push(el);
-    });
-    var grupo = form.querySelector('[data-obrigatorio-grupo]');
-    var marcado = grupo.querySelectorAll('input:checked').length > 0;
-    campo(grupo).classList.toggle('cb-invalido', !marcado);
-    if (!marcado) erros.push(grupo.querySelector('input'));
-    return erros;
-  }
-
-  var erroBox = form.querySelector('.cb-erro');
-  var botao = form.querySelector('.cb-enviar');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var erros = validar();
-    if (erros.length) { erroBox.textContent = 'Confira os campos destacados. Só o site da empresa é opcional.'; erros[0].focus(); return; }
-    erroBox.textContent = '';
-
-    var dados = {};
-    new FormData(form).forEach(function (v, k) {
-      v = String(v).trim();
-      if (!v) return;
-      dados[k] = dados[k] ? dados[k] + ', ' + v : v;
-    });
-    var qualificado = QUALIFICADAS.indexOf(dados.faturamento) !== -1;
-    dados.lead_qualificado = qualificado ? 'sim' : 'nao';
-    dados.email_gratuito = GRATUITOS.test(dados.email || '') ? 'sim' : 'nao';
-    dados.origem = 'campanha-google-ads';
-
-    botao.disabled = true;
-    botao.textContent = 'Enviando...';
-    var controle = window.AbortController ? new AbortController() : null;
-    var limite = setTimeout(function () { if (controle) controle.abort(); }, 8000);
-
-    fetch('/api/lead-b2b', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(dados),
-      signal: controle ? controle.signal : undefined
-    }).then(function (r) {
-      clearTimeout(limite);
-      if (!r.ok) throw new Error('status ' + r.status);
-      window.dataLayer.push({ event: 'lead_b2b', lead_qualificado: qualificado, faturamento: dados.faturamento, segmento: dados.segmento, pagina: dados.pagina });
-      try {
-        sessionStorage.setItem('cp_lead_b2b', JSON.stringify({ nome: dados.nome, empresa: dados.empresa, faturamento: dados.faturamento, qualificado: qualificado, pagina: dados.pagina, t: Date.now() }));
-      } catch (err) { /* segue sem personalizar a página de obrigado */ }
-      setTimeout(function () { location.href = qualificado ? '/obrigado-qualificado/' : '/obrigado/'; }, 250);
-    }).catch(function () {
-      clearTimeout(limite);
-      botao.disabled = false;
-      botao.innerHTML = '<i class="fas fa-paper-plane" aria-hidden="true"></i> Solicitar diagnóstico';
-      erroBox.textContent = 'Não conseguimos enviar agora. Tente de novo em alguns instantes ou escreva para contato@conceitop.com.br.';
-    });
-  });
-
-  /* Botões "Solicitar diagnóstico": rolam até o formulário e põem o foco no primeiro campo */
-  document.querySelectorAll('a[href="#orcamento"]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      window.dataLayer.push({ event: 'cta_click', posicao: a.dataset.cta || 'lp', texto: 'Solicitar diagnóstico' });
-      setTimeout(function () { var f = form.querySelector('input:not([type=hidden])'); if (f) f.focus({ preventScroll: true }); }, 600);
-    });
-  });
-})();
-});
-  </script>
 </body>
 </html>

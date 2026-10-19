@@ -18,7 +18,6 @@ SITE = 'https://conceitop.com.br'
 HEADER = open(os.path.join(ROOT, 'partials/header.html'), encoding='utf-8').read().strip()
 ESTRUTURA = open(os.path.join(ROOT, 'partials/estrutura.html'), encoding='utf-8').read().rstrip()
 CSS_LOCAL = open(os.path.join(ROOT, 'scripts/campanha/campanha.css'), encoding='utf-8').read().strip()
-JS_FORM = open(os.path.join(ROOT, 'scripts/campanha/form.js'), encoding='utf-8').read().strip()
 JS_OBRIGADO = open(os.path.join(ROOT, 'scripts/campanha/obrigado.js'), encoding='utf-8').read().strip()
 
 # Tag do Google da conta Cprime 2026 (404-812-7952), só nestas 4 páginas.
@@ -236,42 +235,14 @@ INVESTIMENTO = [('nao-investe', 'Ainda não investimos'), ('ate-2k', 'Até R$ 2 
 
 
 def formulario(pg):
-    seg = opcoes(SEGMENTOS, 'Selecione')
-    if pg['segmento']:
-        seg = seg.replace('<option value="" disabled selected>', '<option value="" disabled>').replace(
-            f'<option value="{pg["segmento"]}">', f'<option value="{pg["segmento"]}" selected>')
-    ocultos = ''.join(f'<input type="hidden" name="{k}">' for k in
-                      ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'])
+    """Formulário "Solicite um diagnóstico": o mesmo do site inteiro, montado em etapas pelo brand.js
+    (initDiagnostico). Nas LPs (body data-contato="formulario") ele envia para /api/lead-b2b e
+    redireciona para a página de obrigado. O botão do WhatsApp abre o mesmo formulário em popup."""
+    desc = f"{pg['form_desc']} Nosso trabalho é pensado para empresas que já faturam a partir de R$ 100 mil por mês."
+    seg = f' data-segmento="{pg["segmento"]}"' if pg['segmento'] else ''
     return f'''  <section id="orcamento" class="cb-form-sec" aria-labelledby="cb-form-titulo">
     <div class="cb-form-card">
-      <h2 id="cb-form-titulo">{pg['form_titulo']}</h2>
-      <p>{pg['form_desc']} Nosso trabalho é pensado para empresas que já faturam a partir de R$ 100 mil por mês.</p>
-      <form id="cb-form" class="cb-form" data-pagina="{pg['slug']}" novalidate aria-label="Formulário de diagnóstico">
-        <div class="cb-campo"><label for="cb-nome">Nome</label><input id="cb-nome" name="nome" type="text" required autocomplete="name"></div>
-        <div class="cb-campo"><label for="cb-empresa">Empresa</label><input id="cb-empresa" name="empresa" type="text" required autocomplete="organization"></div>
-        <div class="cb-campo"><label for="cb-cargo">Cargo</label><select id="cb-cargo" name="cargo" required>{opcoes(CARGOS, 'Selecione')}</select></div>
-        <div class="cb-campo"><label for="cb-telefone">WhatsApp</label><input id="cb-telefone" name="telefone" type="tel" inputmode="tel" required autocomplete="tel" placeholder="(41) 99999-9999"></div>
-        <div class="cb-campo"><label for="cb-email">E-mail corporativo</label><input id="cb-email" name="email" type="email" required autocomplete="email" placeholder="voce@suaempresa.com.br"></div>
-        <div class="cb-campo"><label for="cb-site">Site da empresa <small>(opcional)</small></label><input id="cb-site" name="site" type="text" inputmode="url" autocomplete="url" placeholder="suaempresa.com.br"></div>
-        <div class="cb-campo"><label for="cb-segmento">Segmento</label><select id="cb-segmento" name="segmento" required>{seg}</select></div>
-        <div class="cb-campo"><label for="cb-faturamento">Faturamento mensal</label><select id="cb-faturamento" name="faturamento" required>{opcoes(FATURAMENTO, 'Selecione')}</select></div>
-        <div class="cb-campo cb-campo--full"><label for="cb-investimento">Investimento atual em mídia por mês</label><select id="cb-investimento" name="investimento" required>{opcoes(INVESTIMENTO, 'Selecione')}</select></div>
-        <div class="cb-campo cb-campo--full">
-          <fieldset data-obrigatorio-grupo>
-            <legend>O que vocês procuram <small>(pode marcar os dois)</small></legend>
-            <div class="cb-opcoes">
-              <label><input type="checkbox" name="procura" value="trafego-pago"> Tráfego pago</label>
-              <label><input type="checkbox" name="procura" value="site-landing-page"> Site ou landing page</label>
-            </div>
-          </fieldset>
-        </div>
-        <input type="hidden" name="pagina" value="{pg['slug']}">
-        {ocultos}
-        <div class="cb-hp" aria-hidden="true"><label for="cb-hp">Não preencha</label><input id="cb-hp" name="hp" type="text" tabindex="-1" autocomplete="off"></div>
-        <p class="cb-erro" role="alert" aria-live="assertive"></p>
-        <button type="submit" class="cb-enviar"><i class="fas fa-paper-plane" aria-hidden="true"></i> Solicitar diagnóstico</button>
-        <p class="cb-aviso">Usamos seus dados só para o contato da Conceito Prime sobre este pedido.</p>
-      </form>
+      <form id="cb-form" class="diag" data-diagnostico data-pagina="{pg['slug']}"{seg} data-titulo-id="cb-form-titulo" data-desc="{desc}" aria-label="Solicite um diagnóstico"></form>
     </div>
   </section>'''
 
@@ -330,14 +301,20 @@ def rodape(js):
       <p><a href="/quem-somos/" target="_blank" rel="noopener">Quem somos</a> <span aria-hidden="true">·</span> © 2026 Conceito Prime</p>
     </div>
   </footer>
-  <script src="/assets/js/brand.js" defer></script>
+  <script src="/assets/js/brand.js" defer></script>{script_local(js)}
+</body>
+</html>'''
+
+
+def script_local(js):
+    if not js:
+        return ''
+    return f'''
   <script>
 document.addEventListener('DOMContentLoaded', function () {{
 {js}
 }});
-  </script>
-</body>
-</html>'''
+  </script>'''
 
 
 def promessas_html():
@@ -523,7 +500,7 @@ def pagina(pg):
 {formulario(pg)}
   </main>
 
-''' + rodape(JS_FORM)
+''' + rodape('')
 
 
 OBRIGADO = [
@@ -545,12 +522,12 @@ OBRIGADO = [
     {
         'slug': 'obrigado',
         'title': 'Recebemos seus dados | Conceito Prime',
-        'description': 'Recebemos seus dados. O time da Conceito Prime analisa cada pedido e retorna pelo e-mail ou telefone informado no formulário.',
+        'description': 'Recebemos seus dados. O time da Conceito Prime analisa cada pedido e retorna pelo WhatsApp informado no formulário.',
         'conversoes': [CONVERSAO_TODOS],
         'tipos': 'todos',
         'corpo': '''      <i class="fas fa-check-circle" aria-hidden="true"></i>
       <h1>Recebemos seus dados<span data-lead-nome></span></h1>
-      <p>Obrigado pelo interesse. Nosso time analisa cada pedido e retorna pelo e-mail ou telefone que você informou.</p>
+      <p>Obrigado pelo interesse. Nosso time analisa cada pedido e retorna pelo WhatsApp que você informou.</p>
       <p>Enquanto isso, separamos conteúdos do nosso blog sobre marketing e vendas para empresas.</p>
       <p><a class="cb-link" href="/blog/">Ver os artigos do blog</a></p>''',
     },

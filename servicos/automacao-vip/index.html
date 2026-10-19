@@ -108,59 +108,7 @@
   <section id="orcamento" class="lead-form-section py-24" aria-labelledby="form-automação-vip-title">
     <div class="max-w-md mx-auto px-6 lg:px-8">
       <div class="lead-card lead-card-inline">
-        
-      <div class="lead-card-header">
-        <span class="lead-eyebrow">Orçamento rápido</span>
-        <h2 class="lead-card-title" id="form-automação-vip-title">Solicite uma proposta</h2>
-        <p class="lead-card-desc">Interesse em <strong>Automação VIP</strong></p>
-      </div>
-        
-      <div class="lead-success" data-lead-success aria-live="polite">
-        <i class="fas fa-check-circle" aria-hidden="true"></i>
-        <p>Pronto! Abrimos o WhatsApp com os seus dados.</p>
-        <span>É só enviar a mensagem por lá. Se o WhatsApp não abriu, <a href="#" data-wa-fallback target="_blank" rel="noopener">toque aqui</a>.</span>
-      </div>
-      <form class="lead-form" data-lead-form novalidate aria-label="Formulário de orçamento para Automação VIP">
-        <input type="hidden" name="servico" value="Automação VIP">
-
-        <input type="text"  name="nome" aria-label="Primeiro nome"     placeholder="Primeiro nome"               required autocomplete="given-name">
-        <input type="email" name="email" aria-label="E-mail"    placeholder="Qual seu e-mail?"            required autocomplete="email">
-        <input type="text"  name="empresa" aria-label="Nome da empresa"  placeholder="Qual o nome da sua empresa?" required autocomplete="organization">
-
-        <div class="lead-phone-row">
-          <span class="lead-flag" aria-hidden="true">🇧🇷</span>
-          <input type="tel" name="telefone" aria-label="Telefone com DDD" placeholder="Qual seu telefone?" required data-phone-mask autocomplete="tel">
-        </div>
-
-        <select name="faturamento" aria-label="Faturamento mensal" required>
-          <option value="" disabled selected>Qual o faturamento mensal da sua empresa?</option>
-          <option value="ate-10k">Até R$ 10.000</option>
-          <option value="10k-50k">De R$ 10.000 a R$ 50.000</option>
-          <option value="50k-100k">De R$ 50.000 a R$ 100.000</option>
-          <option value="100k-500k">De R$ 100.000 a R$ 500.000</option>
-          <option value="500k-1m">De R$ 500.000 a R$ 1.000.000</option>
-          <option value="1m-5m">De R$ 1.000.000 a R$ 5.000.000</option>
-          <option value="acima-5m">Acima de R$ 5.000.000</option>
-          <option value="nao-faturou">Ainda não faturou</option>
-        </select>
-
-        <select name="segmento" aria-label="Segmento" required>
-          <option value="" disabled selected>Qual o seu segmento?</option>
-          <option value="ecommerce">E-commerce</option>
-          <option value="servicos">Serviços</option>
-          <option value="industria">Indústria</option>
-          <option value="varejo">Varejo</option>
-          <option value="saude">Saúde e Bem-estar</option>
-          <option value="educacao">Educação</option>
-          <option value="imobiliario">Imobiliário</option>
-          <option value="tecnologia">Tecnologia</option>
-          <option value="alimentacao">Alimentação</option>
-          <option value="outros">Outros</option>
-        </select>
-
-        <button type="submit" class="lead-submit"><i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar pelo WhatsApp</button>
-
-      </form>
+        <form class="diag" id="form-automação-vip" data-diagnostico data-servico="Automação VIP" data-titulo-id="form-automação-vip-title" aria-label="Solicite um diagnóstico"></form>
       </div>
     </div>
   </section>

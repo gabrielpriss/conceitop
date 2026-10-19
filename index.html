@@ -454,42 +454,7 @@
         </aside>
 
         <div class="contact-form-card">
-          <h2 id="contato-title" class="contact-form-title">
-            Vamos tomar um <span>café?</span>
-          </h2>
-
-          <form class="cp-form space-y-5" id="form-home" data-lead-form novalidate aria-label="Formulário de contato">
-            <div>
-              <label for="nome" class="sr-only">Nome</label>
-              <input type="text" id="nome" name="nome" placeholder="Nome" required autocomplete="name">
-            </div>
-            <div>
-              <label for="telefone" class="sr-only">Telefone</label>
-              <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required data-phone-mask autocomplete="tel">
-            </div>
-            <div>
-              <label for="email" class="sr-only">E-mail</label>
-              <input type="email" id="email" name="email" placeholder="E-mail" required autocomplete="email">
-            </div>
-            <div>
-              <label for="servico" class="sr-only">Área de interesse</label>
-              <select id="servico" name="servico" required>
-                <option value="todos" selected>Todos</option>
-                <option value="redes-sociais">Redes Sociais</option>
-                <option value="trafego">Google e Meta Ads</option>
-                <option value="web">Plataformas Web</option>
-                <option value="branding">Branding</option>
-                <option value="outros">Outros</option>
-              </select>
-            </div>
-            <div>
-              <label for="mensagem" class="sr-only">Mensagem</label>
-              <textarea id="mensagem" name="mensagem" placeholder="Mensagem" rows="4"></textarea>
-            </div>
-            <button type="submit" class="contact-submit">
-              <i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar pelo WhatsApp
-            </button>
-          </form>
+          <form class="diag" id="form-home" data-diagnostico data-titulo-id="contato-title" aria-label="Solicite um diagnóstico"></form>
 
           <div class="contact-social-mobile" aria-label="Redes sociais">
             <a href="https://www.facebook.com/ConceitoPrimeSE/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>

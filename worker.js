@@ -114,8 +114,8 @@ async function receberTrabalheConosco(request, env) {
    Envia para o segredo LEAD_B2B_WEBHOOK (ou LEAD_WEBHOOK, se o B2B não existir) e só responde 204 quando o
    webhook aceitou o lead. Sem webhook configurado responde 503 e a página mostra erro, para nenhum lead se perder
    em silêncio. O Apps Script de leads (topo deste arquivo) grava as colunas novas sem mudança: cada chave vira coluna. */
-const CAMPOS_B2B = ['nome', 'empresa', 'cargo', 'telefone', 'email', 'site', 'segmento', 'faturamento', 'investimento', 'procura',
-  'pagina', 'lead_qualificado', 'email_gratuito', 'origem', 'gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign',
+const CAMPOS_B2B = ['nome', 'empresa', 'telefone', 'segmento', 'faturamento', 'servico', 'canal',
+  'pagina', 'lead_qualificado', 'origem', 'gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign',
   'utm_term', 'utm_content'];
 
 async function receberLeadB2B(request, env) {
@@ -128,7 +128,7 @@ async function receberLeadB2B(request, env) {
     return new Response(null, { status: 400 });
   }
   if (corpo.hp) return new Response(null, { status: 204 }); // honeypot
-  if (!corpo.nome || !corpo.email || !corpo.telefone || !corpo.faturamento) return new Response(null, { status: 422 });
+  if (!corpo.nome || !corpo.telefone || !corpo.faturamento) return new Response(null, { status: 422 });
   const destino = env.LEAD_B2B_WEBHOOK || env.LEAD_WEBHOOK;
   if (!destino) return new Response(null, { status: 503 });
 

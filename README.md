@@ -35,7 +35,7 @@ Depois de qualquer um deles, rodar `build-css.sh` de novo se surgiram classes no
 ## Contato e leads
 
 - Número principal do WhatsApp: constante `WA_NUMERO` em `assets/js/brand.js` (Comercial, 41 99990-4764). Administrativo em `WA_ADMINISTRATIVO`.
-- Formulário de orçamento: valida, abre o WhatsApp com as respostas e envia uma cópia para `/api/lead`.
+- Formulário "Solicite um diagnóstico": o mesmo em todas as páginas (`initDiagnostico` em `assets/js/brand.js`; na página basta `<form data-diagnostico>`). Quatro etapas, das mais fáceis para as mais chatas: segmento e faturamento com um clique, depois nome e empresa, por último o WhatsApp. No site, abre o WhatsApp com a mensagem pronta e envia uma cópia para `/api/lead`.
 - `/api/lead`: grava na planilha se o segredo **LEAD_WEBHOOK** existir (instruções do Apps Script no topo de `worker.js`). Sem ele, responde 204 e o lead segue só pelo WhatsApp.
 - `/api/trabalhe-conosco`: currículos e fornecedores com anexo. Precisa do segredo **TRABALHE_WEBHOOK** (Apps Script que salva o anexo no Drive e registra na planilha, código em `worker.js`). Sem ele, a página orienta a enviar por e-mail para contato@conceitop.com.br.
 
@@ -50,6 +50,6 @@ Depois de qualquer um deles, rodar `build-css.sh` de novo se surgiram classes no
 ## Campanha de Google Ads da agência
 
 - Destinos: `/b2b/` e `/industrial/`. Páginas de obrigado: `/obrigado-qualificado/` (faturamento a partir de R$ 100 mil) e `/obrigado/` (demais). Todas geradas por `scripts/generate-segmentos.py`, com cabeçalho, rodapé, CSS e JS próprios (`scripts/campanha/`), sem tocar nos componentes globais.
-- Formulário próprio envia para `/api/lead-b2b` (worker.js), que repassa ao segredo **LEAD_B2B_WEBHOOK** (ou LEAD_WEBHOOK). Sem segredo configurado a rota responde 503 e a página mostra erro: a campanha não pode ir ao ar antes disso.
+- O mesmo formulário do site, em modo campanha (body `data-contato="formulario"`), envia para `/api/lead-b2b` (worker.js) e redireciona para a página de obrigado. O botão flutuante do WhatsApp abre esse formulário em popup com a cara do WhatsApp (canal `popup-whatsapp` no lead). A rota `/api/lead-b2b` repassa ao segredo **LEAD_B2B_WEBHOOK** (ou LEAD_WEBHOOK). Sem segredo configurado a rota responde 503 e a página mostra erro: a campanha não pode ir ao ar antes disso.
 - dataLayer: `lead_b2b {lead_qualificado, faturamento, segmento, pagina}` no envio; `conversao_lead_b2b {tipo: qualificado | todos}` nas páginas de obrigado (uma vez por envio).
 - GTM: preencher o ID em `conteudo/rastreamento.json`; o build instala em todas as páginas (`scripts/inject-gtm.js`).

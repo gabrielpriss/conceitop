@@ -27,100 +27,123 @@ function abrirWhatsApp(url, posicao) {
   if (w) { try { w.opener = null; } catch (e) { /* ignora */ } } else { location.href = url; }
 }
 
-function leadFormFieldsHTML() {
-  return `
-        <div class="lead-error" data-lead-error role="alert" aria-live="assertive"></div>
-        <label class="sr-only" for="lf-nome">Primeiro nome</label>
-        <input id="lf-nome" type="text" name="nome" placeholder="Primeiro nome" required autocomplete="given-name">
-        <label class="sr-only" for="lf-email">E-mail</label>
-        <input id="lf-email" type="email" name="email" placeholder="Qual seu e-mail?" required autocomplete="email">
-        <label class="sr-only" for="lf-empresa">Nome da empresa</label>
-        <input id="lf-empresa" type="text" name="empresa" placeholder="Qual o nome da sua empresa?" required autocomplete="organization">
-        <div class="lead-phone-row">
-          <span class="lead-flag" aria-hidden="true">🇧🇷</span>
-          <label class="sr-only" for="lf-telefone">Telefone com DDD</label>
-          <input id="lf-telefone" type="tel" name="telefone" placeholder="Qual seu telefone?" required data-phone-mask autocomplete="tel" inputmode="tel">
-        </div>
-        <label class="sr-only" for="lf-faturamento">Faturamento mensal</label>
-        <select id="lf-faturamento" name="faturamento" required>
-          <option value="" disabled selected>Qual o faturamento mensal da sua empresa?</option>
-          <option value="ate-10k">Até R$ 10.000</option>
-          <option value="10k-50k">De R$ 10.000 a R$ 50.000</option>
-          <option value="50k-100k">De R$ 50.000 a R$ 100.000</option>
-          <option value="100k-500k">De R$ 100.000 a R$ 500.000</option>
-          <option value="500k-1m">De R$ 500.000 a R$ 1.000.000</option>
-          <option value="1m-5m">De R$ 1.000.000 a R$ 5.000.000</option>
-          <option value="acima-5m">Acima de R$ 5.000.000</option>
-          <option value="nao-faturou">Ainda não faturou</option>
-        </select>
-        <label class="sr-only" for="lf-segmento">Segmento</label>
-        <select id="lf-segmento" name="segmento" required>
-          <option value="" disabled selected>Qual o seu segmento?</option>
-          <option value="ecommerce">E-commerce</option>
-          <option value="servicos">Serviços</option>
-          <option value="industria">Indústria</option>
-          <option value="varejo">Varejo</option>
-          <option value="saude">Saúde e Bem-estar</option>
-          <option value="educacao">Educação</option>
-          <option value="imobiliario">Imobiliário</option>
-          <option value="tecnologia">Tecnologia</option>
-          <option value="alimentacao">Alimentação</option>
-          <option value="outros">Outros</option>
-        </select>
-        <button type="submit" class="lead-submit"><i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar pelo WhatsApp</button>`;
-}
-
-function leadFormHeaderWaHTML() {
-  return `
-      <div class="lead-card-header lead-wa-head">
-        <i class="fab fa-whatsapp" aria-hidden="true"></i>
-        <div>
-          <h2 class="lead-card-title" id="lead-title">Fale com a gente no WhatsApp</h2>
-          <p class="lead-card-desc">Preencha os dados e abrimos o WhatsApp com a sua mensagem pronta.</p>
-        </div>
-      </div>`;
-}
-
-function leadFormHeaderHTML() {
-  return `
-      <div class="lead-card-header">
-        <span class="lead-eyebrow">Orçamento rápido</span>
-        <h2 class="lead-card-title" id="lead-title">Vamos conversar?</h2>
-        <p class="lead-card-desc">Preencha os dados e seguimos a conversa pelo WhatsApp.</p>
-      </div>`;
-}
-
+/* ========== FORMULÁRIO "SOLICITE UM DIAGNÓSTICO" ==========
+   O mesmo em todas as páginas (inline, popup do site e popup de WhatsApp das LPs).
+   Em etapas: primeiro o que se responde com um clique (segmento e faturamento), por último o que precisa digitar.
+   Envio:
+   - no site: grava o lead (/api/lead) e abre o WhatsApp com a mensagem pronta;
+   - nas LPs da campanha (body data-contato="formulario"): envia para /api/lead-b2b e redireciona para
+     /obrigado-qualificado/ (a partir de R$ 100 mil/mês) ou /obrigado/.
+   Marcação na página: <form data-diagnostico data-pagina="b2b" data-segmento="industria" data-servico="Branding"
+   data-desc="..." data-titulo-id="..."></form>. O conteúdo é montado aqui. */
+const DIAG_SEGMENTOS = [
+  ['industria', 'Indústria', 'fa-industry'],
+  ['distribuidor', 'Distribuidor ou atacado', 'fa-truck'],
+  ['servicos', 'Serviços', 'fa-briefcase'],
+  ['tecnologia', 'Tecnologia', 'fa-microchip'],
+  ['saude', 'Saúde e bem-estar', 'fa-heart-pulse'],
+  ['imobiliario', 'Imobiliário e construção', 'fa-building'],
+  ['alimentacao', 'Alimentação', 'fa-utensils'],
+  ['ecommerce', 'E-commerce', 'fa-cart-shopping'],
+  ['varejo', 'Varejo', 'fa-store'],
+  ['educacao', 'Educação', 'fa-graduation-cap'],
+  ['outros', 'Outro segmento', 'fa-ellipsis']
+];
+const DIAG_FATURAMENTO = [
+  ['ate-10k', 'Até R$ 10 mil'],
+  ['10k-50k', 'R$ 10 mil a R$ 50 mil'],
+  ['50k-100k', 'R$ 50 mil a R$ 100 mil'],
+  ['100k-500k', 'R$ 100 mil a R$ 500 mil'],
+  ['500k-1m', 'R$ 500 mil a R$ 1 milhão'],
+  ['1m-5m', 'R$ 1 milhão a R$ 5 milhões'],
+  ['acima-5m', 'Acima de R$ 5 milhões'],
+  ['nao-faturou', 'Ainda não faturamos']
+];
+const DIAG_TOTAL = 4;
+const DIAG_DICAS = ['Leva menos de 1 minuto', 'Boa! Só mais um clique', 'Já passou da metade', 'Último passo'];
 const FAIXAS_QUALIFICADAS = ['100k-500k', '500k-1m', '1m-5m', 'acima-5m'];
-const ROTULOS = { nome: 'Nome', empresa: 'Empresa', email: 'E-mail', telefone: 'Telefone', faturamento: 'Faturamento mensal', segmento: 'Segmento', servico: 'Interesse', area: 'Interesse', mensagem: 'Mensagem' };
 
-function validarLead(form) {
-  const erros = [];
-  form.querySelectorAll('[required]').forEach(function (el) {
-    let ok = !!String(el.value || '').trim();
-    if (ok && el.type === 'email') ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim());
-    if (ok && el.name === 'telefone') ok = el.value.replace(/\D/g, '').length >= 10;
-    el.classList.toggle('is-invalid', !ok);
-    el.setAttribute('aria-invalid', String(!ok));
-    if (!ok) erros.push(el);
-  });
-  return erros;
+function diagEsc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+function diagHTML(o) {
+  const segs = DIAG_SEGMENTOS.map(function (s) {
+    return `<label class="diag-opcao"><input type="radio" name="segmento" value="${s[0]}"${o.segmento === s[0] ? ' checked' : ''}><span><i class="fas ${s[2]}" aria-hidden="true"></i>${s[1]}</span></label>`;
+  }).join('');
+  const fats = DIAG_FATURAMENTO.map(function (f) {
+    return `<label class="diag-opcao diag-opcao--linha"><input type="radio" name="faturamento" value="${f[0]}"><span>${f[1]}</span></label>`;
+  }).join('');
+  const b2b = o.envio === 'lead-b2b';
+  const botaoFinal = b2b
+    ? '<i class="fas fa-paper-plane" aria-hidden="true"></i> Solicitar diagnóstico'
+    : '<i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar e abrir o WhatsApp';
+  const desc = o.desc || (o.servico ? 'Interesse em <strong>' + diagEsc(o.servico) + '</strong>. São 4 perguntas rápidas.' : 'São 4 perguntas rápidas e seguimos a conversa com você.');
+  return `
+    <div class="diag-topo">
+      <p class="diag-eyebrow"><i class="fas fa-bolt" aria-hidden="true"></i> <span data-diag-dica>${DIAG_DICAS[0]}</span></p>
+      <h2 class="diag-titulo" id="${o.tituloId}">Solicite um diagnóstico</h2>
+      <p class="diag-desc">${desc}</p>
+      <div class="diag-barra" aria-hidden="true"><span data-diag-barra></span></div>
+      <p class="diag-contador" data-diag-contador>Etapa 1 de ${DIAG_TOTAL}</p>
+    </div>
+    <div class="diag-hist" data-diag-hist aria-live="polite">
+      <p class="diag-msg diag-msg--in">Olá! 👋 Para preparar o seu diagnóstico, são só 4 perguntas rápidas.</p>
+    </div>
+    <fieldset class="diag-etapa" data-etapa="1">
+      <legend class="diag-pergunta">Qual o segmento da sua empresa?</legend>
+      <div class="diag-opcoes">${segs}</div>
+      <button type="button" class="diag-avancar diag-avancar--opcao" data-diag-avancar hidden>Continuar <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+    </fieldset>
+    <fieldset class="diag-etapa" data-etapa="2" hidden>
+      <legend class="diag-pergunta">Quanto a empresa fatura por mês, em média?</legend>
+      <div class="diag-opcoes diag-opcoes--lista">${fats}</div>
+      <button type="button" class="diag-avancar diag-avancar--opcao" data-diag-avancar hidden>Continuar <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+    </fieldset>
+    <fieldset class="diag-etapa" data-etapa="3" hidden>
+      <legend class="diag-pergunta">Como podemos te chamar?</legend>
+      <div class="diag-campos">
+        <label class="diag-campo"><span>Seu nome</span><input type="text" name="nome" autocomplete="given-name" placeholder="Primeiro nome" maxlength="80" enterkeyhint="next"></label>
+        <label class="diag-campo"><span>Nome da empresa</span><input type="text" name="empresa" autocomplete="organization" placeholder="Empresa" maxlength="120" enterkeyhint="next"></label>
+      </div>
+      <button type="button" class="diag-avancar" data-diag-avancar>Continuar <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+    </fieldset>
+    <fieldset class="diag-etapa" data-etapa="4" hidden>
+      <legend class="diag-pergunta" data-diag-pergunta-tel>Qual o seu WhatsApp?</legend>
+      <div class="diag-campos">
+        <label class="diag-campo"><span>WhatsApp com DDD</span><span class="diag-tel"><span class="diag-ddi" aria-hidden="true">🇧🇷 +55</span><input type="tel" name="telefone" inputmode="tel" autocomplete="tel-national" placeholder="(41) 99999-9999" data-phone-mask enterkeyhint="send"></span></label>
+      </div>
+      <button type="submit" class="diag-enviar">${botaoFinal}</button>
+      <p class="diag-aviso"><i class="fas fa-lock" aria-hidden="true"></i> Usamos seus dados só para falar com você sobre este pedido.</p>
+    </fieldset>
+    <p class="diag-erro" data-diag-erro role="alert" aria-live="assertive"></p>
+    <button type="button" class="diag-voltar" data-diag-voltar hidden><i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar</button>
+    <input type="hidden" name="pagina" value="${diagEsc(o.pagina)}">
+    ${o.servico ? `<input type="hidden" name="servico" value="${diagEsc(o.servico)}">` : ''}
+    <div class="diag-hp" aria-hidden="true"><label>Não preencha<input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
+    <div class="diag-ok" data-diag-ok hidden>
+      <i class="fas fa-circle-check" aria-hidden="true"></i>
+      <p class="diag-ok-titulo" data-diag-ok-titulo>Pronto!</p>
+      <p class="diag-ok-texto">Abrimos o WhatsApp com a sua mensagem. É só enviar por lá.</p>
+      <a href="#" class="diag-ok-link" data-diag-wa target="_blank" rel="noopener"><i class="fab fa-whatsapp" aria-hidden="true"></i> Abrir o WhatsApp de novo</a>
+    </div>`;
 }
 
-function montarMensagem(form) {
-  const linhas = ['Olá! Vim pelo site da Conceito Prime e quero um orçamento.', ''];
-  const dados = {};
-  Array.prototype.forEach.call(form.elements, function (el) {
-    if (!el.name || el.type === 'submit' || el.type === 'hidden' && !el.value) return;
-    let valor = String(el.value || '').trim();
-    if (!valor) return;
-    dados[el.name] = valor;
-    if (el.tagName === 'SELECT') valor = el.options[el.selectedIndex].text;
-    linhas.push((ROTULOS[el.name] || el.name) + ': ' + valor);
-  });
+function diagRotulo(lista, valor) {
+  for (let i = 0; i < lista.length; i++) if (lista[i][0] === valor) return lista[i][1];
+  return valor || '';
+}
+
+function diagMensagem(d) {
+  const linhas = ['Olá! Vim pelo site da Conceito Prime e quero solicitar um diagnóstico.', ''];
+  linhas.push('Nome: ' + d.nome);
+  linhas.push('Empresa: ' + d.empresa);
+  linhas.push('WhatsApp: ' + d.telefone);
+  linhas.push('Segmento: ' + diagRotulo(DIAG_SEGMENTOS, d.segmento));
+  linhas.push('Faturamento mensal: ' + diagRotulo(DIAG_FATURAMENTO, d.faturamento));
+  if (d.servico) linhas.push('Interesse: ' + d.servico);
   linhas.push('', 'Origem: site (' + location.pathname + ')');
   const ref = Object.keys(RASTREIO).map(function (k) { return k + '=' + RASTREIO[k]; }).join(' ');
   if (ref) linhas.push('Ref: ' + ref);
-  return { texto: linhas.join('\n'), dados: dados };
+  return linhas.join('\n');
 }
 
 function enviarParaPlanilha(dados) {
@@ -131,69 +154,230 @@ function enviarParaPlanilha(dados) {
   } catch (e) { /* o lead segue pelo WhatsApp mesmo assim */ }
 }
 
-function setupLeadForm(form, onSuccess) {
-  const wrap = form.parentElement;
-  const success = wrap && wrap.querySelector('[data-lead-success]');
-  const erroBox = form.querySelector('[data-lead-error]');
-  const phone = form.querySelector('[data-phone-mask]');
-  if (phone) maskPhone(phone);
+function initDiagnostico(form) {
+  if (form._diag) return form._diag;
+  const envio = form.dataset.envio || (document.body.dataset.contato === 'formulario' ? 'lead-b2b' : 'whatsapp');
+  const tituloId = form.dataset.tituloId || ('diag-' + Math.random().toString(36).slice(2, 8));
+  const segPadrao = form.dataset.segmento || '';
+  form.classList.add('diag');
+  form.setAttribute('novalidate', '');
+  form.setAttribute('aria-labelledby', tituloId);
+  form.innerHTML = diagHTML({
+    envio: envio, tituloId: tituloId, segmento: segPadrao, servico: form.dataset.servico || '',
+    desc: form.dataset.desc || '', pagina: form.dataset.pagina || location.pathname
+  });
+
+  const etapas = Array.prototype.slice.call(form.querySelectorAll('.diag-etapa'));
+  etapas.forEach(function (e) { e.setAttribute('tabindex', '-1'); });
+  const hist = form.querySelector('[data-diag-hist]');
+  const erroBox = form.querySelector('[data-diag-erro]');
+  const voltar = form.querySelector('[data-diag-voltar]');
+  const barra = form.querySelector('[data-diag-barra]');
+  const contador = form.querySelector('[data-diag-contador]');
+  const dica = form.querySelector('[data-diag-dica]');
+  const ok = form.querySelector('[data-diag-ok]');
+  const tel = form.querySelector('[name="telefone"]');
+  const enviar = form.querySelector('.diag-enviar');
+  const enviarHTML = enviar.innerHTML;
+  maskPhone(tel);
+  let atual = 1;
   let iniciou = false;
-  form.addEventListener('input', function () {
-    if (!iniciou) { iniciou = true; track('form_start', { formulario: form.id || 'inline' }); }
-  });
-  form.querySelectorAll('select').forEach(function (sel) {
-    sel.addEventListener('change', function () { sel.classList.toggle('has-value', !!sel.value); });
-  });
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const erros = validarLead(form);
-    if (erros.length) {
-      if (erroBox) erroBox.textContent = 'Confira os campos destacados: todos são obrigatórios e o telefone precisa ter DDD.';
-      erros[0].focus();
-      return;
+  let ocupado = false;
+
+  function valor(nome) {
+    const el = form.querySelector('[name="' + nome + '"]:checked') || form.querySelector('[name="' + nome + '"]:not([type=radio])');
+    return el ? String(el.value || '').trim() : '';
+  }
+  function marcar(el, valido) { el.classList.toggle('is-invalid', !valido); el.setAttribute('aria-invalid', String(!valido)); }
+  function erro(msg) { erroBox.textContent = msg || ''; }
+  function comecar() { if (!iniciou) { iniciou = true; track('form_start', { formulario: form.id || 'diagnostico', pagina: location.pathname }); } }
+
+  function atualizarOpcao(n) {
+    const etapa = etapas[n - 1];
+    const btn = etapa.querySelector('.diag-avancar--opcao');
+    if (btn) btn.hidden = !etapa.querySelector('input:checked');
+  }
+
+  function ir(n, focar) {
+    atual = n;
+    etapas.forEach(function (e, i) { e.hidden = i !== n - 1; });
+    voltar.hidden = n === 1;
+    barra.style.width = Math.max(6, (n - 1) / DIAG_TOTAL * 100) + '%';
+    contador.textContent = 'Etapa ' + n + ' de ' + DIAG_TOTAL;
+    dica.textContent = DIAG_DICAS[n - 1];
+    if (n === 4) {
+      const nome = valor('nome').split(' ')[0];
+      form.querySelector('[data-diag-pergunta-tel]').textContent = nome ? 'Prazer, ' + nome + '! Qual o seu WhatsApp?' : 'Qual o seu WhatsApp?';
     }
-    if (erroBox) erroBox.textContent = '';
-    const msg = montarMensagem(form);
-    const url = waLink(msg.texto);
-    const qualificado = FAIXAS_QUALIFICADAS.indexOf(msg.dados.faturamento) !== -1;
-    const evento = { formulario: form.id || 'inline', pagina: location.pathname, faturamento: msg.dados.faturamento || '', segmento: msg.dados.segmento || '', lead_qualificado: qualificado };
+    if (n <= 2) atualizarOpcao(n);
+    erro('');
+    form.dispatchEvent(new CustomEvent('diag:etapa', { detail: { etapa: n, total: DIAG_TOTAL } }));
+    if (focar) {
+      setTimeout(function () {
+        const etapa = etapas[n - 1];
+        /* etapa de clique sem opção marcada: foco no grupo (sem destacar nenhuma opção como se estivesse escolhida) */
+        const alvo = etapa.querySelector('input:checked') || etapa.querySelector('input:not([type=hidden]):not([type=radio])') || etapa;
+        alvo.focus({ preventScroll: true });
+      }, 60);
+    }
+  }
+
+  function validar(n) {
+    if (n === 1 && !valor('segmento')) { erro('Escolha o segmento da empresa para continuar.'); return false; }
+    if (n === 2 && !valor('faturamento')) { erro('Escolha uma faixa de faturamento para continuar.'); return false; }
+    if (n === 3) {
+      const nome = form.querySelector('[name="nome"]');
+      const emp = form.querySelector('[name="empresa"]');
+      const okNome = nome.value.trim().length >= 2;
+      const okEmp = emp.value.trim().length >= 2;
+      marcar(nome, okNome); marcar(emp, okEmp);
+      if (!okNome || !okEmp) { erro('Preencha o seu nome e o nome da empresa.'); (okNome ? emp : nome).focus(); return false; }
+    }
+    if (n === 4) {
+      const okTel = tel.value.replace(/\D/g, '').length >= 10;
+      marcar(tel, okTel);
+      if (!okTel) { erro('Confira o WhatsApp: precisa ter DDD e o número completo.'); tel.focus(); return false; }
+    }
+    return true;
+  }
+
+  function resposta(n) {
+    if (n === 1) return diagRotulo(DIAG_SEGMENTOS, valor('segmento'));
+    if (n === 2) return diagRotulo(DIAG_FATURAMENTO, valor('faturamento'));
+    if (n === 3) return valor('nome') + ', da ' + valor('empresa');
+    return valor('telefone');
+  }
+
+  function registrar(n) {
+    const pergunta = etapas[n - 1].querySelector('legend').textContent;
+    hist.insertAdjacentHTML('beforeend',
+      '<p class="diag-msg diag-msg--in" data-hist="' + n + '">' + diagEsc(pergunta) + '</p>' +
+      '<p class="diag-msg diag-msg--out" data-hist="' + n + '">' + diagEsc(resposta(n)) + ' <i class="fas fa-check-double" aria-hidden="true"></i></p>');
+    hist.scrollTop = hist.scrollHeight;
+  }
+
+  function avancar() {
+    if (!validar(atual)) return;
+    comecar();
+    registrar(atual);
+    track('form_etapa', { formulario: form.id || 'diagnostico', etapa: atual + 1 });
+    if (atual < DIAG_TOTAL) ir(atual + 1, true);
+  }
+
+  etapas.slice(0, 2).forEach(function (etapa, i) {
+    etapa.querySelectorAll('input[type=radio]').forEach(function (r) {
+      r.addEventListener('change', function () {
+        comecar();
+        atualizarOpcao(i + 1);
+        /* um clique já avança: dá tempo de ver a opção marcada */
+        setTimeout(function () { if (atual === i + 1) avancar(); }, 260);
+      });
+    });
+  });
+  form.querySelectorAll('[data-diag-avancar]').forEach(function (b) { b.addEventListener('click', avancar); });
+  voltar.addEventListener('click', function () {
+    if (atual <= 1) return;
+    hist.querySelectorAll('[data-hist="' + (atual - 1) + '"]').forEach(function (m) { m.remove(); });
+    ir(atual - 1, true);
+  });
+  form.querySelector('[name="nome"]').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); form.querySelector('[name="empresa"]').focus(); }
+  });
+  form.querySelector('[name="empresa"]').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); avancar(); }
+  });
+  form.addEventListener('input', function (e) { comecar(); if (e.target.classList.contains('is-invalid')) marcar(e.target, true); });
+
+  function coletar() {
+    const d = {};
+    ['segmento', 'faturamento', 'nome', 'empresa', 'telefone', 'pagina', 'servico', 'hp'].forEach(function (k) { const v = valor(k); if (v) d[k] = v; });
+    return d;
+  }
+
+  function concluirWhatsApp(d, qualificado) {
+    const evento = { formulario: form.id || 'diagnostico', pagina: location.pathname, faturamento: d.faturamento, segmento: d.segmento, lead_qualificado: qualificado };
     track('form_submit', evento);
     /* Conversão principal do Google Ads: só empresa a partir de R$ 100 mil/mês (gatilho no GTM pelo evento lead_qualificado) */
     if (qualificado) track('lead_qualificado', evento);
-    enviarParaPlanilha(msg.dados);
-    abrirWhatsApp(url, 'formulario');
-    form.style.display = 'none';
-    if (success) {
-      const link = success.querySelector('[data-wa-fallback]');
-      if (link) link.href = url;
-      success.classList.add('show');
-    }
-    if (onSuccess) onSuccess();
+    const url = waLink(diagMensagem(d));
+    enviarParaPlanilha(d);
+    abrirWhatsApp(url, form.dataset.canal || 'formulario');
+    etapas.forEach(function (e) { e.hidden = true; });
+    voltar.hidden = true;
+    barra.style.width = '100%';
+    contador.textContent = 'Concluído';
+    dica.textContent = 'Tudo certo';
+    form.querySelector('[data-diag-ok-titulo]').textContent = 'Pronto, ' + d.nome.split(' ')[0] + '!';
+    form.querySelector('[data-diag-wa]').href = url;
+    ok.hidden = false;
+    form.dispatchEvent(new CustomEvent('diag:enviado', { detail: { qualificado: qualificado } }));
+  }
+
+  function concluirB2B(d, qualificado) {
+    d.lead_qualificado = qualificado ? 'sim' : 'nao';
+    d.origem = 'campanha-google-ads';
+    d.canal = form.dataset.canal || 'formulario';
+    Object.keys(RASTREIO).forEach(function (k) { d[k] = RASTREIO[k]; });
+    ocupado = true;
+    enviar.disabled = true;
+    enviar.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Enviando...';
+    const controle = window.AbortController ? new AbortController() : null;
+    const limite = setTimeout(function () { if (controle) controle.abort(); }, 8000);
+    fetch('/api/lead-b2b', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(d),
+      signal: controle ? controle.signal : undefined
+    }).then(function (r) {
+      clearTimeout(limite);
+      if (!r.ok) throw new Error('status ' + r.status);
+      track('lead_b2b', { lead_qualificado: qualificado, faturamento: d.faturamento, segmento: d.segmento, pagina: d.pagina, canal: d.canal });
+      try {
+        sessionStorage.setItem('cp_lead_b2b', JSON.stringify({ nome: d.nome, empresa: d.empresa, faturamento: d.faturamento, qualificado: qualificado, pagina: d.pagina, t: Date.now() }));
+      } catch (err) { /* segue sem personalizar a página de obrigado */ }
+      setTimeout(function () { location.href = qualificado ? '/obrigado-qualificado/' : '/obrigado/'; }, 250);
+    }).catch(function () {
+      clearTimeout(limite);
+      ocupado = false;
+      enviar.disabled = false;
+      enviar.innerHTML = enviarHTML;
+      erro('Não conseguimos enviar agora. Tente de novo em alguns instantes ou escreva para contato@conceitop.com.br.');
+    });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (ocupado) return;
+    if (atual < DIAG_TOTAL) { avancar(); return; }
+    if (!validar(DIAG_TOTAL)) return;
+    const d = coletar();
+    if (d.hp) return; /* robô */
+    registrar(DIAG_TOTAL);
+    const qualificado = FAIXAS_QUALIFICADAS.indexOf(d.faturamento) !== -1;
+    if (envio === 'lead-b2b') concluirB2B(d, qualificado);
+    else concluirWhatsApp(d, qualificado);
   });
+
+  function reset() {
+    form.reset();
+    if (segPadrao) { const r = form.querySelector('[name="segmento"][value="' + segPadrao + '"]'); if (r) r.checked = true; }
+    form.querySelectorAll('.is-invalid').forEach(function (el) { marcar(el, true); });
+    hist.querySelectorAll('[data-hist]').forEach(function (m) { m.remove(); });
+    ok.hidden = true;
+    ocupado = false;
+    enviar.disabled = false;
+    enviar.innerHTML = enviarHTML;
+    ir(1, false);
+  }
+
+  ir(1, false);
+  form._diag = { reset: reset, ir: ir, focar: function () { ir(atual, true); } };
+  return form._diag;
 }
 
-function sucessoHTML() {
-  return `
-      <div class="lead-success" data-lead-success aria-live="polite">
-        <i class="fas fa-check-circle" aria-hidden="true"></i>
-        <p>Pronto! Abrimos o WhatsApp com os seus dados.</p>
-        <span>É só enviar a mensagem por lá. Se o WhatsApp não abriu, <a href="#" data-wa-fallback target="_blank" rel="noopener">toque aqui</a>.</span>
-      </div>`;
-}
-
-function resetLeadForm(form) {
-  const wrap = form.parentElement;
-  const success = wrap && wrap.querySelector('[data-lead-success]');
-  form.style.display = '';
-  form.reset();
-  if (success) success.classList.remove('show');
-  form.querySelectorAll('select').forEach(function (s) { s.classList.remove('has-value'); });
-  form.querySelectorAll('.is-invalid').forEach(function (el) { el.classList.remove('is-invalid'); el.removeAttribute('aria-invalid'); });
-  const erroBox = form.querySelector('[data-lead-error]');
-  if (erroBox) erroBox.textContent = '';
-}
-
-/* ========== MODAL DE LEAD ========== */
+/* ========== POPUP DO DIAGNÓSTICO ==========
+   Site: CTAs de orçamento abrem o formulário no visual da marca.
+   LPs da campanha: o botão flutuante do WhatsApp abre o mesmo formulário com a cara do WhatsApp. */
 (function initLeadModal() {
   const overlay = document.createElement('div');
   overlay.id = 'lead-overlay';
@@ -201,78 +385,87 @@ function resetLeadForm(form) {
   overlay.setAttribute('role', 'dialog');
   overlay.setAttribute('aria-modal', 'true');
   overlay.setAttribute('aria-labelledby', 'lead-title');
-
   overlay.innerHTML = `
     <div class="lead-card">
+      <div class="wa-chat-head">
+        <span class="wa-chat-avatar"><img src="/assets/images/apple-touch-icon.png" alt="" width="40" height="40"></span>
+        <div class="wa-chat-id">
+          <p class="wa-chat-nome">Conceito Prime <i class="fas fa-circle-check" aria-hidden="true"></i></p>
+          <p class="wa-chat-status" data-wa-status>online</p>
+        </div>
+      </div>
       <button type="button" class="lead-close" id="lead-close" aria-label="Fechar">&times;</button>
-      ${leadFormHeaderHTML()}
-      ${sucessoHTML()}
-      <form class="lead-form" id="lead-form" data-lead-form novalidate>
-        ${leadFormFieldsHTML()}
-      </form>
-    </div>
-  `;
-
+      <form id="lead-form" data-diagnostico data-titulo-id="lead-title"></form>
+    </div>`;
   document.body.appendChild(overlay);
 
-  const modalForm = document.getElementById('lead-form');
+  const form = document.getElementById('lead-form');
+  /* Nas LPs, o popup herda a página e o segmento do formulário da própria página (ex.: /industrial já vem com Indústria) */
+  const daPagina = document.querySelector('form[data-diagnostico][data-pagina]');
+  if (daPagina) {
+    form.dataset.pagina = daPagina.dataset.pagina;
+    if (daPagina.dataset.segmento) form.dataset.segmento = daPagina.dataset.segmento;
+  }
+  const diag = initDiagnostico(form);
+  const status = overlay.querySelector('[data-wa-status]');
+  form.addEventListener('diag:etapa', function (e) { status.textContent = 'online · etapa ' + e.detail.etapa + ' de ' + e.detail.total; });
+
   let ultimoFoco = null;
+  let fechar = null;
   const closeModal = function () {
     if (!overlay.classList.contains('open')) return;
+    clearTimeout(fechar);
     overlay.classList.remove('open');
     document.body.style.overflow = '';
     if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus();
   };
-  setupLeadForm(modalForm, function () { setTimeout(closeModal, 6000); });
+  form.addEventListener('diag:enviado', function () { fechar = setTimeout(closeModal, 7000); });
 
-  const cabecalho = overlay.querySelector('.lead-card-header');
-  const cabPadrao = cabecalho.outerHTML;
   window.openLeadModal = function (modo) {
     ultimoFoco = document.activeElement;
     const wa = modo === 'whatsapp';
     overlay.classList.toggle('lead-overlay--wa', wa);
-    overlay.querySelector('.lead-card-header').outerHTML = wa ? leadFormHeaderWaHTML() : cabPadrao;
+    form.classList.toggle('diag--wa', wa);
+    form.dataset.canal = wa ? 'popup-whatsapp' : 'popup';
+    diag.reset();
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
-    setTimeout(function () { const f = modalForm.querySelector('input'); if (f) f.focus(); }, 50);
+    diag.focar();
   };
 
   document.getElementById('lead-close').addEventListener('click', closeModal);
   overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
-  /* CTAs de orçamento abrem o formulário (o envio termina no WhatsApp) */
+  /* CTAs de orçamento abrem o formulário */
   document.addEventListener('click', function (e) {
     const a = e.target.closest('a, button');
     if (!a) return;
-    if (a.closest('#wa-float') || a.closest('#lead-overlay')) return;
+    if (a.closest('#wa-float') || a.closest('#lead-overlay') || a.closest('.diag')) return;
     const ehCta = a.classList.contains('btn-wa') || a.classList.contains('btn-luxury') ||
       a.classList.contains('btn-brand') || a.classList.contains('contact-submit');
     if (!ehCta) return;
     if (a.tagName === 'BUTTON' && a.type === 'submit' && a.form) return;
     e.preventDefault();
     track('cta_click', { posicao: a.dataset.cta || (a.closest('section, header, footer') || {}).id || 'cta', texto: a.textContent.trim().slice(0, 60) });
-    resetLeadForm(modalForm);
     openLeadModal();
   });
 })();
 
-/* Formulários inline nas páginas internas */
-(function initInlineLeadForms() {
-  document.querySelectorAll('[data-lead-form]').forEach(function (form) {
-    if (form.id === 'lead-form') return;
-    if (!form.querySelector('[data-lead-error]')) {
-      const box = document.createElement('div');
-      box.className = 'lead-error'; box.setAttribute('data-lead-error', ''); box.setAttribute('role', 'alert');
-      form.insertBefore(box, form.firstChild);
-    }
-    const wrap = form.parentElement;
-    const oldSuccess = wrap && wrap.querySelector('[data-lead-success]');
-    if (oldSuccess && !oldSuccess.querySelector('[data-wa-fallback]')) oldSuccess.outerHTML = sucessoHTML();
-    if (!oldSuccess) form.insertAdjacentHTML('beforebegin', sucessoHTML());
-    setupLeadForm(form);
+/* Formulários na página */
+document.querySelectorAll('form[data-diagnostico]').forEach(function (form) {
+  if (form.id === 'lead-form') return;
+  initDiagnostico(form);
+});
+
+/* Botões que levam ao formulário da página (#orcamento): põem o foco na etapa atual depois da rolagem */
+document.querySelectorAll('a[href="#orcamento"]').forEach(function (a) {
+  a.addEventListener('click', function () {
+    track('cta_click', { posicao: a.dataset.cta || 'ancora', texto: a.textContent.trim().slice(0, 60) });
+    const f = document.querySelector('#orcamento form[data-diagnostico]');
+    if (f && f._diag) setTimeout(f._diag.focar, 600);
   });
-})();
+});
 
 function maskPhone(input) {
   if (input.dataset.masked) return;
@@ -298,8 +491,9 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
 
 /* Botão flutuante WhatsApp: painel Fale Conosco (mesmo formato do site anterior, sem RH) */
 (function initWhatsAppFloat() {
-  /* Páginas da campanha (body data-contato="formulario"): o formulário é o único ponto de contato.
-     O botão continua com a cara do WhatsApp, mas abre o formulário e só depois redireciona com a mensagem pronta. */
+  /* Páginas da campanha (body data-contato="formulario"): o botão do WhatsApp não abre conversa direta.
+     Ele abre o formulário de diagnóstico em popup com a cara do WhatsApp; o envio segue o fluxo da campanha
+     (/api/lead-b2b e página de obrigado, onde o lead qualificado encontra o WhatsApp com a mensagem pronta). */
   if (document.body.dataset.contato === 'formulario') {
     const botao = document.createElement('div');
     botao.id = 'wa-float';
@@ -308,8 +502,6 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
     document.body.appendChild(botao);
     document.getElementById('wa-float-btn').addEventListener('click', function () {
       track('cta_click', { posicao: 'whatsapp-flutuante', texto: 'WhatsApp' });
-      const f = document.getElementById('lead-form');
-      if (f) resetLeadForm(f);
       if (window.openLeadModal) window.openLeadModal('whatsapp');
     });
     return;

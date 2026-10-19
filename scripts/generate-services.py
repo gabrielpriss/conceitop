@@ -172,8 +172,7 @@ def render_form_section(title):
   <section id="orcamento" class="lead-form-section py-24" aria-labelledby="{form_id}-title">
     <div class="max-w-md mx-auto px-6 lg:px-8">
       <div class="lead-card lead-card-inline">
-        {render_lead_header(title="Solicite uma proposta", servico=title, title_id=f"{form_id}-title")}
-        {render_lead_form_block(hidden_servico=title, aria_label=f"Formulário de orçamento para {title}")}
+        <form class="diag" id="{form_id}" data-diagnostico data-servico="{title}" data-titulo-id="{form_id}-title" aria-label="Solicite um diagnóstico"></form>
       </div>
     </div>
   </section>

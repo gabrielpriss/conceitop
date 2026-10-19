@@ -1363,21 +1363,106 @@ html, body { overflow-x: clip; }
   }
 }
 
-/* Formulário com identidade do WhatsApp (botão flutuante das páginas da campanha) */
-.lead-overlay--wa .lead-card { border-top: 0; padding-top: 0; overflow: hidden; }
-.lead-wa-head {
-  display: flex; gap: .875rem; align-items: center;
-  background: #137a3a; color: #fff;
-  margin: 0 -2rem 1.5rem; padding: 1.25rem 3.5rem 1.25rem 2rem;
-}
-.lead-wa-head > i { font-size: 2.25rem; line-height: 1; flex: none; }
-.lead-wa-head .lead-card-title { color: #fff; font-family: 'Cairo', sans-serif; font-size: 1.25rem; letter-spacing: 0; text-transform: none; margin: 0 0 .25rem; }
-.lead-wa-head .lead-card-desc { color: rgba(255, 255, 255, .9); margin: 0; font-size: .875rem; }
-.lead-overlay--wa .lead-close { background: rgba(255, 255, 255, .18); color: #fff; z-index: 2; }
-.lead-overlay--wa .lead-close:hover { background: rgba(255, 255, 255, .32); color: #fff; }
-.lead-overlay--wa .lead-submit { background: #137a3a; }
-.lead-overlay--wa .lead-submit:hover { background: #0f6430; }
-.lead-overlay--wa .lead-success i { color: #137a3a; }
+/* ========== FORMULÁRIO "SOLICITE UM DIAGNÓSTICO" (brand.js, initDiagnostico) ========== */
+.diag { display: block; }
+.diag-topo { margin-bottom: 1.25rem; padding-right: 2rem; }
+.contact-form-card .diag-topo, .lead-card-inline .diag-topo, .cb-form-card .diag-topo { padding-right: 0; }
+.diag-eyebrow { display: flex; align-items: center; gap: .4rem; font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; color: var(--brand-orange); margin: 0 0 .6rem; }
+.diag-titulo { font-family: 'Tachyon', 'Share Tech', sans-serif; font-size: 1.625rem; font-weight: 400; text-transform: uppercase; color: var(--brand-dark); line-height: 1.15; margin: 0 0 .5rem; }
+.diag-desc { font-size: .9375rem; color: #5a5a5a; line-height: 1.55; font-weight: 300; margin: 0 0 1rem; }
+.diag-desc strong { color: var(--brand-dark); font-weight: 600; }
+.diag-barra { height: 6px; border-radius: 999px; background: var(--brand-gray-100); overflow: hidden; }
+.diag-barra span { display: block; height: 100%; width: 6%; border-radius: inherit; background: linear-gradient(90deg, var(--brand-yellow), var(--brand-orange)); transition: width .45s cubic-bezier(.22, 1, .36, 1); }
+.diag-contador { font-size: .75rem; color: var(--brand-gray-400); margin: .45rem 0 0; font-weight: 600; letter-spacing: .02em; }
+.diag-hist { display: none; }
+.diag-etapa { border: 0; margin: 0; padding: 0; min-width: 0; animation: diag-entra .35s cubic-bezier(.22, 1, .36, 1); }
+.diag-etapa[hidden] { display: none; }
+.diag-etapa:focus { outline: none; }
+@keyframes diag-entra { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.diag-pergunta { display: block; padding: 0; font-size: 1.125rem; font-weight: 700; color: var(--brand-dark); line-height: 1.3; margin: 0 0 .9rem; }
+.diag-opcoes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+.diag-opcoes--lista { grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr)); }
+.diag-opcao { position: relative; display: block; cursor: pointer; }
+.diag-opcao input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.diag-opcao span { display: flex; align-items: center; gap: .55rem; min-height: 3rem; padding: .6rem .75rem; border: 1px solid var(--brand-gray-200); border-radius: 12px; background: #fff; font-size: .875rem; font-weight: 600; color: var(--brand-dark); line-height: 1.25; transition: border-color .2s, background .2s, color .2s, transform .15s, box-shadow .2s; }
+.diag-opcao span i { color: var(--brand-yellow-dark); width: 1.1rem; text-align: center; flex: none; }
+.diag-opcao:hover span { border-color: var(--brand-dark); }
+.diag-opcao:active span { transform: scale(.97); }
+.diag-opcao input:focus-visible + span { box-shadow: 0 0 0 3px rgba(247, 204, 25, .55); border-color: var(--brand-dark); }
+.diag-opcao input:checked + span { background: var(--brand-dark); border-color: var(--brand-dark); color: #fff; }
+.diag-opcao input:checked + span i { color: var(--brand-yellow); }
+.diag-opcao--linha span { justify-content: center; text-align: center; }
+.diag-campos { display: grid; gap: .85rem; margin-bottom: 1rem; }
+.diag-campo { display: block; }
+.diag-campo > span:first-child { display: block; font-size: .75rem; font-weight: 700; color: var(--brand-dark); margin-bottom: .35rem; }
+.diag-campo input { width: 100%; border: 1px solid var(--brand-gray-200); border-radius: 10px; padding: .8rem .9rem; font: inherit; font-size: 16px; color: var(--brand-dark); background: #fff; transition: border-color .2s, box-shadow .2s; }
+.diag-campo input:focus { outline: none; border-color: var(--brand-dark); box-shadow: 0 0 0 3px rgba(247, 204, 25, .45); }
+.diag-campo input.is-invalid { border-color: #c62828; box-shadow: 0 0 0 3px rgba(198, 40, 40, .12); }
+.diag-tel { display: flex; align-items: stretch; gap: .5rem; }
+.diag-ddi { display: flex; align-items: center; padding: 0 .75rem; border: 1px solid var(--brand-gray-200); border-radius: 10px; background: var(--brand-gray-100); font-size: .875rem; font-weight: 600; color: var(--brand-dark); white-space: nowrap; }
+.diag-tel input { flex: 1; min-width: 0; }
+.diag-avancar, .diag-enviar { width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: .55rem; border: 0; border-radius: 10px; padding: 1rem 1.25rem; background: var(--brand-dark); color: #fff; font-size: .8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; cursor: pointer; transition: background .2s, transform .15s; }
+.diag-avancar:hover, .diag-enviar:hover { background: var(--brand-orange); }
+.diag-avancar:active, .diag-enviar:active { transform: scale(.98); }
+.diag-avancar--opcao { margin-top: .85rem; }
+.diag-avancar[hidden] { display: none; }
+.diag-enviar[disabled] { opacity: .7; cursor: wait; }
+.diag-aviso { font-size: .75rem; color: var(--brand-gray-400); text-align: center; margin: .75rem 0 0; }
+.diag-aviso i { margin-right: .25rem; }
+.diag-erro { color: #c62828; font-size: .8125rem; margin: .6rem 0 0; min-height: 0; }
+.diag-erro:empty { display: none; }
+.diag-voltar { display: inline-flex; align-items: center; gap: .4rem; margin-top: .9rem; background: none; border: 0; padding: .25rem 0; font-size: .8125rem; font-weight: 600; color: var(--brand-gray-400); cursor: pointer; }
+.diag-voltar:hover { color: var(--brand-dark); }
+.diag-voltar[hidden] { display: none; }
+.diag-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.diag-ok { text-align: center; padding: 1rem 0 .5rem; animation: diag-entra .35s ease; }
+.diag-ok[hidden] { display: none; }
+.diag-ok > i { font-size: 2.75rem; color: #1fa855; margin-bottom: .75rem; display: inline-block; animation: diag-pulo .5s cubic-bezier(.34, 1.56, .64, 1); }
+@keyframes diag-pulo { from { transform: scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+.diag-ok-titulo { font-size: 1.25rem; font-weight: 700; color: var(--brand-dark); margin: 0 0 .35rem; }
+.diag-ok-texto { font-size: .9375rem; color: #5a5a5a; margin: 0 0 1rem; }
+.diag-ok-link { display: inline-flex; align-items: center; gap: .4rem; font-size: .875rem; font-weight: 700; color: #128c4a; text-decoration: underline; text-underline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .diag-etapa, .diag-ok, .diag-ok > i { animation: none; } .diag-barra span { transition: none; } }
+
+/* Popup: cabeçalho de chat só aparece no modo WhatsApp */
+.wa-chat-head { display: none; }
+
+/* ========== MODO WHATSAPP (botão flutuante das LPs da campanha) ==========
+   Mesmo formulário, com a cara de uma conversa no WhatsApp: verde oficial #25D366, cabeçalho #075E54,
+   fundo #EFEAE2, perguntas em balões recebidos e respostas em balões enviados. */
+.lead-overlay--wa .lead-card { border-top: 0; padding: 0; overflow: hidden; border-radius: 14px; background: #efeae2; max-width: 25rem; }
+.lead-overlay--wa .wa-chat-head { display: flex; align-items: center; gap: .75rem; background: #075e54; color: #fff; padding: .85rem 3.5rem .85rem 1rem; }
+.wa-chat-avatar { width: 2.5rem; height: 2.5rem; border-radius: 50%; overflow: hidden; flex: none; background: #161616; }
+.wa-chat-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wa-chat-nome { font-weight: 700; font-size: 1rem; margin: 0; line-height: 1.2; }
+.wa-chat-nome i { color: #25d366; font-size: .8rem; margin-left: .15rem; }
+.wa-chat-status { font-size: .75rem; margin: .1rem 0 0; color: rgba(255, 255, 255, .82); }
+.lead-overlay--wa .lead-close { top: .9rem; right: .75rem; background: transparent; color: #fff; font-size: 1.5rem; z-index: 2; }
+.lead-overlay--wa .lead-close:hover { background: rgba(255, 255, 255, .15); color: #fff; }
+.diag--wa { padding: 1rem .85rem 1.1rem; background-color: #efeae2; background-image: radial-gradient(rgba(0, 0, 0, .045) 1px, transparent 1px); background-size: 14px 14px; }
+.diag--wa .diag-topo { display: none; }
+.diag--wa .diag-hist { display: flex; flex-direction: column; gap: .35rem; max-height: 13rem; overflow-y: auto; margin-bottom: .35rem; padding-bottom: .15rem; }
+.diag--wa .diag-msg { margin: 0; max-width: 85%; padding: .45rem .65rem; font-size: .875rem; line-height: 1.4; color: #111b21; border-radius: 8px; box-shadow: 0 1px .5px rgba(11, 20, 26, .13); word-wrap: break-word; }
+.diag--wa .diag-msg--in { align-self: flex-start; background: #fff; border-top-left-radius: 0; }
+.diag--wa .diag-msg--out { align-self: flex-end; background: #d9fdd3; border-top-right-radius: 0; }
+.diag--wa .diag-msg--out i { color: #53bdeb; font-size: .7rem; margin-left: .3rem; }
+.diag--wa .diag-pergunta { display: table; max-width: 85%; background: #fff; padding: .5rem .7rem; border-radius: 8px; border-top-left-radius: 0; box-shadow: 0 1px .5px rgba(11, 20, 26, .13); font-size: .9375rem; font-weight: 600; color: #111b21; margin: 0 0 .75rem; }
+.diag--wa .diag-opcoes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .4rem; }
+.diag--wa .diag-opcao span { min-height: 2.6rem; border: 0; border-radius: 18px; background: #fff; color: #008069; font-weight: 600; box-shadow: 0 1px .5px rgba(11, 20, 26, .13); justify-content: center; text-align: center; }
+.diag--wa .diag-opcao span i { color: #00a884; }
+.diag--wa .diag-opcao:hover span { background: #f5f6f6; }
+.diag--wa .diag-opcao input:checked + span { background: #25d366; color: #fff; }
+.diag--wa .diag-opcao input:checked + span i { color: #fff; }
+.diag--wa .diag-opcao input:focus-visible + span { box-shadow: 0 0 0 3px rgba(37, 211, 102, .45); }
+.diag--wa .diag-campo > span:first-child { color: #54656f; font-weight: 600; }
+.diag--wa .diag-campo input { border: 0; border-radius: 22px; padding: .75rem 1rem; box-shadow: 0 1px .5px rgba(11, 20, 26, .13); }
+.diag--wa .diag-campo input:focus { box-shadow: 0 0 0 2px #25d366; }
+.diag--wa .diag-ddi { border: 0; border-radius: 22px; background: #fff; box-shadow: 0 1px .5px rgba(11, 20, 26, .13); }
+.diag--wa .diag-avancar, .diag--wa .diag-enviar { background: #25d366; color: #fff; border-radius: 24px; letter-spacing: .06em; }
+.diag--wa .diag-avancar:hover, .diag--wa .diag-enviar:hover { background: #1ebe5b; }
+.diag--wa .diag-aviso, .diag--wa .diag-voltar { color: #54656f; }
+.diag--wa .diag-ok { background: #fff; border-radius: 12px; padding: 1.25rem 1rem; box-shadow: 0 1px .5px rgba(11, 20, 26, .13); }
+.diag--wa .diag-ok > i { color: #25d366; }
 
 /* Nossos Serviços da home: cards cinza do site antigo, com ícones de linha (scripts/generate-servicos-home.py) */
 .servicos-grade { display: grid; gap: 1.5rem; }
