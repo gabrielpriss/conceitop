@@ -10,6 +10,7 @@
 .fa-spin{animation:fa-spin 1s linear infinite}@keyframes fa-spin{to{transform:rotate(360deg)}}
 .fa-arrow-left:before{content:"\f060"}
 .fa-arrow-right:before{content:"\f061"}
+.fa-award:before{content:"\f559"}
 .fa-bars:before{content:"\f0c9"}
 .fa-bolt:before{content:"\f0e7"}
 .fa-briefcase:before{content:"\f0b1"}

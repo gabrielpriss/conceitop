@@ -10,6 +10,7 @@
 .fa-spin{animation:fa-spin 1s linear infinite}@keyframes fa-spin{to{transform:rotate(360deg)}}
 .fa-arrow-left:before{content:"\f060"}
 .fa-arrow-right:before{content:"\f061"}
+.fa-award:before{content:"\f559"}
 .fa-bars:before{content:"\f0c9"}
 .fa-bolt:before{content:"\f0e7"}
 .fa-briefcase:before{content:"\f0b1"}
@@ -1625,3 +1626,10 @@ html, body { overflow-x: clip; }
 }
 @media (hover: none) { .port-desc { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; } }
 @media (prefers-reduced-motion: reduce) { .port-item img, .port-legenda, .port-legenda > * { transition: none; } }
+
+/* Faixa de diferenciais logo abaixo do hero (home, /b2b e /industrial) */
+.cb-promessas { background: var(--brand-dark); border-top: 1px solid rgba(255, 255, 255, .08); }
+.cb-promessas ul { max-width: 72rem; margin: 0 auto; padding: 1.5rem 1.5rem; list-style: none; display: grid; gap: 1rem 1.5rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.cb-promessas li { display: flex; gap: .75rem; align-items: flex-start; color: rgba(255, 255, 255, .85); font-size: 14px; line-height: 1.5; }
+.cb-promessas li i { color: var(--brand-yellow); margin-top: .2rem; }
+.cb-promessas strong { color: #fff; font-weight: 700; }
