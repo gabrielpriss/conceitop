@@ -488,6 +488,8 @@ def pagina(pg):
 
 {ESTRUTURA}
 
+{formulario(pg)}
+
   <section class="py-24 bg-prime-50" aria-labelledby="seg-faq">
     <div class="max-w-3xl mx-auto px-6 lg:px-8">
       <h2 id="seg-faq" class="font-serif text-3xl sm:text-4xl text-prime-900 uppercase text-center leading-tight mb-12">Perguntas <span class="text-gold-400">frequentes</span></h2>
@@ -496,8 +498,6 @@ def pagina(pg):
       </div>
     </div>
   </section>
-
-{formulario(pg)}
   </main>
 
 ''' + rodape('')

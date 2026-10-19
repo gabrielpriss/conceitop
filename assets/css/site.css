@@ -1633,3 +1633,58 @@ html, body { overflow-x: clip; }
 .cb-promessas li { display: flex; gap: .75rem; align-items: flex-start; color: rgba(255, 255, 255, .85); font-size: 14px; line-height: 1.5; }
 .cb-promessas li i { color: var(--brand-yellow); margin-top: .2rem; }
 .cb-promessas strong { color: #fff; font-weight: 700; }
+
+/* ========== TEXTURAS DE MARCA NOS FUNDOS CHAPADOS ==========
+   Elemento de marca: a "escada de pixels" do logo (quadrados que ganham opacidade até virar o P),
+   usada grande e bem sutil num canto de cada seção, alternando o lado. Junto, uma textura leve:
+   pontos nos fundos claros, grão e brilho amarelo nos escuros, grão escuro no amarelo.
+   Tudo em SVG/CSS (alguns KB, nítido em qualquer tela); ::before e ::after ficam atrás do conteúdo. */
+:root {
+  --px-amarelo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 160' fill='%23F7CC19'%3E%3Crect x='0' y='0' width='40' height='40' fill-opacity='0.22'/%3E%3Crect x='40' y='0' width='40' height='40' fill-opacity='0.38'/%3E%3Crect x='80' y='0' width='40' height='40' fill-opacity='0.58'/%3E%3Crect x='120' y='0' width='40' height='40' fill-opacity='0.8'/%3E%3Crect x='160' y='0' width='40' height='40' fill-opacity='1'/%3E%3Crect x='40' y='40' width='40' height='40' fill-opacity='0.22'/%3E%3Crect x='80' y='40' width='40' height='40' fill-opacity='0.42'/%3E%3Crect x='120' y='40' width='40' height='40' fill-opacity='0.66'/%3E%3Crect x='160' y='40' width='40' height='40' fill-opacity='0.9'/%3E%3Crect x='80' y='80' width='40' height='40' fill-opacity='0.26'/%3E%3Crect x='120' y='80' width='40' height='40' fill-opacity='0.5'/%3E%3Crect x='160' y='80' width='40' height='40' fill-opacity='0.78'/%3E%3Crect x='120' y='120' width='40' height='40' fill-opacity='0.32'/%3E%3Crect x='160' y='120' width='40' height='40' fill-opacity='0.64'/%3E%3C/svg%3E");
+  --px-escuro: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 160' fill='%23161616'%3E%3Crect x='0' y='0' width='40' height='40' fill-opacity='0.022'/%3E%3Crect x='40' y='0' width='40' height='40' fill-opacity='0.038'/%3E%3Crect x='80' y='0' width='40' height='40' fill-opacity='0.058'/%3E%3Crect x='120' y='0' width='40' height='40' fill-opacity='0.08'/%3E%3Crect x='160' y='0' width='40' height='40' fill-opacity='0.1'/%3E%3Crect x='40' y='40' width='40' height='40' fill-opacity='0.022'/%3E%3Crect x='80' y='40' width='40' height='40' fill-opacity='0.042'/%3E%3Crect x='120' y='40' width='40' height='40' fill-opacity='0.066'/%3E%3Crect x='160' y='40' width='40' height='40' fill-opacity='0.09'/%3E%3Crect x='80' y='80' width='40' height='40' fill-opacity='0.026'/%3E%3Crect x='120' y='80' width='40' height='40' fill-opacity='0.05'/%3E%3Crect x='160' y='80' width='40' height='40' fill-opacity='0.078'/%3E%3Crect x='120' y='120' width='40' height='40' fill-opacity='0.032'/%3E%3Crect x='160' y='120' width='40' height='40' fill-opacity='0.064'/%3E%3C/svg%3E");
+  --grao-claro: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23g%29'/%3E%3C/svg%3E");
+  --grao-escuro: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23g%29'/%3E%3C/svg%3E");
+}
+main > section.bg-white:not(.sticky), main > section.bg-slate-50, main > section.bg-prime-50,
+main > section.bg-prime-900, main > section.bg-prime-950, .site-footer, .cb-nove-sec,
+.contact-section.bg-gold-400, .cb-form-sec, .lead-form-section { position: relative; isolation: isolate; }
+
+/* Claros: pontos que somem no meio + escada de pixels amarela */
+main > section.bg-white:not(.sticky)::after, main > section.bg-slate-50::after, main > section.bg-prime-50::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: radial-gradient(rgba(22, 22, 22, .11) 1px, transparent 1.3px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 100% 0%, #000 0%, transparent 70%), radial-gradient(ellipse 50% 60% at 0% 100%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(ellipse 60% 70% at 100% 0%, #000 0%, transparent 70%), radial-gradient(ellipse 50% 60% at 0% 100%, #000 0%, transparent 70%);
+}
+main > section.bg-white:not(.sticky)::before, main > section.bg-slate-50::before, main > section.bg-prime-50::before {
+  content: ''; position: absolute; z-index: -1; pointer-events: none; top: 2.5rem; right: 2.5rem; width: 170px; height: 136px;
+  background: var(--px-amarelo) no-repeat center / contain; opacity: .32;
+}
+main > section:nth-of-type(even).bg-white:not(.sticky)::before, main > section:nth-of-type(even).bg-slate-50::before, main > section:nth-of-type(even).bg-prime-50::before {
+  top: auto; right: auto; bottom: 2.5rem; left: 2.5rem; transform: scale(-1, -1);
+}
+
+/* Escuros: grão fino + brilho amarelo num canto + escada de pixels quase apagada */
+main > section.bg-prime-900::after, main > section.bg-prime-950::after, .site-footer::after, .cb-nove-sec::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(circle at 92% 0%, rgba(247, 204, 25, .12), transparent 38%), radial-gradient(circle at 0% 100%, rgba(247, 204, 25, .06), transparent 35%), var(--grao-claro);
+}
+main > section.bg-prime-900::before, main > section.bg-prime-950::before, .site-footer::before {
+  content: ''; position: absolute; z-index: -1; pointer-events: none; top: 2.5rem; right: 2.5rem; width: 150px; height: 120px;
+  background: var(--px-amarelo) no-repeat center / contain; opacity: .14;
+}
+
+/* Amarelos: grão escuro + escada de pixels em preto bem leve */
+.contact-section.bg-gold-400::after, .cb-form-sec::after, .lead-form-section::after {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: var(--px-escuro) no-repeat right 3rem top 3rem / 190px 152px, var(--px-escuro) no-repeat left 3rem bottom 3rem / 120px 96px, var(--grao-escuro);
+}
+.contact-section.bg-gold-400::after, .cb-form-sec::after { z-index: -1; }
+.lead-form-section::after { background: var(--px-escuro) no-repeat right 3rem top 3rem / 190px 152px, var(--grao-escuro); }
+
+@media (max-width: 767px) {
+  main > section.bg-white:not(.sticky)::before, main > section.bg-slate-50::before, main > section.bg-prime-50::before,
+  main > section.bg-prime-900::before, main > section.bg-prime-950::before, .site-footer::before { width: 90px; height: 72px; top: 1.25rem; right: 1.25rem; opacity: .2; }
+  main > section:nth-of-type(even).bg-white:not(.sticky)::before, main > section:nth-of-type(even).bg-slate-50::before, main > section:nth-of-type(even).bg-prime-50::before { bottom: 1.25rem; left: 1.25rem; }
+}
