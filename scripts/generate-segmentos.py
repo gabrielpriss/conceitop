@@ -42,14 +42,14 @@ VIDEOS = {
 # Serviços da página de indústria: foco no que a campanha vende (a home continua com todos)
 SERVICOS_INDUSTRIA = [
     ('fab fa-google', 'Google Ads e Meta Ads', 'Google Ads para quem já procura fornecedor, com termos de compra B2B e negativas de varejo, e Meta Ads para alcançar compradores que ainda não conhecem a sua indústria.'),
-    ('fas fa-laptop-code', 'Site e página de captação', 'Sites institucionais e páginas de campanha em WordPress ou código próprio, rápidos e integrados ao Google Ads, com formulário que qualifica o contato.'),
+    ('fas fa-laptop-code', 'Site e página de captação', 'Sites e páginas de alta conversão, rápidos e integrados ao Google Ads, com mensagem pensada para o comprador industrial e formulário que qualifica o contato.'),
     ('fas fa-chart-line', 'Medição e CRM', 'Conversão contada só quando chega pedido de verdade, com cada contato registrado na planilha ou no CRM e a origem de cada um.'),
 ]
 
 # Página B2B: mostra a agência completa, não só anúncios
 SERVICOS_B2B = [
     ('fas fa-chess-knight', 'Posicionamento e marca', 'Proposta de valor clara para o decisor, identidade visual e discurso alinhados entre site, proposta e time comercial.'),
-    ('fas fa-laptop-code', 'Site e páginas de captação', 'Sites institucionais em WordPress ou código próprio, integrados ao Google Ads, e páginas de campanha com formulário que qualifica o contato.'),
+    ('fas fa-laptop-code', 'Site e páginas de captação', 'Sites e páginas de alta conversão, integrados ao Google Ads, com mensagem pensada para o decisor e formulário que qualifica o contato.'),
     ('fas fa-bullseye', 'Google Ads e Meta Ads', 'Google Ads para quem já procura fornecedor e Meta Ads para quem ainda não conhece a sua marca, com verba e região definidas pelo comercial.'),
     ('fas fa-share-nodes', 'Conteúdo e redes sociais', 'LinkedIn e Instagram com conteúdo técnico e de autoridade, para o decisor reconhecer a sua empresa quando chega a hora de comprar.'),
     ('fas fa-comments', 'Atendimento e CRM', 'WhatsApp organizado, leads registrados com origem e funil visível, para nenhum contato se perder entre o marketing e o vendedor.'),
@@ -59,11 +59,10 @@ SERVICOS_B2B = [
 # O que os anúncios prometem: cada item precisa aparecer na página de destino
 PROMESSAS = [
     ('fas fa-check', '<strong>Para empresas com faturamento acima de R$ 100 mil/mês</strong>'),
-    ('fas fa-location-dot', 'Escritório em Curitiba e <strong>atendimento em todo o Paraná</strong>'),
+    ('fas fa-location-dot', 'Escritórios em <strong>Curitiba e Cascavel</strong>'),
     ('fab fa-google', 'Gestão de <strong>Google Ads e Meta Ads</strong>'),
-    ('fas fa-laptop-code', 'Sites em <strong>WordPress ou código próprio</strong>, integrados ao Google Ads'),
+    ('fas fa-laptop-code', 'Sites e páginas de <strong>alta conversão</strong>, integrados ao Google Ads'),
     ('fas fa-filter', 'Foco em <strong>lead qualificado</strong>, não em volume'),
-    ('fas fa-hourglass-half', 'Trabalho de médio prazo, com <strong>resultado consistente em 3 a 6 meses</strong>'),
 ]
 
 NAO_FAZ_SENTIDO = [
@@ -87,7 +86,7 @@ PAGINAS = [
             'O objetivo é pedido qualificado, mesmo com volume menor, num trabalho de 3 a 6 meses.',
         ],
         'h1': 'Pedidos de orçamento de quem <span class="text-gold-400">compra em volume</span>',
-        'sub': 'Estruturamos Google Ads, Meta Ads, site e medição para a sua indústria receber contatos de empresas compradoras, e não de consumidor final atrás de peça avulsa. Escritório em Curitiba, atendimento em todo o Paraná.',
+        'sub': 'Estruturamos Google Ads, Meta Ads, site e medição para a sua indústria receber contatos de empresas compradoras, e não de consumidor final atrás de peça avulsa. Escritórios em Curitiba e Cascavel.',
         'logos_titulo': 'Algumas indústrias e distribuidores que <span class="text-gold-400">trabalham com a gente</span>',
         'logos': ['plasfix', 'naciopetro', 'rolpro', 'ladaniuski', 'atlas-eletromotores', 'do-valle', 'cactos',
                   'tech-composites', 'rgm-service', 'serquip', 'mais-madeiras', 'pontual', 'm8-pneus',
@@ -111,8 +110,8 @@ PAGINAS = [
         'faq': [
             ('Para que tipo de empresa é esse trabalho?', 'Para indústrias e distribuidores com faturamento acima de R$ 100 mil por mês que vendem para outras empresas. Já atendemos indústrias no Paraná em segmentos como fitas adesivas, rolamentos, correias industriais, motores elétricos e usinagem.'),
             ('Em quanto tempo aparece resultado?', 'É um trabalho de médio prazo. As primeiras semanas servem para calibrar termos, negativas e página com o que o comercial de vocês considera pedido bom, e o resultado fica consistente entre 3 e 6 meses.'),
-            ('Atendem indústrias fora de Curitiba?', 'Sim. Nosso escritório fica em Curitiba e atendemos todo o Paraná, com reuniões presenciais ou online. Também temos clientes em outros estados.'),
-            ('Vocês só fazem os anúncios?', 'Não. Cuidamos de Google Ads e Meta Ads, do site ou da página de captação, em WordPress ou código próprio e integrados ao Google Ads, e da medição. Sem essas peças juntas, o painel mostra resultado que o comercial não enxerga.'),
+            ('Atendem indústrias fora de Curitiba?', 'Sim. Temos escritórios em Curitiba e em Cascavel, com reuniões presenciais ou online, e atendemos clientes em outros estados.'),
+            ('Vocês só fazem os anúncios?', 'Não. Cuidamos de Google Ads e Meta Ads, do site e das páginas de alta conversão integrados ao Google Ads, e da medição. Sem essas peças juntas, o painel mostra resultado que o comercial não enxerga.'),
             ('Como sabemos se a campanha está dando resultado?', 'Cada contato chega com a origem registrada e conferimos com vocês quais viraram orçamento e venda. O relatório parte desse dado, não só do que o Google mostra.'),
             ('Qual o investimento em mídia?', 'Definimos no diagnóstico, a partir do volume de busca do seu mercado, das praças e do ticket. A proposta mostra a verba sugerida antes de qualquer contratação.'),
         ],
@@ -134,7 +133,7 @@ PAGINAS = [
             'Vocês topam um trabalho de médio prazo, de 3 a 6 meses, para o resultado ficar consistente.',
         ],
         'h1': 'Marketing B2B do posicionamento ao <span class="text-gold-400">contrato fechado</span>',
-        'sub': 'Google Ads, Meta Ads, site, marca e processo comercial trabalhando juntos para a sua empresa atrair decisores com perfil de compra e transformar esses contatos em contratos. Escritório em Curitiba, atendimento em todo o Paraná.',
+        'sub': 'Google Ads, Meta Ads, site, marca e processo comercial trabalhando juntos para a sua empresa atrair decisores com perfil de compra e transformar esses contatos em contratos. Escritórios em Curitiba e Cascavel.',
         'logos_titulo': 'Algumas empresas B2B que <span class="text-gold-400">trabalham com a gente</span>',
         'logos': ['reda', 'do-valle', 'german-financial', 'rgm-service', 'naciopetro', 'cactos', 'ice-cargo',
                   'tech-composites', 'aiss', 'pontual', 'serquip', 'dracos', 'rolpro', 'ladaniuski',
@@ -156,12 +155,12 @@ PAGINAS = [
         ],
         'videos': ['german', 'kuzma', 'ruan', 'heloise'],
         'faq': [
-            ('Vocês fazem só anúncios?', 'Não. Além da gestão de Google Ads e Meta Ads, trabalhamos sites em WordPress ou código próprio integrados ao Google Ads, marca, conteúdo, atendimento e CRM, treinamento comercial e materiais de venda. O diagnóstico mostra por onde começar no caso de vocês.'),
+            ('Vocês fazem só anúncios?', 'Não. Além da gestão de Google Ads e Meta Ads, trabalhamos sites e páginas de alta conversão integrados ao Google Ads, marca, conteúdo, atendimento e CRM, treinamento comercial e materiais de venda. O diagnóstico mostra por onde começar no caso de vocês.'),
             ('Para que tipo de empresa é esse trabalho?', 'Para empresas que vendem para outras empresas e faturam acima de R$ 100 mil por mês. O foco é lead qualificado, não volume: preferimos menos contatos com perfil de compra do que muitos contatos que o comercial descarta.'),
             ('Em quanto tempo aparece resultado?', 'É um trabalho de médio prazo. As primeiras semanas servem para calibrar campanhas, página e filtro de leads, e o resultado fica consistente entre 3 e 6 meses.'),
             ('Funciona para venda consultiva com ciclo longo?', 'Sim. Medimos o lead qualificado na entrada e acompanhamos com vocês o que vira reunião e contrato, para o trabalho não ser julgado só pelo volume.'),
             ('Precisamos contratar tudo de uma vez?', 'Não. Montamos a entrega pelo que mais trava as vendas hoje e ampliamos conforme o resultado aparece.'),
-            ('Atendem empresas fora de Curitiba?', 'Sim. Nosso escritório fica em Curitiba e atendemos todo o Paraná, com reuniões presenciais ou online. Também temos clientes em outros estados.'),
+            ('Atendem empresas fora de Curitiba?', 'Sim. Temos escritórios em Curitiba e em Cascavel, com reuniões presenciais ou online, e atendemos clientes em outros estados.'),
             ('Qual o investimento?', 'Definimos no diagnóstico, a partir do que vocês já têm, do mercado e do ticket. A proposta mostra escopo e verba sugerida antes de qualquer contratação.'),
         ],
         'servico_hidden': 'Campanha B2B',
@@ -442,7 +441,7 @@ def pagina(pg):
          'provider': {'@type': 'Organization', 'name': 'Conceito Prime', 'url': SITE,
                       'address': {'@type': 'PostalAddress', 'streetAddress': 'R. Antônio Rodrigues, 76', 'addressLocality': 'Curitiba',
                                   'addressRegion': 'PR', 'addressCountry': 'BR'}},
-         'areaServed': {'@type': 'State', 'name': 'Paraná'}, 'url': url},
+         'areaServed': {'@type': 'Country', 'name': 'Brasil'}, 'url': url},
         {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
             {'@type': 'Question', 'name': p, 'acceptedAnswer': {'@type': 'Answer', 'text': r}} for p, r in pg['faq']]},
     ], ensure_ascii=False)
