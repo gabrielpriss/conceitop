@@ -1532,3 +1532,25 @@ html, body { overflow-x: clip; }
 .saida-fechar { position: absolute; top: .85rem; right: .85rem; z-index: 2; width: 2.25rem; height: 2.25rem; border: 0; border-radius: 50%; background: rgba(22, 22, 22, .12); color: var(--brand-dark); font-size: 1.5rem; line-height: 1; cursor: pointer; transition: background .2s; }
 .saida-fechar:hover { background: rgba(22, 22, 22, .24); }
 @media (prefers-reduced-motion: reduce) { .saida-overlay, .saida-card { transition: none; } }
+
+/* ========== PORTFÓLIO DA HOME ==========
+   Legenda em texto (indexável): no computador aparece no hover; no celular fica sempre visível na base. */
+.port-grade { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 4px; }
+@media (min-width: 640px) { .port-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .port-grade { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.port-item { position: relative; margin: 0; aspect-ratio: 1 / 1; overflow: hidden; background: #fff; }
+.port-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(30%); transition: transform .7s cubic-bezier(.22, 1, .36, 1), filter .7s; }
+.port-legenda { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.75rem; background: linear-gradient(to top, rgba(13, 13, 13, .92) 0%, rgba(13, 13, 13, .55) 45%, rgba(13, 13, 13, 0) 75%); }
+.port-cat { display: inline-block; align-self: flex-start; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; color: var(--brand-dark); background: var(--brand-yellow); padding: .3rem .6rem; margin-bottom: .75rem; }
+.port-titulo { font-family: 'Tachyon', 'Share Tech', sans-serif; font-size: 1.5rem; font-weight: 400; text-transform: uppercase; line-height: 1.1; color: #fff; margin: 0 0 .5rem; }
+.port-desc { font-size: .875rem; line-height: 1.55; color: rgba(255, 255, 255, .85); font-weight: 300; margin: 0; }
+@media (hover: hover) and (pointer: fine) {
+  .port-legenda { background: rgba(13, 13, 13, .82); justify-content: center; opacity: 0; transition: opacity .45s; }
+  .port-legenda > * { transform: translateY(14px); transition: transform .5s cubic-bezier(.22, 1, .36, 1); }
+  .port-titulo { color: var(--brand-yellow); }
+  .port-item:hover img, .port-item:focus-within img { transform: scale(1.06); filter: grayscale(0); }
+  .port-item:hover .port-legenda, .port-item:focus-within .port-legenda { opacity: 1; }
+  .port-item:hover .port-legenda > *, .port-item:focus-within .port-legenda > * { transform: none; }
+}
+@media (hover: none) { .port-desc { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; } }
+@media (prefers-reduced-motion: reduce) { .port-item img, .port-legenda, .port-legenda > * { transition: none; } }
