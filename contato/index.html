@@ -35,7 +35,13 @@
             <a href="/industrial/"  class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Indústrias</a>
             <a href="/b2b/"         class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">B2B</a>
             <a href="/blog/"        class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Blog</a>
-            <a href="/contato/"     class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Contato</a>
+            <div class="nav-drop">
+              <a href="/contato/" class="nav-link nav-drop-btn text-prime-900 text-[13px] uppercase tracking-widest font-medium transition" aria-haspopup="true">Contato <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+              <div class="nav-drop-menu">
+                <a href="/contato/">Fale com a gente</a>
+                <a href="/contato/#trabalhe-conosco">Trabalhe conosco</a>
+              </div>
+            </div>
           </div>
           <a href="/contato/"
              class="btn-wa text-[11px] px-6 py-3 uppercase tracking-[0.15em]">
@@ -56,6 +62,7 @@
         <a href="/b2b/"         class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">B2B</a>
         <a href="/blog/"        class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Blog</a>
         <a href="/contato/"     class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Contato</a>
+        <a href="/contato/#trabalhe-conosco" class="text-prime-600 text-xs uppercase tracking-widest font-medium transition px-2 pl-6">Trabalhe conosco</a>
         <a href="/contato/"
            class="btn-wa inline-flex justify-center text-xs px-6 py-4 mt-2 uppercase tracking-[0.2em]">
           <i class="fab fa-whatsapp" aria-hidden="true"></i> Solicitar orçamento
@@ -79,60 +86,6 @@
     </div>
   </section>
 
-  <!-- ========== CONTACT INFO CARDS ========== -->
-  <section class="bg-white py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
-
-        <!-- Endereço -->
-        <div class="info-card bg-slate-50 rounded-2xl p-6 border border-gray-100">
-          <div class="w-12 h-12 rounded-xl bg-prime-50 flex items-center justify-center mb-4">
-            <i class="fas fa-map-marker-alt text-gold-500 text-lg"></i>
-          </div>
-          <h3 class="font-bold font-serif font-serif text-prime-900 mb-2 text-sm uppercase tracking-wide">Endereço</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">
-            R. Antônio Rodrigues, 76<br>Campina do Siqueira<br>Curitiba, PR, 80740-560
-          </p>
-          <a href="https://www.google.com/maps/search/?api=1&query=Conceito+Prime+Curitiba+PR" target="_blank" rel="noopener"
-             class="inline-flex items-center gap-1 text-gold-500 hover:text-yellow-500 font-semibold text-xs mt-3 transition">
-            Ver no mapa <i class="fas fa-external-link-alt text-xs"></i>
-          </a>
-        </div>
-
-        <!-- Telefone -->
-        <div class="info-card bg-slate-50 rounded-2xl p-6 border border-gray-100">
-          <div class="w-12 h-12 rounded-xl bg-prime-50 flex items-center justify-center mb-4">
-            <i class="fas fa-phone text-gold-500 text-lg"></i>
-          </div>
-          <h3 class="font-bold font-serif font-serif text-prime-900 mb-2 text-sm uppercase tracking-wide">Telefone</h3>
-          <p class="text-gray-600 text-sm font-medium block mb-3">(41) 3057-4764</p>
-          <a href="https://wa.me/5541999904764?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20atendente." target="_blank" rel="noopener" data-cta="contato-card-telefone"
-             class="inline-flex items-center gap-2 bg-prime-900 hover:bg-prime-950 text-white font-bold text-xs px-4 py-2 rounded-full transition uppercase tracking-wide">
-            <i class="fab fa-whatsapp text-xs" aria-hidden="true"></i> Falar no WhatsApp
-          </a>
-        </div>
-
-        <!-- E-mail -->
-        <div class="info-card bg-slate-50 rounded-2xl p-6 border border-gray-100">
-          <div class="w-12 h-12 rounded-xl bg-prime-50 flex items-center justify-center mb-4">
-            <i class="fas fa-envelope text-gold-500 text-lg"></i>
-          </div>
-          <h3 class="font-bold font-serif font-serif text-prime-900 mb-2 text-sm uppercase tracking-wide">E-mail</h3>
-          <a href="mailto:contato@conceitop.com.br"
-             class="text-gray-600 text-sm font-medium hover:text-gold-500 transition block mb-3 break-all">
-            contato@conceitop.com.br
-          </a>
-          <a href="mailto:contato@conceitop.com.br"
-             class="inline-flex items-center gap-2 border border-prime-900 font-serif font-serif text-prime-900 hover:bg-prime-950 hover:text-white font-bold text-xs px-4 py-2 rounded-full transition uppercase tracking-wide">
-            Enviar e-mail
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
   <!-- ========== FORM + MAPA EM CAMADAS ========== -->
   <section class="contact-section contact-section--sem-mapa bg-gold-400 py-12 lg:py-0" aria-labelledby="contato-form-title">
     <div class="contact-layered">
@@ -148,20 +101,10 @@
       </div>
 
       <div class="contact-front">
-        <aside class="contact-social-rail" aria-label="Redes sociais">
-          <a href="https://www.facebook.com/ConceitoPrimeSE/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/conceitoprimese/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/company/conceito-prime/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </aside>
 
         <div class="contact-form-card lead-card lead-card-inline">
           <form class="diag" id="form-contato" data-diagnostico data-titulo-id="contato-form-title" aria-label="Solicite um diagnóstico"></form>
 
-          <div class="contact-social-mobile" aria-label="Redes sociais">
-            <a href="https://www.facebook.com/ConceitoPrimeSE/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/conceitoprimese/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/conceito-prime/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          </div>
         </div>
       </div>
 
@@ -194,6 +137,129 @@
     </div>
   </section>
   <!-- /NOSSA ESTRUTURA -->
+
+  <!-- TRABALHE CONOSCO (mesmo formulário de /trabalhe-conosco/) -->
+  <section id="trabalhe-conosco" class="py-20 bg-prime-50 scroll-mt-24" aria-labelledby="tc-titulo">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-16 items-start">
+
+      <div>
+        <div class="w-12 h-[1px] bg-gold-400 mb-8"></div>
+        <h2 id="tc-titulo" class="font-serif text-3xl sm:text-4xl text-prime-900 mb-6 uppercase leading-tight">Trabalhe <span class="text-gold-400">conosco</span></h2>
+        <div class="space-y-6 text-prime-600 text-[17px] leading-relaxed">
+          <div>
+            <h3 class="font-bold text-prime-900 mb-1 text-base uppercase tracking-wide">Para quem quer trabalhar na Conceito Prime</h3>
+            <p>Escolha a opção "Currículo", conte em que área você atua e anexe o seu currículo em PDF ou Word. Guardamos o seu cadastro para as próximas vagas.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-prime-900 mb-1 text-base uppercase tracking-wide">Para fornecedores e parceiros</h3>
+            <p>Escolha a opção "Fornecedor", informe a empresa e o que oferece. Se tiver apresentação comercial ou catálogo, anexe junto. Retornamos quando houver interesse.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-prime-900 mb-1 text-base uppercase tracking-wide">Procura os nossos serviços?</h3>
+            <p>Este formulário não é o canal de orçamento. Para falar com o comercial, <a href="#form-contato" class="text-prime-900 font-semibold underline underline-offset-2">use o formulário de diagnóstico</a> no topo desta página.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-prime-100 shadow-sm p-6 sm:p-10">
+        <div class="tc-sucesso hidden" data-tc-sucesso role="status" aria-live="polite">
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <p class="tc-sucesso-titulo">Recebemos o seu envio.</p>
+          <p>Obrigado pelo interesse na Conceito Prime. Se houver uma oportunidade compatível, entramos em contato pelo e-mail ou telefone informados.</p>
+        </div>
+
+        <form id="form-trabalhe" class="tc-form" novalidate aria-label="Formulário Trabalhe Conosco">
+          <div class="lead-error" data-lead-error role="alert" aria-live="assertive"></div>
+
+          <fieldset class="tc-tipo">
+            <legend class="tc-label">O que você quer enviar?</legend>
+            <label class="tc-opcao"><input type="radio" name="tipo" value="curriculo" checked> <span><i class="fas fa-user" aria-hidden="true"></i> Currículo</span></label>
+            <label class="tc-opcao"><input type="radio" name="tipo" value="fornecedor"> <span><i class="fas fa-file-invoice" aria-hidden="true"></i> Proposta de fornecedor</span></label>
+          </fieldset>
+
+          <div class="tc-grid">
+            <div class="tc-campo">
+              <label class="tc-label" for="tc-nome">Nome completo</label>
+              <input id="tc-nome" name="nome" type="text" required autocomplete="name">
+            </div>
+            <div class="tc-campo">
+              <label class="tc-label" for="tc-email">E-mail</label>
+              <input id="tc-email" name="email" type="email" required autocomplete="email">
+            </div>
+            <div class="tc-campo">
+              <label class="tc-label" for="tc-telefone">Telefone com DDD</label>
+              <input id="tc-telefone" name="telefone" type="tel" required data-phone-mask autocomplete="tel" inputmode="tel">
+            </div>
+            <div class="tc-campo">
+              <label class="tc-label" for="tc-cidade">Cidade</label>
+              <input id="tc-cidade" name="cidade" type="text" autocomplete="address-level2">
+            </div>
+          </div>
+
+          <div class="tc-bloco" data-tipo="curriculo">
+            <div class="tc-grid">
+              <div class="tc-campo">
+                <label class="tc-label" for="tc-area">Área de interesse</label>
+                <select id="tc-area" name="area" data-obrigatorio-curriculo>
+                  <option value="" disabled selected>Selecione</option>
+                  <option>Atendimento e comercial</option>
+                  <option>Gestão de tráfego (Google e Meta Ads)</option>
+                  <option>Social media e conteúdo</option>
+                  <option>Design e branding</option>
+                  <option>Desenvolvimento web</option>
+                  <option>Administrativo e financeiro</option>
+                  <option>Outra</option>
+                </select>
+              </div>
+              <div class="tc-campo">
+                <label class="tc-label" for="tc-link">LinkedIn ou portfólio <span class="tc-opcional">(opcional)</span></label>
+                <input id="tc-link" name="link" type="url" inputmode="url" placeholder="https://">
+              </div>
+            </div>
+          </div>
+
+          <div class="tc-bloco hidden" data-tipo="fornecedor">
+            <div class="tc-grid">
+              <div class="tc-campo">
+                <label class="tc-label" for="tc-empresa">Empresa</label>
+                <input id="tc-empresa" name="empresa" type="text" autocomplete="organization" data-obrigatorio-fornecedor>
+              </div>
+              <div class="tc-campo">
+                <label class="tc-label" for="tc-oferta">Produto ou serviço oferecido</label>
+                <input id="tc-oferta" name="oferta" type="text" data-obrigatorio-fornecedor>
+              </div>
+              <div class="tc-campo tc-campo-full">
+                <label class="tc-label" for="tc-site">Site da empresa <span class="tc-opcional">(opcional)</span></label>
+                <input id="tc-site" name="site" type="url" inputmode="url" placeholder="https://">
+              </div>
+            </div>
+          </div>
+
+          <div class="tc-campo">
+            <label class="tc-label" for="tc-mensagem">Mensagem <span class="tc-opcional">(opcional)</span></label>
+            <textarea id="tc-mensagem" name="mensagem" rows="4"></textarea>
+          </div>
+
+          <div class="tc-campo">
+            <label class="tc-label" for="tc-arquivo"><span data-rotulo-arquivo>Currículo</span> em anexo <span class="tc-opcional" data-anexo-opcional hidden>(opcional)</span></label>
+            <input id="tc-arquivo" name="arquivo" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" class="tc-arquivo" aria-describedby="tc-arquivo-ajuda">
+            <p id="tc-arquivo-ajuda" class="tc-ajuda">PDF, Word, JPG ou PNG com até 5 MB.</p>
+          </div>
+
+          <div class="tc-hp" aria-hidden="true">
+            <label for="tc-website">Não preencha</label>
+            <input id="tc-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <p class="tc-ajuda">Usamos os dados enviados apenas para processos seletivos e avaliação de fornecedores da Conceito Prime.</p>
+
+          <button type="submit" class="contact-submit tc-enviar">Enviar <i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
 
   <section class="bg-white py-12 border-t border-prime-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -238,10 +304,8 @@
         <!-- Social / Extra -->
         <div class="lg:col-span-3">
            <h4 class="text-white font-serif text-lg mb-6">Social</h4>
-           <div class="flex gap-4">
-             <a href="https://www.facebook.com/ConceitoPrimeSE/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-gold-400 hover:text-gold-400 transition-all duration-300" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-             <a href="https://www.instagram.com/conceitoprimese/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-gold-400 hover:text-gold-400 transition-all duration-300" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-             <a href="https://www.linkedin.com/company/conceito-prime/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-gold-400 hover:text-gold-400 transition-all duration-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+           <div class="flex">
+             <a href="https://www.instagram.com/conceitoprimese/" target="_blank" rel="noopener noreferrer" class="footer-insta inline-flex items-center gap-3 text-white hover:text-gold-400 transition-colors duration-300"><span class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center"><i class="fab fa-instagram" aria-hidden="true"></i></span><span class="text-[15px] font-light">@conceitoprimese</span></a>
            </div>
         </div>
 

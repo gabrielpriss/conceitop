@@ -24,9 +24,7 @@ def render_contact_social_mobile():
 
 
 def render_footer_social():
-    btn = 'class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-gold-400 hover:text-gold-400 transition-all duration-300"'
-    return f"""          <div class="flex gap-4">
-            <a href="{SOCIAL_FACEBOOK}" {_SOCIAL_ATTRS} {btn} aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="{SOCIAL_INSTAGRAM}" {_SOCIAL_ATTRS} {btn} aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="{SOCIAL_LINKEDIN}" {_SOCIAL_ATTRS} {btn} aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    """Rodapé: só o Instagram, como @conceitoprimese (as redes não aparecem mais nos formulários)."""
+    return f"""          <div class="flex">
+            <a href="{SOCIAL_INSTAGRAM}" {_SOCIAL_ATTRS} class="footer-insta inline-flex items-center gap-3 text-white hover:text-gold-400 transition-colors duration-300"><span class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center"><i class="fab fa-instagram" aria-hidden="true"></i></span><span class="text-[15px] font-light">@conceitoprimese</span></a>
           </div>"""

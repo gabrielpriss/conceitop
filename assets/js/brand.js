@@ -570,6 +570,92 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.classList.contains('hidden')) { definir(false); btn.focus(); } });
 })();
 
+/* ========== POPUP DE SAÍDA (exit intent) ==========
+   Mesmo comportamento do site anterior: aparece quando o mouse sai pela parte de cima da janela
+   (a pessoa indo fechar a aba ou trocar de site). Regras para não atrapalhar nem prejudicar o SEO:
+   - só em computador com mouse; no celular não existe esse gesto e o Google penaliza intersticiais intrusivos;
+   - nunca na chegada: só depois de 8 segundos na página, e nunca nas páginas de obrigado;
+   - no máximo uma vez a cada 7 dias por navegador, e não aparece para quem já começou ou enviou o formulário;
+   - o botão abre o formulário "Solicite um diagnóstico". */
+(function initPopupSaida() {
+  if (document.body.hasAttribute('data-tipos-conversao')) return;
+  if (!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1024px)').matches) return;
+  const CHAVE = 'cp_popup_saida';
+  const INTERVALO = 7 * 24 * 60 * 60 * 1000;
+  let ultima = 0;
+  try { ultima = Number(localStorage.getItem(CHAVE) || 0); } catch (e) { ultima = 0; }
+  if (Date.now() - ultima < INTERVALO) return;
+  try { if (sessionStorage.getItem(CHAVE)) return; } catch (e) { /* segue */ }
+
+  const IMG = '/assets/images/popup-consultor.webp';
+  let armado = false;
+  let mostrado = false;
+  setTimeout(function () {
+    armado = true;
+    const pre = new Image(); pre.src = IMG; /* carrega a foto só depois, sem pesar na abertura da página */
+  }, 8000);
+
+  function jaInteragiu() {
+    return (window.dataLayer || []).some(function (e) { return e && /^(form_start|form_submit|lead_b2b|lead_qualificado)$/.test(e.event); }) ||
+      !!document.querySelector('#lead-overlay.open');
+  }
+
+  function registrar() {
+    try { localStorage.setItem(CHAVE, String(Date.now())); } catch (e) { /* segue */ }
+    try { sessionStorage.setItem(CHAVE, '1'); } catch (e) { /* segue */ }
+  }
+
+  function mostrar() {
+    mostrado = true;
+    registrar();
+    const overlay = document.createElement('div');
+    overlay.className = 'saida-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-labelledby', 'saida-titulo');
+    overlay.innerHTML = `
+      <div class="saida-card">
+        <button type="button" class="saida-fechar" aria-label="Fechar">&times;</button>
+        <div class="saida-foto"><img src="${IMG}" alt="Consultor da Conceito Prime à mesa de reunião, com café e notebook" width="560" height="840"></div>
+        <div class="saida-texto">
+          <p class="saida-eyebrow"><i class="fas fa-mug-hot" aria-hidden="true"></i> Antes de sair</p>
+          <h2 id="saida-titulo">Uma reunião com nosso consultor <span>não tem preço</span></h2>
+          <p class="saida-desc">Em poucos minutos entendemos o momento da sua empresa e mostramos o próximo passo para vender mais.</p>
+          <button type="button" class="saida-cta">Quero falar com um consultor <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+          <button type="button" class="saida-depois">Agora não</button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+    const anterior = document.activeElement;
+    const fechar = function (motivo) {
+      overlay.classList.remove('open');
+      document.removeEventListener('keydown', teclado);
+      setTimeout(function () { overlay.remove(); }, 300);
+      if (motivo) track('exit_popup_fechar', { motivo: motivo });
+      if (anterior && anterior.focus && motivo !== 'cta') anterior.focus();
+    };
+    const teclado = function (e) { if (e.key === 'Escape') fechar('esc'); };
+    document.addEventListener('keydown', teclado);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) fechar('fora'); });
+    overlay.querySelector('.saida-fechar').addEventListener('click', function () { fechar('x'); });
+    overlay.querySelector('.saida-depois').addEventListener('click', function () { fechar('agora-nao'); });
+    overlay.querySelector('.saida-cta').addEventListener('click', function () {
+      track('exit_popup_clique', { pagina: location.pathname });
+      fechar('cta');
+      if (window.openLeadModal) window.openLeadModal();
+    });
+    requestAnimationFrame(function () { overlay.classList.add('open'); overlay.querySelector('.saida-cta').focus({ preventScroll: true }); });
+    track('exit_popup_view', { pagina: location.pathname });
+  }
+
+  document.addEventListener('mouseout', function (e) {
+    if (mostrado || !armado || e.relatedTarget) return;
+    if (e.clientY > 8) return; /* saiu pela parte de cima: abas, barra de endereço, fechar */
+    if (jaInteragiu()) return;
+    mostrar();
+  });
+})();
+
 /* Eventos de engajamento */
 (function initEngajamento() {
   let rolou = false;

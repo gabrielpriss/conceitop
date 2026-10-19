@@ -45,7 +45,13 @@
             <a href="/industrial/"  class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Indústrias</a>
             <a href="/b2b/"         class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">B2B</a>
             <a href="/blog/"        class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Blog</a>
-            <a href="/contato/"     class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Contato</a>
+            <div class="nav-drop">
+              <a href="/contato/" class="nav-link nav-drop-btn text-prime-900 text-[13px] uppercase tracking-widest font-medium transition" aria-haspopup="true">Contato <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+              <div class="nav-drop-menu">
+                <a href="/contato/">Fale com a gente</a>
+                <a href="/contato/#trabalhe-conosco">Trabalhe conosco</a>
+              </div>
+            </div>
           </div>
           <a href="/contato/"
              class="btn-wa text-[11px] px-6 py-3 uppercase tracking-[0.15em]">
@@ -66,6 +72,7 @@
         <a href="/b2b/"         class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">B2B</a>
         <a href="/blog/"        class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Blog</a>
         <a href="/contato/"     class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Contato</a>
+        <a href="/contato/#trabalhe-conosco" class="text-prime-600 text-xs uppercase tracking-widest font-medium transition px-2 pl-6">Trabalhe conosco</a>
         <a href="/contato/"
            class="btn-wa inline-flex justify-center text-xs px-6 py-4 mt-2 uppercase tracking-[0.2em]">
           <i class="fab fa-whatsapp" aria-hidden="true"></i> Solicitar orçamento
@@ -236,10 +243,8 @@
         <!-- Social / Extra -->
         <div class="lg:col-span-3">
            <h4 class="text-white font-serif text-lg mb-6">Social</h4>
-           <div class="flex gap-4">
-             <a href="https://www.facebook.com/ConceitoPrimeSE/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-gold-400 hover:text-gold-400 transition-all duration-300" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-             <a href="https://www.instagram.com/conceitoprimese/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-gold-400 hover:text-gold-400 transition-all duration-300" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-             <a href="https://www.linkedin.com/company/conceito-prime/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-gold-400 hover:text-gold-400 transition-all duration-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+           <div class="flex">
+             <a href="https://www.instagram.com/conceitoprimese/" target="_blank" rel="noopener noreferrer" class="footer-insta inline-flex items-center gap-3 text-white hover:text-gold-400 transition-colors duration-300"><span class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center"><i class="fab fa-instagram" aria-hidden="true"></i></span><span class="text-[15px] font-light">@conceitoprimese</span></a>
            </div>
         </div>
 
