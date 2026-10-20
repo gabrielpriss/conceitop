@@ -15,9 +15,7 @@ SERVICOS = [
     ('plataformas-web', 'Sites', 'Sites institucionais, lojas e páginas de captação rápidos, com SEO e formulário que transforma visita em pedido de orçamento.'),
     ('branding', 'Branding', 'Planejamento e criação de marca: identidade visual e posicionamento para a empresa ser percebida pelo valor que entrega.'),
     ('treinamentos', 'Treinamentos para clientes', 'Treinamentos e curso de vendas feitos para os nossos clientes, para o time de atendimento e comercial aproveitar cada contato.'),
-    ('pesquisa-dados', 'Pesquisa', 'Pesquisa de satisfação e de percepção de marca com os clientes de vocês, para decidir com dado e não com achismo.'),
-    ('papelaria-fina', 'Papelaria Fina', 'Cartões, pastas, apresentações e materiais impressos que reforçam a credibilidade da marca em cada ponto de contato.'),
-    ('automacao-vip', 'Automação VIP', 'Atendimento no WhatsApp organizado, com respostas rápidas e funil visível, sem perder o toque humano.'),
+    ('automacao-vip', 'CRM e Automações', 'CRM com cada lead registrado do primeiro contato ao fechamento e automações no WhatsApp que respondem na hora e lembram o vendedor do próximo passo.'),
 ]
 
 
