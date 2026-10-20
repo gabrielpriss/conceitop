@@ -542,7 +542,7 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
         ${itens}
       </div>
       <div class="wa-panel-foot">
-        <strong>Currículos e propostas de fornecedores</strong> não são atendidos pelo WhatsApp: envie pelo formulário <a href="/trabalhe-conosco/">Trabalhe Conosco</a>.
+        <strong>Currículos e propostas de fornecedores</strong> não são atendidos pelo WhatsApp: envie pelo formulário <a href="/trabalhe-conosco/">Vagas e fornecedores</a>.
       </div>
     </div>
     <button type="button" class="wa-float-btn" id="wa-float-btn" aria-label="Falar no WhatsApp" aria-expanded="false" aria-controls="wa-float-menu">
