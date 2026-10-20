@@ -1545,8 +1545,15 @@ html, body { overflow-x: clip; }
   transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease, background .3s ease;
 }
 .servico-card:hover { transform: translateY(-4px); background: #fff; border-bottom-color: var(--brand-yellow); box-shadow: 0 16px 40px rgba(22, 22, 22, .1); }
-.servico-icone { width: 4.5rem; height: 4.5rem; color: var(--brand-dark); margin-bottom: 1.5rem; }
-.servico-icone .ac { stroke: #e5b800; }
+/* Ícone dentro de um bloco preto da marca; no hover o bloco fica amarelo */
+.servico-tile { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 4.5rem; height: 4.5rem; margin-bottom: 1.5rem; border-radius: 18px; background: var(--brand-dark); box-shadow: 0 10px 24px rgba(22, 22, 22, .18); transition: background .3s, transform .3s, box-shadow .3s; }
+.servico-tile::after { content: ''; position: absolute; top: -5px; right: -5px; width: 10px; height: 10px; background: var(--brand-yellow); border-radius: 2px; transition: background .3s; }
+.servico-icone { width: 2.35rem; height: 2.35rem; color: #fff; transition: color .3s; }
+.servico-icone .ac { stroke: var(--brand-yellow); transition: stroke .3s; }
+.servico-card:hover .servico-tile { background: var(--brand-yellow); transform: translateY(-2px); box-shadow: 0 14px 28px rgba(247, 204, 25, .35); }
+.servico-card:hover .servico-tile::after { background: var(--brand-dark); }
+.servico-card:hover .servico-icone { color: var(--brand-dark); }
+.servico-card:hover .servico-icone .ac { stroke: var(--brand-dark); }
 .servico-titulo { font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 1.25rem; line-height: 1.25; color: var(--brand-dark); margin-bottom: .75rem; }
 .servico-texto { color: #4a4a4a; font-weight: 300; font-size: 15px; line-height: 1.7; margin: 0; flex: 1; }
 .servico-link { margin-top: 1.25rem; color: #c9a000; font-size: 10px; text-transform: uppercase; letter-spacing: .2em; font-weight: 700; }
