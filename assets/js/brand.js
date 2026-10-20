@@ -583,7 +583,7 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
   if (document.body.hasAttribute('data-tipos-conversao')) return;
   if (!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1024px)').matches) return;
 
-  const IMG = '/assets/images/popup-consultor.webp';
+  const IMG = '/assets/images/popup-consultor-v2.webp';
   let armado = false;
   let mostrado = false;
   /* 1,5 s de carência: evita disparar com o mouse que ainda está na barra do navegador quando a página abre */

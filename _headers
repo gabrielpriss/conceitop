@@ -21,5 +21,3 @@
 /blog/assets/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
-/servicos/*/assets/*
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
