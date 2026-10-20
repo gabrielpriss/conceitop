@@ -25,8 +25,7 @@ O build só copia o que vai ao ar e coloca hash de conteúdo em `site.css` e `br
 | Fonte ou ícone novo (`fa-*`) | `python3 scripts/build-assets.py --fonts <google/fonts> --fa <fontawesome-web>` | `assets/fonts/*.woff2`, `assets/css/src/fonts-icons.css` |
 | Artigo do blog | editar `conteudo/blog/posts.json` e `<slug>.raw.html`, depois `python3 scripts/generate-blog-covers.py --fonts <google/fonts>` e `python3 scripts/generate-blog.py` | `blog/<slug>/`, `blog/index.html`, capas, `sitemap.xml` |
 | Logo de cliente | editar `conteudo/clientes.json` (origem e fundo claro ou escuro), `python3 scripts/tratar-logos.py <pasta dos originais>` e `python3 scripts/generate-clientes.py` | `assets/images/clientes/*.webp`, carrossel da home |
-| Página de serviço | `python3 scripts/generate-services.py` | `servicos/<slug>/` |
-| Grade "Nossos Serviços" da home | editar `scripts/generate-servicos-home.py` (ícones em `partials/icones-servicos.py`) e rodar o script | `index.html` |
+| Grade "Nossos Serviços" da home | editar `scripts/generate-servicos-home.py` e `conteudo/servicos.json` (texto e imagem do popup de cada serviço; ícones em `partials/icones-servicos.py`) e rodar o script | `index.html` |
 | Páginas da campanha (indústria e B2B) | editar `scripts/generate-segmentos.py` e rodar o script | `industrial/`, `b2b/` |
 | Cabeçalho (menu, logo, botão) | editar `partials/header.html` e rodar `python3 scripts/sync-header.py` | cabeçalho de todas as páginas (o QA falha se alguma ficar diferente) |
 
@@ -45,7 +44,7 @@ Depois de qualquer um deles, rodar `build-css.sh` de novo se surgiram classes no
 
 ## Redirecionamentos
 
-`_redirects` leva as URLs do WordPress antigo para as novas: artigos da raiz para `/blog/<slug>/`, categorias e tags para `/blog/`, `/criacao-de-sites/` para `/servicos/plataformas-web/` e páginas vazias para a home.
+`_redirects` leva as URLs do WordPress antigo para as novas: artigos da raiz para `/blog/<slug>/`, categorias e tags para `/blog/`, `/criacao-de-sites/` e as antigas páginas `/servicos/*` para a grade de serviços da home (`/#servicos`) e páginas vazias para a home.
 
 ## Campanha de Google Ads da agência
 

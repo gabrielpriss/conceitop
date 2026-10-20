@@ -595,7 +595,7 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
   function bloqueado() {
     let enviado = false;
     try { enviado = !!sessionStorage.getItem('cp_lead_enviado'); } catch (e) { enviado = false; }
-    return enviado || !!document.querySelector('#lead-overlay.open, .saida-overlay') ||
+    return enviado || !!document.querySelector('#lead-overlay.open, .saida-overlay, .serv-overlay') ||
       (window.dataLayer || []).some(function (e) { return e && /^(form_submit|lead_b2b|lead_qualificado)$/.test(e.event); });
   }
 
@@ -648,6 +648,85 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
     if (e.clientY > 40) return;
     if (bloqueado()) return;
     mostrar();
+  });
+})();
+
+/* ========== POPUP DOS SERVIÇOS (grade "Nossos Serviços" da home) ==========
+   Cada card abre um popup com a imagem, a descrição e o que está incluso no serviço (lidos do próprio card,
+   .servico-detalhe). O botão troca o conteúdo do popup pelo formulário "Solicite um diagnóstico", já com o
+   serviço preenchido, sem sair da página. */
+(function initServicosPopup() {
+  const cards = document.querySelectorAll('.servico-card[data-servico]');
+  if (!cards.length) return;
+  let overlay = null;
+  let anterior = null;
+
+  function fechar() {
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    const o = overlay;
+    overlay = null;
+    setTimeout(function () { o.remove(); }, 300);
+    document.removeEventListener('keydown', teclado);
+    if (anterior && anterior.focus) anterior.focus();
+  }
+  function teclado(e) { if (e.key === 'Escape') fechar(); }
+
+  function abrir(card) {
+    const titulo = card.dataset.servico;
+    const det = card.querySelector('.servico-detalhe');
+    anterior = document.activeElement;
+    overlay = document.createElement('div');
+    overlay.className = 'serv-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-labelledby', 'serv-titulo');
+    overlay.innerHTML = `
+      <div class="serv-card">
+        <button type="button" class="serv-fechar" aria-label="Fechar">&times;</button>
+        <div class="serv-foto"><img src="${det.dataset.img}" alt="${diagEsc(det.dataset.alt)}" width="800" height="800"></div>
+        <div class="serv-painel">
+          <div class="serv-view" data-view="detalhe">
+            <p class="serv-eyebrow">Serviço</p>
+            <h2 class="serv-titulo" id="serv-titulo">${diagEsc(titulo)}</h2>
+            ${det.innerHTML}
+            <button type="button" class="serv-cta">Quero um diagnóstico <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+          </div>
+          <div class="serv-view" data-view="form" hidden>
+            <button type="button" class="serv-voltar"><i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar para ${diagEsc(titulo)}</button>
+            <form data-diagnostico data-servico="${diagEsc(titulo)}" data-titulo-id="serv-form-titulo" data-canal="popup-servico"></form>
+          </div>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+    const o = overlay;
+    const vDet = o.querySelector('[data-view="detalhe"]');
+    const vForm = o.querySelector('[data-view="form"]');
+    let diag = null;
+    o.querySelector('.serv-fechar').addEventListener('click', fechar);
+    o.addEventListener('click', function (e) { if (e.target === o) fechar(); });
+    document.addEventListener('keydown', teclado);
+    o.querySelector('.serv-cta').addEventListener('click', function () {
+      track('servico_popup_cta', { servico: titulo });
+      vDet.hidden = true;
+      vForm.hidden = false;
+      o.querySelector('.serv-painel').scrollTop = 0;
+      if (!diag) diag = initDiagnostico(vForm.querySelector('form'));
+      diag.focar();
+    });
+    o.querySelector('.serv-voltar').addEventListener('click', function () {
+      vForm.hidden = true;
+      vDet.hidden = false;
+      o.querySelector('.serv-cta').focus({ preventScroll: true });
+    });
+    requestAnimationFrame(function () { o.classList.add('open'); o.querySelector('.serv-cta').focus({ preventScroll: true }); });
+    track('servico_popup_view', { servico: titulo });
+  }
+
+  cards.forEach(function (card) {
+    card.querySelector('.servico-abrir').addEventListener('click', function () { abrir(card); });
   });
 })();
 

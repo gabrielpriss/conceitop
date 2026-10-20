@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Monta a grade "Nossos Serviços" da home (formato dos cards do site antigo, com ícones de linha).
 Uso: python3 scripts/generate-servicos-home.py
-Ícones em partials/icones-servicos.py. Os links levam às páginas de serviço."""
-import os, re
+Ícones em partials/icones-servicos.py. Não há mais páginas de serviço: cada card abre um popup
+(brand.js, initServicosPopup) com imagem, descrição e o que está incluso, lidos de conteudo/servicos.json,
+e o botão do popup troca o conteúdo pelo formulário "Solicite um diagnóstico"."""
+import html, json, os, re
 from importlib import util
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,13 +21,25 @@ SERVICOS = [
 ]
 
 
+DETALHES = json.load(open(os.path.join(ROOT, 'conteudo/servicos.json'), encoding='utf-8'))
+
+
+def detalhe(slug, titulo):
+    d = DETALHES[slug]
+    e = html.escape
+    itens = ''.join(f'<li>{e(i)}</li>' for i in d['inclui'])
+    return (f'<div class="servico-detalhe" hidden data-img="{e(d["img"])}" data-alt="{e(d["alt"])}">'
+            f'<p class="sd-tag">{e(d["tagline"])}</p><p class="sd-intro">{e(d["intro"])}</p><ul class="sd-inclui">{itens}</ul></div>')
+
+
 def main():
-    cards = '\n'.join(f'''        <article class="servico-card">
-          <a href="/servicos/{slug}/" class="absolute inset-0 z-10" aria-label="Conheça o serviço de {titulo}"></a>
+    cards = '\n'.join(f'''        <article class="servico-card" data-servico="{titulo}">
+          <button type="button" class="servico-abrir absolute inset-0 z-10" aria-haspopup="dialog" aria-label="Ver detalhes do serviço {titulo}"></button>
           {icones.svg(slug)}
           <h3 class="servico-titulo">{titulo}</h3>
           <p class="servico-texto">{texto}</p>
-          <span class="servico-link">Saiba mais <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          <span class="servico-link">Ver detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          {detalhe(slug, titulo)}
         </article>''' for slug, titulo, texto in SERVICOS)
     bloco = f'''      <!-- SERVICOS HOME: gerado por scripts/generate-servicos-home.py -->
       <div class="servicos-grade">

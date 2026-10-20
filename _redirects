@@ -4,8 +4,12 @@
 /contato.html               /contato/                  301
 /quem-somos.html            /quem-somos/               301
 
+# Páginas de serviço foram removidas: o conteúdo de cada uma agora abre em popup na grade da home
+/servicos                   /#servicos                 301
+/servicos/*                 /#servicos                 301
+
 # URLs do WordPress antigo (conceitop.com.br) para não perder o que já está indexado
-/criacao-de-sites/          /servicos/plataformas-web/ 301
+/criacao-de-sites/          /#servicos                 301
 /termos-condicoes/          /                          301
 /politica-de-cookies-br/    /                          301
 /mid-connection/            /                          301

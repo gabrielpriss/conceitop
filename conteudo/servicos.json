@@ -1,0 +1,81 @@
+{
+  "redes-sociais": {
+    "tagline": "Presença digital com curadoria e estratégia",
+    "intro": "Transformamos suas redes sociais em um canal estratégico de relacionamento e conversão. Criamos conteúdo com identidade visual alinhada à sua marca, planejamos calendários editoriais e monitoramos métricas para evolução contínua.",
+    "inclui": [
+      "Diagnóstico de perfil e concorrência",
+      "Calendário editorial mensal",
+      "Criação de artes e copy",
+      "Gestão de Instagram, Facebook e LinkedIn",
+      "Relatório de métricas e insights"
+    ],
+    "img": "/assets/images/portfolio/portfolio-01.webp",
+    "alt": "Projeto de social media da Conceito Prime"
+  },
+  "google-meta-ads": {
+    "tagline": "Tráfego pago com inteligência e ROI",
+    "intro": "Campanhas de mídia paga estruturadas para atrair leads e vendas com previsibilidade. Trabalhamos com Google Ads, Meta Ads e remarketing, otimizando investimento e ampliando o alcance da sua marca junto ao público certo.",
+    "inclui": [
+      "Auditoria de contas e estrutura de campanhas",
+      "Criação e gestão de anúncios Google e Meta",
+      "Configuração de conversões e pixels",
+      "Relatórios semanais de performance",
+      "Reuniões de alinhamento estratégico"
+    ],
+    "img": "/assets/images/portfolio/portfolio-02.webp",
+    "alt": "Campanha de mídia paga gerenciada pela Conceito Prime"
+  },
+  "plataformas-web": {
+    "tagline": "Sites que convertem visitantes em clientes",
+    "intro": "Desenvolvemos sites institucionais e landing pages com foco em performance, SEO e experiência do usuário. Cada projeto é pensado para representar sua marca com elegância e gerar resultados mensuráveis.",
+    "inclui": [
+      "Briefing e wireframe estratégico",
+      "Design UI/UX responsivo",
+      "Desenvolvimento HTML/CSS/JS otimizado",
+      "Integração com formulários e analytics",
+      "SEO técnico on-page"
+    ],
+    "img": "/assets/images/portfolio/portfolio-02.webp",
+    "alt": "Projeto de web design da Conceito Prime"
+  },
+  "branding": {
+    "tagline": "Marcas memoráveis com propósito claro",
+    "intro": "Criamos e reposicionamos marcas com estratégia, narrativa e identidade visual completa. Do naming à aplicação em todos os pontos de contato, garantimos que sua marca se destaque com personalidade e consistência.",
+    "inclui": [
+      "Pesquisa de mercado e benchmarking",
+      "Desenvolvimento de logotipo e variações",
+      "Paleta de cores e tipografia",
+      "Manual de identidade visual",
+      "Aplicações em mockups e materiais"
+    ],
+    "img": "/assets/images/portfolio/portfolio-06.webp",
+    "alt": "Projeto de branding corporativo da Conceito Prime"
+  },
+  "treinamentos": {
+    "tagline": "Treinamentos e curso de vendas para o time dos nossos clientes",
+    "intro": "De nada adianta o anúncio trazer o contato certo se o atendimento não conduz até a venda. Por isso oferecemos aos nossos clientes treinamentos e um curso de vendas com conteúdo prático, ajustado à rotina de quem atende WhatsApp, telefone e reunião todos os dias.",
+    "inclui": [
+      "Diagnóstico do atendimento e do processo comercial de hoje",
+      "Curso de vendas com aulas gravadas e material de apoio",
+      "Treinamentos ao vivo, presenciais ou online, com o time de vocês",
+      "Roteiros de resposta e de follow-up para os leads das campanhas",
+      "Acompanhamento junto com a leitura mensal dos resultados"
+    ],
+    "img": "/assets/images/equipe/equipe.webp",
+    "alt": "Equipe da Conceito Prime no escritório em Curitiba"
+  },
+  "automacao-vip": {
+    "tagline": "Nenhum lead esquecido, nenhuma venda perdida no caminho",
+    "intro": "Organizamos o funil comercial da sua empresa em um CRM: cada lead entra com a origem registrada, passa por etapas claras e gera tarefas para o vendedor. Junto, criamos automações no WhatsApp que respondem na hora, qualificam o contato e fazem o follow-up, sem perder o toque humano no atendimento.",
+    "inclui": [
+      "Implantação e configuração do CRM",
+      "Funil de vendas com etapas, responsáveis e tarefas",
+      "Integração do CRM com site, formulários e anúncios",
+      "Automações de atendimento e follow-up no WhatsApp",
+      "Relatórios de origem, conversão e vendas",
+      "Treinamento do time comercial"
+    ],
+    "img": "/assets/images/portfolio/portfolio-05.webp",
+    "alt": "CRM e automação de atendimento e vendas"
+  }
+}

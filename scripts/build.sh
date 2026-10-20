@@ -16,7 +16,7 @@ cp "$ROOT/_headers" "$ROOT/_redirects" "$DIST/"
 cp "$ROOT/assets/images/favicon.ico" "$DIST/favicon.ico"
 
 # Páginas: copia só HTML e WebP de cada pasta publicada (rascunhos e originais ficam de fora)
-for dir in quem-somos contato trabalhe-conosco blog servicos industrial b2b obrigado obrigado-qualificado; do
+for dir in quem-somos contato trabalhe-conosco blog industrial b2b obrigado obrigado-qualificado; do
   (cd "$ROOT" && find "$dir" -type f \( -name '*.html' -o -name '*.webp' -o -name '*.avif' \) -print0) |
     while IFS= read -r -d '' f; do
       mkdir -p "$DIST/$(dirname "$f")"

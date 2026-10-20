@@ -7,7 +7,6 @@ module.exports = {
     './quem-somos/index.html',
     './contato/index.html',
     './blog/**/*.html',
-    './servicos/**/*.html',
     './industrial/**/*.html',
     './b2b/**/*.html',
     './trabalhe-conosco/**/*.html',
