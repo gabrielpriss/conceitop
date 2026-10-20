@@ -1544,7 +1544,7 @@ html, body { overflow-x: clip; }
   background: #f4f4f4; padding: 2.75rem 1.75rem 2.25rem; border-bottom: 3px solid transparent;
   transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease, background .3s ease;
 }
-.servico-card:hover { transform: translateY(-4px); background: #fff; border-bottom-color: var(--brand-yellow); box-shadow: 0 16px 40px rgba(22, 22, 22, .1); }
+.servico-card:hover { background: #fff; border-bottom-color: var(--brand-yellow); }
 /* Ícone dentro de um bloco preto da marca; no hover o bloco fica amarelo */
 .servico-tile { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 4.5rem; height: 4.5rem; margin-bottom: 1.5rem; border-radius: 18px; background: var(--brand-dark); box-shadow: 0 10px 24px rgba(22, 22, 22, .18); transition: background .3s, transform .3s, box-shadow .3s; }
 .servico-tile::after { content: ''; position: absolute; top: -5px; right: -5px; width: 10px; height: 10px; background: var(--brand-yellow); border-radius: 2px; transition: background .3s; }
@@ -1695,10 +1695,13 @@ main > section.bg-prime-900::before, main > section.bg-prime-950::before, .site-
   main > section:nth-of-type(even).bg-white:not(.sticky)::before, main > section:nth-of-type(even).bg-slate-50::before, main > section:nth-of-type(even).bg-prime-50::before { bottom: 1.25rem; left: 1.25rem; }
 }
 
-/* ========== POPUP DOS SERVIÇOS (brand.js, initServicosPopup) ========== */
-.servico-card { cursor: pointer; }
-.servico-abrir { background: transparent; border: 0; padding: 0; cursor: pointer; }
+/* ========== POPUP DO PORTFÓLIO (brand.js, initServicosPopup) ========== */
+.port-item[data-popup-servico] { cursor: pointer; }
+.servico-abrir { position: absolute; inset: 0; z-index: 2; background: transparent; border: 0; padding: 0; cursor: pointer; }
 .servico-abrir:focus-visible { outline: 3px solid var(--brand-yellow); outline-offset: -3px; }
+.port-ver { display: inline-flex; align-items: center; gap: .45rem; margin-top: 1rem; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; color: var(--brand-yellow); }
+.port-ver i { font-size: 9px; transition: transform .3s; }
+.port-item:hover .port-ver i { transform: translateX(3px); }
 .serv-overlay { position: fixed; inset: 0; z-index: 10003; display: flex; align-items: center; justify-content: center; padding: 1.5rem; background: rgba(13, 13, 13, .78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); opacity: 0; transition: opacity .3s; }
 .serv-overlay.open { opacity: 1; }
 .serv-card { position: relative; display: grid; grid-template-columns: 40% 1fr; width: 100%; max-width: 58rem; max-height: calc(100vh - 3rem); background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 32px 90px rgba(0, 0, 0, .45); transform: translateY(14px) scale(.98); transition: transform .35s cubic-bezier(.22, 1, .36, 1); }

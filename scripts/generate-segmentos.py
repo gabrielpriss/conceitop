@@ -188,6 +188,35 @@ def cards_html(lista):
         </article>''' for icone, titulo, texto in lista)
 
 
+# Imagem e categoria de cada serviço na galeria das LPs (mesmo visual do Portfólio da home)
+GALERIA = {
+    'Posicionamento e marca': ('portfolio-06.webp', 'Branding', 'Identidade visual de marca aplicada na parede de um escritório'),
+    'Site e páginas de captação': ('portfolio-02.webp', 'Sites e landing pages', 'Site institucional responsivo exibido em um notebook'),
+    'Site e página de captação': ('portfolio-02.webp', 'Sites e landing pages', 'Site institucional responsivo exibido em um notebook'),
+    'Google Ads e Meta Ads': ('portfolio-03.webp', 'Mídia paga', 'Página de campanha integrada ao Google Ads e ao Meta Ads exibida em um tablet'),
+    'Conteúdo e redes sociais': ('portfolio-01.webp', 'Conteúdo', 'Feed de Instagram com conteúdo criado pela Conceito Prime'),
+    'Atendimento e CRM': ('/assets/images/popup-consultor-v2.webp', 'CRM', 'Consultor da Conceito Prime atendendo à mesa de reunião'),
+    'Medição e CRM': ('/assets/images/popup-consultor-v2.webp', 'Medição e CRM', 'Consultor da Conceito Prime atendendo à mesa de reunião'),
+    'Treinamento e materiais de venda': ('portfolio-05.webp', 'Time comercial', 'Catálogo e revista impressos usados como material de venda'),
+}
+
+
+def galeria_html(lista):
+    itens = []
+    for _icone, titulo, texto in lista:
+        img, cat, alt = GALERIA[titulo]
+        src = img if img.startswith('/') else f'/assets/images/portfolio/{img}'
+        itens.append(f'''        <figure class="port-item group">
+          <img src="{src}" alt="{alt}" width="800" height="800" loading="lazy" decoding="async">
+          <figcaption class="port-legenda">
+            <span class="port-cat">{cat}</span>
+            <h3 class="port-titulo">{titulo}</h3>
+            <p class="port-desc">{texto}</p>
+          </figcaption>
+        </figure>''')
+    return '\n'.join(itens)
+
+
 def passos_html(lista):
     return '\n'.join(f'''        <li class="seg-step">
           <span class="seg-step-num" aria-hidden="true">{i:02d}</span>
@@ -473,11 +502,11 @@ def pagina(pg):
     </div>
   </section>
 
-  <section class="py-24 bg-white" aria-labelledby="seg-servicos">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+  <section class="py-24 bg-prime-50" aria-labelledby="seg-servicos">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <h2 id="seg-servicos" class="font-serif text-3xl sm:text-4xl text-prime-900 uppercase text-center leading-tight mb-14">{pg['servicos_titulo']}</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-{cards_html(pg['servicos'])}
+      <div class="port-grade">
+{galeria_html(pg['servicos'])}
       </div>
     </div>
   </section>

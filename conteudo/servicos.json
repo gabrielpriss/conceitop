@@ -77,5 +77,44 @@
     ],
     "img": "/assets/images/portfolio/portfolio-05.webp",
     "alt": "CRM e automação de atendimento e vendas"
+  },
+  "landing-pages": {
+    "tagline": "Uma página, uma oferta, um próximo passo claro",
+    "intro": "Criamos páginas de campanha focadas em uma única oferta, com os argumentos certos, prova de quem já comprou e um formulário que qualifica o lead. Tudo integrado ao Google Ads e ao Meta Ads, para cada contato chegar com a origem registrada e a campanha otimizar para quem realmente compra.",
+    "inclui": [
+      "Estratégia de oferta e roteiro da página",
+      "Copy persuasiva e design responsivo",
+      "Formulário que qualifica o lead",
+      "Integração com Google Ads, Meta Ads e Tag Manager",
+      "Ajustes contínuos de conversão"
+    ],
+    "img": "/assets/images/portfolio/portfolio-03.webp",
+    "alt": "Landing page de serviço de streaming exibida em um tablet"
+  },
+  "papelaria": {
+    "tagline": "Materiais impressos com requinte e credibilidade",
+    "intro": "Cartões de visita, folders, apresentações e materiais corporativos que reforçam a percepção de valor da sua marca. Cada peça é desenvolvida com atenção à tipografia, cores e acabamentos premium.",
+    "inclui": [
+      "Cartões de visita e papel timbrado",
+      "Folders e apresentações institucionais",
+      "Envelopes e materiais de escritório",
+      "Arquivos CMYK para impressão",
+      "Acompanhamento na produção gráfica"
+    ],
+    "img": "/assets/images/portfolio/portfolio-04.webp",
+    "alt": "Pasta corporativa personalizada com identidade visual amarela e roxa"
+  },
+  "materiais-venda": {
+    "tagline": "Argumento na mão do time comercial",
+    "intro": "Catálogos, revistas, apresentações comerciais e propostas que explicam o produto com clareza e mostram por que a sua empresa vale o investimento. Materiais pensados para o vendedor usar na negociação, impressos ou digitais.",
+    "inclui": [
+      "Catálogo de produtos e linhas",
+      "Apresentação comercial e proposta",
+      "Revista ou material institucional",
+      "Versões para impressão e para enviar no WhatsApp",
+      "Acompanhamento na produção gráfica"
+    ],
+    "img": "/assets/images/portfolio/portfolio-05.webp",
+    "alt": "Revista e catálogo impressos com projeto editorial desenvolvido pela Conceito Prime"
   }
 }

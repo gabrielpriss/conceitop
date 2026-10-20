@@ -1,0 +1,56 @@
+[
+  {
+    "img": "portfolio-01",
+    "cat": "Social media",
+    "titulo": "Social media que vende",
+    "desc": "Conteúdo planejado para o Instagram, com identidade forte e fotos que dão vontade de comprar. O calendário é pensado para gerar mensagem no direct, e não só curtida.",
+    "alt": "Feed de Instagram com posts de drinks criado pela Conceito Prime para uma marca de bebidas",
+    "detalhe": "redes-sociais",
+    "servico": "Redes Sociais"
+  },
+  {
+    "img": "portfolio-02",
+    "cat": "Criação de sites",
+    "titulo": "Sites que geram orçamento",
+    "desc": "Site institucional rápido, otimizado para o Google e com chamadas claras para o cliente pedir orçamento já no primeiro acesso, no computador ou no celular.",
+    "alt": "Site institucional responsivo de empresa de transporte exibido em um notebook",
+    "detalhe": "plataformas-web",
+    "servico": "Sites"
+  },
+  {
+    "img": "portfolio-03",
+    "cat": "Landing pages",
+    "titulo": "Landing pages de alta conversão",
+    "desc": "Páginas de campanha com uma oferta clara, prova e formulário que qualifica o lead, integradas ao Google Ads e ao Meta Ads para medir cada contato.",
+    "alt": "Landing page de serviço de streaming exibida em um tablet",
+    "detalhe": "landing-pages",
+    "servico": "Landing pages"
+  },
+  {
+    "img": "portfolio-04",
+    "cat": "Papelaria corporativa",
+    "titulo": "Papelaria que fecha negócio",
+    "desc": "Pastas, cartões e timbrados que deixam a proposta comercial com cara de empresa grande e reforçam a confiança do cliente na hora da reunião.",
+    "alt": "Pasta corporativa personalizada com identidade visual amarela e roxa",
+    "detalhe": "papelaria",
+    "servico": "Papelaria corporativa"
+  },
+  {
+    "img": "portfolio-05",
+    "cat": "Material de vendas",
+    "titulo": "Catálogos e materiais de venda",
+    "desc": "Catálogos, revistas e apresentações que explicam o produto com clareza e dão argumento para o time comercial durante a negociação.",
+    "alt": "Revista e catálogo impressos com projeto editorial desenvolvido pela Conceito Prime",
+    "detalhe": "materiais-venda",
+    "servico": "Materiais de venda"
+  },
+  {
+    "img": "portfolio-06",
+    "cat": "Branding",
+    "titulo": "Branding e identidade visual",
+    "desc": "Marca, logotipo e aplicações pensados para transmitir confiança, diferenciar a sua empresa da concorrência e sustentar um preço melhor.",
+    "alt": "Identidade visual da marca Mais Connect aplicada na parede de um escritório",
+    "detalhe": "branding",
+    "servico": "Branding"
+  }
+]
