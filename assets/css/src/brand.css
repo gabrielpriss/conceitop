@@ -1653,3 +1653,16 @@ main > section.bg-prime-900::before, main > section.bg-prime-950::before, .site-
   .serv-fechar { background: rgba(255, 255, 255, .85); }
 }
 @media (prefers-reduced-motion: reduce) { .serv-overlay, .serv-card, .serv-view { transition: none; animation: none; } }
+
+/* Hero da home: CTA principal + "Conhecer a Prime" (rola até a próxima seção) */
+.hero-ctas { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 1.25rem; }
+.hero-conhecer { display: inline-flex; align-items: center; gap: .65rem; padding: 1.2rem 2.25rem; border: 1px solid rgba(255, 255, 255, .35); color: #fff; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; transition: border-color .25s, color .25s, background .25s; }
+.hero-conhecer i { font-size: .75rem; transition: transform .25s; }
+.hero-conhecer:hover { border-color: var(--brand-yellow); color: var(--brand-yellow); background: rgba(247, 204, 25, .06); }
+.hero-conhecer:hover i { transform: translateY(3px); }
+.hero-rolar { position: absolute; left: 50%; bottom: 1.75rem; z-index: 3; width: 26px; height: 42px; margin-left: -13px; border: 2px solid rgba(255, 255, 255, .45); border-radius: 14px; transition: border-color .25s; }
+.hero-rolar span { position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: var(--brand-yellow); animation: hero-rolar 1.8s ease-in-out infinite; }
+.hero-rolar:hover { border-color: var(--brand-yellow); }
+@keyframes hero-rolar { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(14px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+@media (max-width: 640px) { .hero-ctas { flex-direction: column; } .hero-ctas > a { width: 100%; justify-content: center; } .hero-rolar { display: none; } }
+@media (prefers-reduced-motion: reduce) { .hero-rolar span { animation: none; } }

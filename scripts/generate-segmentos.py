@@ -32,10 +32,10 @@ CLIENTES = {c['slug']: c for faixa in ('faixa1', 'faixa2')
             for c in json.load(open(os.path.join(ROOT, 'conteudo/clientes.json'), encoding='utf-8'))[faixa]}
 
 VIDEOS = {
-    'kuzma': ('W2THQatKpyQ', 'depoimento-rafael.webp', 'Depoimento de Rafael Kuzma, Diretor da Molas Kuzma'),
-    'german': ('iaNFzlWoXDo', 'depoimento-philipe.webp', 'Depoimento de Philippe Enke, CEO da German Financial'),
-    'ruan': ('hCFMWFbYoZc', 'depoimento-ruan.webp', 'Depoimento de Ruan Ançay, Diretor da Nova Direção Negócios'),
-    'heloise': ('UDBxL5vSQcI', 'depoimento-heloise.webp', 'Depoimento de Heloise Biscaia, Diretora do Grupo Nuele'),
+    'kuzma': ('W2THQatKpyQ', 'depoimento-rafael-v2.webp', 'Depoimento de Rafael Kuzma, Diretor da Molas Kuzma'),
+    'german': ('iaNFzlWoXDo', 'depoimento-philipe-v2.webp', 'Depoimento de Philippe Enke, CEO da German Financial'),
+    'ruan': ('hCFMWFbYoZc', 'depoimento-ruan-v2.webp', 'Depoimento de Ruan Ançay, Diretor da Nova Direção Negócios'),
+    'heloise': ('UDBxL5vSQcI', 'depoimento-heloise-v2.webp', 'Depoimento de Heloise Biscaia, Diretora do Grupo Nuele'),
 }
 
 # Serviços da página de indústria: foco no que a campanha vende (a home continua com todos)
@@ -203,7 +203,7 @@ def videos_html(chaves):
         titulo = alt.replace(', Diretora do ', ', ').replace(', Diretor da ', ', ').replace(', CEO da ', ', ')
         slides.append(f'''          <div class="video-carousel-slide">
             <button type="button" class="video-thumb" data-youtube-id="{yt}" data-video-title="{titulo}">
-              <img src="/assets/images/depoimentos/{img}" alt="{alt}" width="997" height="534" loading="lazy" decoding="async">
+              <img src="/assets/images/depoimentos/{img}" alt="{alt}" width="1600" height="857" loading="lazy" decoding="async">
               <span class="video-play" aria-hidden="true"><i class="fas fa-play"></i></span>
             </button>
           </div>''')

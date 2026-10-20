@@ -8,6 +8,7 @@
 .fa,.fas,.fa-solid{font-family:'Font Awesome 6 Free';font-weight:900}
 .fab,.fa-brands{font-family:'Font Awesome 6 Brands';font-weight:400}
 .fa-spin{animation:fa-spin 1s linear infinite}@keyframes fa-spin{to{transform:rotate(360deg)}}
+.fa-arrow-down:before{content:"\f063"}
 .fa-arrow-left:before{content:"\f060"}
 .fa-arrow-right:before{content:"\f061"}
 .fa-award:before{content:"\f559"}
