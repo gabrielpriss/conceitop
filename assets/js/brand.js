@@ -297,6 +297,7 @@ function initDiagnostico(form) {
   function concluirWhatsApp(d, qualificado) {
     const evento = { formulario: form.id || 'diagnostico', pagina: location.pathname, faturamento: d.faturamento, segmento: d.segmento, lead_qualificado: qualificado };
     track('form_submit', evento);
+    try { sessionStorage.setItem('cp_lead_enviado', '1'); } catch (e) { /* segue */ }
     /* Conversão principal do Google Ads: só empresa a partir de R$ 100 mil/mês (gatilho no GTM pelo evento lead_qualificado) */
     if (qualificado) track('lead_qualificado', evento);
     const url = waLink(diagMensagem(d));
@@ -332,6 +333,7 @@ function initDiagnostico(form) {
       clearTimeout(limite);
       if (!r.ok) throw new Error('status ' + r.status);
       track('lead_b2b', { lead_qualificado: qualificado, faturamento: d.faturamento, segmento: d.segmento, pagina: d.pagina, canal: d.canal });
+      try { sessionStorage.setItem('cp_lead_enviado', '1'); } catch (e) { /* segue */ }
       try {
         sessionStorage.setItem('cp_lead_b2b', JSON.stringify({ nome: d.nome, empresa: d.empresa, faturamento: d.faturamento, qualificado: qualificado, pagina: d.pagina, t: Date.now() }));
       } catch (err) { /* segue sem personalizar a página de obrigado */ }
@@ -571,43 +573,34 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
 })();
 
 /* ========== POPUP DE SAÍDA (exit intent) ==========
-   Mesmo comportamento do site anterior: aparece quando o mouse sai pela parte de cima da janela
-   (a pessoa indo fechar a aba ou trocar de site). Regras para não atrapalhar nem prejudicar o SEO:
-   - só em computador com mouse; no celular não existe esse gesto e o Google penaliza intersticiais intrusivos;
-   - nunca na chegada: só depois de 8 segundos na página, e nunca nas páginas de obrigado;
-   - no máximo uma vez a cada 7 dias por navegador, e não aparece para quem já começou ou enviou o formulário;
-   - o botão abre o formulário "Solicite um diagnóstico". */
+   Mesmo comportamento do site anterior: aparece toda vez que a pessoa leva o mouse para fora da janela
+   pela parte de cima (indo fechar a aba, trocar de aba ou digitar outro endereço), em qualquer página.
+   - Uma vez por página aberta: fechou, só volta ao abrir outra página ou recarregar.
+   - Só em computador com mouse: no celular não existe esse gesto (e o Google penaliza intersticiais no mobile).
+   - Não aparece nas páginas de obrigado, com o formulário de diagnóstico aberto, nem depois que o lead já foi enviado.
+   - O botão abre o formulário "Solicite um diagnóstico". */
 (function initPopupSaida() {
   if (document.body.hasAttribute('data-tipos-conversao')) return;
   if (!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1024px)').matches) return;
-  const CHAVE = 'cp_popup_saida';
-  const INTERVALO = 7 * 24 * 60 * 60 * 1000;
-  let ultima = 0;
-  try { ultima = Number(localStorage.getItem(CHAVE) || 0); } catch (e) { ultima = 0; }
-  if (Date.now() - ultima < INTERVALO) return;
-  try { if (sessionStorage.getItem(CHAVE)) return; } catch (e) { /* segue */ }
 
   const IMG = '/assets/images/popup-consultor.webp';
   let armado = false;
   let mostrado = false;
+  /* 1,5 s de carência: evita disparar com o mouse que ainda está na barra do navegador quando a página abre */
   setTimeout(function () {
     armado = true;
-    const pre = new Image(); pre.src = IMG; /* carrega a foto só depois, sem pesar na abertura da página */
-  }, 8000);
+    const pre = new Image(); pre.src = IMG; /* carrega a foto só agora, sem pesar na abertura da página */
+  }, 1500);
 
-  function jaInteragiu() {
-    return (window.dataLayer || []).some(function (e) { return e && /^(form_start|form_submit|lead_b2b|lead_qualificado)$/.test(e.event); }) ||
-      !!document.querySelector('#lead-overlay.open');
-  }
-
-  function registrar() {
-    try { localStorage.setItem(CHAVE, String(Date.now())); } catch (e) { /* segue */ }
-    try { sessionStorage.setItem(CHAVE, '1'); } catch (e) { /* segue */ }
+  function bloqueado() {
+    let enviado = false;
+    try { enviado = !!sessionStorage.getItem('cp_lead_enviado'); } catch (e) { enviado = false; }
+    return enviado || !!document.querySelector('#lead-overlay.open, .saida-overlay') ||
+      (window.dataLayer || []).some(function (e) { return e && /^(form_submit|lead_b2b|lead_qualificado)$/.test(e.event); });
   }
 
   function mostrar() {
     mostrado = true;
-    registrar();
     const overlay = document.createElement('div');
     overlay.className = 'saida-overlay';
     overlay.setAttribute('role', 'dialog');
@@ -648,10 +641,12 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
     track('exit_popup_view', { pagina: location.pathname });
   }
 
+  /* Saída pela parte de cima da janela (abas, barra de endereço, botão de fechar). Com o mouse rápido o
+     último evento chega com y um pouco abaixo de 0, por isso a margem de 40 px. */
   document.addEventListener('mouseout', function (e) {
-    if (mostrado || !armado || e.relatedTarget) return;
-    if (e.clientY > 8) return; /* saiu pela parte de cima: abas, barra de endereço, fechar */
-    if (jaInteragiu()) return;
+    if (mostrado || !armado || e.relatedTarget || e.toElement) return;
+    if (e.clientY > 40) return;
+    if (bloqueado()) return;
     mostrar();
   });
 })();
