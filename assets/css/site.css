@@ -1388,9 +1388,6 @@ footer.bg-prime-950 .border-white\/10 {
 html, body { overflow-x: clip; }
 
 /* ===== Páginas da campanha: /industrial/ e /b2b/ (scripts/generate-segmentos.py) ===== */
-.seg-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 0; padding: 0; list-style: none; }
-.seg-logos .carousel-item { width: 168px; }
-@media (max-width: 640px) { .seg-logos { gap: .75rem; } .seg-logos .carousel-item { width: calc(50% - .375rem); } }
 .seg-card { background: #fff; border: 1px solid #ececec; border-radius: 16px; padding: 2rem 1.75rem; transition: transform .3s ease, box-shadow .3s ease; }
 .seg-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(22, 22, 22, .08); }
 .seg-card-icon { display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; border-radius: 12px; background: var(--brand-dark); color: var(--brand-yellow); font-size: 1.15rem; margin-bottom: 1.25rem; }

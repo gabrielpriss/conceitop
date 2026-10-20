@@ -171,13 +171,32 @@ PAGINAS = [
 
 
 def logos_html(slugs):
-    itens = []
-    for slug in slugs:
-        c = CLIENTES[slug]
-        w, h = Image.open(os.path.join(ROOT, 'assets/images/clientes', slug + '.webp')).size
-        classe = 'carousel-item carousel-item--escuro' if c.get('fundo') == 'escuro' else 'carousel-item'
-        itens.append(f'<li class="{classe}"><img src="/assets/images/clientes/{slug}.webp" alt="{c["nome"]}" width="{w // 2}" height="{h // 2}" loading="lazy" decoding="async"></li>')
-    return '\n          '.join(itens)
+    """Dois carrosseis iguais aos da home: a lista da frente é dividida ao meio, a segunda faixa anda ao contrário."""
+    def itens(lista):
+        out = []
+        for slug in lista:
+            c = CLIENTES[slug]
+            w, h = Image.open(os.path.join(ROOT, 'assets/images/clientes', slug + '.webp')).size
+            classe = 'carousel-item carousel-item--escuro' if c.get('fundo') == 'escuro' else 'carousel-item'
+            out.append(f'<li class="{classe}"><img src="/assets/images/clientes/{slug}.webp" alt="{c["nome"]}" width="{w // 2}" height="{h // 2}" loading="lazy" decoding="async"></li>')
+        return '\n            '.join(out)
+
+    meio = (len(slugs) + 1) // 2
+    faixas = []
+    for lista, reversa in ((slugs[:meio], False), (slugs[meio:], True)):
+        grupo = itens(lista)
+        classe = 'carousel-track carousel-reverse' if reversa else 'carousel-track'
+        faixas.append(f'''      <div class="carousel-container">
+        <div class="{classe}">
+          <ul class="carousel-group" role="list">
+            {grupo}
+          </ul>
+          <ul class="carousel-group" aria-hidden="true">
+            {grupo}
+          </ul>
+        </div>
+      </div>''')
+    return '    <div class="carousel-faixas">\n' + '\n'.join(faixas) + '\n    </div>'
 
 
 def cards_html(lista):
@@ -355,23 +374,6 @@ def promessas_html():
   </section>'''
 
 
-def nove_anos_html():
-    anos = ''.join(f'<li>{a}</li>' for a in range(2017, 2027))
-    return f'''  <section class="cb-nove-sec" aria-label="Nove anos no mercado">
-    <div class="cb-nove-grade">
-      <div class="cb-placa">
-        <span class="cb-placa-num" aria-hidden="true">9</span>
-        <p class="cb-placa-txt">Anos no mercado<small>Desde 2017 ajudando empresas a transformar marketing em pedidos de orçamento e vendas.</small></p>
-        <div class="cb-regua" aria-hidden="true"><ol>{anos}</ol></div>
-      </div>
-      <div class="cb-apoio">
-        <div><b>+1.000</b><span>Clientes atendidos</span></div>
-        <div><b>+10.000</b><span>Serviços realizados</span></div>
-      </div>
-    </div>
-  </section>'''
-
-
 def numeros_html():
     return '''  <section class="bg-prime-900 py-16" aria-label="Números da Conceito Prime">
     <div class="max-w-5xl mx-auto px-6 lg:px-8 grid grid-cols-3 gap-6 text-center">
@@ -453,9 +455,6 @@ def pagina(pg):
     ], ensure_ascii=False)
     eyebrow_logos = (f'\n      <p class="text-gold-500 font-semibold uppercase tracking-[0.3em] text-[11px] text-center mb-4">{pg["logos_eyebrow"]}</p>'
                      if pg['logos_eyebrow'] else '')
-    b2b = pg['slug'] == 'b2b'
-    antes_logos = nove_anos_html() + '\n\n' if b2b else ''
-    depois_logos = '' if b2b else numeros_html() + '\n\n'
     return cabeca(pg['title'], pg['description'], url, 'index, follow', schema) + f'''
 <body class="font-sans text-prime-800 antialiased" data-contato="formulario" data-lp="{pg['slug']}">
 
@@ -474,16 +473,16 @@ def pagina(pg):
 
 {promessas_html()}
 
-{antes_logos}  <section class="py-20 bg-white" aria-labelledby="seg-logos">
+  <section class="py-20 bg-white overflow-hidden" aria-labelledby="seg-logos">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">{eyebrow_logos}
       <h2 id="seg-logos" class="font-serif text-2xl sm:text-3xl text-prime-900 uppercase text-center mb-12">{pg['logos_titulo']}</h2>
-      <ul class="seg-logos" role="list">
-          {logos_html(pg['logos'])}
-      </ul>
     </div>
+{logos_html(pg['logos'])}
   </section>
 
-{depois_logos}  <section class="py-24 bg-prime-50" aria-labelledby="seg-problema">
+{numeros_html()}
+
+  <section class="py-24 bg-prime-50" aria-labelledby="seg-problema">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="w-12 h-[1px] bg-gold-400 mb-8 mx-auto" aria-hidden="true"></div>
       <h2 id="seg-problema" class="font-serif text-3xl sm:text-4xl text-prime-900 uppercase text-center leading-tight max-w-3xl mx-auto mb-14">{pg['problema_titulo']}</h2>
