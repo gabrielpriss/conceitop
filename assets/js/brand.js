@@ -1081,3 +1081,69 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
     auto();
   });
 })();
+
+/* Animações leves de entrada: os blocos abaixo da dobra surgem com fade e um leve deslize ao entrar na tela.
+   Não mexe no hero nem em nada que já está visível ao carregar (sem piscar e sem atrasar o LCP).
+   Sem JS, sem IntersectionObserver ou com "reduzir movimento" ligado, tudo aparece normalmente. */
+(function initRevelar() {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const main = document.querySelector('main');
+  if (!main) return;
+
+  // blocos de grade primeiro (de fora para dentro), depois títulos e textos soltos
+  const SELETORES = [
+    '.grid > *', '.servicos-grade > *', '.port-grade > *', '.seg-steps > *', '.seg-faqs > *',
+    '.cb-filtro > *', '.cb-promessas li', '.estrutura-grade > *', '.carousel-faixas', '.video-carousel-wrap',
+    '.contact-form-card', '.cb-form-card', '.post-content > *', 'section figure', 'article > div > figure', 'aside > div',
+    '.section-line', '[class*="h-[1px]"]', 'section h2', 'section h3', 'section h2 ~ p', '.estrutura-endereco'
+  ];
+  const FORA = '#header, footer, .hero-bg, .seg-hero, .sticky, [role="dialog"], .lead-overlay, .saida-overlay, .serv-overlay, .diag, .hidden';
+  const alturaTela = window.innerHeight;
+  const marcados = [];
+
+  const marcar = function (el) {
+    if (el.hasAttribute('data-revelar') || el.closest(FORA)) return;
+    if (el.parentElement && el.parentElement.closest('[data-revelar]')) return;
+    if (el.querySelector('[data-revelar]')) return;
+    if (!el.getClientRects().length) return;                       // escondido
+    if (el.getBoundingClientRect().top < alturaTela * 0.92) return;  // já visível ao carregar
+    el.setAttribute('data-revelar', '');
+    marcados.push(el);
+  };
+
+  SELETORES.forEach(function (sel) {
+    try { main.querySelectorAll(sel).forEach(marcar); } catch (e) { /* seletor sem suporte */ }
+  });
+  // o que sobrou em cada seção (CTAs, parágrafos, cards soltos) entra como bloco inteiro
+  main.querySelectorAll('section').forEach(function (sec) {
+    let alvo = sec;
+    while (alvo.children.length === 1 && alvo.firstElementChild.tagName === 'DIV') alvo = alvo.firstElementChild;
+    Array.prototype.forEach.call(alvo.children, marcar);
+  });
+  if (!marcados.length) return;
+  document.documentElement.classList.add('revelar-on');
+
+  const liberar = function (el) {
+    el.classList.remove('revelado');
+    el.removeAttribute('data-revelar');
+    el.style.transitionDelay = '';
+  };
+  const obs = new IntersectionObserver(function (entradas) {
+    const visiveis = entradas.filter(function (en) { return en.isIntersecting; }).map(function (en) { return en.target; });
+    visiveis.sort(function (a, b) {
+      const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+      return (ra.top - rb.top) || (ra.left - rb.left);
+    });
+    visiveis.forEach(function (el, i) {
+      obs.unobserve(el);
+      const atraso = Math.min(i, 5) * 80;
+      el.style.transitionDelay = atraso + 'ms';
+      el.classList.add('revelado');
+      // depois da entrada, devolve o elemento ao estilo normal (hover e transições próprias voltam a valer)
+      setTimeout(function () { liberar(el); }, atraso + 900);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+  marcados.forEach(function (el) { obs.observe(el); });
+  window.addEventListener('beforeprint', function () { marcados.forEach(liberar); });
+})();

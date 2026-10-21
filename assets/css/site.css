@@ -1744,3 +1744,8 @@ main > section.bg-prime-900::before, main > section.bg-prime-950::before, .site-
 @keyframes hero-rolar { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(14px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
 @media (max-width: 640px) { .hero-ctas { flex-direction: column; } .hero-ctas > a { width: 100%; justify-content: center; } .hero-rolar { display: none; } }
 @media (prefers-reduced-motion: reduce) { .hero-rolar span { animation: none; } }
+
+/* Animações de entrada (brand.js initRevelar): só valem com JS ativo e sem "reduzir movimento" */
+html.revelar-on [data-revelar] { opacity: 0; transform: translate3d(0, 18px, 0); }
+html.revelar-on [data-revelar].revelado { opacity: 1; transform: none; transition: opacity .6s ease, transform .75s cubic-bezier(.22, .61, .36, 1); }
+@media (prefers-reduced-motion: reduce) { html.revelar-on [data-revelar] { opacity: 1; transform: none; } }
