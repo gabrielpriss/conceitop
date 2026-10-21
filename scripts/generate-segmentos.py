@@ -134,7 +134,7 @@ PAGINAS = [
         'h1': 'Estratégia e execução para sua empresa <span class="text-gold-400">vender mais</span>',
         'sub': 'Google Ads, Meta Ads, site, marca e processo comercial trabalhando juntos para a sua empresa atrair decisores com perfil de compra e transformar esses contatos em contratos. Escritórios em Curitiba e Cascavel.',
         'logos_titulo': 'Algumas empresas B2B que <span class="text-gold-400">trabalham com a gente</span>',
-        'logos': ['reda', 'do-valle', 'german-financial', 'rgm-service', 'naciopetro', 'cactos', 'ice-cargo',
+        'logos': ['adriano-cobuccio', 'reda', 'do-valle', 'brasilcard', 'german-financial', 'rgm-service', 'naciopetro', 'cactos', 'ice-cargo',
                   'tech-composites', 'aiss', 'pontual', 'serquip', 'dracos', 'rolpro', 'ladaniuski',
                   'atlas-eletromotores', 'plasfix', 'bw-printer', 'luzago', 'm8-pneus', 'mais-madeiras',
                   'pinhapel', 'ivankio', '2a', 'giga', 'molas-kuzma'],

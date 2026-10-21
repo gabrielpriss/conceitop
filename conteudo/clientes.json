@@ -2,6 +2,7 @@
   "_leia": "origem: arquivo original (relativo à pasta passada ao tratar-logos.py, ou assets/... do repositório). fundo: claro (padrão) ou escuro, para logos brancos. cores: pinta as partes brancas com as cores oficiais da marca (ver scripts/tratar-logos.py, colorir()).",
   "faixa1": [
     {"slug": "plasfix", "nome": "Plasfix", "origem": "Downloads/logo-plasfix.png"},
+    {"slug": "adriano-cobuccio", "nome": "Grupo Adriano Cobuccio", "origem": "Downloads/logo-adriano-cobuccio.png"},
     {"slug": "naciopetro", "nome": "Naciopetro", "origem": "Downloads/logo-naciopetro.png"},
     {"slug": "cactos", "nome": "Cactos Solutions", "origem": "Downloads/logo-cactos.png", "cores": {"componentes": {"caixa": [0, 0, 1, 0.76], "cores": ["#2b4021", "#2b4021", "#2b4021", "#2b4021", "#489830", "#489830", "#489830"], "ordem": "area"}, "base": "#2b4021"}},
     {"slug": "m8-pneus", "nome": "M8 Pneus", "origem": "LPs/m8-drive-ahead/src/assets/m8-logo.png"},
@@ -26,10 +27,12 @@
   ],
   "faixa2": [
     {"slug": "luzago", "nome": "Luzago Alimentos", "origem": "LPs/luzago/assets/icones/logo-luzago.webp"},
+    {"slug": "brasilcard", "nome": "BrasilCard", "origem": "Downloads/logo-brasilcard.png", "cores": {"base": "#004b89"}},
     {"slug": "personal", "nome": "Personal Centro Automotivo", "origem": "Downloads/logo-personal.png"},
     {"slug": "giga", "nome": "Giga", "origem": "assets/marcas/asset 13.png"},
     {"slug": "cerimonial-do-valle", "nome": "Cerimonial do Valle", "origem": "LPs/grupo-valle/cerimonial-do-valle/img/logo-3d89919.png"},
     {"slug": "doutor-hernia", "nome": "Doutor Hérnia", "origem": "LPs/DR HERNIA/TOLEDO/src/assets/img/logo-branco-132.png", "cores": {"base": "#243f97"}},
+    {"slug": "centro-europeu", "nome": "Centro Europeu", "origem": "Downloads/logo-centro-europeu-render.png"},
     {"slug": "pizzaria-da-hora", "nome": "Pizzaria Da Hora", "origem": "assets/marcas/asset 15.png"},
     {"slug": "dracos", "nome": "Draco's Sur América", "origem": "LPs/Dracos/dracos-site/images/logo.png"},
     {"slug": "german-financial", "nome": "German Financial", "origem": "assets/marcas/german-financial-colorido.png"},
