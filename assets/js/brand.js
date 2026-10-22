@@ -297,6 +297,9 @@ function initDiagnostico(form) {
   function concluirWhatsApp(d, qualificado) {
     const evento = { formulario: form.id || 'diagnostico', pagina: location.pathname, faturamento: d.faturamento, segmento: d.segmento, lead_qualificado: qualificado };
     track('form_submit', evento);
+    /* Conversão principal "Formulário comercial" (GTM: evento lead_comercial). Só os formulários de diagnóstico
+       disparam este evento; o formulário de vagas e fornecedores nunca dispara. */
+    track('lead_comercial', { origem: 'site', canal: form.dataset.canal || form.id || 'diagnostico', pagina: location.pathname, lead_id: String(Date.now()), lead_qualificado: qualificado });
     try { sessionStorage.setItem('cp_lead_enviado', '1'); } catch (e) { /* segue */ }
     /* Conversão principal do Google Ads: só empresa a partir de R$ 100 mil/mês (gatilho no GTM pelo evento lead_qualificado) */
     if (qualificado) track('lead_qualificado', evento);
@@ -561,7 +564,11 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
     icone.className = aberto ? 'fas fa-times' : 'fab fa-whatsapp';
   };
   menu.querySelectorAll('a.wa-contact').forEach(function (a) {
-    a.addEventListener('click', function () { track('whatsapp_open', { posicao: a.dataset.cta }); });
+    a.addEventListener('click', function () {
+      track('whatsapp_open', { posicao: a.dataset.cta });
+      /* Conversão principal "Clique WhatsApp comercial" (GTM: evento whatsapp_comercial). O Administrativo não conta. */
+      if (a.dataset.cta === 'flutuante-comercial') track('whatsapp_comercial', { pagina: location.pathname });
+    });
   });
   btn.addEventListener('click', function () {
     const abrir = menu.classList.contains('hidden');

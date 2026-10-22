@@ -8,6 +8,12 @@
 /servicos                   /#servicos                 301
 /servicos/*                 /#servicos                 301
 
+# Acessos do servidor antigo (VPS) que as pessoas digitam no domínio principal
+/webmail                    https://webmail.conceitop.com.br/    302
+/webmail/*                  https://webmail.conceitop.com.br/    302
+/cpanel                     https://cpanel.conceitop.com.br/     302
+/cpanel/*                   https://cpanel.conceitop.com.br/     302
+
 # URLs do WordPress antigo (conceitop.com.br) para não perder o que já está indexado
 /criacao-de-sites/          /#servicos                 301
 /termos-condicoes/          /                          301

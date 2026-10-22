@@ -156,6 +156,8 @@ document.addEventListener('DOMContentLoaded', function () {
   tipos.forEach(function (tipo) {
     window.dataLayer.push({ event: 'conversao_lead_b2b', tipo: tipo, lead_id: String(lead.t), faturamento: lead.faturamento, pagina_origem: lead.pagina });
   });
+  /* Conversão principal "Formulário comercial": um evento por lead das LPs, com o mesmo nome usado no site */
+  window.dataLayer.push({ event: 'lead_comercial', origem: 'lp', canal: 'formulario', pagina: lead.pagina, lead_id: String(lead.t), lead_qualificado: !!lead.qualificado });
 
   /* Tag do Google direta (só se GOOGLE_TAG_ID estiver preenchido no gerador, sem GTM) */
   var conversoes = (document.body.getAttribute('data-conversoes') || '').split(',').filter(Boolean);

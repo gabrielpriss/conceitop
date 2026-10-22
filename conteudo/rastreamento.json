@@ -1,4 +1,4 @@
 {
   "_leia": "ID do contêiner do Google Tag Manager (GTM-XXXXXXX). Vazio = o build não instala nada. Quando preenchido, scripts/inject-gtm.js põe o GTM em todas as páginas publicadas.",
-  "gtm": ""
+  "gtm": "GTM-KHLGD4SF"
 }
