@@ -58,7 +58,6 @@
     {"slug": "pontual", "nome": "Pontual Brasil Petróleo", "origem": "Downloads/logo-pontual.png"},
     {"slug": "do-valle", "nome": "Do Valle Engenharia", "origem": "Downloads/logo-do-valle-engenharia.png"},
     {"slug": "easy-lipo", "nome": "Easy Lipo", "origem": "Downloads/logo-easy-lipo.png", "cores": {"regioes": [{"caixa": [0, 0.58, 1, 1], "cor": "#2f6f6f"}]}},
-    {"slug": "grupo-taborda", "nome": "Grupo Taborda", "origem": "Downloads/logo-grupo-taborda.png", "cores": {"base": "#1a1a1a"}},
     {"slug": "reviver-saude", "nome": "Reviver Saúde", "origem": "Downloads/logo-reviver-saude.png"},
     {"slug": "allcross", "nome": "AllCross", "origem": "Downloads/logo-allcross.png"},
     {"slug": "rumo-seguro", "nome": "Rumo Seguro", "origem": "Downloads/logo-rumo-seguro.png"},
