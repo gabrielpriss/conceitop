@@ -1678,3 +1678,20 @@ main > section.bg-prime-900::before, main > section.bg-prime-950::before, .site-
 html.revelar-on [data-revelar] { opacity: 0; transform: translate3d(0, 18px, 0); }
 html.revelar-on [data-revelar].revelado { opacity: 1; transform: none; transition: opacity .6s ease, transform .75s cubic-bezier(.22, .61, .36, 1); }
 @media (prefers-reduced-motion: reduce) { html.revelar-on [data-revelar] { opacity: 1; transform: none; } }
+
+/* Respiro entre seções vizinhas com o mesmo tom de fundo.
+   Duas seções claras (ou uma escura colada no rodapé) somavam os dois paddings e abriam um vão de 200px+.
+   Aqui o encontro entre elas fica com 3rem + 3rem no celular e 4rem + 4rem no desktop. */
+main > :is(.bg-white, .bg-prime-50, .bg-slate-50, .cb-filtro-sec, .estrutura-sec):not(.sticky):not(.hero-bg):has(+ :is(.bg-white, .bg-prime-50, .bg-slate-50, .cb-filtro-sec, .estrutura-sec)) { padding-bottom: 3rem; }
+main > :is(.bg-white, .bg-prime-50, .bg-slate-50, .cb-filtro-sec, .estrutura-sec):not(.sticky):not(.hero-bg) + :is(.bg-white, .bg-prime-50, .bg-slate-50, .cb-filtro-sec, .estrutura-sec) { padding-top: 3rem; }
+main > :is(.bg-prime-900, .bg-prime-950):last-child { padding-bottom: 3.5rem; }
+main:has(> :is(.bg-prime-900, .bg-prime-950):last-child) + .site-footer { padding-top: 3.5rem; border-top: 1px solid rgba(255, 255, 255, .08); }
+@media (min-width: 1024px) {
+  main > :is(.bg-white, .bg-prime-50, .bg-slate-50, .cb-filtro-sec, .estrutura-sec):not(.sticky):not(.hero-bg):has(+ :is(.bg-white, .bg-prime-50, .bg-slate-50, .cb-filtro-sec, .estrutura-sec)) { padding-bottom: 4rem; }
+  main > :is(.bg-white, .bg-prime-50, .bg-slate-50, .cb-filtro-sec, .estrutura-sec):not(.sticky):not(.hero-bg) + :is(.bg-white, .bg-prime-50, .bg-slate-50, .cb-filtro-sec, .estrutura-sec) { padding-top: 4rem; }
+  main > :is(.bg-prime-900, .bg-prime-950):last-child { padding-bottom: 4.5rem; }
+  main:has(> :is(.bg-prime-900, .bg-prime-950):last-child) + .site-footer { padding-top: 4.5rem; }
+}
+/* Logos da home: o carrossel já tem 1.5rem de folga embaixo (sombra do hover), então a seção desconta isso */
+main > #clientes { padding-bottom: 1.5rem; }
+@media (min-width: 1024px) { main > #clientes { padding-bottom: 2.5rem; } }

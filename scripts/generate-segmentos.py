@@ -473,7 +473,7 @@ def pagina(pg):
 
 {promessas_html()}
 
-  <section class="py-20 bg-white overflow-hidden" aria-labelledby="seg-logos">
+  <section class="pt-20 pb-14 bg-white overflow-hidden" aria-labelledby="seg-logos">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">{eyebrow_logos}
       <h2 id="seg-logos" class="font-serif text-2xl sm:text-3xl text-prime-900 uppercase text-center mb-12">{pg['logos_titulo']}</h2>
     </div>
