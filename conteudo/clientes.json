@@ -23,7 +23,16 @@
     {"slug": "ice-cargo", "nome": "Ice Cargo", "origem": "Downloads/logo-ice-cargo-branco.png", "cores": {"base": "#0073bb", "regioes": [{"caixa": [0, 0, 0.29, 1], "cor": "#ee8f21"}]}},
     {"slug": "tech-composites", "nome": "Tech Composites", "origem": "Downloads/logo-tech-composites.png"},
     {"slug": "serquip", "nome": "Serquip PR", "origem": "Downloads/logo-serquip.png", "cores": {"base": "#007f35"}},
-    {"slug": "pinhapel", "nome": "Pinhapel", "origem": "Downloads/logo-pinhapel.png", "cores": {"base": "#005a2a", "regioes": [{"caixa": [0, 0, 0.245, 1], "cor": "#92c63d"}, {"caixa": [0.255, 0.7, 0.715, 1], "cor": "#92c63d"}]}}
+    {"slug": "pinhapel", "nome": "Pinhapel", "origem": "Downloads/logo-pinhapel.png", "cores": {"base": "#005a2a", "regioes": [{"caixa": [0, 0, 0.245, 1], "cor": "#92c63d"}, {"caixa": [0.255, 0.7, 0.715, 1], "cor": "#92c63d"}]}},
+    {"slug": "auxiliadora-predial", "nome": "Auxiliadora Predial", "origem": "Downloads/logo-auxiliadora-predial.png"},
+    {"slug": "sinc-capital", "nome": "Sinc Capital", "origem": "Downloads/logo-sinc-capital.png"},
+    {"slug": "geoazimute", "nome": "Geoazimute Aerofotogrametria", "origem": "Downloads/logo-geoazimute.png"},
+    {"slug": "avysa", "nome": "Avysa", "origem": "Downloads/logo-avysa.png", "cores": {"base": "#187878"}},
+    {"slug": "vedolim-teixeira", "nome": "Vedolim Teixeira & Advogados Associados", "origem": "Downloads/logo-vedolim-teixeira.png"},
+    {"slug": "noemia-ingracio", "nome": "Noemia Ingracio Advocacia", "origem": "Downloads/logo-noemia-ingracio.png"},
+    {"slug": "valentes", "nome": "Valente's Auto Center", "origem": "Downloads/logo-valentes.png"},
+    {"slug": "mototest", "nome": "Mototest", "origem": "Downloads/logo-mototest.png"},
+    {"slug": "nuee", "nome": "Nuee", "origem": "Downloads/logo-nuee.png"}
   ],
   "faixa2": [
     {"slug": "luzago", "nome": "Luzago Alimentos", "origem": "LPs/luzago/assets/icones/logo-luzago.webp"},
@@ -48,6 +57,15 @@
     {"slug": "aiss", "nome": "AISS do Brasil", "origem": "Downloads/logo-aiss.png"},
     {"slug": "pontual", "nome": "Pontual Brasil Petróleo", "origem": "Downloads/logo-pontual.png"},
     {"slug": "do-valle", "nome": "Do Valle Engenharia", "origem": "Downloads/logo-do-valle-engenharia.png"},
-    {"slug": "easy-lipo", "nome": "Easy Lipo"}
+    {"slug": "easy-lipo", "nome": "Easy Lipo", "origem": "Downloads/logo-easy-lipo.png", "cores": {"regioes": [{"caixa": [0, 0.58, 1, 1], "cor": "#2f6f6f"}]}},
+    {"slug": "grupo-taborda", "nome": "Grupo Taborda", "origem": "Downloads/logo-grupo-taborda.png", "cores": {"base": "#1a1a1a"}},
+    {"slug": "reviver-saude", "nome": "Reviver Saúde", "origem": "Downloads/logo-reviver-saude.png"},
+    {"slug": "allcross", "nome": "AllCross", "origem": "Downloads/logo-allcross.png"},
+    {"slug": "rumo-seguro", "nome": "Rumo Seguro", "origem": "Downloads/logo-rumo-seguro.png"},
+    {"slug": "candanedo", "nome": "Candanedo Advocacia", "origem": "Downloads/logo-candanedo.png"},
+    {"slug": "sawazaki", "nome": "Sawazaki Veículos", "origem": "Downloads/logo-sawazaki.png"},
+    {"slug": "auto-service", "nome": "Auto Service", "origem": "Downloads/logo-auto-service.png", "cores": {"base": "#1a1a1a"}},
+    {"slug": "game-hero", "nome": "Game Hero", "origem": "Downloads/logo-game-hero.png"},
+    {"slug": "poly-ehlke", "nome": "Poly Ehlke", "origem": "Downloads/logo-poly-ehlke.png"}
   ]
 }

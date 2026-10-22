@@ -1695,3 +1695,20 @@ main:has(> :is(.bg-prime-900, .bg-prime-950):last-child) + .site-footer { paddin
 /* Logos da home: o carrossel já tem 1.5rem de folga embaixo (sombra do hover), então a seção desconta isso */
 main > #clientes { padding-bottom: 1.5rem; }
 @media (min-width: 1024px) { main > #clientes { padding-bottom: 2.5rem; } }
+
+/* Contato da home: números da Prime em lista vertical ao lado do formulário (o mapa fica na seção "Onde estamos") */
+.contato-numeros { padding: 0 1.25rem 2rem; color: var(--brand-dark); }
+.contato-numeros-selo { font-family: 'Michroma', sans-serif; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 1rem; color: var(--brand-dark); }
+.contato-numeros ul { list-style: none; margin: 0; padding: 0; }
+.contato-numeros li { display: flex; align-items: baseline; gap: 1rem; padding: .85rem 0; border-top: 1px solid rgba(22, 22, 22, .16); }
+.contato-numeros li:last-child { border-bottom: 1px solid rgba(22, 22, 22, .16); }
+.contato-numeros b { font-family: 'Share Tech', sans-serif; font-weight: 400; font-size: 2.25rem; line-height: 1; min-width: 7.5rem; color: var(--brand-dark); }
+.contato-numeros li > span { font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(22, 22, 22, .78); }
+@media (min-width: 640px) { .contato-numeros { padding: 0 1.5rem 2.5rem; } }
+@media (min-width: 1024px) {
+  .contact-section--numeros .contact-layered { grid-template-columns: minmax(0, 19rem) minmax(0, 30rem); justify-content: center; align-items: center; column-gap: 5rem; }
+  .contact-section--numeros .contato-numeros { grid-column: 1; grid-row: 1; padding: 0; }
+  .contact-section--numeros .contact-front { grid-column: 2; }
+  .contato-numeros li { display: block; padding: 1.35rem 0; }
+  .contato-numeros b { display: block; font-size: 3.25rem; margin-bottom: .45rem; }
+}

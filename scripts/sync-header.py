@@ -35,7 +35,11 @@ def main():
             sem_header.append(os.path.relpath(p, ROOT))
             continue
         novo = PADRAO.sub(lambda m: HEADER, s, count=1)
-        novo = PADRAO_ESTRUTURA.sub(lambda m: ESTRUTURA, novo)
+        bloco = ESTRUTURA
+        if os.path.relpath(p, ROOT) == 'index.html':
+            # a home já abre com a seção "Nossa estrutura" (equipe); aqui o bloco do mapa vira "Onde estamos"
+            bloco = bloco.replace('Nossa <span class="text-gold-400">estrutura</span>', 'Onde <span class="text-gold-400">estamos</span>')
+        novo = PADRAO_ESTRUTURA.sub(lambda m: bloco, novo)
         if novo != s:
             diferentes.append(os.path.relpath(p, ROOT))
             if not conferir:

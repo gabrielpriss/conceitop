@@ -992,7 +992,7 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
     faixa.querySelectorAll('img').forEach(function (img) { img.draggable = false; });
 
     const reversa = trilho.classList.contains('carousel-reverse');
-    const duracao = reversa ? 45 : 55; // segundos para uma volta completa, como no CSS
+    const velocidade = reversa ? 90 : 75; // px por segundo: o ritmo não muda com a quantidade de logos
     let largura = grupo.offsetWidth;
     let x = reversa ? -largura : 0;
     let arrastando = false, inicioX = 0, inicioPos = 0, ultimoX = 0, ultimoT = 0, inercia = 0;
@@ -1007,7 +1007,7 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
       const dt = anterior ? Math.min((t - anterior) / 1000, 0.05) : 0;
       anterior = t;
       if (!arrastando && visivel) {
-        const auto = reduzMovimento.matches ? 0 : (largura / duracao) * (reversa ? 1 : -1);
+        const auto = reduzMovimento.matches ? 0 : velocidade * (reversa ? 1 : -1);
         x += (auto + inercia) * dt;
         inercia *= Math.pow(0.04, dt); // a inércia do arraste some em cerca de 1 segundo
         if (Math.abs(inercia) < 1) inercia = 0;
