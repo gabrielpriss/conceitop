@@ -1,0 +1,39 @@
+name: Avisar buscadores (IndexNow)
+
+# A cada push na main que mexe no blog, espera o Cloudflare publicar e avisa o Bing
+# (e os demais buscadores do IndexNow) das páginas do blog criadas ou alteradas.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'blog/**'
+      - 'conteudo/blog/**'
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Lista de páginas alteradas
+        id: lista
+        run: |
+          CAMINHOS=$(git diff --name-only HEAD~1 HEAD -- blog | grep '/index.html$' | sed -E 's#index\.html$##; s#^#/#' | sort -u | tr '\n' ' ')
+          echo "caminhos=$CAMINHOS" >> "$GITHUB_OUTPUT"
+          echo "Páginas: $CAMINHOS"
+      - name: Espera o site novo no ar
+        if: steps.lista.outputs.caminhos != ''
+        run: |
+          for i in $(seq 1 20); do
+            if curl -fsS https://conceitop.com.br/sitemap.xml | grep -q "$(git log -1 --format=%cs)"; then echo "sitemap atualizado"; break; fi
+            sleep 20
+          done
+      - name: Envia ao IndexNow
+        if: steps.lista.outputs.caminhos != ''
+        env:
+          INDEXNOW_PATHS: ${{ steps.lista.outputs.caminhos }}
+        run: node scripts/indexnow.mjs

@@ -11,6 +11,9 @@ rm -rf "$DIST"
 mkdir -p "$DIST"
 
 cp "$ROOT/index.html" "$ROOT/404.html" "$ROOT/robots.txt" "$ROOT/sitemap.xml" "$DIST/"
+# feed RSS do blog e chave do IndexNow (Bing e outros buscadores)
+cp "$ROOT/blog/feed.xml" "$DIST/feed.tmp.xml" 2>/dev/null || true
+for k in "$ROOT"/[0-9a-f]*.txt; do if [ -f "$k" ]; then cp "$k" "$DIST/"; fi; done
 cp "$ROOT/_headers" "$ROOT/_redirects" "$DIST/"
 # /favicon.ico na raiz: navegadores e buscadores pedem esse caminho mesmo sem <link>
 cp "$ROOT/assets/images/favicon.ico" "$DIST/favicon.ico"
@@ -27,6 +30,8 @@ done
 mkdir -p "$DIST/assets/css" "$DIST/assets/js" "$DIST/assets/fonts" "$DIST/assets/images"
 cp -r "$ROOT/assets/images/." "$DIST/assets/images/"
 cp "$ROOT/assets/fonts/"*.woff2 "$DIST/assets/fonts/"
+
+mkdir -p "$DIST/blog" && [ -f "$DIST/feed.tmp.xml" ] && mv "$DIST/feed.tmp.xml" "$DIST/blog/feed.xml"
 
 # Hash de conteúdo: permite cache imutável de um ano sem servir versão antiga
 hash() { md5sum "$1" | cut -c1-10; }

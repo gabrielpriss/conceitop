@@ -1716,3 +1716,48 @@ main > #clientes { padding-bottom: 1.5rem; }
   .contato-numeros li { display: block; padding: 1.35rem 0; }
   .contato-numeros b { display: block; font-size: 3.25rem; margin-bottom: .45rem; }
 }
+
+/* ===== Blog: layout do artigo (scripts/generate-blog.py) ===== */
+.blog-layout { display: grid; gap: 3rem; }
+@media (min-width: 1024px) { .blog-layout { grid-template-columns: minmax(0, 1fr) 300px; align-items: start; } }
+.blog-coluna { min-width: 0; max-width: 48rem; }
+.blog-aside { display: none; }
+@media (min-width: 1024px) { .blog-aside { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 7rem; } }
+.blog-aside-cartao { background: var(--brand-dark); color: #fff; border-radius: 16px; padding: 1.75rem 1.5rem; }
+.blog-aside-titulo { font-family: 'Share Tech', sans-serif; text-transform: uppercase; letter-spacing: .14em; font-size: .8rem; color: var(--brand-yellow-dark); margin-bottom: .75rem; }
+.blog-aside-cartao .blog-aside-titulo { color: var(--brand-yellow); }
+.blog-aside-texto { font-size: .95rem; line-height: 1.55; color: rgba(255,255,255,.8); margin-bottom: 1.25rem; }
+.blog-aside-local { font-size: .78rem; color: rgba(255,255,255,.55); margin-top: .9rem; text-align: center; }
+.blog-sumario { border-left: 3px solid var(--brand-yellow); padding-left: 1.1rem; }
+.blog-sumario ol { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.blog-sumario a { font-size: .9rem; line-height: 1.4; color: #3a3a3a; text-decoration: none; }
+.blog-sumario a:hover { color: var(--brand-dark); text-decoration: underline; text-decoration-color: var(--brand-yellow); }
+.post-content h2[id] { scroll-margin-top: 7rem; }
+.blog-cta-meio { background: #faf6e6; border: 1px solid #f1e3a6; border-left: 4px solid var(--brand-yellow); border-radius: 14px; padding: 1.5rem 1.5rem 1.6rem; margin: 2.5rem 0; }
+.blog-cta-meio-selo { font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; font-weight: 700; color: #8a6d00; }
+.post-content .blog-cta-meio-titulo { font-size: 1.3rem; font-weight: 700; color: var(--brand-dark); margin-top: .35rem; line-height: 1.3; }
+.post-content .blog-cta-meio-texto { font-size: 1rem; color: #444; margin-top: .4rem; margin-bottom: 1.1rem; }
+.post-content .blog-cta-meio a { text-decoration: none; }
+.post-content .blog-cta-meio a:hover { background: var(--brand-yellow); }
+.post-tabela { overflow-x: auto; }
+.post-content table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.post-content th, .post-content td { border: 1px solid #e5e5e5; padding: .6rem .75rem; text-align: left; vertical-align: top; }
+.post-content th { background: #f6f6f6; color: var(--brand-dark); }
+.blog-faq, .blog-fontes { margin-top: 3rem; }
+.blog-faq h2, .blog-fontes h2 { font-size: 1.6rem; line-height: 1.25; color: var(--brand-dark); margin-bottom: 1rem; }
+.blog-faq h2::before { content: ''; display: block; width: 2.5rem; height: 3px; background: var(--brand-yellow); margin-bottom: .9rem; }
+.blog-faq-item { border: 1px solid #e8e8e8; border-radius: 12px; padding: 1rem 1.2rem; background: #fff; }
+.blog-faq-item + .blog-faq-item { margin-top: .75rem; }
+.blog-faq-item summary { cursor: pointer; font-weight: 700; color: var(--brand-dark); font-size: 1.05rem; }
+.blog-faq-item p { margin-top: .6rem; color: #333; line-height: 1.7; }
+.blog-fontes h2 { font-size: 1.15rem; }
+.blog-fontes ul { list-style: disc; padding-left: 1.3rem; font-size: .9rem; color: #555; display: grid; gap: .35rem; }
+.blog-fontes a { color: #444; text-decoration: underline; }
+.blog-diagnostico { background: var(--brand-dark); padding: 4rem 0 4.5rem; scroll-margin-top: 5rem; }
+.blog-barra { position: fixed; left: 1rem; right: 5.5rem; bottom: 1.5rem; z-index: 9990; display: flex; align-items: center; justify-content: center; gap: .5rem; min-height: 3.25rem; padding: .75rem 1rem; border-radius: 999px; background: var(--brand-yellow); color: var(--brand-dark); font-weight: 800; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; box-shadow: 0 8px 24px rgba(0,0,0,.25); transition: opacity .25s ease, transform .25s ease; }
+.blog-barra.is-oculta { opacity: 0; transform: translateY(1rem); pointer-events: none; }
+@media (min-width: 1024px) { .blog-barra { display: none; } }
+.blog-paginacao { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 1.5rem; margin-top: 3rem; }
+.blog-pag-link { display: inline-flex; padding: .75rem 1.4rem; border-radius: 999px; background: var(--brand-dark); color: #fff; font-weight: 700; font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; }
+.blog-pag-link:hover { background: var(--brand-yellow); color: var(--brand-dark); }
+.blog-pag-atual { color: #666; font-size: .9rem; }
