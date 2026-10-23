@@ -42,6 +42,9 @@ find "$DIST" -name '*.html' -print0 | xargs -0 sed -i \
 # Google Tag Manager em todas as páginas (só quando conteudo/rastreamento.json tiver o ID)
 node "$ROOT/scripts/inject-gtm.js"
 
+# Desempenho: logo responsivo e preload do fundo do hero (scripts/otimizar-dist.js)
+node "$ROOT/scripts/otimizar-dist.js"
+
 BYTES=$(du -sh "$DIST" | cut -f1)
 FILES=$(find "$DIST" -type f | wc -l)
 echo "✓ Build concluído: $DIST ($BYTES, $FILES arquivos)"

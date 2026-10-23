@@ -435,7 +435,7 @@ def videos_secao(pg):
           <i class="fas fa-chevron-right" aria-hidden="true"></i>
         </button>
       </div>
-      <div class="video-dots" role="tablist" aria-label="Navegar depoimentos em vídeo">
+      <div class="video-dots" role="group" aria-label="Navegar depoimentos em vídeo">
         {dots}
       </div>
     </div>

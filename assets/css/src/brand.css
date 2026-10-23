@@ -59,10 +59,14 @@ h1, h2, h3, h4 {
   content: '';
   position: absolute;
   inset: -8px;
-  background: url('../images/hero-bg.webp') center/cover no-repeat;
+  background: url('../images/hero-bg-800.webp') center/cover no-repeat;
   filter: brightness(0.65) blur(2px);
   z-index: 0;
 }
+/* Fundo do hero no tamanho da tela (o preload em cada página usa os mesmos cortes) */
+@media (min-width: 768px) { .hero-bg::before { background-image: url('../images/hero-bg-1200.webp'); } }
+@media (min-width: 1280px) { .hero-bg::before { background-image: url('../images/hero-bg.webp'); } }
+
 
 /* Camada 2 — véu glass: gradiente escuro + textura de vidro */
 .hero-bg::after {
