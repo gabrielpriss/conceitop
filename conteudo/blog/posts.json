@@ -1,5 +1,55 @@
 [
   {
+    "slug": "agencia-de-marketing-em-londrina",
+    "titulo": "Agência de marketing em Londrina: como gerar clientes B2B no norte do Paraná",
+    "titulo_seo": "Agência de marketing em Londrina para B2B | Conceito Prime",
+    "descricao": "Agência de marketing em Londrina para indústria e B2B: como atrair empresas com perfil de compra, que buscas priorizar e o que avaliar antes de contratar.",
+    "linha_fina": "Como transformar o Google em pedido de orçamento de empresas com porte para comprar.",
+    "data": "2026-10-24",
+    "atualizado": "2026-10-24",
+    "categoria": "Marketing Digital",
+    "palavras_chave": [
+      "agência de marketing londrina",
+      "empresa de marketing londrina",
+      "marketing londrina",
+      "marketing b2b",
+      "marketing industrial"
+    ],
+    "local": "Londrina",
+    "faq": [
+      {
+        "pergunta": "Como escolher uma agência de marketing em Londrina?",
+        "resposta": "Priorize a agência que define com você o que é um lead qualificado, mede o trabalho até reuniões e contratos e deixa contas e dados em nome da sua empresa."
+      },
+      {
+        "pergunta": "Agência de marketing em Londrina atende indústria?",
+        "resposta": "Sim, desde que trabalhe com venda técnica e ciclo longo. Para indústria, o foco precisa ser pedido de orçamento com perfil, e não alcance ou seguidores."
+      },
+      {
+        "pergunta": "Preciso de uma agência com escritório em Londrina?",
+        "resposta": "Não necessariamente. Pesa mais a rotina de trabalho com o comercial do que a distância; visitas presenciais ajudam principalmente no início do projeto."
+      },
+      {
+        "pergunta": "Quanto investir em marketing digital para uma empresa B2B em Londrina?",
+        "resposta": "Depende do mercado, da concorrência nos anúncios e do escopo. O ideal é calcular a verba a partir da meta comercial e acompanhar o custo por lead qualificado."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "Agência Estadual de Notícias do Paraná: Economia do Paraná está mais forte e distribuída nas regiões, mostra estudo do IBGE (2023, dados de 2021)",
+        "url": "https://www.parana.pr.gov.br/aen/Noticia/Economia-do-Parana-esta-mais-forte-e-distribuida-nas-regioes-mostra-estudo-do-IBGE"
+      },
+      {
+        "nome": "Prefeitura de Londrina, Gerência de Pesquisas e Informações: Evolução do PIB, indústria e mercado de trabalho em Londrina (dados IBGE e RAIS)",
+        "url": "https://repositorio.londrina.pr.gov.br/index.php/menu-planejamento/72825-evolucao-do-pib-industria-e-mercado-de-trabalho-em-londrina-1/file"
+      },
+      {
+        "nome": "Google Ads, Planejador de palavras-chave (consulta de 24/10/2026, Brasil, out/2025 a set/2026)",
+        "url": "https://ads.google.com/home/tools/keyword-planner/"
+      }
+    ]
+  },
+  {
     "slug": "marketing-industrial",
     "titulo": "Marketing industrial: o que é, canais e como gerar vendas para a indústria",
     "titulo_seo": "Marketing industrial: o que é e como vender | Conceito Prime",
