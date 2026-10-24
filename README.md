@@ -23,7 +23,7 @@ O build só copia o que vai ao ar e coloca hash de conteúdo em `site.css` e `br
 |---|---|---|
 | Classe Tailwind em HTML/JS ou `assets/css/src/brand.css` | `TAILWIND_BIN=/caminho/tailwindcss bash scripts/build-css.sh` | `assets/css/site.css` |
 | Fonte ou ícone novo (`fa-*`) | `python3 scripts/build-assets.py --fonts <google/fonts> --fa <fontawesome-web>` | `assets/fonts/*.woff2`, `assets/css/src/fonts-icons.css` |
-| Artigo do blog | editar `conteudo/blog/posts.json` e `<slug>.raw.html`, depois `python3 scripts/generate-blog-covers.py --fonts <google/fonts>` e `python3 scripts/generate-blog.py` | `blog/<slug>/`, `blog/index.html`, capas, `sitemap.xml` |
+| Artigo do blog | seguir `conteudo/blog/REGRAS.md`: metadados em `conteudo/blog/posts.json`, corpo em `conteudo/blog/<slug>.html` (os 16 antigos usam `<slug>.raw.html`), depois `python3 scripts/generate-blog-covers.py` e `python3 scripts/generate-blog.py`; registrar a pauta em `conteudo/blog/pauta.md` | `blog/<slug>/`, `blog/index.html`, capas, `sitemap.xml` |
 | Logo de cliente | editar `conteudo/clientes.json` (origem e fundo claro ou escuro), `python3 scripts/tratar-logos.py <pasta dos originais>` e `python3 scripts/generate-clientes.py` | `assets/images/clientes/*.webp`, carrossel da home |
 | Capas dos depoimentos em vídeo | `python3 scripts/gerar-depoimentos.py <pasta com ShareTech-Regular.ttf e Cairo[slnt,wght].ttf>` (fotos e logos saem de `conteudo/depoimentos-originais/`) | `assets/images/depoimentos/depoimento-<slug>-v2.webp` |
 | Grade "Nossos Serviços" da home | editar `scripts/generate-servicos-home.py` e `conteudo/servicos.json` (texto e imagem do popup de cada serviço; ícones em `partials/icones-servicos.py`) e rodar o script | `index.html` |
