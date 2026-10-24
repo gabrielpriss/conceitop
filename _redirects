@@ -29,6 +29,10 @@
 /wp-sitemap.xml             /sitemap.xml               301
 /wp-admin/*                 /                          301
 /wp-login.php               /                          301
+/blog/page/*                /blog/                     301
+/page/*                     /blog/                     301
+/2021/*                     /blog/                     301
+/2022/*                     /blog/                     301
 
 # Artigos do blog: saíram da raiz e foram para /blog/
 /como-qualificar-um-lead-e-por-que-isso-e-importante/                          /blog/como-qualificar-um-lead-e-por-que-isso-e-importante/                          301
