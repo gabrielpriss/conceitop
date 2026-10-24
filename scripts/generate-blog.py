@@ -113,7 +113,7 @@ def card(p, eager=False, h='h2'):
     d = date.fromisoformat(p['data']).strftime('%d/%m/%Y')
     return f'''        <article class="post-card group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative" data-cat="{p['categoria']}">
           <div class="aspect-video overflow-hidden relative">
-            <img src="/blog/assets/capas/{p['slug']}-600.webp" srcset="/blog/assets/capas/{p['slug']}-600.webp 600w, /blog/assets/capas/{p['slug']}.webp 1200w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" alt="" width="600" height="315" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" {'' if eager else 'loading="lazy" '}decoding="async">
+            <img src="/blog/assets/capas/{p['slug']}-600.webp" srcset="/blog/assets/capas/{p['slug']}-600.webp 600w, /blog/assets/capas/{p['slug']}.webp 1200w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" alt="{H.escape(p['titulo'])}" width="600" height="315" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" {'' if eager else 'loading="lazy" '}decoding="async">
           </div>
           <div class="p-6">
             <div class="flex items-center gap-2 mb-4">
@@ -245,6 +245,21 @@ def grade_paginada(base, ordenados):
             '    </div>\n'
             '  </section>\n\n')
         pagina = base[:a] + bloco_html + base[b:]
+        url_pag = f'{DOM}/blog/' if n == 1 else f'{DOM}/blog/pagina/{n}/'
+        ld_lista = {
+            '@context': 'https://schema.org',
+            '@graph': [
+                {'@type': 'CollectionPage', '@id': url_pag, 'url': url_pag, 'name': 'Blog da Conceito Prime',
+                 'inLanguage': 'pt-BR', 'isPartOf': {'@type': 'WebSite', 'url': DOM + '/', 'name': 'Conceito Prime'},
+                 'mainEntity': {'@type': 'ItemList', 'itemListElement': [
+                     {'@type': 'ListItem', 'position': (n - 1) * POR_PAGINA + i + 1, 'url': f"{DOM}/blog/{q['slug']}/", 'name': q['titulo']}
+                     for i, q in enumerate(fatia)]}},
+                {'@type': 'BreadcrumbList', 'itemListElement': [
+                    {'@type': 'ListItem', 'position': 1, 'name': 'Início', 'item': DOM + '/'},
+                    {'@type': 'ListItem', 'position': 2, 'name': 'Blog', 'item': DOM + '/blog/'}]},
+            ]}
+        pagina = re.sub(r'\s*<script type="application/ld\+json" data-lista>.*?</script>', '', pagina, flags=re.S)
+        pagina = pagina.replace('</head>', f'  <script type="application/ld+json" data-lista>{json.dumps(ld_lista, ensure_ascii=False)}</script>\n</head>', 1)
         if n == 1:
             open(os.path.join(ROOT, 'blog/index.html'), 'w', encoding='utf-8').write(pagina)
             continue
@@ -404,12 +419,11 @@ def pagina_post(p, ordenados, header, footer, scripts, favicons):
     </header>
 
     <div class="bg-white">
-      <figure class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 pt-12">
-        <img src="/blog/assets/capas/{slug}.webp" srcset="/blog/assets/capas/{slug}-600.webp 600w, /blog/assets/capas/{slug}.webp 1200w" sizes="(min-width: 960px) 896px, 100vw" alt="" width="1200" height="630" class="w-full h-auto rounded-2xl" fetchpriority="high" decoding="async">
-      </figure>
-
       <div class="blog-layout max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div class="blog-coluna">
+          <figure class="blog-capa">
+            <img src="/blog/assets/capas/{slug}.webp" srcset="/blog/assets/capas/{slug}-600.webp 600w, /blog/assets/capas/{slug}.webp 1200w" sizes="(min-width: 1024px) 740px, 100vw" alt="{H.escape(p['titulo'])}" width="1200" height="630" class="w-full h-auto rounded-2xl" fetchpriority="high" decoding="async">
+          </figure>
           <div class="post-content">
 {corpo}
           </div>

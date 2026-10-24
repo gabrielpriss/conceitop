@@ -1832,3 +1832,7 @@ main > #clientes { padding-bottom: 1.5rem; }
 .blog-pag-link { display: inline-flex; padding: .75rem 1.4rem; border-radius: 999px; background: var(--brand-dark); color: #fff; font-weight: 700; font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; }
 .blog-pag-link:hover { background: var(--brand-yellow); color: var(--brand-dark); }
 .blog-pag-atual { color: #666; font-size: .9rem; }
+
+/* Capa do artigo dentro da coluna de texto: menor e sem empurrar o conteúdo para baixo da dobra */
+.blog-capa { margin: 0 0 2rem; }
+@media (max-width: 767px) { .blog-capa { margin-bottom: 1.5rem; } }
