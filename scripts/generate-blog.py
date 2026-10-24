@@ -265,7 +265,7 @@ def grade_paginada(base, ordenados):
             continue
         url = f'{DOM}/blog/pagina/{n}/'
         pagina = re.sub(r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{url}">', pagina)
-        pagina = re.sub(r'<title>([^<]*)</title>', lambda m: f'<title>{m.group(1)} (página {n})</title>', pagina, count=1)
+        pagina = re.sub(r'<title>([^<]*)</title>', lambda m: f'<title>Blog da Conceito Prime, página {n}</title>', pagina, count=1)
         pagina = re.sub(r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{url}">', pagina)
         destino = os.path.join(ROOT, 'blog', 'pagina', str(n))
         os.makedirs(destino, exist_ok=True)

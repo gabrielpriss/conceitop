@@ -18,12 +18,13 @@
 const CAMPOS = ['nome', 'empresa', 'email', 'telefone', 'faturamento', 'segmento', 'servico', 'area', 'mensagem', 'pagina', 'origem',
   'gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 
-const SPAM_QUERY = /^\?(o\.\d+\.html|[yb]=\d+)$/;
+const SPAM_QUERY = /^\?(o[._]\d+[._]html|[yb]=\d+|s=[^&]*)$/;
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    // URLs de spam criadas pela invasão do WordPress antigo (dez/2025): /?o.123456.html, /?y=123, /?b=123.
+    // URLs de spam criadas pela invasão do WordPress antigo (dez/2025): /?o.123456.html, /?o_123456_html, /?y=123, /?b=123
+    // e buscas internas do WordPress (/?s=...), que não existem mais no site estático.
     // O Google ainda rastreia milhares delas; 410 diz que sumiram de vez e acelera a limpeza do índice.
     // Só casa com a query inteira nesse formato, então gclid, utm e afins continuam abrindo a home normalmente.
     if (url.pathname === '/' && SPAM_QUERY.test(url.search)) {
