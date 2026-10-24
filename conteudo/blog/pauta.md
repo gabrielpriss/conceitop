@@ -8,6 +8,7 @@ Registro de tudo o que a pesquisa avaliou. Toda linha leva a fonte do sinal de b
 |---|---|---|---|---|---|
 | 2021-11 a 2022-05 | B | 16 artigos migrados do WordPress | ver posts.json | Brasil | herdados |
 | 2026-10-24 | A | agencia-de-marketing-em-curitiba | agência de marketing em curitiba | Curitiba | Termos do Ads 404-812-7952 via Windsor, 90 dias até 2026-10-24: "agencia de marketing curitiba" 4 impr., "empresas de marketing em curitiba" 2, "agência de marketing digital em curitiba" 1 (7 impr. somadas). Sem volume do Planejador (Chrome indisponível) |
+| 2026-10-24 | B | quanto-custa-anunciar-no-google | quanto custa anunciar no google | Brasil | Planejador 24/10/2026 (Brasil, out/2025 a set/2026): "quanto custa anunciar no google" 100 a 1 mil, concorrência alta; "quanto investir em google ads" 10 a 100; "google ads vale a pena" 10 a 100. Degrau 2 (decisão de compra) |
 
 ## Ideias com sinal de busca (ainda não usadas)
 
