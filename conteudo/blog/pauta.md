@@ -18,6 +18,7 @@ Registro de tudo o que a pesquisa avaliou. Toda linha leva a fonte do sinal de b
 | Marketing industrial / marketing para indústrias | marketing industrial | Brasil | Termos do Ads via Windsor, 90 dias: "marketing industrial" 1 impr., "marketing para indústrias" 1 impr. Volume do Planejador a levantar |
 | Agência de marketing em Londrina | agência de marketing londrina | Londrina | Termos do Ads via Windsor, 90 dias: "marketing londrina" 2 impr., "empresa de marketing londrina" 1. Volume do Planejador a levantar |
 | Agência de marketing em Ponta Grossa | agência de marketing ponta grossa | Ponta Grossa | Termos do Ads via Windsor, 90 dias: "agencia de marketing ponta grossa" 1 impr. e 1 clique, "agencias de publicidade em ponta grossa" 1. Volume do Planejador a levantar |
+| Marketing digital em São José dos Pinhais para indústria | marketing digital são josé dos pinhais | São José dos Pinhais | Search Console via Windsor, 90 dias até 2026-10-24: 2 impr., pos. 52,5; "marketing são josé dos pinhais" 2 impr., pos. 61. Volume do Planejador a levantar |
 
 ## Descartados
 
@@ -25,3 +26,5 @@ Registro de tudo o que a pesquisa avaliou. Toda linha leva a fonte do sinal de b
 |---|---|---|
 | 2026-10-24 | Tráfego pago / gestão de tráfego pago | "trafego pago" 32 impr. nos termos do Ads, mas atrai quem quer aprender ou trabalhar com tráfego e reduz a Conceito Prime a agência de tráfego (abacaxi) |
 | 2026-10-24 | Agência de tráfego pago em Cascavel | 2 impr. nos termos do Ads; mesmo problema de posicionamento como "agência de tráfego pago". Reavaliar com ângulo "marketing B2B em Cascavel" e volume do Planejador |
+| 2026-10-24 | Atendimento por telefone | Search Console via Windsor, 90 dias: "melhorar atendimento telefonico" 18 impr. pos. 84,7, "atendimento por telefone" 6 impr. pos. 33. Já existe artigo (9-dicas-para-realizar-o-melhor-atendimento-por-telefone) e a intenção é de operador, não de empresário. Candidato a revisão, não a artigo novo |
+| 2026-10-24 | "conceito prime rh" | Search Console via Windsor, 90 dias: 45 impr. pos. 8,4. Busca de marca de outra empresa (RH), fora do público |
