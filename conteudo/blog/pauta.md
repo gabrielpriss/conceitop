@@ -11,6 +11,7 @@ Registro de tudo o que a pesquisa avaliou. Toda linha leva a fonte do sinal de b
 | 2026-10-24 | B | quanto-custa-anunciar-no-google | quanto custa anunciar no google | Brasil | Planejador 24/10/2026 (Brasil, out/2025 a set/2026): "quanto custa anunciar no google" 100 a 1 mil, concorrência alta; "quanto investir em google ads" 10 a 100; "google ads vale a pena" 10 a 100. Degrau 2 (decisão de compra) |
 | 2026-10-24 | B | marketing-industrial | marketing industrial | Brasil | Planejador 24/10/2026: "marketing industrial" 100 a 1 mil; "marketing para indústria", "marketing digital para indústria", "google ads para indústria", "seo para indústria", "site para indústria" 10 a 100 cada; termos do Ads (Windsor, 90 dias): "marketing industrial" 1 impr., "marketing para indústrias" 1. Degrau 3 |
 | 2026-10-24 | A | agencia-de-marketing-em-londrina | agência de marketing londrina | Londrina | Planejador 24/10/2026: "agência de marketing londrina" 100 a 1 mil; termos do Ads (Windsor, 90 dias): "marketing londrina" 2 impr., "empresa de marketing londrina" 1. Degrau 1 (contratação local) |
+| 2026-10-24 | A | agencia-de-marketing-em-cascavel | agência de marketing cascavel | Cascavel | Planejador 24/10/2026: "agência de marketing cascavel" 10 a 100 e "marketing digital cascavel" 10 a 100 (somados 20 a 200); termos do Ads (Windsor, 90 dias): "agencia de trafego pago em cascavel" 2 impr. Degrau 1 (contratação local, cidade do nosso escritório) |
 
 ## Ideias com sinal de busca (ainda não usadas)
 

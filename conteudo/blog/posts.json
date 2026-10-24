@@ -1,5 +1,51 @@
 [
   {
+    "slug": "agencia-de-marketing-em-cascavel",
+    "titulo": "Agência de marketing em Cascavel: marketing digital para empresas B2B do oeste do Paraná",
+    "titulo_seo": "Agência de marketing em Cascavel para B2B | Conceito Prime",
+    "descricao": "Agência de marketing em Cascavel para indústria e B2B do oeste do Paraná: como gerar clientes além da indicação, quanto investir e o que avaliar.",
+    "linha_fina": "Como depender menos de indicação e atrair empresas com perfil de compra pelo Google.",
+    "data": "2026-10-24",
+    "atualizado": "2026-10-24",
+    "categoria": "Vendas",
+    "palavras_chave": [
+      "agência de marketing cascavel",
+      "marketing digital cascavel",
+      "marketing para agronegócio",
+      "marketing industrial",
+      "marketing b2b"
+    ],
+    "local": "Cascavel",
+    "faq": [
+      {
+        "pergunta": "Existe agência de marketing com escritório em Cascavel que atende indústria?",
+        "resposta": "Sim. A Conceito Prime tem escritórios em Curitiba e Cascavel e trabalha com indústrias e empresas B2B, com reuniões presenciais ou online."
+      },
+      {
+        "pergunta": "Marketing digital funciona para empresas do agronegócio e da agroindústria?",
+        "resposta": "Funciona quando foca em quem busca fornecedor ou solução, com site técnico, Google Ads com intenção de compra e acompanhamento do comercial."
+      },
+      {
+        "pergunta": "Quanto investir em marketing digital em Cascavel?",
+        "resposta": "Depende do mercado, da concorrência e do escopo. A verba de mídia é paga ao Google ou à Meta, separada dos honorários da agência, e deve ser ajustada pelo custo por lead qualificado."
+      },
+      {
+        "pergunta": "Em quanto tempo o marketing digital traz resultado para empresas B2B?",
+        "resposta": "Leads qualificados e reuniões costumam ser os primeiros sinais. Contratos dependem do ciclo de venda de cada empresa, que em B2B pode ser longo."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "Agência Estadual de Notícias do Paraná: Economia do Paraná está mais forte e distribuída nas regiões, mostra estudo do IBGE (2023, dados de 2021)",
+        "url": "https://www.parana.pr.gov.br/aen/Noticia/Economia-do-Parana-esta-mais-forte-e-distribuida-nas-regioes-mostra-estudo-do-IBGE"
+      },
+      {
+        "nome": "Google Ads, Planejador de palavras-chave (consulta de 24/10/2026, Brasil, out/2025 a set/2026)",
+        "url": "https://ads.google.com/home/tools/keyword-planner/"
+      }
+    ]
+  },
+  {
     "slug": "agencia-de-marketing-em-londrina",
     "titulo": "Agência de marketing em Londrina: como gerar clientes B2B no norte do Paraná",
     "titulo_seo": "Agência de marketing em Londrina para B2B | Conceito Prime",
