@@ -1,5 +1,48 @@
 [
   {
+    "slug": "marketing-industrial",
+    "titulo": "Marketing industrial: o que é, canais e como gerar vendas para a indústria",
+    "titulo_seo": "Marketing industrial: o que é e como vender | Conceito Prime",
+    "descricao": "Marketing industrial na prática: o que muda na venda para empresas, os canais que funcionam, 5 etapas para montar a estratégia e as métricas que importam.",
+    "linha_fina": "Venda técnica, ciclo longo e decisão em grupo pedem um marketing medido em contratos, não em curtidas.",
+    "data": "2026-10-24",
+    "atualizado": "2026-10-24",
+    "categoria": "Estratégias de Marketing",
+    "palavras_chave": [
+      "marketing industrial",
+      "marketing para indústria",
+      "marketing digital para indústria",
+      "google ads para indústria",
+      "seo para indústria",
+      "site para indústria"
+    ],
+    "local": "Brasil",
+    "faq": [
+      {
+        "pergunta": "O que é marketing industrial?",
+        "resposta": "É o marketing feito por indústrias para vender a outras empresas, como distribuidores, revendas e outras indústrias. Lida com venda técnica, ticket alto e decisão em grupo."
+      },
+      {
+        "pergunta": "Qual a diferença entre marketing industrial e marketing para consumidor final?",
+        "resposta": "No industrial, o público é menor, o ciclo de venda é mais longo e a decisão envolve várias pessoas. Por isso o foco é informação técnica, confiança e oportunidades comerciais."
+      },
+      {
+        "pergunta": "Quais canais funcionam no marketing para indústria?",
+        "resposta": "Site com informação técnica, Google Ads na rede de pesquisa, conteúdo para SEO, remarketing, feiras e representantes, sempre integrados a um CRM."
+      },
+      {
+        "pergunta": "Como medir o resultado do marketing industrial?",
+        "resposta": "Por leads qualificados, reuniões, propostas, contratos e custo por lead qualificado. Cliques e impressões ajudam a diagnosticar a campanha, mas não medem venda."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "Google Ads, Planejador de palavras-chave (consulta de 24/10/2026, Brasil, out/2025 a set/2026)",
+        "url": "https://ads.google.com/home/tools/keyword-planner/"
+      }
+    ]
+  },
+  {
     "slug": "quanto-custa-anunciar-no-google",
     "titulo": "Quanto custa anunciar no Google: como funciona a cobrança e como calcular a verba",
     "titulo_seo": "Quanto custa anunciar no Google em 2026 | Conceito Prime",
