@@ -27,7 +27,6 @@
     {"slug": "auxiliadora-predial", "nome": "Auxiliadora Predial", "origem": "Downloads/logo-auxiliadora-predial.png"},
     {"slug": "sinc-capital", "nome": "Sinc Capital", "origem": "Downloads/logo-sinc-capital.png"},
     {"slug": "geoazimute", "nome": "Geoazimute Aerofotogrametria", "origem": "Downloads/logo-geoazimute.png"},
-    {"slug": "avysa", "nome": "Avysa", "origem": "Downloads/logo-avysa.png", "cores": {"base": "#187878"}},
     {"slug": "vedolim-teixeira", "nome": "Vedolim Teixeira & Advogados Associados", "origem": "Downloads/logo-vedolim-teixeira.png"},
     {"slug": "noemia-ingracio", "nome": "Noemia Ingracio Advocacia", "origem": "Downloads/logo-noemia-ingracio.png"},
     {"slug": "valentes", "nome": "Valente's Auto Center", "origem": "Downloads/logo-valentes.png"},
