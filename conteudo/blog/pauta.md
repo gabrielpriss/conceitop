@@ -22,16 +22,16 @@ Registro de tudo o que a pesquisa avaliou. Toda linha leva a fonte do sinal de b
 | Frente | Tema | Palavra-chave | Local | Fonte e volume |
 |---|---|---|---|---|
 | B | Geração de leads B2B | leads b2b | Brasil | Termos do Ads via Windsor, 90 dias: "b2b leads" 10 impr., "leads b2b" 1, "b2b lead" 1. Planejador 24/10/2026 (Brasil, out/2025 a set/2026): "geração de leads b2b" 10 a 100, "como gerar leads b2b" 10 a 100, "como conseguir clientes b2b" 10 a 100 |
-| A | Agência de marketing em Ponta Grossa | agência de marketing ponta grossa | Ponta Grossa | Termos do Ads via Windsor, 90 dias: "agencia de marketing ponta grossa" 1 impr. e 1 clique, "agencias de publicidade em ponta grossa" 1. Planejador 24/10/2026 (Brasil, out/2025 a set/2026): "agência de marketing ponta grossa" sem volume exibido. Só com outra fonte |
+| A | Agência de marketing em Ponta Grossa | agência de marketing ponta grossa | Ponta Grossa | Termos do Ads via Windsor, 90 dias até 2026-10-25: "agencia de marketing ponta grossa" 1 impr. e 1 clique, "agencia de publicidade em ponta grossa" 2, "agencias de publicidade em ponta grossa" 1 (4 impr. somadas). Planejador 24/10/2026 (Brasil, out/2025 a set/2026): "agência de marketing ponta grossa" sem volume exibido. Só com outra fonte |
 | A | Marketing digital em São José dos Pinhais para indústria | marketing digital são josé dos pinhais | São José dos Pinhais | Search Console via Windsor, 90 dias até 2026-10-24: 2 impr., pos. 52,5; "marketing são josé dos pinhais" 2 impr., pos. 61. Planejador 24/10/2026 (Brasil, out/2025 a set/2026): "agência de marketing são josé dos pinhais" sem volume exibido |
-| B | Prospecção B2B: como abrir conversas com empresas | prospecção b2b | Brasil | Planejador 24/10/2026 (Brasil, out/2025 a set/2026): 100 a 1 mil, concorrência alta |
-| B | Marketing B2B: o que é e como estruturar | marketing b2b | Brasil | Planejador 24/10/2026 (Brasil, out/2025 a set/2026): "marketing b2b" 100 a 1 mil; "marketing para empresas b2b" 10 a 100; "funil de vendas b2b" 10 a 100; "inbound marketing b2b" 10 a 100 |
+| B | Marketing B2B: o que é e como estruturar | marketing b2b | Brasil | Planejador 24/10/2026 (Brasil, out/2025 a set/2026): "marketing b2b" 100 a 1 mil; "marketing para empresas b2b" 10 a 100; "funil de vendas b2b" 10 a 100; "inbound marketing b2b" 10 a 100; termos do Ads (Windsor, 90 dias até 2026-10-25): "marketing b2b" 2 impr., "o que significa marketing b2b" 2 impr. e 2 cliques. Cuidado com sobreposição a marketing-industrial |
 | B | Como contratar agência de marketing B2B (ângulo nacional, sem repetir o de Curitiba) | agência de marketing b2b | Brasil | Planejador 24/10/2026 (Brasil, out/2025 a set/2026): 100 a 1 mil, concorrência alta (cuidado com sobreposição a agencia-de-marketing-em-curitiba) |
 | B | Agência de marketing em Blumenau | agência de marketing blumenau | Blumenau | Planejador 24/10/2026 (Brasil, out/2025 a set/2026): 10 a 100 |
 | B | Marketing para indústrias de Santa Catarina | agência de marketing santa catarina | Santa Catarina | Planejador 24/10/2026 (Brasil, out/2025 a set/2026): 10 a 100, concorrência baixa |
 | B | CRM para indústria | crm para indústria | Brasil | Planejador 24/10/2026 (Brasil, out/2025 a set/2026): 10 a 100 |
-| A | Marketing para transportadoras e logística no Paraná | marketing para transportadora | Paraná | Planejador 24/10/2026 (Brasil, out/2025 a set/2026): 10 a 100 (recorte Paraná a confirmar com volume local) |
 | A | Marketing para o agronegócio no Paraná | marketing para agronegócio | Paraná | Planejador 24/10/2026 (Brasil, out/2025 a set/2026): 10 a 100 (recorte Paraná a confirmar com volume local) |
+| A | Trade marketing em Curitiba (confirmar se é serviço que oferecemos) | trade marketing curitiba | Curitiba | Termos do Ads via Windsor, 90 dias até 2026-10-25: "trade marketing curitiba" 2 impr., "trade mkt curitiba" 2. Sem Planejador nesta execução |
+| A | Branding para indústria em Curitiba | agência de branding curitiba | Curitiba | Termos do Ads via Windsor, 90 dias até 2026-10-25: "agencia de branding curitiba" 2 impr., "branding para indústria" 1. Sem Planejador nesta execução |
 
 ## Descartados
 
@@ -48,3 +48,11 @@ Registro de tudo o que a pesquisa avaliou. Toda linha leva a fonte do sinal de b
 | 2026-10-24 (execução Maringá e Joinville) | Frente A: transportadora e agronegócio no Paraná | Volume do Planejador é nacional (10 a 100) e o recorte Paraná não foi confirmado; Maringá venceu pelo degrau 1 com 2 fontes |
 | 2026-10-24 (execução Maringá e Joinville) | Frente B: prospecção b2b, marketing b2b, leads b2b, Blumenau | Têm volume do Planejador, mas Joinville venceu pelo degrau 1 (contratação local) com 100 a 1 mil; seguem no estoque |
 | 2026-10-24 (execução Maringá e Joinville) | Ideias extras com volume | Não acrescentadas: Chrome sem navegador selecionado (dois navegadores conectados e ninguém para escolher), então o Planejador não foi consultado. Search Console também não consultado |
+| 2026-10-25 | Frente A: Ponta Grossa | Só 1 fonte (termos do Ads, agora 4 impr. em 3 variações) e sem volume no Planejador; segue no estoque |
+| 2026-10-25 | Frente A: marketing para agronegócio no Paraná | Tem volume do Planejador (10 a 100, Brasil), mas "marketing para agronegócio" já é palavra secundária do artigo de Cascavel; transportadora venceu no mesmo degrau sem sobreposição |
+| 2026-10-25 | Frente A: trade marketing e branding em Curitiba | Uma fonte só (termos do Ads, 2 a 4 impr.) e serviço a confirmar no portfólio; seguem no estoque |
+| 2026-10-25 | Frente B: agência de marketing b2b (nacional) | Planejador 100 a 1 mil, mas a pergunta "como escolher agência" já é respondida nos artigos de Curitiba e Joinville; molde repetido |
+| 2026-10-25 | Frente B: marketing b2b | Planejador 100 a 1 mil e termos do Ads, mas o conteúdo base já está em marketing-industrial; precisa de ângulo próprio (B2B de serviços) antes de entrar |
+| 2026-10-25 | Frente B: Blumenau e Santa Catarina | Planejador 10 a 100 cada, mas a frente B acabou de publicar Joinville (SC) com o mesmo molde de agência por cidade; alternância de camada |
+| 2026-10-25 | Search Console via Windsor (90 dias) | Sem consulta nova da conceitop.com.br em posição 8 a 40 com intenção de empresário; o conector mistura propriedades de clientes |
+| 2026-10-25 | Ideias extras com volume | Não acrescentadas: Chrome com dois navegadores conectados e nenhum selecionado (execução sem ninguém para escolher), então o Planejador não foi consultado |
