@@ -1,5 +1,48 @@
 [
   {
+    "slug": "prospeccao-b2b",
+    "titulo": "Prospecção B2B: como organizar marketing e comercial para abrir conversas com empresas",
+    "titulo_seo": "Prospecção B2B: processo e cadência | Conceito Prime",
+    "descricao": "Prospecção B2B como processo de gestão: filtro de porte, cadência de contatos e acordo entre marketing e vendas para levar empresas até a reunião.",
+    "linha_fina": "Ligar mais não resolve. O que resolve é saber quem abordar, como insistir e quando passar o contato para o vendedor.",
+    "data": "2026-10-25",
+    "atualizado": "2026-10-25",
+    "categoria": "Gestão",
+    "palavras_chave": [
+      "prospecção b2b",
+      "prospecção ativa b2b",
+      "geração de leads b2b",
+      "como conseguir clientes b2b",
+      "fluxo de cadência",
+      "leads b2b"
+    ],
+    "local": "Brasil",
+    "faq": [
+      {
+        "pergunta": "O que é prospecção B2B?",
+        "resposta": "É o trabalho de encontrar empresas com perfil de cliente, abrir conversa com quem decide e levar essa conversa até uma reunião comercial. Pode ser ativa, quando a equipe procura a empresa, ou passiva, quando a empresa chega pelo site ou pelo Google."
+      },
+      {
+        "pergunta": "Qual a diferença entre prospecção ativa e passiva?",
+        "resposta": "Na ativa (outbound) a sua equipe inicia o contato e escolhe exatamente quem abordar. Na passiva (inbound) a empresa encontra você e pede contato, o que traz necessidade já declarada, mas exige filtro para não atrair curiosos."
+      },
+      {
+        "pergunta": "Qual a melhor forma de captar um cliente B2B?",
+        "resposta": "Combinar as duas frentes com a mesma definição de cliente ideal: porte, segmento, região e gatilho de compra. Depois, garantir resposta rápida e devolutiva lead a lead entre marketing e vendas."
+      },
+      {
+        "pergunta": "Como usar o CRM na prospecção B2B?",
+        "resposta": "Registrando cada toque da cadência e o resultado de cada lead (reunião, proposta, perda e motivo). Sem esse registro, a gestão não sabe se o problema está na lista, na mensagem ou na persistência."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "Google Ads, Planejador de palavras-chave (consulta de 24/10/2026, Brasil, out/2025 a set/2026)",
+        "url": "https://ads.google.com/home/tools/keyword-planner/"
+      }
+    ]
+  },
+  {
     "slug": "marketing-para-transportadora",
     "titulo": "Marketing para transportadora: como conquistar embarcadores no Paraná",
     "titulo_seo": "Marketing para transportadora no Paraná | Conceito Prime",
