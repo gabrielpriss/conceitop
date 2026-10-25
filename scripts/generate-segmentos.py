@@ -74,9 +74,9 @@ NAO_FAZ_SENTIDO = [
 PAGINAS = [
     {
         'slug': 'industrial',
-        'title': 'Marketing para Indústrias com Google Ads | Conceito Prime',
-        'description': 'Marketing para indústrias: Google Ads com termos de compra B2B, página de captação e medição para receber pedidos de orçamento de empresas, não de curiosos.',
-        'eyebrow': 'Marketing para indústrias e distribuidores',
+        'title': 'Marketing Industrial e Google Ads | Conceito Prime',
+        'description': 'Marketing industrial e geração de leads B2B: Google Ads, página de captação e medição para receber orçamentos de empresas, não de curiosos.',
+        'eyebrow': 'Marketing industrial para indústrias e distribuidores',
         'logos_eyebrow': 'Já atendemos indústrias no Paraná',
         'faz_sentido': [
             'Vocês são indústria ou distribuidor e vendem para outras empresas.',
@@ -85,7 +85,7 @@ PAGINAS = [
             'O objetivo é pedido qualificado, mesmo com volume menor, num trabalho de 3 a 6 meses.',
         ],
         'h1': 'Estratégia e execução para sua indústria <span class="text-gold-400">vender mais</span>',
-        'sub': 'Estruturamos Google Ads, Meta Ads, site e medição para a sua indústria receber contatos de empresas compradoras, e não de consumidor final atrás de peça avulsa. Escritórios em Curitiba e Cascavel.',
+        'sub': 'Somos uma agência de marketing B2B que estrutura Google Ads, Meta Ads, site e medição para a sua indústria gerar leads de empresas compradoras, e não de consumidor final atrás de peça avulsa. Escritórios em Curitiba e Cascavel.',
         'logos_titulo': 'Algumas indústrias e distribuidores que <span class="text-gold-400">trabalham com a gente</span>',
         'logos': ['plasfix', 'naciopetro', 'rolpro', 'ladaniuski', 'atlas-eletromotores', 'do-valle', 'cactos',
                   'tech-composites', 'rgm-service', 'serquip', 'mais-madeiras', 'pontual', 'm8-pneus',
@@ -121,9 +121,9 @@ PAGINAS = [
     },
     {
         'slug': 'b2b',
-        'title': 'Marketing B2B e Geração de Leads Qualificados | Conceito Prime',
-        'description': 'Marketing B2B completo: marca, site, mídia paga, conteúdo, CRM e treinamento comercial para quem vende para empresas gerar e fechar mais negócios.',
-        'eyebrow': 'Marketing B2B',
+        'title': 'Agência de Marketing B2B e Tráfego Pago | Conceito Prime',
+        'description': 'Agência de marketing digital B2B: tráfego pago no Google Ads e Meta Ads, site, CRM e treinamento comercial para gerar leads qualificados.',
+        'eyebrow': 'Agência de marketing digital B2B',
         'logos_eyebrow': '',
         'faz_sentido': [
             'A empresa vende para outras empresas e fatura acima de R$ 100 mil por mês.',
@@ -132,7 +132,7 @@ PAGINAS = [
             'Vocês topam um trabalho de médio prazo, de 3 a 6 meses, para o resultado ficar consistente.',
         ],
         'h1': 'Estratégia e execução para sua empresa <span class="text-gold-400">vender mais</span>',
-        'sub': 'Google Ads, Meta Ads, site, marca e processo comercial trabalhando juntos para a sua empresa atrair decisores com perfil de compra e transformar esses contatos em contratos. Escritórios em Curitiba e Cascavel.',
+        'sub': 'Somos uma agência de marketing digital focada em empresas B2B: tráfego pago no Google Ads e no Meta Ads, site, marca e processo comercial trabalhando juntos para atrair decisores com perfil de compra e transformar esses contatos em contratos. Escritórios em Curitiba e Cascavel.',
         'logos_titulo': 'Algumas empresas B2B que <span class="text-gold-400">trabalham com a gente</span>',
         'logos': ['adriano-cobuccio', 'auxiliadora-predial', 'reda', 'do-valle', 'brasilcard', 'german-financial', 'sinc-capital', 'rgm-service', 'naciopetro', 'cactos', 'ice-cargo',
                   'tech-composites', 'aiss', 'pontual', 'serquip', 'dracos', 'rolpro', 'ladaniuski',
@@ -154,6 +154,7 @@ PAGINAS = [
         ],
         'videos': ['german', 'kuzma', 'ruan', 'heloise'],
         'faq': [
+            ('Vocês são uma agência de tráfego pago?', 'Sim, e não só isso. Fazemos a gestão de tráfego pago no Google Ads e no Meta Ads com foco em lead qualificado, e cuidamos do que faz esse tráfego virar venda: página de destino, medição pelo comercial e CRM.'),
             ('Vocês fazem só anúncios?', 'Não. Além da gestão de Google Ads e Meta Ads, trabalhamos sites e páginas de alta conversão integrados ao Google Ads, marca, conteúdo, atendimento e CRM, treinamento comercial e materiais de venda. O diagnóstico mostra por onde começar no caso de vocês.'),
             ('Para que tipo de empresa é esse trabalho?', 'Para empresas que vendem para outras empresas e faturam acima de R$ 100 mil por mês. O foco é lead qualificado, não volume: preferimos menos contatos com perfil de compra do que muitos contatos que o comercial descarta.'),
             ('Em quanto tempo aparece resultado?', 'É um trabalho de médio prazo. As primeiras semanas servem para calibrar campanhas, página e filtro de leads, e o resultado fica consistente entre 3 e 6 meses.'),
@@ -333,9 +334,17 @@ def topo(link_logo, com_cta):
     logo = '<img src="/assets/images/logo.webp" alt="Conceito Prime" width="1250" height="356">'
     logo = f'<a href="{link_logo}" class="cb-topo-logo">{logo}</a>' if link_logo else f'<span class="cb-topo-logo">{logo}</span>'
     cta = '<a href="#orcamento" class="cb-topo-cta" data-cta="topo">Solicitar diagnóstico</a>' if com_cta else ''
+    # Navegação só por âncoras da própria página: dá contexto sem tirar o visitante da LP
+    nav = ('''<nav class="cb-topo-nav" aria-label="Seções da página">
+        <a href="#seg-logos" data-cta="menu-clientes">Clientes</a>
+        <a href="#seg-metodo" data-cta="menu-metodo">Como trabalhamos</a>
+        <a href="#depoimentos" data-cta="menu-depoimentos">Depoimentos</a>
+        <a href="#seg-faq" data-cta="menu-perguntas">Perguntas</a>
+      </nav>''' if com_cta else '')
     return f'''  <header class="cb-topo">
     <div class="cb-topo-in">
       {logo}
+      {nav}
       {cta}
     </div>
   </header>'''

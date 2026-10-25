@@ -69,6 +69,12 @@ body[data-tipos-conversao] #wa-float { display: none !important; }
 .cb-topo-logo img { height: 40px; width: auto; display: block; }
 .cb-topo-cta { background: var(--brand-dark); color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: .15em; font-size: 11px; padding: .85rem 1.4rem; white-space: nowrap; transition: background .2s; }
 .cb-topo-cta:hover { background: #000; }
+.cb-topo-nav { display: none; gap: 1.75rem; margin-left: auto; margin-right: 1.5rem; }
+.cb-topo-nav a { color: var(--brand-dark); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; transition: color .2s; }
+.cb-topo-nav a:hover { color: #b8860b; }
+@media (min-width: 1024px) { .cb-topo-nav { display: flex; } }
+#seg-logos, #seg-metodo, #depoimentos, #seg-faq, #orcamento { scroll-margin-top: 96px; }
+
 @media (max-width: 420px) { .cb-topo-logo img { height: 32px; } .cb-topo-cta { letter-spacing: .08em; padding: .75rem 1rem; } }
 .cb-rodape { background: #0d0d0d; color: rgba(255, 255, 255, .7); padding: 3rem 1.5rem; }
 .cb-rodape-in { max-width: 72rem; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: .75rem; text-align: center; font-size: 14px; }
