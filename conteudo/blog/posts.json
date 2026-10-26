@@ -1,5 +1,59 @@
 [
   {
+    "slug": "marketing-para-agronegocio",
+    "titulo": "Marketing para agronegócio: como vender para produtor, cooperativa e agroindústria no Paraná",
+    "titulo_seo": "Marketing para agronegócio no Paraná | Conceito Prime",
+    "descricao": "Marketing para agronegócio no Paraná: quem decide a compra, onde está a demanda no estado e como unir campo, feira e Google para gerar pedidos.",
+    "linha_fina": "Feira e visita continuam valendo. O que muda é ter quem procura fornecedor chegando ao vendedor de campo o ano inteiro.",
+    "data": "2026-10-26",
+    "atualizado": "2026-10-26",
+    "categoria": "Vendas",
+    "palavras_chave": [
+      "marketing para agronegócio",
+      "marketing no agronegócio",
+      "marketing rural",
+      "marketing digital para agronegócio",
+      "marketing para empresas do agro"
+    ],
+    "local": "Paraná",
+    "faq": [
+      {
+        "pergunta": "Como fazer marketing no agronegócio?",
+        "resposta": "Comece pelo cliente que dá mais margem e por quem decide a compra (produtor, técnico, cooperativa ou revenda). Depois combine presença em campo e feiras com Google Ads de termos de compra, páginas por solução e rastreamento de formulário e WhatsApp."
+      },
+      {
+        "pergunta": "Marketing digital funciona para vender ao produtor rural?",
+        "resposta": "Funciona quando capta quem já está procurando fornecedor e quando o lead chega rápido ao vendedor da região. Ele complementa visita e dia de campo, não substitui."
+      },
+      {
+        "pergunta": "Qual a importância do marketing no agronegócio?",
+        "resposta": "Dá previsibilidade à entrada de clientes fora da época de feira e ajuda o time de campo a falar com quem já demonstrou interesse. O indicador é pedido de orçamento qualificado e contrato, não alcance."
+      },
+      {
+        "pergunta": "Quando investir mais em anúncios no agro?",
+        "resposta": "Nos meses em que o seu cliente decide a compra: antes do plantio para insumos e manutenção, na colheita e pós-colheita para armazenagem e máquinas, e nas semanas das feiras da região."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "CNA: Região Oeste lidera VBP do Paraná com R$ 48 bilhões (26/08/2026, dados do Deral/Seab divulgados pelo Sistema FAEP)",
+        "url": "https://cnabrasil.org.br/noticias/regiao-oeste-lidera-vbp-do-parana-com-r-48-bilhoes"
+      },
+      {
+        "nome": "Agência Estadual de Notícias (Governo do Paraná): VBP Agropecuário do Paraná cresce 13% e alcança R$ 212,6 bilhões em 2025 (22/06/2026, análise preliminar Seab/Deral)",
+        "url": "https://www.parana.pr.gov.br/Audio/VBP-Agropecuario-do-Parana-cresce-13-e-alcanca-R-2126-bilhoes-em-2025"
+      },
+      {
+        "nome": "Agrolink: Pesquisa mostra como empresas do agro buscam o produtor (Índice Capella de Marketing Agro, 20/10/2026)",
+        "url": "https://www.agrolink.com.br/noticias/pesquisa-mostra-como-empresas-do-agro-buscam-o-produtor_519960.html"
+      },
+      {
+        "nome": "Google Ads, Planejador de palavras-chave (consulta de 24/10/2026, Brasil, out/2025 a set/2026)",
+        "url": "https://ads.google.com/home/tools/keyword-planner/"
+      }
+    ]
+  },
+  {
     "slug": "prospeccao-b2b",
     "titulo": "Prospecção B2B: como organizar marketing e comercial para abrir conversas com empresas",
     "titulo_seo": "Prospecção B2B: processo e cadência | Conceito Prime",
