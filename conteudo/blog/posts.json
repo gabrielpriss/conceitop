@@ -1,5 +1,55 @@
 [
   {
+    "slug": "agencia-de-marketing-em-blumenau",
+    "titulo": "Agência de marketing em Blumenau: marketing digital para têxtil, metalmecânica e software B2B",
+    "titulo_seo": "Agência de marketing em Blumenau para B2B | Conceito Prime",
+    "descricao": "Agência de marketing em Blumenau para indústria e B2B: como vender em têxtil, metalmecânica e software e o que perguntar antes de contratar.",
+    "linha_fina": "Malharia, usinagem e software não vendem do mesmo jeito. O marketing também não pode ser igual.",
+    "data": "2026-10-26",
+    "atualizado": "2026-10-26",
+    "categoria": "Marketing Digital",
+    "palavras_chave": [
+      "agência de marketing blumenau",
+      "marketing digital blumenau",
+      "agência de marketing santa catarina",
+      "marketing para indústria têxtil",
+      "marketing b2b"
+    ],
+    "local": "Blumenau",
+    "faq": [
+      {
+        "pergunta": "Preciso de uma agência de marketing com escritório em Blumenau?",
+        "resposta": "Para estratégia, campanhas e acompanhamento de resultados, reuniões online funcionam bem. Presença local pesa mais quando há produção frequente de fotos e vídeos na fábrica."
+      },
+      {
+        "pergunta": "Marketing digital funciona para indústria têxtil que vende para empresas?",
+        "resposta": "Funciona quando foca em termos de contratação, mostra pedido mínimo e prazo no site e filtra quem não tem perfil, como revenda pessoa física e busca de vaga."
+      },
+      {
+        "pergunta": "O que uma agência de marketing B2B deve entregar todo mês?",
+        "resposta": "Leads qualificados, reuniões e contratos gerados, custo por lead qualificado e o que foi ajustado nas campanhas. Impressões e cliques são apoio, não resultado."
+      },
+      {
+        "pergunta": "A Conceito Prime atende empresas de Santa Catarina?",
+        "resposta": "Sim. Temos escritórios em Curitiba e Cascavel, no Paraná, e atendemos empresas de Blumenau e de outras cidades catarinenses com reuniões online."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "NSC Total: Estudo sugere curiosas novas vocações para sofisticar a indústria de Blumenau e região (23/10/2023, estudo da Fiesc com a UFSC)",
+        "url": "https://www.nsctotal.com.br/?p=6978940"
+      },
+      {
+        "nome": "NSC Total: Indústria têxtil é um dos destaques do Vale (13/08/2024, dados do Caged compilados pela Facisc)",
+        "url": "https://www.nsctotal.com.br/?p=7253412"
+      },
+      {
+        "nome": "Google Ads, Planejador de palavras-chave (consulta de 24/10/2026, Brasil, out/2025 a set/2026)",
+        "url": "https://ads.google.com/home/tools/keyword-planner/"
+      }
+    ]
+  },
+  {
     "slug": "marketing-para-agronegocio",
     "titulo": "Marketing para agronegócio: como vender para produtor, cooperativa e agroindústria no Paraná",
     "titulo_seo": "Marketing para agronegócio no Paraná | Conceito Prime",
