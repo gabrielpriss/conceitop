@@ -1,5 +1,52 @@
 [
   {
+    "slug": "marketing-b2b",
+    "titulo": "Marketing B2B: o que é, estratégias e como estruturar na sua empresa",
+    "titulo_seo": "Marketing B2B: o que é e como estruturar | Conceito Prime",
+    "descricao": "Marketing B2B explicado para gestores: o que muda em relação ao B2C, as estratégias que geram negócio e 6 passos para estruturar a operação.",
+    "linha_fina": "Quem compra é um grupo, o ciclo é longo e o resultado se mede em contrato. O marketing precisa ser montado para isso.",
+    "data": "2026-10-27",
+    "atualizado": "2026-10-27",
+    "categoria": "Estratégias de Marketing",
+    "palavras_chave": [
+      "marketing b2b",
+      "o que significa marketing b2b",
+      "marketing para empresas b2b",
+      "funil de vendas b2b",
+      "inbound marketing b2b",
+      "account based marketing"
+    ],
+    "local": "Brasil",
+    "faq": [
+      {
+        "pergunta": "O que significa marketing B2B?",
+        "resposta": "É o marketing de empresas que vendem para outras empresas (business to business). O foco é gerar conversas com quem decide a compra e apoiar o comercial até o contrato, e não alcance ou fama."
+      },
+      {
+        "pergunta": "Qual a diferença entre marketing B2B e B2C?",
+        "resposta": "No B2B o público é menor, a decisão é tomada em grupo e o ciclo de venda é mais longo. Por isso o conteúdo precisa trazer especificação, prazo e retorno sobre o investimento, e a métrica principal é lead qualificado, reunião e contrato."
+      },
+      {
+        "pergunta": "Quais são as principais estratégias de marketing B2B?",
+        "resposta": "Pesquisa no Google e SEO para ser encontrado por quem já tem a necessidade, páginas de serviço que convencem o grupo de compra, abordagem de contas escolhidas (ABM), remarketing e e-mail para o ciclo longo, e CRM para medir até o contrato."
+      },
+      {
+        "pergunta": "O que é account based marketing?",
+        "resposta": "É uma estratégia em que marketing e vendas escolhem juntos uma lista de empresas-alvo e trabalham cada conta de forma coordenada, com anúncio segmentado, conteúdo e abordagem comercial com contexto."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "Gartner: Gartner Sales Survey Finds 67% of B2B Buyers Prefer a Rep-Free Experience (09/03/2026, 646 compradores B2B, ago a set/2025)",
+        "url": "https://www.gartner.com/en/newsroom/press-releases/2026-03-09-gartner-sales-survey-finds-67-percent-of-b2b-buyers-prefer-a-rep-free-experience"
+      },
+      {
+        "nome": "Google Ads, Planejador de palavras-chave (consulta de 24/10/2026, Brasil, out/2025 a set/2026)",
+        "url": "https://ads.google.com/home/tools/keyword-planner/"
+      }
+    ]
+  },
+  {
     "slug": "agencia-de-marketing-em-blumenau",
     "titulo": "Agência de marketing em Blumenau: marketing digital para têxtil, metalmecânica e software B2B",
     "titulo_seo": "Agência de marketing em Blumenau para B2B | Conceito Prime",
