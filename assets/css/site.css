@@ -1872,3 +1872,20 @@ main > #clientes { padding-bottom: 1.5rem; }
 /* Página atual no menu: sublinhado amarelo fixo (mesmo do hover) */
 .nav-link.is-ativo::after { width: 100%; }
 #mobile-menu a.is-ativo:not(.btn-wa) { text-decoration: underline; text-decoration-color: var(--brand-yellow); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+/* Ícone dos botões de CTA: maior que o texto para não sumir (o texto tem 14px) */
+.btn-wa > i, .btn-wa-dark > i, .cb-cta > i, .diag-enviar > i, .lead-submit > i, .saida-cta > i { font-size: 1.4em; line-height: 1; flex-shrink: 0; vertical-align: -0.2em; }
+/* Botão principal da home no celular: menos espaçamento para o texto caber numa linha */
+@media (max-width: 640px) {
+  .btn-wa[style*="brand-yellow"] { padding-left: 1.25rem; padding-right: 1.25rem; letter-spacing: .08em; gap: .6rem; }
+}
+@media (max-width: 380px) {
+  .btn-wa[style*="brand-yellow"] { padding-left: 1rem; padding-right: 1rem; letter-spacing: .03em; gap: .5rem; }
+}
+
+/* Modo WhatsApp: mensagens entram subindo, com a resposta logo depois da pergunta, e o "Pronto" chega por último */
+@keyframes wa-sobe { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+.diag--wa .diag-hist { scroll-behavior: smooth; }
+.diag--wa .diag-msg { animation: wa-sobe .4s cubic-bezier(.22, .9, .36, 1) both; transform-origin: bottom left; }
+.diag--wa .diag-msg--out { animation-delay: .3s; transform-origin: bottom right; }
+.diag--wa .diag-ok { animation: wa-sobe .5s cubic-bezier(.22, .9, .36, 1) .65s both; }
+@media (prefers-reduced-motion: reduce) { .diag--wa .diag-msg, .diag--wa .diag-ok { animation: none; } .diag--wa .diag-hist { scroll-behavior: auto; } }

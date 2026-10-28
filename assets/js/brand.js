@@ -105,7 +105,6 @@ function diagHTML(o) {
         <label class="diag-campo"><span>WhatsApp com DDD</span><span class="diag-tel"><span class="diag-ddi" aria-hidden="true">🇧🇷 +55</span><input type="tel" name="telefone" inputmode="tel" autocomplete="tel-national" placeholder="(41) 99999-9999" data-phone-mask enterkeyhint="send"></span></label>
       </div>
       <button type="submit" class="diag-enviar">${botaoFinal}</button>
-      <p class="diag-aviso"><i class="fas fa-lock" aria-hidden="true"></i> Usamos seus dados só para falar com você sobre este pedido.</p>
     </fieldset>
     <p class="diag-erro" data-diag-erro role="alert" aria-live="assertive"></p>
     <button type="button" class="diag-voltar" data-diag-voltar hidden><i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar</button>
@@ -244,7 +243,9 @@ function initDiagnostico(form) {
     hist.insertAdjacentHTML('beforeend',
       '<p class="diag-msg diag-msg--in" data-hist="' + n + '">' + diagEsc(pergunta) + '</p>' +
       '<p class="diag-msg diag-msg--out" data-hist="' + n + '">' + diagEsc(resposta(n)) + ' <i class="fas fa-check-double" aria-hidden="true"></i></p>');
-    hist.scrollTop = hist.scrollHeight;
+    /* Rolagem suave até a última mensagem, como uma conversa subindo no WhatsApp */
+    if (hist.scrollTo) hist.scrollTo({ top: hist.scrollHeight, behavior: 'smooth' });
+    else hist.scrollTop = hist.scrollHeight;
   }
 
   function avancar() {
@@ -296,7 +297,10 @@ function initDiagnostico(form) {
     if (qualificado) track('lead_qualificado', evento);
     const url = waLink(diagMensagem(d));
     enviarParaPlanilha(d);
-    abrirWhatsApp(url, form.dataset.canal || 'formulario');
+    /* No modo WhatsApp, deixamos a resposta final subir no chat antes de abrir o WhatsApp */
+    const atraso = form.classList.contains('diag--wa') && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 1100 : 0;
+    if (atraso) setTimeout(function () { abrirWhatsApp(url, form.dataset.canal || 'formulario'); }, atraso);
+    else abrirWhatsApp(url, form.dataset.canal || 'formulario');
     etapas.forEach(function (e) { e.hidden = true; });
     voltar.hidden = true;
     barra.style.width = '100%';
