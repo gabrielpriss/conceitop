@@ -457,12 +457,23 @@ document.querySelectorAll('form[data-diagnostico]').forEach(function (form) {
   initDiagnostico(form);
 });
 
-/* Botões que levam ao formulário da página (#orcamento): põem o foco na etapa atual depois da rolagem */
-document.querySelectorAll('a[href="#orcamento"]').forEach(function (a) {
-  a.addEventListener('click', function () {
+/* CTAs que apontam para o formulário da própria página (ex.: #orcamento nas LPs) abrem o popup em vez de rolar
+   até o rodapé (decisão de out/2026). Vale para qualquer âncora cujo alvo seja ou contenha um formulário de
+   diagnóstico. Botões com ícone de WhatsApp abrem a versão com a cara do WhatsApp. */
+document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+  const id = a.getAttribute('href').slice(1);
+  if (!id) return;
+  const alvo = document.getElementById(id);
+  if (!alvo) return;
+  const temForm = alvo.matches('form[data-diagnostico]') || alvo.querySelector('form[data-diagnostico]');
+  if (!temForm) return;
+  /* esses já são tratados pelo clique global dos CTAs de orçamento */
+  if (a.classList.contains('btn-wa') || a.classList.contains('btn-luxury') || a.classList.contains('btn-brand')) return;
+  a.addEventListener('click', function (e) {
+    if (!window.openLeadModal) return;
+    e.preventDefault();
     track('cta_click', { posicao: a.dataset.cta || 'ancora', texto: a.textContent.trim().slice(0, 60) });
-    const f = document.querySelector('#orcamento form[data-diagnostico]');
-    if (f && f._diag) setTimeout(f._diag.focar, 600);
+    window.openLeadModal(a.querySelector('.fa-whatsapp') ? 'whatsapp' : undefined);
   });
 });
 
