@@ -22,9 +22,9 @@
    Embutidos no <head> de cada página por scripts/generate-segmentos.py: não fazem parte do CSS global. */
 /* Páginas de obrigado: o lead já foi enviado, então o botão flutuante (que abre o formulário) não aparece */
 body[data-tipos-conversao] #wa-float { display: none !important; }
-.cb-cta { display: inline-flex; align-items: center; gap: .6rem; background: var(--brand-yellow); color: var(--brand-dark); font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: 12px; padding: 1.15rem 2.4rem; box-shadow: 0 8px 32px rgba(247, 204, 25, .4); transition: transform .2s ease, background .2s ease; }
+.cb-cta { display: inline-flex; align-items: center; gap: .6rem; background: var(--brand-yellow); color: var(--brand-dark); font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: 14px; padding: 1.15rem 2.4rem; box-shadow: 0 8px 32px rgba(247, 204, 25, .4); transition: transform .2s ease, background .2s ease; }
 .cb-cta:hover { transform: translateY(-2px); background: #ffd84a; }
-.cb-selo { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid rgba(247, 204, 25, .45); color: var(--brand-yellow); border-radius: 999px; padding: .45rem 1rem; font-size: 12px; font-weight: 600; letter-spacing: .04em; margin-bottom: 1.5rem; }
+.cb-selo { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid rgba(247, 204, 25, .45); color: var(--brand-yellow); border-radius: 999px; padding: .45rem 1rem; font-size: 14px; font-weight: 600; letter-spacing: .04em; margin-bottom: 1.5rem; }
 
 /* Faixa com as promessas dos anúncios, logo abaixo do topo */
 
@@ -38,14 +38,14 @@ body[data-tipos-conversao] #wa-float { display: none !important; }
 .cb-placa-txt small { display: block; font-family: 'Cairo', sans-serif; text-transform: none; font-size: 14px; color: rgba(255, 255, 255, .7); margin-top: .6rem; letter-spacing: 0; line-height: 1.5; }
 .cb-regua { grid-column: 1 / -1; position: relative; padding-top: .5rem; }
 .cb-regua ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(10, 1fr); border-top: 2px solid rgba(255, 255, 255, .25); }
-.cb-regua li { position: relative; text-align: center; font-size: 12px; color: rgba(255, 255, 255, .6); padding-top: .9rem; }
+.cb-regua li { position: relative; text-align: center; font-size: 14px; color: rgba(255, 255, 255, .6); padding-top: .9rem; }
 .cb-regua li::before { content: ''; position: absolute; top: -2px; left: 50%; width: 2px; height: .6rem; background: var(--brand-yellow); transform: translateX(-50%); }
 .cb-regua li:first-child, .cb-regua li:last-child { color: var(--brand-yellow); font-weight: 700; }
-@media (max-width: 520px) { .cb-regua li { font-size: 0; } .cb-regua li:first-child, .cb-regua li:last-child { font-size: 12px; } .cb-placa { grid-template-columns: 1fr; text-align: center; } }
+@media (max-width: 520px) { .cb-regua li { font-size: 0; } .cb-regua li:first-child, .cb-regua li:last-child { font-size: 14px; } .cb-placa { grid-template-columns: 1fr; text-align: center; } }
 .cb-apoio { display: grid; gap: 1rem; }
 .cb-apoio div { background: #f4f4f4; border-radius: 16px; padding: 1.4rem 1.5rem; display: flex; flex-direction: column; justify-content: center; }
 .cb-apoio b { font-family: 'Share Tech', sans-serif; font-size: 2.2rem; line-height: 1; color: var(--brand-dark); font-weight: 400; }
-.cb-apoio span { font-size: 12px; text-transform: uppercase; letter-spacing: .15em; color: #4a4a4a; margin-top: .4rem; }
+.cb-apoio span { font-size: 14px; text-transform: uppercase; letter-spacing: .15em; color: #4a4a4a; margin-top: .4rem; }
 
 /* Filtro de público */
 .cb-filtro-sec { background: #fff; padding: 6rem 1.5rem; }
@@ -76,7 +76,7 @@ body[data-tipos-conversao] #wa-float { display: none !important; }
 .cb-obrigado-card p { color: #4a4a4a; font-size: 15px; line-height: 1.7; margin: 0 0 1rem; }
 .cb-acoes { display: grid; gap: .75rem; margin-top: 1.75rem; }
 @media (min-width: 560px) { .cb-acoes { grid-template-columns: 1fr 1fr; } }
-.cb-btn-wa, .cb-btn-agenda { display: inline-flex; justify-content: center; align-items: center; gap: .6rem; border-radius: 10px; padding: 1rem 1.25rem; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .12em; }
+.cb-btn-wa, .cb-btn-agenda { display: inline-flex; justify-content: center; align-items: center; gap: .6rem; border-radius: 10px; padding: 1rem 1.25rem; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: .12em; }
 .cb-btn-wa { background: #137a3a; color: #fff; }
 .cb-btn-wa:hover { background: #0f6430; }
 .cb-btn-agenda { background: var(--brand-dark); color: #fff; }
@@ -87,10 +87,10 @@ body[data-tipos-conversao] #wa-float { display: none !important; }
 .cb-topo { position: fixed; inset: 0 0 auto 0; z-index: 50; background: #fff; box-shadow: 0 1px 0 rgba(22, 22, 22, .06), 0 8px 24px rgba(22, 22, 22, .05); }
 .cb-topo-in { max-width: 80rem; margin: 0 auto; padding: .9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .cb-topo-logo img { height: 40px; width: auto; display: block; }
-.cb-topo-cta { background: var(--brand-dark); color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: .15em; font-size: 11px; padding: .85rem 1.4rem; white-space: nowrap; transition: background .2s; }
+.cb-topo-cta { background: var(--brand-dark); color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: .15em; font-size: 14px; padding: .85rem 1.4rem; white-space: nowrap; transition: background .2s; }
 .cb-topo-cta:hover { background: #000; }
 .cb-topo-nav { display: none; gap: 1.75rem; margin-left: auto; margin-right: 1.5rem; }
-.cb-topo-nav a { color: var(--brand-dark); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; transition: color .2s; }
+.cb-topo-nav a { color: var(--brand-dark); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; transition: color .2s; }
 .cb-topo-nav a:hover { color: #b8860b; }
 @media (min-width: 1024px) { .cb-topo-nav { display: flex; } }
 #seg-logos, #seg-metodo, #depoimentos, #seg-faq, #orcamento { scroll-margin-top: 96px; }
@@ -317,7 +317,7 @@ body[data-tipos-conversao] #wa-float { display: none !important; }
         <li class="seg-step">
           <span class="seg-step-num" aria-hidden="true">04</span>
           <h3 class="font-serif text-lg text-white uppercase mb-3">Medição pelo comercial</h3>
-          <p class="text-prime-300 font-light text-[15px] leading-[1.8]">Conversão só de pedido enviado, leads na planilha ou no CRM e leitura mensal cruzada com o que virou venda.</p>
+          <p class="text-prime-300 font-light text-[15px] leading-[1.8]">Conversão só de pedido enviado, leads na planilha ou no <strong>CRM</strong> e leitura mensal cruzada com o que virou venda.</p>
         </li>
       </ol>
     </div>
@@ -467,19 +467,19 @@ body[data-tipos-conversao] #wa-float { display: none !important; }
       <div class="seg-faqs">
         <details class="seg-faq" open>
           <summary>Para que tipo de empresa é esse trabalho?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
-          <p>Para indústrias e distribuidores com faturamento acima de R$ 100 mil por mês que vendem para outras empresas. Já atendemos indústrias no Paraná em segmentos como fitas adesivas, rolamentos, correias industriais, motores elétricos e usinagem.</p>
+          <p>Para <strong>indústrias e distribuidores</strong> com faturamento <strong>acima de R$ 100 mil por mês</strong> que vendem para outras empresas. Já atendemos indústrias no Paraná em segmentos como fitas adesivas, rolamentos, correias industriais, motores elétricos e usinagem.</p>
         </details>
         <details class="seg-faq">
           <summary>Em quanto tempo aparece resultado?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
-          <p>É um trabalho de médio prazo. As primeiras semanas servem para calibrar termos, negativas e página com o que o comercial de vocês considera pedido bom, e o resultado fica consistente entre 3 e 6 meses.</p>
+          <p>É um trabalho de <strong>médio prazo</strong>. As primeiras semanas servem para calibrar termos, negativas e página com o que o comercial de vocês considera pedido bom, e o resultado fica consistente <strong>entre 3 e 6 meses</strong>.</p>
         </details>
         <details class="seg-faq">
           <summary>Atendem indústrias fora de Curitiba?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
-          <p>Sim. Temos escritórios em Curitiba e em Cascavel, com reuniões presenciais ou online, e atendemos clientes em outros estados.</p>
+          <p>Sim. Temos escritórios em <strong>Curitiba e em Cascavel</strong>, com reuniões presenciais ou online, e atendemos clientes em outros estados.</p>
         </details>
         <details class="seg-faq">
           <summary>Vocês só fazem os anúncios?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
-          <p>Não. Cuidamos de Google Ads e Meta Ads, do site e das páginas de alta conversão integrados ao Google Ads, e da medição. Sem essas peças juntas, o painel mostra resultado que o comercial não enxerga.</p>
+          <p>Não. Cuidamos de <strong>Google Ads e Meta Ads</strong>, do site e das páginas de alta conversão integrados ao Google Ads, e da medição. Sem essas peças juntas, o painel mostra resultado que o comercial não enxerga.</p>
         </details>
         <details class="seg-faq">
           <summary>Como sabemos se a campanha está dando resultado?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>

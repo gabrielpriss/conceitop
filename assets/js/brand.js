@@ -74,7 +74,7 @@ function diagHTML(o) {
   }).join('');
   const b2b = o.envio === 'lead-b2b';
   const botaoFinal = b2b
-    ? '<i class="fas fa-paper-plane" aria-hidden="true"></i> Solicitar diagnóstico gratuito'
+    ? '<i class="fas fa-paper-plane" aria-hidden="true"></i> Solicitar diagnóstico'
     : '<i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar e abrir o WhatsApp';
   const desc = o.desc || (o.servico ? 'Interesse em <strong>' + diagEsc(o.servico) + '</strong>. São 4 perguntas rápidas.' : 'São 4 perguntas rápidas e seguimos a conversa com você.');
   return `
@@ -401,7 +401,7 @@ function initDiagnostico(form) {
       </div>
       <button type="button" class="lead-close" id="lead-close" aria-label="Fechar">&times;</button>
       <form id="lead-form" data-diagnostico data-titulo-id="lead-title"></form>
-      <p class="lead-rodape" style="margin:0;padding:.7rem 1rem .9rem;font-size:12px;line-height:1.5;text-align:center;color:#6b6b6b;">Já é cliente? <a href="https://wa.me/${WA_ADMINISTRATIVO}?text=${encodeURIComponent('Olá! Vim pelo site da Conceito Prime e gostaria de falar com o Administrativo.')}" target="_blank" rel="noopener" data-cta="popup-administrativo" style="text-decoration:underline;">Fale com o Administrativo</a>. Currículos e fornecedores: <a href="/trabalhe-conosco/" style="text-decoration:underline;">Vagas e fornecedores</a>.</p>
+      <p class="lead-rodape" style="margin:0;padding:.7rem 1rem .9rem;font-size:14px;line-height:1.5;text-align:center;color:#6b6b6b;">Já é cliente? <a href="https://wa.me/${WA_ADMINISTRATIVO}?text=${encodeURIComponent('Olá! Vim pelo site da Conceito Prime e gostaria de falar com o Administrativo.')}" target="_blank" rel="noopener" data-cta="popup-administrativo" style="text-decoration:underline;">Fale com o Administrativo</a>. Currículos e fornecedores: <a href="/trabalhe-conosco/" style="text-decoration:underline;">Vagas e fornecedores</a>.</p>
     </div>`;
   document.body.appendChild(overlay);
 
@@ -554,9 +554,9 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
         <div class="saida-foto"><img src="${IMG}" alt="Consultor da Conceito Prime à mesa de reunião, com café e notebook" width="560" height="840"></div>
         <div class="saida-texto">
           <p class="saida-eyebrow"><i class="fas fa-mug-hot" aria-hidden="true"></i> Antes de sair</p>
-          <h2 id="saida-titulo">Uma reunião com nosso consultor <span>não tem preço</span></h2>
-          <p class="saida-desc">Em poucos minutos entendemos o momento da sua empresa e mostramos o próximo passo para vender mais.</p>
-          <button type="button" class="saida-cta">Quero falar com um consultor <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+          <h2 id="saida-titulo">Peça um <span>diagnóstico gratuito</span> do seu marketing</h2>
+          <p class="saida-desc">Entendemos o momento da sua empresa e mostramos onde o marketing trava e qual o próximo passo para vender mais.</p>
+          <button type="button" class="saida-cta">Quero meu diagnóstico <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
           <button type="button" class="saida-depois">Agora não</button>
         </div>
       </div>`;

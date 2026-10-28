@@ -241,7 +241,7 @@ def passos_html(lista):
     return '\n'.join(f'''        <li class="seg-step">
           <span class="seg-step-num" aria-hidden="true">{i:02d}</span>
           <h3 class="font-serif text-lg text-white uppercase mb-3">{titulo}</h3>
-          <p class="text-prime-300 font-light text-[15px] leading-[1.8]">{texto}</p>
+          <p class="text-prime-300 font-light text-[15px] leading-[1.8]">{negritar(texto)}</p>
         </li>''' for i, (titulo, texto) in enumerate(lista, 1))
 
 
@@ -261,10 +261,32 @@ def videos_html(chaves):
     return '\n'.join(slides), '\n        '.join(dots)
 
 
+# Negrito nos diferenciais (out/2026): no máximo 2 por parágrafo, primeira ocorrência de cada termo.
+# Só no HTML; o texto do FAQ que vai para o schema continua sem marcação.
+FRASES_NEGRITO = ['lead qualificado', 'leads qualificados', 'contato qualificado', 'acima de R$ 100 mil por mês',
+                  'Curitiba e em Cascavel', 'Curitiba e Cascavel', 'entre 3 e 6 meses', 'médio prazo', 'reunião e contrato',
+                  'intenção de compra', 'termos de compra B2B', 'Google Ads e no Meta Ads', 'Google Ads e Meta Ads',
+                  'indústrias e distribuidores', 'CRM', 'leads e vendas com previsibilidade', 'uma única oferta',
+                  'percepção de valor', 'prova de quem já comprou', 'relacionamento e conversão',
+                  'performance, SEO e experiência do usuário', 'estratégia, narrativa e identidade visual',
+                  'explicam o produto com clareza', 'do primeiro contato ao fechamento']
+
+
+def negritar(texto, maximo=2):
+    feitos = []
+    for f in FRASES_NEGRITO:
+        if len(feitos) >= maximo:
+            break
+        if f in texto and not any(f in x for x in feitos):
+            texto = texto.replace(f, f'<strong>{f}</strong>', 1)
+            feitos.append(f)
+    return texto
+
+
 def faq_html(lista):
     return '\n'.join(f'''        <details class="seg-faq"{" open" if i == 0 else ""}>
           <summary>{p}<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
-          <p>{r}</p>
+          <p>{negritar(r)}</p>
         </details>''' for i, (p, r) in enumerate(lista))
 
 

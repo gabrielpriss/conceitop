@@ -8,6 +8,12 @@ e o botão do popup troca o conteúdo pelo formulário "Solicite um diagnóstico
 import html, json, os, re
 from importlib import util
 
+# Negrito nos diferenciais: mesma função das LPs (scripts/generate-segmentos.py)
+_spec = util.spec_from_file_location('segmentos', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'generate-segmentos.py'))
+_seg = util.module_from_spec(_spec)
+_spec.loader.exec_module(_seg)
+negritar = _seg.negritar
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 _spec = util.spec_from_file_location('icones', os.path.join(ROOT, 'partials/icones-servicos.py'))
 icones = util.module_from_spec(_spec); _spec.loader.exec_module(icones)
@@ -33,7 +39,7 @@ def detalhe(chave):
     e = html.escape
     itens = ''.join(f'<li>{e(i)}</li>' for i in d['inclui'])
     return (f'<div class="servico-detalhe" hidden>'
-            f'<p class="sd-tag">{e(d["tagline"])}</p><p class="sd-intro">{e(d["intro"])}</p><ul class="sd-inclui">{itens}</ul></div>')
+            f'<p class="sd-tag">{e(d["tagline"])}</p><p class="sd-intro">{negritar(e(d["intro"]))}</p><ul class="sd-inclui">{itens}</ul></div>')
 
 
 def portfolio():
