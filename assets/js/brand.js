@@ -401,6 +401,7 @@ function initDiagnostico(form) {
       </div>
       <button type="button" class="lead-close" id="lead-close" aria-label="Fechar">&times;</button>
       <form id="lead-form" data-diagnostico data-titulo-id="lead-title"></form>
+      <p class="lead-rodape" style="margin:0;padding:.7rem 1rem .9rem;font-size:12px;line-height:1.5;text-align:center;color:#6b6b6b;">Já é cliente? <a href="https://wa.me/${WA_ADMINISTRATIVO}?text=${encodeURIComponent('Olá! Vim pelo site da Conceito Prime e gostaria de falar com o Administrativo.')}" target="_blank" rel="noopener" data-cta="popup-administrativo" style="text-decoration:underline;">Fale com o Administrativo</a>. Currículos e fornecedores: <a href="/trabalhe-conosco/" style="text-decoration:underline;">Vagas e fornecedores</a>.</p>
     </div>`;
   document.body.appendChild(overlay);
 
@@ -453,8 +454,8 @@ function initDiagnostico(form) {
     if (a.tagName === 'BUTTON' && a.type === 'submit' && a.form) return;
     e.preventDefault();
     track('cta_click', { posicao: a.dataset.cta || (a.closest('section, header, footer') || {}).id || 'cta', texto: a.textContent.trim().slice(0, 60) });
-    /* Nas LPs da campanha, botão com ícone de WhatsApp abre o formulário com a cara do WhatsApp */
-    const comWa = document.body.dataset.contato === 'formulario' && a.querySelector('.fa-whatsapp');
+    /* Botão com ícone de WhatsApp abre o formulário com a cara do WhatsApp (site inteiro) */
+    const comWa = a.querySelector('.fa-whatsapp');
     openLeadModal(comWa ? 'whatsapp' : undefined);
   });
 })();
@@ -496,89 +497,21 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
   a.addEventListener('click', function () { track('whatsapp_open', { posicao: a.dataset.cta || 'link' }); });
 });
 
-/* Botão flutuante WhatsApp: painel Fale Conosco (mesmo formato do site anterior, sem RH) */
+/* Botão flutuante WhatsApp (todas as páginas, decisão de out/2026): não abre conversa direta.
+   Abre o formulário de diagnóstico em popup com a cara do WhatsApp, igual às LPs da campanha.
+   O envio segue o fluxo de cada página: nas LPs (data-contato="formulario") vai para /api/lead-b2b e página
+   de obrigado; no resto do site abre o WhatsApp com a mensagem pronta e envia uma cópia para /api/lead.
+   Quem já é cliente encontra o Administrativo no rodapé do popup. */
 (function initWhatsAppFloat() {
-  /* Páginas da campanha (body data-contato="formulario"): o botão do WhatsApp não abre conversa direta.
-     Ele abre o formulário de diagnóstico em popup com a cara do WhatsApp; o envio segue o fluxo da campanha
-     (/api/lead-b2b e página de obrigado, onde o lead qualificado encontra o WhatsApp com a mensagem pronta). */
-  if (document.body.dataset.contato === 'formulario') {
-    const botao = document.createElement('div');
-    botao.id = 'wa-float';
-    botao.className = 'wa-float';
-    botao.innerHTML = '<button type="button" class="wa-float-btn" id="wa-float-btn" aria-label="Falar no WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></button>';
-    document.body.appendChild(botao);
-    document.getElementById('wa-float-btn').addEventListener('click', function () {
-      track('cta_click', { posicao: 'whatsapp-flutuante', texto: 'WhatsApp' });
-      if (window.openLeadModal) window.openLeadModal('whatsapp');
-    });
-    return;
-  }
-  const contatos = [
-    { setor: 'Comercial', nome: 'José', fone: '(41) 99990-4764', numero: WA_NUMERO, msg: 'Olá! Vim pelo site da Conceito Prime e gostaria de falar com o Comercial.' },
-    { setor: 'Administrativo', nome: 'Vitor', fone: '(41) 99886-3226', numero: WA_ADMINISTRATIVO, msg: 'Olá! Vim pelo site da Conceito Prime e gostaria de falar com o Administrativo.' }
-  ];
-  const itens = contatos.map(function (c) {
-    const url = 'https://wa.me/' + c.numero + '?text=' + encodeURIComponent(c.msg);
-    return `
-        <a href="${url}" target="_blank" rel="noopener" class="wa-contact" data-cta="flutuante-${c.setor.toLowerCase()}">
-          <span class="wa-contact-avatar" aria-hidden="true"><i class="fab fa-whatsapp"></i></span>
-          <span class="wa-contact-text">
-            <span class="wa-contact-name">${c.setor} - ${c.nome}</span>
-            <span class="wa-contact-phone">${c.fone}</span>
-          </span>
-          <i class="fab fa-whatsapp" aria-hidden="true"></i>
-        </a>`;
-  }).join('');
-
-  const widget = document.createElement('div');
-  widget.id = 'wa-float';
-  widget.className = 'wa-float';
-  widget.innerHTML = `
-    <div class="wa-panel hidden" id="wa-float-menu" role="dialog" aria-labelledby="wa-panel-title">
-      <div class="wa-panel-head">
-        <i class="fab fa-whatsapp" aria-hidden="true"></i>
-        <div>
-          <p class="wa-panel-title" id="wa-panel-title">Fale Conosco</p>
-          <p class="wa-panel-sub">Entre em contato pelo número oficial da Conceito Prime.</p>
-        </div>
-      </div>
-      <div class="wa-panel-body">
-        <p class="wa-panel-note">Nosso time costuma responder em poucos minutos.</p>
-        ${itens}
-      </div>
-      <div class="wa-panel-foot">
-        <strong>Currículos e propostas de fornecedores</strong> não são atendidos pelo WhatsApp: envie pelo formulário <a href="/trabalhe-conosco/">Vagas e fornecedores</a>.
-      </div>
-    </div>
-    <button type="button" class="wa-float-btn" id="wa-float-btn" aria-label="Falar no WhatsApp" aria-expanded="false" aria-controls="wa-float-menu">
-      <i class="fab fa-whatsapp" aria-hidden="true"></i>
-    </button>
-  `;
-  document.body.appendChild(widget);
-
-  const btn = document.getElementById('wa-float-btn');
-  const menu = document.getElementById('wa-float-menu');
-  const icone = btn.querySelector('i');
-  const definir = function (aberto) {
-    menu.classList.toggle('hidden', !aberto);
-    btn.setAttribute('aria-expanded', String(aberto));
-    btn.setAttribute('aria-label', aberto ? 'Fechar contatos do WhatsApp' : 'Falar no WhatsApp');
-    icone.className = aberto ? 'fas fa-times' : 'fab fa-whatsapp';
-  };
-  menu.querySelectorAll('a.wa-contact').forEach(function (a) {
-    a.addEventListener('click', function () {
-      track('whatsapp_open', { posicao: a.dataset.cta });
-      /* Conversão principal "Clique WhatsApp comercial" (GTM: evento whatsapp_comercial). O Administrativo não conta. */
-      if (a.dataset.cta === 'flutuante-comercial') track('whatsapp_comercial', { pagina: location.pathname });
-    });
+  const botao = document.createElement('div');
+  botao.id = 'wa-float';
+  botao.className = 'wa-float';
+  botao.innerHTML = '<button type="button" class="wa-float-btn" id="wa-float-btn" aria-label="Falar no WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></button>';
+  document.body.appendChild(botao);
+  document.getElementById('wa-float-btn').addEventListener('click', function () {
+    track('cta_click', { posicao: 'whatsapp-flutuante', texto: 'WhatsApp' });
+    if (window.openLeadModal) window.openLeadModal('whatsapp');
   });
-  btn.addEventListener('click', function () {
-    const abrir = menu.classList.contains('hidden');
-    definir(abrir);
-    if (abrir) track('cta_click', { posicao: 'flutuante', texto: 'Fale Conosco' });
-  });
-  document.addEventListener('click', function (e) { if (!widget.contains(e.target)) definir(false); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.classList.contains('hidden')) { definir(false); btn.focus(); } });
 })();
 
 /* ========== POPUP DE SAÍDA (exit intent) ==========

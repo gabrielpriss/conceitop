@@ -34,6 +34,7 @@ Depois de qualquer um deles, rodar `build-css.sh` de novo se surgiram classes no
 
 ## Contato e leads
 
+- Botão flutuante do WhatsApp (todas as páginas): abre o formulário de diagnóstico em popup com a cara do WhatsApp, sem conversa direta. Botões com ícone de WhatsApp fazem o mesmo. O rodapé do popup leva quem já é cliente ao WhatsApp do Administrativo e currículos ao formulário de vagas. O evento `whatsapp_comercial` deixou de ser disparado (o lead passa a ser o formulário).
 - Número principal do WhatsApp: constante `WA_NUMERO` em `assets/js/brand.js` (Comercial, 41 99990-4764). Administrativo em `WA_ADMINISTRATIVO`.
 - Formulário "Solicite um diagnóstico": o mesmo em todas as páginas (`initDiagnostico` em `assets/js/brand.js`; na página basta `<form data-diagnostico>`). Quatro etapas, das mais fáceis para as mais chatas: segmento e faturamento com um clique, depois nome e empresa, por último o WhatsApp. No site, abre o WhatsApp com a mensagem pronta e envia uma cópia para `/api/lead`.
 - `/api/lead`: grava na planilha se o segredo **LEAD_WEBHOOK** existir (instruções do Apps Script no topo de `worker.js`). Sem ele, responde 204 e o lead segue só pelo WhatsApp.
