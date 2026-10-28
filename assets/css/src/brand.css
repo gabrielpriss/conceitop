@@ -1020,7 +1020,7 @@ footer.bg-prime-950 .border-white\/10 {
   z-index: 2;
   pointer-events: none;
 }
-@media (max-width: 640px) { .video-play { padding: .625rem; } .video-play i { width: 3rem; height: 3rem; font-size: 1rem; } }
+@media (max-width: 640px) { .video-play { padding: 0; align-items: center; justify-content: center; } .video-play i { width: 2.5rem; height: 2.5rem; font-size: .8rem; padding-left: 3px; } }
 .video-play i {
   width: 4rem;
   height: 4rem;
@@ -1773,3 +1773,16 @@ main > #clientes { padding-bottom: 1.5rem; }
 /* Capa do artigo dentro da coluna de texto: menor e sem empurrar o conteúdo para baixo da dobra */
 .blog-capa { margin: 0 0 2rem; }
 @media (max-width: 767px) { .blog-capa { margin-bottom: 1.5rem; } }
+
+/* ========== LEGIBILIDADE (out/2026) ==========
+   A Cairo em peso 300 fica fina demais em tela, até no computador: texto corrido passa para 400.
+   Rótulos de 10 e 11 px sobem para 12 px e textos de rodapé de 13 px sobem para 14 px.
+   O menu do cabeçalho (nav-link) mantém o tamanho para não quebrar a linha. */
+.font-light { font-weight: 400; }
+.seg-faq p, .diag-desc, .servico-texto, .port-desc, .serv-painel .sd-intro, .lead-card-desc { font-weight: 400; }
+.text-\[11px\] { font-size: 12px; }
+.port-cat, .port-ver, .servico-link { font-size: 12px; }
+.contact-submit, .lead-eyebrow, .lead-submit, .diag-eyebrow, .saida-eyebrow, .serv-eyebrow { font-size: .75rem; }
+p.text-\[13px\], .footer-link.text-\[13px\], .footer-desc.text-\[13px\] { font-size: 14px; }
+.seg-faq p, .servico-texto { color: #3d3d3d; }
+
