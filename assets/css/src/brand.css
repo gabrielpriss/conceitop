@@ -1798,3 +1798,6 @@ main > #clientes { padding-bottom: 1.5rem; }
   font-size: 16px; color: #2e2e2e; font-weight: 500;
 }
 .servico-texto strong, .seg-card p strong, .seg-faq p strong, .serv-painel .sd-intro strong, p.text-prime-600.font-light strong { color: #111; font-weight: 700; }
+/* Página atual no menu: sublinhado amarelo fixo (mesmo do hover) */
+.nav-link.is-ativo::after { width: 100%; }
+#mobile-menu a.is-ativo:not(.btn-wa) { text-decoration: underline; text-decoration-color: var(--brand-yellow); text-decoration-thickness: 2px; text-underline-offset: 6px; }

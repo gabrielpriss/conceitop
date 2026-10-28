@@ -497,6 +497,22 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
   a.addEventListener('click', function () { track('whatsapp_open', { posicao: a.dataset.cta || 'link' }); });
 });
 
+/* Menu: marca a página atual (sublinhado amarelo fixo + aria-current). O cabeçalho é o mesmo arquivo em
+   todas as páginas, então a marcação é feita aqui. Subpáginas herdam a seção: artigo do blog marca Blog,
+   vagas e fornecedores marca Contato. O botão de diagnóstico e links com âncora não entram. */
+(function initMenuAtivo() {
+  const caminho = location.pathname.replace(/index\.html$/, '');
+  const secao = caminho === '/' ? '/' : '/' + (caminho.split('/')[1] || '') + '/';
+  const apelidos = { '/trabalhe-conosco/': '/contato/' };
+  const alvo = apelidos[secao] || secao;
+  document.querySelectorAll('#header a[href]').forEach(function (a) {
+    if (a.classList.contains('btn-wa')) return;
+    const url = new URL(a.getAttribute('href'), location.origin);
+    if (url.hash || url.origin !== location.origin) return;
+    if (url.pathname === alvo) { a.classList.add('is-ativo'); a.setAttribute('aria-current', 'page'); }
+  });
+})();
+
 /* Botão flutuante WhatsApp (todas as páginas, decisão de out/2026): não abre conversa direta.
    Abre o formulário de diagnóstico em popup com a cara do WhatsApp, igual às LPs da campanha.
    O envio segue o fluxo de cada página: nas LPs (data-contato="formulario") vai para /api/lead-b2b e página
