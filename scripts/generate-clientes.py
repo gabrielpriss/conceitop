@@ -43,10 +43,12 @@ def faixa(lista, reversa):
 
 f1, x1 = faixa(DADOS['faixa1'], False)
 f2, x2 = faixa(DADOS['faixa2'], True)
+f3, x3 = faixa(DADOS.get('faixa3', []), False)
 bloco = f'''    <!-- CARROSSEL CLIENTES: gerado por scripts/generate-clientes.py -->
     <div class="carousel-faixas">
 {f1}
 {f2}
+{f3}
     </div>
     <!-- /CARROSSEL CLIENTES -->'''
 
@@ -59,4 +61,4 @@ else:
     b = s.index('  </section>', a)
     s = s[:a] + bloco + '\n' + s[b:]
 open(p, 'w', encoding='utf-8').write(s)
-print('faltando logo:', ', '.join(x1 + x2) or 'nenhum')
+print('faltando logo:', ', '.join(x1 + x2 + x3) or 'nenhum')

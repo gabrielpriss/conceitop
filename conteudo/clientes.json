@@ -1,69 +1,448 @@
 {
   "_leia": "origem: arquivo original (relativo à pasta passada ao tratar-logos.py, ou assets/... do repositório). fundo: claro (padrão) ou escuro, para logos brancos. cores: pinta as partes brancas com as cores oficiais da marca (ver scripts/tratar-logos.py, colorir()).",
   "faixa1": [
-    {"slug": "plasfix", "nome": "Plasfix", "origem": "Downloads/logo-plasfix.png"},
-    {"slug": "adriano-cobuccio", "nome": "Grupo Adriano Cobuccio", "origem": "Downloads/logo-adriano-cobuccio.png"},
-    {"slug": "naciopetro", "nome": "Naciopetro", "origem": "Downloads/logo-naciopetro.png"},
-    {"slug": "cactos", "nome": "Cactos Solutions", "origem": "Downloads/logo-cactos.png", "cores": {"componentes": {"caixa": [0, 0, 1, 0.76], "cores": ["#2b4021", "#2b4021", "#2b4021", "#2b4021", "#489830", "#489830", "#489830"], "ordem": "area"}, "base": "#2b4021"}},
-    {"slug": "m8-pneus", "nome": "M8 Pneus", "origem": "LPs/m8-drive-ahead/src/assets/m8-logo.png"},
-    {"slug": "performance-recovery", "nome": "Performance Recovery", "origem": "Downloads/logo-performance-recovery.png"},
-    {"slug": "barbearia-montreal", "nome": "Barbearia Montreal", "origem": "Downloads/logo-montreal.webp", "cores": {"base": "#1a1a1a"}},
-    {"slug": "4-barras-jets", "nome": "4 Barras Jets", "origem": "Downloads/logo-4barrasjets-escuro.webp"},
-    {"slug": "agis", "nome": "AGIS Autocenter", "origem": "LPs/agis/assets/logo-prata.webp"},
-    {"slug": "auto-torque", "nome": "Auto Torque", "origem": "LPs/autotorque/src/assets/logo-autotorque.png", "cores": {"base": "#131720"}},
-    {"slug": "bw-printer", "nome": "BW Printer", "origem": "Downloads/logo-bw-printer.png"},
-    {"slug": "atlas-eletromotores", "nome": "Atlas Eletromotores", "origem": "Downloads/logo-atlas.webp"},
-    {"slug": "espaco-piramide", "nome": "Espaço Pirâmide Eventos", "origem": "Downloads/logo-espaco-piramide.webp", "cores": {"base": "#050505"}},
-    {"slug": "arteiros", "nome": "Arteiros Personalizados", "origem": "Downloads/logo-arteiros.webp", "cores": {"base": "#0d3151"}},
-    {"slug": "ana-mariana", "nome": "Ana Mariana Madeiras", "origem": "Downloads/logo-ana-mariana.webp"},
-    {"slug": "rolpro", "nome": "Rolpro", "origem": "Downloads/logo-rolpro.jpg"},
-    {"slug": "odonto-coser", "nome": "Odonto Coser", "origem": "LPs/odontocoser/assets/odonto-coser-logo.webp"},
-    {"slug": "rgm-service", "nome": "RGM Service", "origem": "Downloads/logo-rgm-service.png", "cores": {"base": "#001c3c", "componentes": {"caixa": [0, 0, 0.45, 1], "cores": ["#f06000", "#009c4c", "#001c3c"], "ordem": "x"}}},
-    {"slug": "mais-madeiras", "nome": "Mais Madeiras", "origem": "Downloads/logo-mais-madeiras.png", "cores": {"base": "#537a5b"}},
-    {"slug": "ice-cargo", "nome": "Ice Cargo", "origem": "Downloads/logo-ice-cargo-branco.png", "cores": {"base": "#0073bb", "regioes": [{"caixa": [0, 0, 0.29, 1], "cor": "#ee8f21"}]}},
-    {"slug": "tech-composites", "nome": "Tech Composites", "origem": "Downloads/logo-tech-composites.png"},
-    {"slug": "serquip", "nome": "Serquip PR", "origem": "Downloads/logo-serquip.png", "cores": {"base": "#007f35"}},
-    {"slug": "pinhapel", "nome": "Pinhapel", "origem": "Downloads/logo-pinhapel.png", "cores": {"base": "#005a2a", "regioes": [{"caixa": [0, 0, 0.245, 1], "cor": "#92c63d"}, {"caixa": [0.255, 0.7, 0.715, 1], "cor": "#92c63d"}]}},
-    {"slug": "auxiliadora-predial", "nome": "Auxiliadora Predial", "origem": "Downloads/logo-auxiliadora-predial.png"},
-    {"slug": "sinc-capital", "nome": "Sinc Capital", "origem": "Downloads/logo-sinc-capital.png"},
-    {"slug": "geoazimute", "nome": "Geoazimute Aerofotogrametria", "origem": "Downloads/logo-geoazimute.png"},
-    {"slug": "vedolim-teixeira", "nome": "Vedolim Teixeira & Advogados Associados", "origem": "Downloads/logo-vedolim-teixeira.png"},
-    {"slug": "noemia-ingracio", "nome": "Noemia Ingracio Advocacia", "origem": "Downloads/logo-noemia-ingracio.png"},
-    {"slug": "valentes", "nome": "Valente's Auto Center", "origem": "Downloads/logo-valentes.png"},
-    {"slug": "mototest", "nome": "Mototest", "origem": "Downloads/logo-mototest.png"},
-    {"slug": "nuee", "nome": "Nuee", "origem": "Downloads/logo-nuee.png"}
+    {
+      "slug": "plasfix",
+      "nome": "Plasfix",
+      "origem": "Downloads/logo-plasfix.png"
+    },
+    {
+      "slug": "adriano-cobuccio",
+      "nome": "Grupo Adriano Cobuccio",
+      "origem": "Downloads/logo-adriano-cobuccio.png"
+    },
+    {
+      "slug": "naciopetro",
+      "nome": "Naciopetro",
+      "origem": "Downloads/logo-naciopetro.png"
+    },
+    {
+      "slug": "cactos",
+      "nome": "Cactos Solutions",
+      "origem": "Downloads/logo-cactos.png",
+      "cores": {
+        "componentes": {
+          "caixa": [
+            0,
+            0,
+            1,
+            0.76
+          ],
+          "cores": [
+            "#2b4021",
+            "#2b4021",
+            "#2b4021",
+            "#2b4021",
+            "#489830",
+            "#489830",
+            "#489830"
+          ],
+          "ordem": "area"
+        },
+        "base": "#2b4021"
+      }
+    },
+    {
+      "slug": "m8-pneus",
+      "nome": "M8 Pneus",
+      "origem": "LPs/m8-drive-ahead/src/assets/m8-logo.png"
+    },
+    {
+      "slug": "performance-recovery",
+      "nome": "Performance Recovery",
+      "origem": "Downloads/logo-performance-recovery.png"
+    },
+    {
+      "slug": "barbearia-montreal",
+      "nome": "Barbearia Montreal",
+      "origem": "Downloads/logo-montreal.webp",
+      "cores": {
+        "base": "#1a1a1a"
+      }
+    },
+    {
+      "slug": "4-barras-jets",
+      "nome": "4 Barras Jets",
+      "origem": "Downloads/logo-4barrasjets-escuro.webp"
+    },
+    {
+      "slug": "agis",
+      "nome": "AGIS Autocenter",
+      "origem": "LPs/agis/assets/logo-prata.webp"
+    },
+    {
+      "slug": "auto-torque",
+      "nome": "Auto Torque",
+      "origem": "LPs/autotorque/src/assets/logo-autotorque.png",
+      "cores": {
+        "base": "#131720"
+      }
+    },
+    {
+      "slug": "bw-printer",
+      "nome": "BW Printer",
+      "origem": "Downloads/logo-bw-printer.png"
+    },
+    {
+      "slug": "atlas-eletromotores",
+      "nome": "Atlas Eletromotores",
+      "origem": "Downloads/logo-atlas.webp"
+    },
+    {
+      "slug": "espaco-piramide",
+      "nome": "Espaço Pirâmide Eventos",
+      "origem": "Downloads/logo-espaco-piramide.webp",
+      "cores": {
+        "base": "#050505"
+      }
+    },
+    {
+      "slug": "arteiros",
+      "nome": "Arteiros Personalizados",
+      "origem": "Downloads/logo-arteiros.webp",
+      "cores": {
+        "base": "#0d3151"
+      }
+    },
+    {
+      "slug": "ana-mariana",
+      "nome": "Ana Mariana Madeiras",
+      "origem": "Downloads/logo-ana-mariana.webp"
+    },
+    {
+      "slug": "rolpro",
+      "nome": "Rolpro",
+      "origem": "Downloads/logo-rolpro.jpg"
+    },
+    {
+      "slug": "odonto-coser",
+      "nome": "Odonto Coser",
+      "origem": "LPs/odontocoser/assets/odonto-coser-logo.webp"
+    },
+    {
+      "slug": "rgm-service",
+      "nome": "RGM Service",
+      "origem": "Downloads/logo-rgm-service.png",
+      "cores": {
+        "base": "#001c3c",
+        "componentes": {
+          "caixa": [
+            0,
+            0,
+            0.45,
+            1
+          ],
+          "cores": [
+            "#f06000",
+            "#009c4c",
+            "#001c3c"
+          ],
+          "ordem": "x"
+        }
+      }
+    },
+    {
+      "slug": "mais-madeiras",
+      "nome": "Mais Madeiras",
+      "origem": "Downloads/logo-mais-madeiras.png",
+      "cores": {
+        "base": "#537a5b"
+      }
+    },
+    {
+      "slug": "ice-cargo",
+      "nome": "Ice Cargo",
+      "origem": "Downloads/logo-ice-cargo-branco.png",
+      "cores": {
+        "base": "#0073bb",
+        "regioes": [
+          {
+            "caixa": [
+              0,
+              0,
+              0.29,
+              1
+            ],
+            "cor": "#ee8f21"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "tech-composites",
+      "nome": "Tech Composites",
+      "origem": "Downloads/logo-tech-composites.png"
+    }
   ],
   "faixa2": [
-    {"slug": "luzago", "nome": "Luzago Alimentos", "origem": "LPs/luzago/assets/icones/logo-luzago.webp"},
-    {"slug": "brasilcard", "nome": "BrasilCard", "origem": "Downloads/logo-brasilcard.png", "cores": {"base": "#004b89"}},
-    {"slug": "personal", "nome": "Personal Centro Automotivo", "origem": "Downloads/logo-personal.png"},
-    {"slug": "giga", "nome": "Giga", "origem": "assets/marcas/asset 13.png"},
-    {"slug": "cerimonial-do-valle", "nome": "Cerimonial do Valle", "origem": "LPs/grupo-valle/cerimonial-do-valle/img/logo-3d89919.png"},
-    {"slug": "doutor-hernia", "nome": "Doutor Hérnia", "origem": "LPs/DR HERNIA/TOLEDO/src/assets/img/logo-branco-132.png", "cores": {"base": "#243f97"}},
-    {"slug": "centro-europeu", "nome": "Centro Europeu", "origem": "Downloads/logo-centro-europeu-render.png"},
-    {"slug": "pizzaria-da-hora", "nome": "Pizzaria Da Hora", "origem": "assets/marcas/asset 15.png"},
-    {"slug": "dracos", "nome": "Draco's Sur América", "origem": "LPs/Dracos/dracos-site/images/logo.png"},
-    {"slug": "german-financial", "nome": "German Financial", "origem": "assets/marcas/german-financial-colorido.png"},
-    {"slug": "giatti", "nome": "Clínica Giatti", "origem": "LPs/giatti/assets/img/marca-giatti.png"},
-    {"slug": "reda", "nome": "Reda Engenharia", "origem": "Downloads/logo-reda-01.png", "cores": {"base": "#1a4246", "regioes": [{"caixa": [0, 0, 0.22, 1], "cor": "#86a48a"}]}},
-    {"slug": "silaqua", "nome": "Siláqua", "origem": "Downloads/logo-silaqua-colorido.png"},
-    {"slug": "herveda", "nome": "Herveda Farma", "origem": "Downloads/20260715_herveda_2638f4b56bb88a6b9669_20261017042024_archive/wp-content/uploads/2026/05/LOGO-PRINCIPAL-01.png"},
-    {"slug": "wyllis", "nome": "Wyllis Ferramentas", "origem": "assets/marcas/asset 23.png"},
-    {"slug": "ladaniuski", "nome": "Ladaniuski", "origem": "Downloads/logo-ladaniuski-render.png"},
-    {"slug": "molas-kuzma", "nome": "Molas Kuzma", "origem": "assets/marcas/asset 22.png"},
-    {"slug": "ivankio", "nome": "Ivankio Chás e Condimentos", "origem": "Downloads/logo-ivankio.png"},
-    {"slug": "2a", "nome": "2A Materiais Elétricos", "origem": "Downloads/logo-2a.png"},
-    {"slug": "aiss", "nome": "AISS do Brasil", "origem": "Downloads/logo-aiss.png"},
-    {"slug": "pontual", "nome": "Pontual Brasil Petróleo", "origem": "Downloads/logo-pontual.png"},
-    {"slug": "do-valle", "nome": "Do Valle Engenharia", "origem": "Downloads/logo-do-valle-engenharia.png"},
-    {"slug": "easy-lipo", "nome": "Easy Lipo", "origem": "Downloads/logo-easy-lipo.png", "cores": {"regioes": [{"caixa": [0, 0.58, 1, 1], "cor": "#2f6f6f"}]}},
-    {"slug": "reviver-saude", "nome": "Reviver Saúde", "origem": "Downloads/logo-reviver-saude.png"},
-    {"slug": "allcross", "nome": "AllCross", "origem": "Downloads/logo-allcross.png"},
-    {"slug": "rumo-seguro", "nome": "Rumo Seguro", "origem": "Downloads/logo-rumo-seguro.png"},
-    {"slug": "candanedo", "nome": "Candanedo Advocacia", "origem": "Downloads/logo-candanedo.png"},
-    {"slug": "sawazaki", "nome": "Sawazaki Veículos", "origem": "Downloads/logo-sawazaki.png"},
-    {"slug": "auto-service", "nome": "Auto Service", "origem": "Downloads/logo-auto-service.png", "cores": {"base": "#1a1a1a"}},
-    {"slug": "game-hero", "nome": "Game Hero", "origem": "Downloads/logo-game-hero.png"},
-    {"slug": "poly-ehlke", "nome": "Poly Ehlke", "origem": "Downloads/logo-poly-ehlke.png"}
+    {
+      "slug": "luzago",
+      "nome": "Luzago Alimentos",
+      "origem": "LPs/luzago/assets/icones/logo-luzago.webp"
+    },
+    {
+      "slug": "brasilcard",
+      "nome": "BrasilCard",
+      "origem": "Downloads/logo-brasilcard.png",
+      "cores": {
+        "base": "#004b89"
+      }
+    },
+    {
+      "slug": "personal",
+      "nome": "Personal Centro Automotivo",
+      "origem": "Downloads/logo-personal.png"
+    },
+    {
+      "slug": "giga",
+      "nome": "Giga",
+      "origem": "assets/marcas/asset 13.png"
+    },
+    {
+      "slug": "cerimonial-do-valle",
+      "nome": "Cerimonial do Valle",
+      "origem": "LPs/grupo-valle/cerimonial-do-valle/img/logo-3d89919.png"
+    },
+    {
+      "slug": "doutor-hernia",
+      "nome": "Doutor Hérnia",
+      "origem": "LPs/DR HERNIA/TOLEDO/src/assets/img/logo-branco-132.png",
+      "cores": {
+        "base": "#243f97"
+      }
+    },
+    {
+      "slug": "centro-europeu",
+      "nome": "Centro Europeu",
+      "origem": "Downloads/logo-centro-europeu-render.png"
+    },
+    {
+      "slug": "pizzaria-da-hora",
+      "nome": "Pizzaria Da Hora",
+      "origem": "assets/marcas/asset 15.png"
+    },
+    {
+      "slug": "dracos",
+      "nome": "Draco's Sur América",
+      "origem": "LPs/Dracos/dracos-site/images/logo.png"
+    },
+    {
+      "slug": "german-financial",
+      "nome": "German Financial",
+      "origem": "assets/marcas/german-financial-colorido.png"
+    },
+    {
+      "slug": "giatti",
+      "nome": "Clínica Giatti",
+      "origem": "LPs/giatti/assets/img/marca-giatti.png"
+    },
+    {
+      "slug": "reda",
+      "nome": "Reda Engenharia",
+      "origem": "Downloads/logo-reda-01.png",
+      "cores": {
+        "base": "#1a4246",
+        "regioes": [
+          {
+            "caixa": [
+              0,
+              0,
+              0.22,
+              1
+            ],
+            "cor": "#86a48a"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "silaqua",
+      "nome": "Siláqua",
+      "origem": "Downloads/logo-silaqua-colorido.png"
+    },
+    {
+      "slug": "herveda",
+      "nome": "Herveda Farma",
+      "origem": "Downloads/20260715_herveda_2638f4b56bb88a6b9669_20261017042024_archive/wp-content/uploads/2026/05/LOGO-PRINCIPAL-01.png"
+    },
+    {
+      "slug": "wyllis",
+      "nome": "Wyllis Ferramentas",
+      "origem": "assets/marcas/asset 23.png"
+    },
+    {
+      "slug": "ladaniuski",
+      "nome": "Ladaniuski",
+      "origem": "Downloads/logo-ladaniuski-render.png"
+    },
+    {
+      "slug": "molas-kuzma",
+      "nome": "Molas Kuzma",
+      "origem": "assets/marcas/asset 22.png"
+    },
+    {
+      "slug": "ivankio",
+      "nome": "Ivankio Chás e Condimentos",
+      "origem": "Downloads/logo-ivankio.png"
+    },
+    {
+      "slug": "2a",
+      "nome": "2A Materiais Elétricos",
+      "origem": "Downloads/logo-2a.png"
+    },
+    {
+      "slug": "aiss",
+      "nome": "AISS do Brasil",
+      "origem": "Downloads/logo-aiss.png"
+    },
+    {
+      "slug": "pontual",
+      "nome": "Pontual Brasil Petróleo",
+      "origem": "Downloads/logo-pontual.png"
+    }
+  ],
+  "faixa3": [
+    {
+      "slug": "serquip",
+      "nome": "Serquip PR",
+      "origem": "Downloads/logo-serquip.png",
+      "cores": {
+        "base": "#007f35"
+      }
+    },
+    {
+      "slug": "do-valle",
+      "nome": "Do Valle Engenharia",
+      "origem": "Downloads/logo-do-valle-engenharia.png"
+    },
+    {
+      "slug": "pinhapel",
+      "nome": "Pinhapel",
+      "origem": "Downloads/logo-pinhapel.png",
+      "cores": {
+        "base": "#005a2a",
+        "regioes": [
+          {
+            "caixa": [
+              0,
+              0,
+              0.245,
+              1
+            ],
+            "cor": "#92c63d"
+          },
+          {
+            "caixa": [
+              0.255,
+              0.7,
+              0.715,
+              1
+            ],
+            "cor": "#92c63d"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "easy-lipo",
+      "nome": "Easy Lipo",
+      "origem": "Downloads/logo-easy-lipo.png",
+      "cores": {
+        "regioes": [
+          {
+            "caixa": [
+              0,
+              0.58,
+              1,
+              1
+            ],
+            "cor": "#2f6f6f"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "auxiliadora-predial",
+      "nome": "Auxiliadora Predial",
+      "origem": "Downloads/logo-auxiliadora-predial.png"
+    },
+    {
+      "slug": "reviver-saude",
+      "nome": "Reviver Saúde",
+      "origem": "Downloads/logo-reviver-saude.png"
+    },
+    {
+      "slug": "sinc-capital",
+      "nome": "Sinc Capital",
+      "origem": "Downloads/logo-sinc-capital.png"
+    },
+    {
+      "slug": "allcross",
+      "nome": "AllCross",
+      "origem": "Downloads/logo-allcross.png"
+    },
+    {
+      "slug": "geoazimute",
+      "nome": "Geoazimute Aerofotogrametria",
+      "origem": "Downloads/logo-geoazimute.png"
+    },
+    {
+      "slug": "rumo-seguro",
+      "nome": "Rumo Seguro",
+      "origem": "Downloads/logo-rumo-seguro.png"
+    },
+    {
+      "slug": "vedolim-teixeira",
+      "nome": "Vedolim Teixeira & Advogados Associados",
+      "origem": "Downloads/logo-vedolim-teixeira.png"
+    },
+    {
+      "slug": "candanedo",
+      "nome": "Candanedo Advocacia",
+      "origem": "Downloads/logo-candanedo.png"
+    },
+    {
+      "slug": "noemia-ingracio",
+      "nome": "Noemia Ingracio Advocacia",
+      "origem": "Downloads/logo-noemia-ingracio.png"
+    },
+    {
+      "slug": "sawazaki",
+      "nome": "Sawazaki Veículos",
+      "origem": "Downloads/logo-sawazaki.png"
+    },
+    {
+      "slug": "valentes",
+      "nome": "Valente's Auto Center",
+      "origem": "Downloads/logo-valentes.png"
+    },
+    {
+      "slug": "auto-service",
+      "nome": "Auto Service",
+      "origem": "Downloads/logo-auto-service.png",
+      "cores": {
+        "base": "#1a1a1a"
+      }
+    },
+    {
+      "slug": "mototest",
+      "nome": "Mototest",
+      "origem": "Downloads/logo-mototest.png"
+    },
+    {
+      "slug": "game-hero",
+      "nome": "Game Hero",
+      "origem": "Downloads/logo-game-hero.png"
+    },
+    {
+      "slug": "nuee",
+      "nome": "Nuee",
+      "origem": "Downloads/logo-nuee.png"
+    },
+    {
+      "slug": "poly-ehlke",
+      "nome": "Poly Ehlke",
+      "origem": "Downloads/logo-poly-ehlke.png"
+    }
   ]
 }
