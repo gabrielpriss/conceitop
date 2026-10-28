@@ -1863,3 +1863,9 @@ main > #clientes { padding-bottom: 1.5rem; }
   #menu-btn { display: block !important; }
   #mobile-menu:not(.hidden) { display: flex !important; }
 }
+/* Textos de apoio mais legíveis (out/2026): cards de serviços, cards e FAQ das LPs, popup de serviços
+   e parágrafos de introdução em cinza. 16px, cinza mais escuro e peso 500. */
+.servico-texto, .seg-card p, .seg-faq p, .serv-painel .sd-intro, p.text-prime-600.font-light {
+  font-size: 16px; color: #2e2e2e; font-weight: 500;
+}
+.servico-texto strong, .seg-card p strong, .seg-faq p strong, .serv-painel .sd-intro strong, p.text-prime-600.font-light strong { color: #111; font-weight: 700; }
