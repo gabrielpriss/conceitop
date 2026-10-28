@@ -60,7 +60,7 @@ PROMESSAS = [
     ('fas fa-check', '<strong>Para empresas com faturamento acima de R$ 100 mil/mês</strong>'),
     ('fas fa-location-dot', 'Escritórios em <strong>Curitiba e Cascavel</strong>'),
     ('fab fa-google', 'Gestão de <strong>Google Ads e Meta Ads</strong>'),
-    ('fas fa-laptop-code', 'Sites e páginas de <strong>alta conversão</strong>, integrados ao Google Ads'),
+    ('fas fa-laptop-code', 'Sites e páginas de <strong>alta conversão</strong>'),
     ('fas fa-filter', 'Foco em <strong>lead qualificado</strong>, não em volume'),
 ]
 
