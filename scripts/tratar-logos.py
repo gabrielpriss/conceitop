@@ -130,7 +130,7 @@ def main():
     dados = json.load(open(os.path.join(ROOT, 'conteudo/clientes.json'), encoding='utf-8'))
     os.makedirs(SAIDA, exist_ok=True)
     faltando = []
-    for faixa in ('faixa1', 'faixa2'):
+    for faixa in ('faixa1', 'faixa2', 'faixa3'):
         for c in dados[faixa]:
             origem = c.get('origem')
             caminho = os.path.join(ORIG, origem) if origem and not origem.startswith('assets/') else os.path.join(ROOT, origem or '')

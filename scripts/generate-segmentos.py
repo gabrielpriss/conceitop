@@ -28,7 +28,7 @@ CONVERSAO_TODOS = ''         # "Lead B2B Todos" (secundária)
 
 WA_COMERCIAL = '5541999904764'
 ENDERECO = 'R. Antônio Rodrigues, 76, Curitiba/PR'
-CLIENTES = {c['slug']: c for faixa in ('faixa1', 'faixa2')
+CLIENTES = {c['slug']: c for faixa in ('faixa1', 'faixa2', 'faixa3')
             for c in json.load(open(os.path.join(ROOT, 'conteudo/clientes.json'), encoding='utf-8'))[faixa]}
 
 VIDEOS = {
@@ -116,7 +116,7 @@ PAGINAS = [
         ],
         'servico_hidden': 'Campanha para indústria',
         'segmento': 'industria',
-        'form_titulo': 'Solicite um diagnóstico',
+        'form_titulo': 'Solicite seu diagnóstico gratuito',
         'form_desc': 'Respondemos com uma leitura do seu mercado no Google e o próximo passo.',
     },
     {
@@ -165,7 +165,7 @@ PAGINAS = [
         ],
         'servico_hidden': 'Campanha B2B',
         'segmento': '',
-        'form_titulo': 'Solicite um diagnóstico',
+        'form_titulo': 'Solicite seu diagnóstico gratuito',
         'form_desc': 'Respondemos com uma leitura do seu marketing e comercial hoje e o próximo passo.',
     },
 ]
@@ -495,7 +495,7 @@ def pagina(pg):
       <p class="text-gold-400 font-semibold uppercase tracking-[0.3em] text-[11px] mb-6">{pg['eyebrow']}</p>
       <h1 id="seg-titulo" class="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.1] mb-8 uppercase">{pg['h1']}</h1>
       <p class="text-white/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10">{pg['sub']}</p>
-      <a href="#orcamento" class="cb-cta" data-cta="hero-{pg['slug']}"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> Solicitar diagnóstico</a>
+      <a href="#orcamento" class="cb-cta" data-cta="hero-{pg['slug']}"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> Solicitar diagnóstico gratuito</a>
     </div>
   </section>
 

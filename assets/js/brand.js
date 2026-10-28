@@ -74,13 +74,13 @@ function diagHTML(o) {
   }).join('');
   const b2b = o.envio === 'lead-b2b';
   const botaoFinal = b2b
-    ? '<i class="fas fa-paper-plane" aria-hidden="true"></i> Solicitar diagnóstico'
+    ? '<i class="fas fa-paper-plane" aria-hidden="true"></i> Solicitar diagnóstico gratuito'
     : '<i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar e abrir o WhatsApp';
   const desc = o.desc || (o.servico ? 'Interesse em <strong>' + diagEsc(o.servico) + '</strong>. São 4 perguntas rápidas.' : 'São 4 perguntas rápidas e seguimos a conversa com você.');
   return `
     <div class="diag-topo">
       <p class="diag-eyebrow"><i class="fas fa-bolt" aria-hidden="true"></i> <span data-diag-dica>${DIAG_DICAS[0]}</span></p>
-      <h2 class="diag-titulo" id="${o.tituloId}">Solicite um diagnóstico</h2>
+      <h2 class="diag-titulo" id="${o.tituloId}">Solicite seu diagnóstico gratuito</h2>
       <p class="diag-desc">${desc}</p>
       <div class="diag-barra" aria-hidden="true"><span data-diag-barra></span></div>
       <p class="diag-contador" data-diag-contador>Etapa 1 de ${DIAG_TOTAL}</p>
