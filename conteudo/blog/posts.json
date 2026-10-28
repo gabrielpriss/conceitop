@@ -1,5 +1,51 @@
 [
   {
+    "slug": "crm-para-industria",
+    "titulo": "CRM para indústria: como escolher e implantar sem virar planilha cara",
+    "titulo_seo": "CRM para indústria: como escolher e implantar | Conceito Prime",
+    "descricao": "CRM para indústria: o que muda na venda industrial, CRM ou ERP, como desenhar o funil, implantar em 6 passos e escolher o sistema certo para o time.",
+    "linha_fina": "Orçamento perdido no e-mail e carteira na cabeça do representante custam pedidos todo mês.",
+    "data": "2026-10-28",
+    "atualizado": "2026-10-28",
+    "categoria": "Vendas",
+    "palavras_chave": [
+      "crm para indústria",
+      "crm industrial",
+      "implantação de crm",
+      "crm ou erp",
+      "funil de vendas industrial"
+    ],
+    "local": "Brasil",
+    "faq": [
+      {
+        "pergunta": "O que é CRM para indústria?",
+        "resposta": "É o sistema que registra as oportunidades comerciais da indústria, do primeiro contato ao pedido e à recompra, com orçamentos, etapas, motivos de perda e origem de cada contato."
+      },
+      {
+        "pergunta": "Qual a diferença entre CRM e ERP?",
+        "resposta": "O CRM cuida do que acontece antes do pedido: contato, qualificação, orçamento e negociação. O ERP cuida do que vem depois: faturamento, produção, estoque e entrega. O ideal é que os dois sejam integrados."
+      },
+      {
+        "pergunta": "Como implantar um CRM em uma indústria?",
+        "resposta": "Desenhe o funil real antes de escolher a ferramenta, comece com poucos campos obrigatórios, inclua os representantes, integre com o ERP e com o marketing e passe a fazer a reunião comercial olhando para o CRM."
+      },
+      {
+        "pergunta": "Qual o melhor CRM para indústria?",
+        "resposta": "Não existe um melhor em abstrato. O certo é o que comporta o seu funil, integra com o ERP que vocês usam, funciona no celular do representante e registra a origem de cada contato."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "Cetic.br/NIC.br: TIC Empresas 2025, apresentação de lançamento (4.174 empresas com 10 ou mais pessoas ocupadas, coleta de fev/2025 a jan/2026)",
+        "url": "https://cetic.br/media/analises/TIC-Empresas-2025-lancamento.pdf"
+      },
+      {
+        "nome": "Google Ads, Planejador de palavras-chave (consulta de 24/10/2026, Brasil, out/2025 a set/2026)",
+        "url": "https://ads.google.com/home/tools/keyword-planner/"
+      }
+    ]
+  },
+  {
     "slug": "agencia-de-branding-em-curitiba",
     "titulo": "Agência de branding em Curitiba para indústria e B2B: quando investir e o que exigir",
     "titulo_seo": "Agência de branding em Curitiba para B2B | Conceito Prime",
