@@ -330,6 +330,25 @@ def cabeca(titulo, descricao, url, robots, schema=''):
 </head>'''
 
 
+# Cabeçalho completo do site nas LPs (decisão de out/2026): menu do celular e sombra ao rolar,
+# o mesmo comportamento das outras páginas. O botão "Solicitar orçamento" (btn-wa) não sai da LP:
+# o brand.js intercepta e abre o formulário em popup com a cara do WhatsApp.
+JS_CABECALHO = """  var menuBtn = document.getElementById('menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', function () {
+      var aberto = mobileMenu.classList.toggle('hidden') === false;
+      menuBtn.setAttribute('aria-expanded', String(aberto));
+      menuBtn.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+      var icon = menuBtn.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+  }
+  var header = document.getElementById('header');
+  if (header) window.addEventListener('scroll', function () { header.classList.toggle('scrolled', window.scrollY > 20); });"""
+
+
 def topo(link_logo, com_cta):
     logo = '<img src="/assets/images/logo.webp" alt="Conceito Prime" width="1250" height="356">'
     logo = f'<a href="{link_logo}" class="cb-topo-logo">{logo}</a>' if link_logo else f'<span class="cb-topo-logo">{logo}</span>'
@@ -467,7 +486,7 @@ def pagina(pg):
     return cabeca(pg['title'], pg['description'], url, 'index, follow', schema) + f'''
 <body class="font-sans text-prime-800 antialiased" data-contato="formulario" data-lp="{pg['slug']}">
 
-{topo(f"/{pg['slug']}/", True)}
+  {HEADER}
 
   <main>
   <section class="hero-bg seg-hero pt-36 pb-24 lg:pt-44 lg:pb-28" aria-labelledby="seg-titulo">
@@ -537,7 +556,7 @@ def pagina(pg):
   </section>
   </main>
 
-''' + rodape('')
+''' + rodape(JS_CABECALHO)
 
 
 OBRIGADO = [

@@ -453,7 +453,9 @@ function initDiagnostico(form) {
     if (a.tagName === 'BUTTON' && a.type === 'submit' && a.form) return;
     e.preventDefault();
     track('cta_click', { posicao: a.dataset.cta || (a.closest('section, header, footer') || {}).id || 'cta', texto: a.textContent.trim().slice(0, 60) });
-    openLeadModal();
+    /* Nas LPs da campanha, botão com ícone de WhatsApp abre o formulário com a cara do WhatsApp */
+    const comWa = document.body.dataset.contato === 'formulario' && a.querySelector('.fa-whatsapp');
+    openLeadModal(comWa ? 'whatsapp' : undefined);
   });
 })();
 

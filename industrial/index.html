@@ -109,16 +109,54 @@ body[data-tipos-conversao] #wa-float { display: none !important; }
 </head>
 <body class="font-sans text-prime-800 antialiased" data-contato="formulario" data-lp="industrial">
 
-  <header class="cb-topo">
-    <div class="cb-topo-in">
-      <a href="/industrial/" class="cb-topo-logo"><img src="/assets/images/logo.webp" alt="Conceito Prime" width="1250" height="356"></a>
-      <nav class="cb-topo-nav" aria-label="Seções da página">
-        <a href="#seg-logos" data-cta="menu-clientes">Clientes</a>
-        <a href="#seg-metodo" data-cta="menu-metodo">Como trabalhamos</a>
-        <a href="#depoimentos" data-cta="menu-depoimentos">Depoimentos</a>
-        <a href="#seg-faq" data-cta="menu-perguntas">Perguntas</a>
+  <header id="header" class="fixed inset-x-0 top-0 z-50 py-4">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <nav class="flex items-center justify-between gap-4" aria-label="Navegação principal">
+
+        <a href="/" class="site-logo-link">
+          <img src="/assets/images/logo-300.webp" srcset="/assets/images/logo-300.webp 300w, /assets/images/logo-450.webp 450w, /assets/images/logo.webp 1250w" sizes="(min-width: 640px) 176px, 160px" alt="Conceito Prime - Marketing Digital" width="1250" height="356" class="site-logo">
+        </a>
+
+        <div class="header-nav-right hidden md:flex">
+          <div class="header-nav-links">
+            <a href="/"       class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Início</a>
+            <a href="/quem-somos/"  class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Quem somos</a>
+            <a href="/industrial/"  class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Indústrias</a>
+            <a href="/b2b/"         class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">B2B</a>
+            <a href="/blog/"        class="nav-link text-prime-900 text-[13px] uppercase tracking-widest font-medium transition">Blog</a>
+            <div class="nav-drop">
+              <a href="/contato/" class="nav-link nav-drop-btn text-prime-900 text-[13px] uppercase tracking-widest font-medium transition" aria-haspopup="true">Contato <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+              <div class="nav-drop-menu">
+                <a href="/contato/">Quero ser cliente</a>
+                <a href="/contato/#trabalhe-conosco">Vagas e fornecedores</a>
+              </div>
+            </div>
+          </div>
+          <a href="/contato/"
+             class="btn-wa text-[11px] px-6 py-3 uppercase tracking-[0.15em]">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> Solicitar orçamento
+          </a>
+        </div>
+
+        <button id="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" class="md:hidden text-prime-900 focus:outline-none">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
       </nav>
-      <a href="#orcamento" class="cb-topo-cta" data-cta="topo">Solicitar diagnóstico</a>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-100 pt-4 flex flex-col gap-4 bg-white">
+        <a href="/"       class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Início</a>
+        <a href="/quem-somos/"  class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Quem somos</a>
+        <a href="/industrial/"  class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Indústrias</a>
+        <a href="/b2b/"         class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">B2B</a>
+        <a href="/blog/"        class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Blog</a>
+        <a href="/contato/"     class="text-prime-900 text-sm uppercase tracking-widest font-medium transition px-2">Contato</a>
+        <a href="/contato/#trabalhe-conosco" class="text-prime-600 text-xs uppercase tracking-widest font-medium transition px-2 pl-6">Vagas e fornecedores</a>
+        <a href="/contato/"
+           class="btn-wa inline-flex justify-center text-xs px-6 py-4 mt-2 uppercase tracking-[0.2em]">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> Solicitar orçamento
+        </a>
+      </div>
     </div>
   </header>
 
@@ -464,5 +502,23 @@ body[data-tipos-conversao] #wa-float { display: none !important; }
     </div>
   </footer>
   <script src="/assets/js/brand.js" defer></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  var menuBtn = document.getElementById('menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', function () {
+      var aberto = mobileMenu.classList.toggle('hidden') === false;
+      menuBtn.setAttribute('aria-expanded', String(aberto));
+      menuBtn.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+      var icon = menuBtn.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+  }
+  var header = document.getElementById('header');
+  if (header) window.addEventListener('scroll', function () { header.classList.toggle('scrolled', window.scrollY > 20); });
+});
+  </script>
 </body>
 </html>
