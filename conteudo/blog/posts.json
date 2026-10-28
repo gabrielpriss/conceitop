@@ -1,5 +1,51 @@
 [
   {
+    "slug": "agencia-de-branding-em-curitiba",
+    "titulo": "Agência de branding em Curitiba para indústria e B2B: quando investir e o que exigir",
+    "titulo_seo": "Agência de branding em Curitiba para B2B | Conceito Prime",
+    "descricao": "Agência de branding em Curitiba para indústria e B2B: sinais de que a marca trava a venda, o que o projeto deve entregar e checklist para escolher.",
+    "linha_fina": "Marca nova só vale o investimento quando muda a conversa do vendedor com o comprador.",
+    "data": "2026-10-28",
+    "atualizado": "2026-10-28",
+    "categoria": "Marketing Digital",
+    "palavras_chave": [
+      "agência de branding curitiba",
+      "agência de branding em curitiba",
+      "branding curitiba",
+      "branding para indústria",
+      "rebranding b2b"
+    ],
+    "local": "Curitiba",
+    "faq": [
+      {
+        "pergunta": "O que faz uma agência de branding?",
+        "resposta": "Define o posicionamento da marca, a narrativa e a identidade visual, e aplica tudo nos pontos de contato da empresa. No B2B, o resultado precisa aparecer na proposta comercial, no catálogo, no site e na conversa do vendedor."
+      },
+      {
+        "pergunta": "Qual a diferença entre branding e marketing?",
+        "resposta": "Branding define quem a empresa é, para quem vende e por que deve ser escolhida. Marketing coloca essa mensagem na frente do comprador certo e gera contatos para o comercial. Um sem o outro rende pouco."
+      },
+      {
+        "pergunta": "Quando uma indústria deve fazer rebranding?",
+        "resposta": "Quando a empresa cresceu e a marca não acompanhou, quando entrou em um mercado novo, quando cada material conta uma história diferente ou quando o preço virou o único argumento na negociação."
+      },
+      {
+        "pergunta": "Branding para indústria precisa trocar o logotipo?",
+        "resposta": "Nem sempre. Muitas vezes o certo é manter nome e símbolo, que já têm reconhecimento, e revisar posicionamento, discurso e materiais comerciais. A decisão sai do diagnóstico, não do gosto da diretoria."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "Ehrenberg-Bass Institute: The 95:5 Rule, why B2B growth starts long before the purchase (conceito do professor John Dawes)",
+        "url": "https://marketingscience.info/news-and-insights/the-955-rule-why-b2b-growth-starts-long-before-the-purchase"
+      },
+      {
+        "nome": "Marketing Week: The 95:5 rule is the new 60:40 rule (Peter Weinberg e Jon Lombardo, B2B Institute do LinkedIn)",
+        "url": "https://www.marketingweek.com/peter-weinberg-jon-lombardo-95-5-rule"
+      }
+    ]
+  },
+  {
     "slug": "marketing-b2b",
     "titulo": "Marketing B2B: o que é, estratégias e como estruturar na sua empresa",
     "titulo_seo": "Marketing B2B: o que é e como estruturar | Conceito Prime",
