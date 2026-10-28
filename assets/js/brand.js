@@ -29,7 +29,8 @@ function abrirWhatsApp(url, posicao) {
 
 /* ========== FORMULÁRIO "SOLICITE UM DIAGNÓSTICO" ==========
    O mesmo em todas as páginas (inline, popup do site e popup de WhatsApp das LPs).
-   Em etapas: primeiro o que se responde com um clique (segmento e faturamento), por último o que precisa digitar.
+   Em etapas: primeiro o segmento (um clique), depois nome e empresa, por último o WhatsApp.
+   A pergunta de faturamento saiu do formulário (out/2026); o campo segue existindo no envio, só não é mais preenchido.
    Envio:
    - no site: grava o lead (/api/lead) e abre o WhatsApp com a mensagem pronta;
    - nas LPs da campanha (body data-contato="formulario"): envia para /api/lead-b2b e redireciona para
@@ -59,8 +60,8 @@ const DIAG_FATURAMENTO = [
   ['acima-5m', 'Acima de R$ 5 milhões'],
   ['nao-faturou', 'Ainda não faturamos']
 ];
-const DIAG_TOTAL = 4;
-const DIAG_DICAS = ['Leva menos de 1 minuto', 'Boa! Só mais um clique', 'Já passou da metade', 'Último passo'];
+const DIAG_TOTAL = 3;
+const DIAG_DICAS = ['Leva menos de 1 minuto', 'Boa! Já passou da metade', 'Último passo'];
 const FAIXAS_QUALIFICADAS = ['100k-500k', '500k-1m', '1m-5m', 'acima-5m'];
 
 function diagEsc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -69,14 +70,11 @@ function diagHTML(o) {
   const segs = DIAG_SEGMENTOS.map(function (s) {
     return `<label class="diag-opcao"><input type="radio" name="segmento" value="${s[0]}"${o.segmento === s[0] ? ' checked' : ''}><span><i class="fas ${s[2]}" aria-hidden="true"></i>${s[1]}</span></label>`;
   }).join('');
-  const fats = DIAG_FATURAMENTO.map(function (f) {
-    return `<label class="diag-opcao diag-opcao--linha"><input type="radio" name="faturamento" value="${f[0]}"><span>${f[1]}</span></label>`;
-  }).join('');
   const b2b = o.envio === 'lead-b2b';
   const botaoFinal = b2b
     ? '<i class="fas fa-paper-plane" aria-hidden="true"></i> Solicitar diagnóstico'
     : '<i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar e abrir o WhatsApp';
-  const desc = o.desc || (o.servico ? 'Interesse em <strong>' + diagEsc(o.servico) + '</strong>. São 4 perguntas rápidas.' : 'São 4 perguntas rápidas e seguimos a conversa com você.');
+  const desc = o.desc || (o.servico ? 'Interesse em <strong>' + diagEsc(o.servico) + '</strong>. São 3 perguntas rápidas.' : 'São 3 perguntas rápidas e seguimos a conversa com você.');
   return `
     <div class="diag-topo">
       <p class="diag-eyebrow"><i class="fas fa-bolt" aria-hidden="true"></i> <span data-diag-dica>${DIAG_DICAS[0]}</span></p>
@@ -86,7 +84,7 @@ function diagHTML(o) {
       <p class="diag-contador" data-diag-contador>Etapa 1 de ${DIAG_TOTAL}</p>
     </div>
     <div class="diag-hist" data-diag-hist aria-live="polite">
-      <p class="diag-msg diag-msg--in">Olá! 👋 Para preparar o seu diagnóstico, são só 4 perguntas rápidas.</p>
+      <p class="diag-msg diag-msg--in">Olá! 👋 Para preparar o seu diagnóstico, são só 3 perguntas rápidas.</p>
     </div>
     <fieldset class="diag-etapa" data-etapa="1">
       <legend class="diag-pergunta">Qual o segmento da sua empresa?</legend>
@@ -94,11 +92,6 @@ function diagHTML(o) {
       <button type="button" class="diag-avancar diag-avancar--opcao" data-diag-avancar hidden>Continuar <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
     </fieldset>
     <fieldset class="diag-etapa" data-etapa="2" hidden>
-      <legend class="diag-pergunta">Quanto a empresa fatura por mês, em média?</legend>
-      <div class="diag-opcoes diag-opcoes--lista">${fats}</div>
-      <button type="button" class="diag-avancar diag-avancar--opcao" data-diag-avancar hidden>Continuar <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-    </fieldset>
-    <fieldset class="diag-etapa" data-etapa="3" hidden>
       <legend class="diag-pergunta">Como podemos te chamar?</legend>
       <div class="diag-campos">
         <label class="diag-campo"><span>Seu nome</span><input type="text" name="nome" autocomplete="given-name" placeholder="Primeiro nome" maxlength="80" enterkeyhint="next"></label>
@@ -106,7 +99,7 @@ function diagHTML(o) {
       </div>
       <button type="button" class="diag-avancar" data-diag-avancar>Continuar <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
     </fieldset>
-    <fieldset class="diag-etapa" data-etapa="4" hidden>
+    <fieldset class="diag-etapa" data-etapa="3" hidden>
       <legend class="diag-pergunta" data-diag-pergunta-tel>Qual o seu WhatsApp?</legend>
       <div class="diag-campos">
         <label class="diag-campo"><span>WhatsApp com DDD</span><span class="diag-tel"><span class="diag-ddi" aria-hidden="true">🇧🇷 +55</span><input type="tel" name="telefone" inputmode="tel" autocomplete="tel-national" placeholder="(41) 99999-9999" data-phone-mask enterkeyhint="send"></span></label>
@@ -138,7 +131,7 @@ function diagMensagem(d) {
   linhas.push('Empresa: ' + d.empresa);
   linhas.push('WhatsApp: ' + d.telefone);
   linhas.push('Segmento: ' + diagRotulo(DIAG_SEGMENTOS, d.segmento));
-  linhas.push('Faturamento mensal: ' + diagRotulo(DIAG_FATURAMENTO, d.faturamento));
+  if (d.faturamento) linhas.push('Faturamento mensal: ' + diagRotulo(DIAG_FATURAMENTO, d.faturamento));
   if (d.servico) linhas.push('Interesse: ' + d.servico);
   linhas.push('', 'Origem: site (' + location.pathname + ')');
   const ref = Object.keys(RASTREIO).map(function (k) { return k + '=' + RASTREIO[k]; }).join(' ');
@@ -205,11 +198,11 @@ function initDiagnostico(form) {
     barra.style.width = Math.max(6, (n - 1) / DIAG_TOTAL * 100) + '%';
     contador.textContent = 'Etapa ' + n + ' de ' + DIAG_TOTAL;
     dica.textContent = DIAG_DICAS[n - 1];
-    if (n === 4) {
+    if (n === 3) {
       const nome = valor('nome').split(' ')[0];
       form.querySelector('[data-diag-pergunta-tel]').textContent = nome ? 'Prazer, ' + nome + '! Qual o seu WhatsApp?' : 'Qual o seu WhatsApp?';
     }
-    if (n <= 2) atualizarOpcao(n);
+    if (n === 1) atualizarOpcao(n);
     erro('');
     form.dispatchEvent(new CustomEvent('diag:etapa', { detail: { etapa: n, total: DIAG_TOTAL } }));
     if (focar) {
@@ -224,8 +217,7 @@ function initDiagnostico(form) {
 
   function validar(n) {
     if (n === 1 && !valor('segmento')) { erro('Escolha o segmento da empresa para continuar.'); return false; }
-    if (n === 2 && !valor('faturamento')) { erro('Escolha uma faixa de faturamento para continuar.'); return false; }
-    if (n === 3) {
+    if (n === 2) {
       const nome = form.querySelector('[name="nome"]');
       const emp = form.querySelector('[name="empresa"]');
       const okNome = nome.value.trim().length >= 2;
@@ -233,7 +225,7 @@ function initDiagnostico(form) {
       marcar(nome, okNome); marcar(emp, okEmp);
       if (!okNome || !okEmp) { erro('Preencha o seu nome e o nome da empresa.'); (okNome ? emp : nome).focus(); return false; }
     }
-    if (n === 4) {
+    if (n === 3) {
       const okTel = tel.value.replace(/\D/g, '').length >= 10;
       marcar(tel, okTel);
       if (!okTel) { erro('Confira o WhatsApp: precisa ter DDD e o número completo.'); tel.focus(); return false; }
@@ -243,8 +235,7 @@ function initDiagnostico(form) {
 
   function resposta(n) {
     if (n === 1) return diagRotulo(DIAG_SEGMENTOS, valor('segmento'));
-    if (n === 2) return diagRotulo(DIAG_FATURAMENTO, valor('faturamento'));
-    if (n === 3) return valor('nome') + ', da ' + valor('empresa');
+    if (n === 2) return valor('nome') + ', da ' + valor('empresa');
     return valor('telefone');
   }
 
@@ -264,7 +255,7 @@ function initDiagnostico(form) {
     if (atual < DIAG_TOTAL) ir(atual + 1, true);
   }
 
-  etapas.slice(0, 2).forEach(function (etapa, i) {
+  etapas.slice(0, 1).forEach(function (etapa, i) {
     etapa.querySelectorAll('input[type=radio]').forEach(function (r) {
       r.addEventListener('change', function () {
         comecar();
