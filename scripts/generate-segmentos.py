@@ -57,7 +57,6 @@ SERVICOS_B2B = [
 
 # O que os anúncios prometem: cada item precisa aparecer na página de destino
 PROMESSAS = [
-    ('fas fa-check', '<strong>Para empresas com faturamento acima de R$ 100 mil/mês</strong>'),
     ('fas fa-location-dot', 'Escritórios em <strong>Curitiba e Cascavel</strong>'),
     ('fab fa-google', 'Gestão de <strong>Google Ads e Meta Ads</strong>'),
     ('fas fa-laptop-code', 'Sites e páginas de <strong>alta conversão</strong>'),
@@ -107,7 +106,7 @@ PAGINAS = [
         ],
         'videos': ['kuzma', 'german', 'ruan', 'heloise'],
         'faq': [
-            ('Para que tipo de empresa é esse trabalho?', 'Para indústrias e distribuidores com faturamento acima de R$ 100 mil por mês que vendem para outras empresas. Já atendemos indústrias no Paraná em segmentos como fitas adesivas, rolamentos, correias industriais, motores elétricos e usinagem.'),
+            ('Para que tipo de empresa é esse trabalho?', 'Para indústrias e distribuidores que vendem para outras empresas e precisam de pedidos com perfil de compra. Já atendemos indústrias no Paraná em segmentos como fitas adesivas, rolamentos, correias industriais, motores elétricos e usinagem.'),
             ('Em quanto tempo aparece resultado?', 'É um trabalho de médio prazo. As primeiras semanas servem para calibrar termos, negativas e página com o que o comercial de vocês considera pedido bom, e o resultado fica consistente entre 3 e 6 meses.'),
             ('Atendem indústrias fora de Curitiba?', 'Sim. Temos escritórios em Curitiba e em Cascavel, com reuniões presenciais ou online, e atendemos clientes em outros estados.'),
             ('Vocês só fazem os anúncios?', 'Não. Cuidamos de Google Ads e Meta Ads, do site e das páginas de alta conversão integrados ao Google Ads, e da medição. Sem essas peças juntas, o painel mostra resultado que o comercial não enxerga.'),
@@ -156,7 +155,7 @@ PAGINAS = [
         'faq': [
             ('Vocês são uma agência de tráfego pago?', 'Sim, e não só isso. Fazemos a gestão de tráfego pago no Google Ads e no Meta Ads com foco em lead qualificado, e cuidamos do que faz esse tráfego virar venda: página de destino, medição pelo comercial e CRM.'),
             ('Vocês fazem só anúncios?', 'Não. Além da gestão de Google Ads e Meta Ads, trabalhamos sites e páginas de alta conversão integrados ao Google Ads, marca, conteúdo, atendimento e CRM, treinamento comercial e materiais de venda. O diagnóstico mostra por onde começar no caso de vocês.'),
-            ('Para que tipo de empresa é esse trabalho?', 'Para empresas que vendem para outras empresas e faturam acima de R$ 100 mil por mês. O foco é lead qualificado, não volume: preferimos menos contatos com perfil de compra do que muitos contatos que o comercial descarta.'),
+            ('Para que tipo de empresa é esse trabalho?', 'Para empresas que vendem para outras empresas e querem previsibilidade comercial. O foco é lead qualificado, não volume: preferimos menos contatos com perfil de compra do que muitos contatos que o comercial descarta.'),
             ('Em quanto tempo aparece resultado?', 'É um trabalho de médio prazo. As primeiras semanas servem para calibrar campanhas, página e filtro de leads, e o resultado fica consistente entre 3 e 6 meses.'),
             ('Funciona para venda consultiva com ciclo longo?', 'Sim. Medimos o lead qualificado na entrada e acompanhamos com vocês o que vira reunião e contrato, para o trabalho não ser julgado só pelo volume.'),
             ('Precisamos contratar tudo de uma vez?', 'Não. Montamos a entrega pelo que mais trava as vendas hoje e ampliamos conforme o resultado aparece.'),
@@ -309,7 +308,7 @@ def formulario(pg):
     """Formulário "Solicite um diagnóstico": o mesmo do site inteiro, montado em etapas pelo brand.js
     (initDiagnostico). Nas LPs (body data-contato="formulario") ele envia para /api/lead-b2b e
     redireciona para a página de obrigado. O botão do WhatsApp abre o mesmo formulário em popup."""
-    desc = f"{pg['form_desc']} Nosso trabalho é pensado para empresas que já faturam a partir de R$ 100 mil por mês."
+    desc = pg['form_desc']
     seg = f' data-segmento="{pg["segmento"]}"' if pg['segmento'] else ''
     return f'''  <section id="orcamento" class="cb-form-sec" aria-labelledby="cb-form-titulo">
     <div class="cb-form-card">
