@@ -390,14 +390,17 @@ def topo(link_logo, com_cta):
   </header>'''
 
 
+def rodape_home():
+    """Rodapé igual ao da home (navegação completa), lido do index.html para as LPs nunca ficarem defasadas."""
+    import re as _re
+    with open(os.path.join(ROOT, 'index.html'), encoding='utf-8') as f:
+        html = f.read()
+    m = _re.search(r'  <footer class="site-footer.*?</footer>', html, _re.S)
+    return m.group(0)
+
+
 def rodape(js):
-    return f'''  <footer class="cb-rodape">
-    <div class="cb-rodape-in">
-      <img src="/assets/images/logo-footer.webp" alt="Conceito Prime" width="400" height="114" loading="lazy" decoding="async">
-      <p><i class="fas fa-location-dot" aria-hidden="true"></i> {ENDERECO}</p>
-      <p><a href="/quem-somos/" target="_blank" rel="noopener">Quem somos</a> <span aria-hidden="true">·</span> © 2026 Conceito Prime</p>
-    </div>
-  </footer>
+    return f'''{rodape_home()}
   <script src="/assets/js/brand.js" defer></script>{script_local(js)}
 </body>
 </html>'''

@@ -1889,3 +1889,16 @@ main > #clientes { padding-bottom: 1.5rem; }
 .diag--wa .diag-msg--out { animation-delay: .3s; transform-origin: bottom right; }
 .diag--wa .diag-ok { animation: wa-sobe .5s cubic-bezier(.22, .9, .36, 1) .65s both; }
 @media (prefers-reduced-motion: reduce) { .diag--wa .diag-msg, .diag--wa .diag-ok { animation: none; } .diag--wa .diag-hist { scroll-behavior: auto; } }
+
+/* Toque fácil no celular (out/2026): links do menu do cabeçalho e do rodapé com área de clique de 44px e mais espaço entre eles */
+@media (max-width: 899px) {
+  #mobile-menu { gap: .35rem; }
+  #mobile-menu > a:not(.btn-wa) { display: flex; align-items: center; min-height: 46px; padding-top: .4rem; padding-bottom: .4rem; font-size: 15px; }
+  #mobile-menu > a.btn-wa { margin-top: .75rem; }
+}
+@media (max-width: 767px) {
+  .site-footer ul.space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: .35rem; }
+  .site-footer .footer-link { display: inline-flex; align-items: center; min-height: 46px; padding: .4rem 0; font-size: 16px !important; }
+  .site-footer .footer-insta { min-height: 46px; }
+  .site-footer .footer-credit { display: inline-block; padding: .6rem 0; }
+}
