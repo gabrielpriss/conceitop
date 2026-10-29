@@ -1,5 +1,48 @@
 [
   {
+    "slug": "leads-b2b",
+    "titulo": "Leads B2B: comprar lista, gerar ou terceirizar? Como decidir e medir a qualidade",
+    "titulo_seo": "Leads B2B: comprar lista ou gerar? | Conceito Prime",
+    "descricao": "Leads B2B: compare comprar lista, gerar com marketing ou terceirizar, veja o que a LGPD exige e como medir o custo por lead qualificado na sua empresa.",
+    "linha_fina": "Contato barato que não vira reunião sai caro. Veja como escolher a origem dos seus leads e medir o que importa.",
+    "data": "2026-10-29",
+    "atualizado": "2026-10-29",
+    "categoria": "Marketing Digital",
+    "palavras_chave": [
+      "leads b2b",
+      "b2b leads",
+      "lista b2b",
+      "comprar leads b2b",
+      "geração de leads b2b",
+      "como gerar leads b2b"
+    ],
+    "local": "Brasil",
+    "faq": [
+      {
+        "pergunta": "O que são leads B2B?",
+        "resposta": "São contatos de empresas que podem comprar de você, normalmente com o nome de quem decide ou influencia a compra. Lead B2B qualificado é o que atende aos critérios de segmento, porte, região e necessidade combinados com o comercial."
+      },
+      {
+        "pergunta": "Comprar leads B2B vale a pena?",
+        "resposta": "A lista comprada serve para mapear o mercado, mas costuma trazer contato frio, desatualizado e repetido entre concorrentes. Para venda de ticket alto, gerar o lead com marketing e qualificar por critério tende a render mais reuniões por real investido."
+      },
+      {
+        "pergunta": "Comprar lista de contatos é permitido pela LGPD?",
+        "resposta": "Quando a lista traz dados de pessoas, como nome, e-mail e telefone, a empresa precisa de base legal para usá-los, em geral o legítimo interesse, com teste de balanceamento e canal de oposição, conforme o guia da ANPD. Na dúvida, consulte o seu jurídico."
+      },
+      {
+        "pergunta": "Como gerar leads B2B qualificados?",
+        "resposta": "Anunciando para buscas de quem procura fornecedor, negativando termos fora do perfil, usando páginas com informação técnica e um formulário curto que identifique segmento e porte, e respondendo rápido a quem tem perfil."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "ANPD: Guia orientativo Hipóteses legais de tratamento de dados pessoais, Legítimo interesse (versão 1.0, fevereiro de 2024)",
+        "url": "https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia_orientativo_hipoteses_legais_tratamento_de_dados_pessoais_legitimo_interesse"
+      }
+    ]
+  },
+  {
     "slug": "crm-para-industria",
     "titulo": "CRM para indústria: como escolher e implantar sem virar planilha cara",
     "titulo_seo": "CRM para indústria: como escolher e implantar | Conceito Prime",
