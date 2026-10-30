@@ -6,9 +6,9 @@ Estas regras valem para todo artigo novo ou revisado em conceitop.com.br/blog. A
 
 O blog existe para trazer **empresários e gestores** do Google para o site e transformar parte deles em pedido de diagnóstico. Medimos sucesso em cliques orgânicos de quem tem perfil de cliente e em formulários enviados, nunca em visita de estudante, candidato a vaga ou concorrente.
 
-Público que queremos: sócios, diretores e gestores comerciais ou de marketing de **indústrias e empresas B2B**, de preferência com faturamento acima de R$ 100 mil por mês. B2C de ticket alto (clínicas, saúde, serviços caros) é zona cinzenta e pode entrar.
+**Foco atual (desde 2026-10-30, pedido do Gabriel): mercado imobiliário.** Público que queremos: sócios, diretores e gestores comerciais ou de marketing de **imobiliárias, construtoras, incorporadoras e loteadoras**, de preferência com faturamento acima de R$ 100 mil por mês (imobiliária com equipe de corretores e carteira própria, construtora ou incorporadora com lançamentos). Corretor autônomo e imobiliária de uma pessoa só não são público. (Antes de 2026-10-30 o foco era indústrias e empresas B2B; os artigos antigos desse foco ficam no ar e podem ser revisados, mas não entram tema novo de indústria.)
 
-Público que não queremos atrair: quem procura curso, aula, estágio, vaga, freelancer, "grátis", "barato", MEI, "como fazer sozinho" de nível iniciante, e outras agências.
+Público que não queremos atrair: quem procura curso, aula, estágio, vaga, freelancer, "grátis", "barato", MEI, "como fazer sozinho" de nível iniciante, outras agências, corretor autônomo procurando captar sozinho, e **quem quer comprar, alugar ou vender um imóvel** (consumidor final, que é a busca dominante nesse mercado: "apartamento à venda curitiba", "aluguel", "financiamento" etc.).
 
 ## 2. Como escolher o tema (pesquisa real, nunca chute)
 
@@ -24,7 +24,7 @@ Fontes, em ordem de peso:
 
 Filtros obrigatórios na escolha:
 
-- O termo precisa ter intenção de empresário. Exemplo bom: "quanto investir em google ads para indústria". Exemplo ruim: "curso de google ads".
+- O termo precisa ter intenção de empresário. Exemplo bom: "marketing para imobiliária", "google ads para construtora", "como vender lançamento imobiliário". Exemplo ruim: "curso de corretor de imóveis", "apartamento à venda curitiba".
 - Nunca repetir a palavra-chave principal nem a pergunta de um artigo existente (`conteudo/blog/posts.json`). Se o tema já existe, melhoramos o artigo antigo e atualizamos o campo `atualizado` em vez de criar outro.
 - Alternar a camada geográfica e a categoria em relação aos últimos 3 artigos da mesma frente (seção 3).
 - Os 2 artigos do mesmo dia nunca têm a mesma palavra-chave principal, a mesma pergunta nem a mesma cidade, e de preferência ficam em categorias diferentes.
@@ -37,10 +37,10 @@ Sinal mínimo para publicar (volume real e qualificado):
 
 Escada de prioridade (desça um degrau só quando o de cima não tiver tema novo com sinal real):
 
-1. **Contratação local**: serviço mais cidade com volume (ex.: "agência de google ads curitiba", "marketing industrial cascavel", "agência de marketing b2b joinville").
-2. **Decisão de compra**: preço, comparação, escolha, ROI, prazo (ex.: "quanto custa uma agência de marketing", "google ads ou seo para indústria").
-3. **Dor do empresário com volume nacional**: geração de leads B2B, vendas industriais, CRM, representantes, feiras, catálogo, prospecção (ex.: "como gerar leads b2b", "como vender para indústria").
-4. **Setor específico**: marketing para um segmento industrial forte no Sul (metalmecânica, plásticos, embalagens, madeira e móveis, alimentos, autopeças, agronegócio, transporte e logística, máquinas e equipamentos).
+1. **Contratação local**: serviço para o mercado imobiliário mais cidade com volume (ex.: "marketing imobiliário curitiba", "agência de marketing para imobiliária curitiba", "marketing para construtora joinville").
+2. **Decisão de compra**: preço, comparação, escolha, ROI, prazo (ex.: "quanto investir em anúncios para imobiliária", "agência de marketing imobiliário vale a pena", "meta ads ou google ads para lançamento").
+3. **Dor do empresário com volume nacional**: leads para imobiliária, captação de imóveis, vendas de lançamento, CRM imobiliário, atendimento de leads e tempo de resposta, portais imobiliários versus site próprio, estande e plantão (ex.: "como gerar leads para imobiliária", "como captar imóveis", "como vender lançamento imobiliário").
+4. **Nicho do mercado imobiliário**: alto padrão, loteamentos, imóveis comerciais e corporativos, locação e administração de imóveis, condomínios logísticos e galpões, incorporação de médio porte, casas de campo e praia (litoral do Paraná e de SC).
 
 ## 3. Camada geográfica: duas frentes por dia
 
@@ -48,11 +48,11 @@ Toda execução da tarefa diária publica 2 artigos, um de cada frente. A frente
 
 **Frente A: Curitiba, região metropolitana e Paraná.** Termo de busca com a cidade ou a região, ou tema com recorte paranaense (setor forte no estado, polo industrial). Distribuição alvo por semana (7 artigos): 3 de Curitiba ou região metropolitana, 1 de Cascavel ou oeste do Paraná, 2 de outros polos do Paraná e 1 com recorte do estado inteiro. Recorte do estado é tema do artigo, nunca promessa de "atendimento em todo o Paraná".
 
-**Frente B: contexto amplo.** Tema nacional (Brasil) ou de polo industrial e comercial forte fora do Paraná. Distribuição alvo por semana (7 artigos): 3 nacionais, 2 de Santa Catarina e 2 de São Paulo ou de outro polo forte. Empresa fora do Paraná é zona cinzenta na definição de lead qualificado, então o tema precisa ter intenção clara de empresa B2B ou indústria de porte.
+**Frente B: contexto amplo.** Tema nacional (Brasil) ou de polo industrial e comercial forte fora do Paraná. Distribuição alvo por semana (7 artigos): 3 nacionais, 2 de Santa Catarina e 2 de São Paulo ou de outro polo forte. Empresa fora do Paraná é zona cinzenta na definição de lead qualificado, então o tema precisa ter intenção clara de imobiliária, construtora ou incorporadora de porte.
 
 Ajuste as duas distribuições conforme o volume real encontrado.
 
-Cidades e polos estratégicos (indústria e B2B forte):
+Cidades e polos estratégicos (mercado imobiliário forte; a lista também vale para os polos de Santa Catarina com lançamentos de alto padrão, como Balneário Camboriú, Itapema e Florianópolis):
 
 - Curitiba e região metropolitana (frente A): Curitiba, São José dos Pinhais, Araucária, Pinhais, Colombo, Campo Largo, Fazenda Rio Grande, Almirante Tamandaré, Quatro Barras, Campina Grande do Sul, Piraquara, Mandirituba.
 - Outros polos do Paraná (frente A): Cascavel, Toledo, Foz do Iguaçu, Marechal Cândido Rondon, Londrina, Maringá, Ponta Grossa, Guarapuava, Pato Branco, Francisco Beltrão, Apucarana, Arapongas.
@@ -92,7 +92,7 @@ Conteúdo:
 - 1.200 a 2.000 palavras, português do Brasil, tom executivo e direto, primeira pessoa do plural ("na nossa experiência com indústrias...").
 - O primeiro parágrafo já responde a busca em 2 ou 3 frases.
 - 4 a 7 seções `h2`; pelo menos uma tabela, checklist ou passo a passo quando o tema permitir.
-- Pelo menos 2 links internos para páginas de serviço (`/b2b/`, `/industrial/`, `/contato/`, `/quem-somos/`) e 1 para outro artigo do blog com relação.
+- Pelo menos 2 links internos para páginas de serviço (`/b2b/`, `/contato/`, `/quem-somos/`; `/industrial/` só se o tema tocar galpão ou imóvel industrial) e 1 para outro artigo do blog com relação.
 - Fechar com um parágrafo que liga o tema ao diagnóstico gratuito (o formulário já vem no template).
 - Dados e estatísticas só depois de abrir a fonte original e confirmar número, ano e quem publicou. Sem fonte confirmada, sem número.
 - Escrever com nossas palavras; nunca copiar trechos das fontes.
