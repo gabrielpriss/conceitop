@@ -1,5 +1,51 @@
 [
   {
+    "slug": "marketing-para-construtora",
+    "titulo": "Marketing para construtora: como vender do pré-lançamento ao estoque",
+    "titulo_seo": "Marketing para construtora | Conceito Prime",
+    "descricao": "Marketing para construtora e incorporadora: o papel do marketing em cada fase do empreendimento, canais que trazem comprador e como medir o retorno.",
+    "linha_fina": "Lançamento cheio e obra sem estoque dependem de um marketing que acompanha cada fase do empreendimento.",
+    "data": "2026-10-30",
+    "atualizado": "2026-10-30",
+    "categoria": "Estratégias de Marketing",
+    "palavras_chave": [
+      "marketing para construtora",
+      "marketing para construtoras",
+      "marketing para incorporadora",
+      "marketing imobiliário",
+      "marketing de lançamento imobiliário"
+    ],
+    "local": "Brasil",
+    "faq": [
+      {
+        "pergunta": "Como fazer marketing para construtora?",
+        "resposta": "Planeje o marketing por fase do empreendimento: lista de interessados antes do lançamento, concentração de vendas no lançamento, ritmo durante a obra e foco em estoque na entrega. Cada fase pede canal, verba e indicador próprios."
+      },
+      {
+        "pergunta": "Quais canais funcionam para vender lançamento imobiliário?",
+        "resposta": "Página própria do empreendimento, Google Ads na pesquisa, Meta Ads para formar a lista e para remarketing, estande com corretores preparados e imobiliárias parceiras, tudo registrado num CRM."
+      },
+      {
+        "pergunta": "Como medir o resultado do marketing de uma construtora?",
+        "resposta": "Por cadastros qualificados, visitas ao estande, propostas e unidades vendidas com origem rastreada, além do custo de marketing por unidade vendida e da velocidade de vendas comparada à meta."
+      },
+      {
+        "pergunta": "A Conceito Prime atende construtoras fora do Paraná?",
+        "resposta": "Sim. Temos escritórios em Curitiba e Cascavel e atendemos construtoras e incorporadoras de outros estados com reuniões online."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "CBIC: Mercado imobiliário fechou quarto trimestre de 2025 com recordes em lançamentos e vendas (fev/2026)",
+        "url": "https://cbic.org.br/mercado-imobiliario-fechou-quarto-trimestre-de-2025-com-recordes-em-lancamentos-e-vendas/"
+      },
+      {
+        "nome": "Google Ads, Planejador de palavras-chave (consulta de 30/10/2026, Brasil, out/2025 a set/2026)",
+        "url": "https://ads.google.com/home/tools/keyword-planner/"
+      }
+    ]
+  },
+  {
     "slug": "marketing-imobiliario-em-curitiba",
     "titulo": "Marketing imobiliário em Curitiba: como a imobiliária gera captações e contratos",
     "titulo_seo": "Marketing imobiliário em Curitiba | Conceito Prime",
