@@ -137,7 +137,8 @@ async function receberLeadB2B(request, env) {
     return new Response(null, { status: 400 });
   }
   if (corpo.hp) return new Response(null, { status: 204 }); // honeypot
-  if (!corpo.nome || !corpo.telefone || !corpo.faturamento) return new Response(null, { status: 422 });
+  /* Faturamento deixou de ser obrigatório: a pergunta saiu do formulário em 28/10/2026 e o servidor recusava todo lead das LPs. */
+  if (!corpo.nome || !corpo.telefone) return new Response(null, { status: 422 });
   const destino = env.LEAD_B2B_WEBHOOK || env.LEAD_WEBHOOK;
   if (!destino) return new Response(null, { status: 503 });
 
