@@ -578,19 +578,21 @@
   },
   {
     "slug": "marketing-industrial",
-    "titulo": "Marketing industrial: o que é, canais e como gerar vendas para a indústria",
-    "titulo_seo": "Marketing industrial: o que é e como vender | Conceito Prime",
-    "descricao": "Marketing industrial na prática: o que muda na venda para empresas, os canais que funcionam, 5 etapas para montar a estratégia e as métricas que importam.",
+    "titulo": "Marketing industrial: o que é, estratégias e como gerar vendas para a indústria",
+    "titulo_seo": "Marketing industrial: estratégias e vendas | Conceito Prime",
+    "descricao": "Marketing industrial na prática: estratégias por modelo de venda, como a fábrica começa do zero em 5 etapas, os canais que funcionam e as métricas certas.",
     "linha_fina": "Venda técnica, ciclo longo e decisão em grupo pedem um marketing medido em contratos, não em curtidas.",
     "data": "2026-10-24",
-    "atualizado": "2026-10-24",
+    "atualizado": "2026-10-30",
     "categoria": "Estratégias de Marketing",
     "palavras_chave": [
       "marketing industrial",
       "marketing para indústria",
+      "marketing para indústrias",
+      "estratégias de marketing para indústria",
+      "marketing para fábrica",
       "marketing digital para indústria",
       "google ads para indústria",
-      "seo para indústria",
       "site para indústria"
     ],
     "local": "Brasil",
@@ -608,6 +610,10 @@
         "resposta": "Site com informação técnica, Google Ads na rede de pesquisa, conteúdo para SEO, remarketing, feiras e representantes, sempre integrados a um CRM."
       },
       {
+        "pergunta": "Como fazer marketing para fábrica que nunca investiu em marketing?",
+        "resposta": "Comece definindo o cliente ideal e o que conta como contato bom, organize um site com informação técnica e só então coloque Google Ads na pesquisa para quem já procura o produto. Medir pelo comercial, em reuniões e propostas, mostra rápido o que manter."
+      },
+      {
         "pergunta": "Como medir o resultado do marketing industrial?",
         "resposta": "Por leads qualificados, reuniões, propostas, contratos e custo por lead qualificado. Cliques e impressões ajudam a diagnosticar a campanha, mas não medem venda."
       }
@@ -616,6 +622,10 @@
       {
         "nome": "Google Ads, Planejador de palavras-chave (consulta de 24/10/2026, Brasil, out/2025 a set/2026)",
         "url": "https://ads.google.com/home/tools/keyword-planner/"
+      },
+      {
+        "nome": "Cetic.br, TIC Empresas 2025 (lançamento, jun/2026): empresas que possuem website, por porte",
+        "url": "https://cetic.br/media/analises/TIC-Empresas-2025-lancamento.pdf"
       }
     ]
   },
