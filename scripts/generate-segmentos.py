@@ -8,7 +8,7 @@ sem WhatsApp), CSS e JavaScript embutidos (scripts/campanha/), formulário próp
 /api/lead-b2b e redireciona para a página de obrigado certa. O CSS global, o brand.js, o cabeçalho e o
 rodapé compartilhados não são alterados por este script.
 """
-import json, os, sys
+import json, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -16,6 +16,10 @@ from PIL import Image
 
 SITE = 'https://conceitop.com.br'
 HEADER = open(os.path.join(ROOT, 'partials/header.html'), encoding='utf-8').read().strip()
+# Nas LPs, o botão "Diagnóstico gratuito" do cabeçalho aponta para o formulário da própria página (#orcamento).
+# Com o JS carregado ele abre o popup (clique global dos .btn-wa em brand.js); se o visitante clicar antes do JS,
+# fica na LP em vez de cair em /contato/, onde a seção de vagas e fornecedores desviava o clique pago.
+HEADER_LP = re.sub(r'<a href="/contato/"(\s+class="btn-wa)', r'<a href="#orcamento"\1', HEADER)
 ESTRUTURA = open(os.path.join(ROOT, 'partials/estrutura.html'), encoding='utf-8').read().rstrip()
 CSS_LOCAL = open(os.path.join(ROOT, 'scripts/campanha/campanha.css'), encoding='utf-8').read().strip()
 JS_OBRIGADO = open(os.path.join(ROOT, 'scripts/campanha/obrigado.js'), encoding='utf-8').read().strip()
@@ -510,7 +514,7 @@ def pagina(pg):
     return cabeca(pg['title'], pg['description'], url, 'index, follow', schema) + f'''
 <body class="font-sans text-prime-800 antialiased" data-contato="formulario" data-lp="{pg['slug']}">
 
-  {HEADER}
+  {HEADER_LP}
 
   <main>
   <section class="hero-bg seg-hero pt-36 pb-24 lg:pt-44 lg:pb-28" aria-labelledby="seg-titulo">
