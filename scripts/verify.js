@@ -102,6 +102,26 @@ for (const file of htmls) {
 arquivos.filter((f) => /\.(md|py|sh|psd|ai)$|\.(jpe?g|png)$/i.test(f) && !/favicon|apple-touch|og-image|[\\/]og[\\/]/i.test(f))
   .forEach((f) => erros.push(`arquivo que não deveria publicar: ${path.relative(DIST, f)}`));
 
+// Títulos do blog (conteudo/blog/REGRAS.md, seção 4.1): vale para artigos com data a partir de 2026-10-31.
+try {
+  const posts = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'conteudo', 'blog', 'posts.json'), 'utf8'));
+  const siglas = new Set(['CRM', 'VGV', 'ROI', 'SEO', 'CAC', 'LTV', 'KPI', 'KPIS', 'B2B', 'B2C', 'CEO', 'CMO', 'SDR', 'MQL', 'SQL', 'PR', 'SC', 'SP', 'RJ', 'MG', 'RS', 'BR', 'CTR', 'CPL', 'CPC', 'CPA', 'IA', 'UX', 'LP', 'MCMV', 'ITBI', 'IPTU', 'FGTS', 'CEF', 'CBIC', 'IBGE']);
+  (Array.isArray(posts) ? posts : posts.posts || []).filter((p) => String(p.data || '') >= '2026-10-31').forEach((p) => {
+    for (const [campo, limite] of [['titulo_seo', 65], ['titulo', 110], ['linha_fina', 220], ['descricao', 160]]) {
+      const t = String(p[campo] || '');
+      const m = [];
+      if (!t) m.push('vazio');
+      if (t.length > limite) m.push(`${t.length} caracteres (máximo ${limite})`);
+      if (/!|\.\.\.|…/.test(t)) m.push('exclamação ou reticências');
+      if (/\p{Extended_Pictographic}/u.test(t)) m.push('emoji');
+      if (/\b(segredo|ninguém te conta|o que ninguém fala|chocante|urgente|garantid[oa]s?|dobre|triplique)\b/i.test(t)) m.push('termo proibido');
+      const caixa = (t.match(/\b[A-ZÀ-Ý]{3,}\b/g) || []).filter((w) => !siglas.has(w));
+      if (caixa.length) m.push('caixa alta: ' + caixa.join(', '));
+      if (m.length) erros.push(`blog ${p.slug} (${campo}): ${m.join('; ')}`);
+    }
+  });
+} catch (e) { erros.push('não foi possível ler conteudo/blog/posts.json: ' + e.message); }
+
 avisos.forEach((a) => console.warn('[verify] aviso: ' + a));
 if (erros.length) {
   erros.forEach((e) => console.error('[verify] ERRO: ' + e));

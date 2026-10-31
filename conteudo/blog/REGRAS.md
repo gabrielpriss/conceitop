@@ -74,8 +74,8 @@ Metadados em `conteudo/blog/posts.json` (um objeto por artigo):
 | Campo | Regra |
 |---|---|
 | `slug` | curto, com a palavra-chave principal, sem acento, sem data |
-| `titulo` | H1 do artigo, claro, com a palavra-chave |
-| `titulo_seo` | até cerca de 60 caracteres, termina em "\| Conceito Prime" se couber |
+| `titulo` | H1 do artigo, com a palavra-chave e o gancho do artigo (ver seção 4.1) |
+| `titulo_seo` | o título que aparece no Google, até 60 caracteres, palavra-chave no começo e gancho de clique (ver seção 4.1); "\| Conceito Prime" só se couber sem cortar o gancho |
 | `descricao` | 140 a 155 caracteres, com a palavra-chave e um motivo para clicar |
 | `linha_fina` | 1 frase abaixo do título, dor ou promessa concreta |
 | `data` e `atualizado` | AAAA-MM-DD de hoje |
@@ -84,6 +84,41 @@ Metadados em `conteudo/blog/posts.json` (um objeto por artigo):
 | `local` | cidade, Paraná, Santa Catarina, São Paulo ou Brasil (define a frente, seção 3) |
 | `faq` | 3 a 5 `{pergunta, resposta}` com perguntas reais (perguntas relacionadas do Google, Search Console, termos do Ads); resposta de 1 a 3 frases |
 | `fontes` | lista `{nome, url}` de toda fonte de dado citada, sempre a página original |
+
+### 4.1 Título com alto CTR
+
+O `titulo_seo` é o que o empresário vê no Google e decide o clique. Ele não é só a palavra-chave com a marca: precisa ter a palavra-chave no começo **e** um motivo concreto para clicar. Queremos o título com mais chance de clique, mas no tom de quem fala com dono de imobiliária, construtora ou incorporadora: direto, provocativo quando o artigo sustenta, nunca alarmista nem de manchete policial.
+
+Ganchos que funcionam para esse público (usar um por título):
+
+- **Dor de negócio concreta:** estoque parado, lançamento que não vende, lead que não atende, corretor que não converte, captação perdida para o portal. Ex.: "Marketing para construtora: por que o estoque encalha depois do lançamento".
+- **Número real do artigo:** quantidade de erros, etapas, critérios ou indicadores que o texto entrega de fato. Ex.: "CRM imobiliário: 7 critérios antes de assinar contrato".
+- **Decisão ou comparação:** "X ou Y?", "vale a pena?", "quando contratar". Ex.: "Leads para imobiliária: portal, Google ou Meta?".
+- **Custo e investimento**, só quando o artigo traz faixa de mercado com fonte. Ex.: "Quanto investir em marketing por lançamento imobiliário".
+- **Recorte local** na frente A (Curitiba, Paraná) e no polo da frente B, junto com a dor.
+- **Ano** só quando o artigo traz dado ou regra daquele ano.
+
+Regras:
+
+- Palavra-chave principal nos primeiros 30 caracteres do `titulo_seo`; o gancho logo em seguida, dentro dos 60.
+- "| Conceito Prime" no fim só se couber sem cortar o gancho. Na dúvida, fica o gancho: o Google já mostra o nome do site acima do título na maioria dos resultados.
+- O `titulo` (H1) pode ser mais longo e completar o `titulo_seo`, sem repetir as mesmas palavras na mesma ordem. A `linha_fina` entrega a promessa concreta e a `descricao` dá o motivo do clique com a palavra-chave.
+- Escrever três opções de `titulo_seo`, escolher a mais forte que passe nos testes abaixo e registrar as três no `pauta.md` junto da linha em Publicados.
+
+Proibido no título, na linha fina e na descrição:
+
+- Promessa de resultado ("dobre suas vendas", "venda todo o estoque", "leads garantidos", "em 30 dias"), número ou case que o artigo não comprova.
+- Gatilho vazio: "segredo", "ninguém te conta", "o que ninguém fala", "chocante", "urgente", exclamação, reticências, emoji, palavra inteira em caixa alta (siglas como CRM, VGV, ROI, SEO são permitidas).
+- Título que atrai o público errado: consumidor que quer comprar, vender ou alugar imóvel ("como vender seu apartamento rápido"), corretor iniciante, curso ou "grátis". Um título com CTR alto para quem não é cliente é pior que um título discreto.
+- Ganho de alcance, curtida ou seguidor como benefício (seção 5).
+
+Testes antes de publicar:
+
+1. **Promessa cumprida no início:** o que o título promete aparece respondido no primeiro parágrafo ou no primeiro `h2`.
+2. **Quem clica é cliente?** Ler o título como dono de imobiliária com equipe e como consumidor final. Se o consumidor clicaria mais que o dono, reescrever.
+3. **Número conferido:** todo número do título existe no corpo (contagem de itens) ou tem fonte em `fontes`.
+
+Títulos de artigos antigos: ao revisar um artigo que no Search Console tem 100 impressões ou mais nos últimos 28 dias, posição média até 15 e CTR abaixo de 2%, podemos reescrever o `titulo_seo` e a `descricao` por esta seção, sem trocar o `slug`, e registrar no `pauta.md` o título antigo, o novo, a data e os números de antes, para comparar depois.
 
 Corpo em `conteudo/blog/<slug>.html`, HTML limpo (só `h2`, `h3`, `p`, `ul`, `ol`, `li`, `table`, `thead`, `tbody`, `tr`, `th`, `td`, `a`, `strong`, `em`), sem `h1`, sem estilos e sem scripts. O gerador já coloca sozinho: índice "Neste artigo" (com 3 ou mais `h2`), CTA no meio, cartão lateral fixo, formulário de diagnóstico no fim, barra fixa no celular, FAQ com schema FAQPage, fontes, BlogPosting, Breadcrumb, artigos relacionados, sitemap e RSS.
 
