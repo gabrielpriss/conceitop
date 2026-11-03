@@ -1,5 +1,51 @@
 [
   {
+    "slug": "crm-imobiliario",
+    "titulo": "CRM imobiliário: como escolher e implantar na imobiliária ou na incorporadora sem a equipe abandonar",
+    "titulo_seo": "CRM imobiliário: 7 critérios antes de assinar contrato",
+    "descricao": "CRM imobiliário para imobiliárias e incorporadoras: 7 critérios para escolher, roteiro de implantação e como ligar o CRM ao marketing para medir contratos.",
+    "linha_fina": "O problema raramente é a lista de funções: é lead que entra por fora, equipe que não registra e venda sem origem conhecida.",
+    "data": "2026-11-02",
+    "atualizado": "2026-11-02",
+    "categoria": "Gestão",
+    "palavras_chave": [
+      "crm imobiliário",
+      "crm para imobiliária",
+      "crm para incorporadora",
+      "crm para construtora",
+      "gestão de leads imobiliários"
+    ],
+    "local": "Brasil",
+    "faq": [
+      {
+        "pergunta": "O que é um CRM imobiliário?",
+        "resposta": "É o sistema que registra os contatos que chegam à imobiliária ou à incorporadora, distribui para os corretores, acompanha cada negociação por etapa e mostra a origem de cada venda."
+      },
+      {
+        "pergunta": "Como escolher um CRM imobiliário?",
+        "resposta": "Avalie se ele recebe leads de todos os canais automaticamente, guarda a origem até o contrato, permite regras de distribuição, funciona bem no celular, aceita funis diferentes, entrega relatórios claros e garante que os dados são da empresa."
+      },
+      {
+        "pergunta": "Qual a diferença entre CRM para imobiliária e para incorporadora?",
+        "resposta": "A imobiliária precisa gerir captação de proprietários e demanda com fluxo constante. A incorporadora precisa lidar com picos de lançamento, espelho de vendas e distribuição de leads entre equipe própria e imobiliárias parceiras."
+      },
+      {
+        "pergunta": "Por que os corretores não usam o CRM?",
+        "resposta": "Normalmente porque o cadastro é longo, parte dos leads ainda chega por fora do sistema e a liderança não usa o CRM na reunião comercial. Processo simples e regra clara resolvem a maior parte dos casos."
+      },
+      {
+        "pergunta": "A Conceito Prime atende empresas fora do Paraná?",
+        "resposta": "Sim. Temos escritórios em Curitiba e Cascavel e atendemos imobiliárias, construtoras e incorporadoras de outros estados com reuniões online."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "Google Ads, Planejador de palavras-chave (consulta de 30/10/2026, Brasil e Paraná, out/2025 a set/2026)",
+        "url": "https://ads.google.com/home/tools/keyword-planner/"
+      }
+    ]
+  },
+  {
     "slug": "captacao-de-imoveis-no-parana",
     "titulo": "Captação de imóveis no Paraná: como a imobiliária renova a carteira e conquista exclusividade",
     "titulo_seo": "Captação de imóveis: 6 frentes para imobiliárias do Paraná",
