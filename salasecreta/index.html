@@ -29,13 +29,26 @@
 .dossie{position:absolute;inset:0;z-index:-2;pointer-events:none;user-select:none}
 .dossie--luz{-webkit-mask-image:radial-gradient(circle 240px at var(--x) var(--y),#000 0%,rgba(0,0,0,.6) 42%,transparent 72%);mask-image:radial-gradient(circle 240px at var(--x) var(--y),#000 0%,rgba(0,0,0,.6) 42%,transparent 72%)}
 .dossie--base{opacity:.09}
-.dossie-in{position:absolute;top:50%;left:50%;right:-6%;transform:translateY(-50%) rotate(-7deg);display:grid;gap:.2rem}
-.dossie-in span{display:block;font-family:var(--display);text-transform:uppercase;white-space:nowrap;font-size:clamp(4rem,9vw,8.6rem);line-height:.95;color:transparent;-webkit-text-stroke:2px var(--yellow)}
-.dossie-in span:nth-child(2){padding-left:3.5vw;-webkit-text-stroke-color:#fff}
-.dossie-in span:nth-child(3){padding-left:7vw}
-.dossie-in i{font-style:normal;font-family:var(--mono);font-size:14px;letter-spacing:.3em;color:var(--yellow);padding-left:7.5vw;margin-top:.8rem}
-.carimbo-bg{position:absolute;right:7%;top:12%;transform:rotate(11deg);border:3px solid #ff4d4d;color:#ff4d4d;font-family:var(--display);font-size:clamp(1.3rem,2.6vw,2rem);letter-spacing:.14em;text-transform:uppercase;padding:.25rem .9rem;border-radius:6px}
-@media(max-width:959px){.hero{padding-bottom:15rem}.dossie-in{left:-3%;right:auto;top:auto;bottom:1.5rem;transform:rotate(-6deg)}.dossie-in span{font-size:clamp(3rem,14vw,5.5rem)}.dossie-in i{font-size:14px;letter-spacing:.2em}.carimbo-bg{display:none}}
+/* Desktop largo: palavras no lado direito, alinhadas à direita para nunca cortar a primeira letra */
+.dossie-in{position:absolute;top:50%;left:56%;right:4%;transform:translateY(-50%) rotate(-6deg);display:grid;justify-items:end;gap:.15rem}
+.dossie-in span{display:block;font-family:var(--display);text-transform:uppercase;white-space:nowrap;font-size:clamp(3.6rem,6.6vw,7rem);line-height:.95;color:transparent;-webkit-text-stroke:2px var(--yellow)}
+.dossie-in span:nth-child(1){margin-right:.9em}
+.dossie-in span:nth-child(2){margin-right:.45em;-webkit-text-stroke-color:#fff}
+.dossie-in i{font-style:normal;font-family:var(--mono);font-size:14px;letter-spacing:.3em;color:var(--yellow);margin-top:.8rem}
+.carimbo-bg{position:absolute;right:6%;top:11%;transform:rotate(11deg);border:3px solid #ff4d4d;color:#ff4d4d;font-family:var(--display);font-size:clamp(1.3rem,2.2vw,1.9rem);letter-spacing:.14em;text-transform:uppercase;padding:.25rem .9rem;border-radius:6px}
+/* Telas menores: o dossiê vai para baixo do conteúdo, dentro da largura, com as palavras um pouco mais visíveis */
+@media(max-width:1199px){
+  .hero{padding-bottom:clamp(15rem,40vw,22rem)}
+  .dossie-in{left:var(--gut);right:var(--gut);top:auto;bottom:2rem;transform:rotate(-4deg);justify-items:start}
+  .dossie-in span{font-size:clamp(2.8rem,11.5vw,5.2rem)}
+  .dossie-in span:nth-child(1){margin:0}
+  .dossie-in span:nth-child(2){margin:0 0 0 .35em}
+  .dossie-in span:nth-child(3){margin-left:.7em}
+  .dossie-in i{font-size:14px;letter-spacing:.18em;margin-left:.2em}
+  .dossie--base{opacity:.16}
+  .carimbo-bg{top:auto;bottom:10.5rem;right:var(--gut);font-size:1.1rem}
+}
+@media(max-width:400px){.dossie-in span{font-size:11vw}.dossie-in span:nth-child(3){margin-left:.45em}}
 .hero .wrap{position:relative}
 .hero-txt{max-width:760px}
 .tag{display:inline-flex;flex-wrap:wrap;align-items:center;gap:.55rem .9rem;border:1px solid rgba(247,204,25,.5);color:var(--yellow);border-radius:999px;padding:.5rem 1.1rem;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.6rem;background:rgba(13,13,13,.6)}
@@ -50,7 +63,8 @@
 .hero .micro{color:rgba(255,255,255,.75)}
 .dica-luz{margin-top:2.5rem;font-size:14px;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:.6rem}
 .dica-luz::before{content:"";width:28px;height:1px;background:rgba(247,204,25,.6)}
-@media (hover:none){.dica-luz{display:none}}
+.dica-luz .toque{display:none}
+@media (hover:none){.dica-luz .mouse{display:none}.dica-luz .toque{display:inline}}
 
 /* Contagem regressiva (aparece quando o horário for definido) */
 .contagem{display:inline-grid;grid-auto-flow:column;gap:.5rem;margin-top:1.8rem}
@@ -229,7 +243,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
       <div class="contagem" data-contagem hidden aria-label="Tempo até a aula">
         <div><b data-d>00</b><small>dias</small></div><div><b data-h>00</b><small>horas</small></div><div><b data-m>00</b><small>min</small></div><div><b data-s>00</b><small>seg</small></div>
       </div>
-      <p class="dica-luz">Passe o mouse pela sala. Tem coisa escondida aqui.</p>
+      <p class="dica-luz"><span class="mouse">Passe o mouse pela sala. Tem coisa escondida aqui.</span><span class="toque">Toque na sala escura. Tem coisa escondida aqui.</span></p>
     </div>
   </div>
 </section>
@@ -364,7 +378,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
   <div class="wrap">
     <h2 id="h-faq">Perguntas frequentes</h2>
     <div class="faq">
-      <details><summary>É gratuito?</summary><p>Sim. A aula é 100% gratuita.</p></details>
+      <details open><summary>É gratuito?</summary><p>Sim. A aula é 100% gratuita.</p></details>
       <details><summary>Minha empresa é pequena. Serve pra mim?</summary><p>Foi feita exatamente pra empresas que querem dar o próximo passo no faturamento.</p></details>
       <details><summary>Não tenho dinheiro pra investir agora.</summary><p>Então você precisa ainda mais dessa aula. Ela te mostra onde está o dinheiro que você já está perdendo.</p></details>
       <details><summary>Vai ter gravação?</summary><p>Não. A aula e a seleção dos 80% acontecem só ao vivo.</p></details>
@@ -390,12 +404,12 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
     <div class="units">
       <article class="unit">
         <header><h3>Curitiba</h3><a href="https://www.google.com/maps/search/?api=1&amp;query=Conceito+Prime+R.+Ant%C3%B4nio+Rodrigues+76+Curitiba" target="_blank" rel="noopener">Ver no Google</a></header>
-        <div class="map"><button type="button" aria-label="Mapa do escritório de Curitiba" data-mapa="https://maps.google.com/maps?q=Conceito+Prime+Antonio+Rodrigues+76+Curitiba&amp;hl=pt-BR&amp;z=14&amp;output=embed"><span>Carregar o mapa</span></button></div>
+        <div class="map"><iframe src="https://maps.google.com/maps?q=Conceito+Prime,+R.+Ant%C3%B4nio+Rodrigues,+76,+Curitiba+-+PR&amp;hl=pt-BR&amp;z=15&amp;output=embed" title="Mapa do escritório da Conceito Prime em Curitiba" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
         <address><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><use href="#i-pin"/></svg>R. Antônio Rodrigues, 76, Seminário, Curitiba, PR, 80740-560</address>
       </article>
       <article class="unit">
         <header><h3>Cascavel</h3><a href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Rocha+Pombo+2005+Cascavel+PR" target="_blank" rel="noopener">Ver no Google</a></header>
-        <div class="map"><button type="button" aria-label="Mapa do escritório de Cascavel" data-mapa="https://www.google.com/maps?q=Av.%20Rocha%20Pombo%2C%202005%20-%20Regi%C3%A3o%20do%20Lago%2C%20Cascavel%20-%20PR%2C%2085816-540&amp;output=embed"><span>Carregar o mapa</span></button></div>
+        <div class="map"><iframe src="https://maps.google.com/maps?q=Av.+Rocha+Pombo,+2005,+Regi%C3%A3o+do+Lago,+Cascavel+-+PR,+85816-540&amp;hl=pt-BR&amp;z=15&amp;output=embed" title="Mapa do escritório da Conceito Prime em Cascavel" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
         <address><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><use href="#i-pin"/></svg>Av. Rocha Pombo, 2005, Região do Lago, Cascavel, PR, 85816-540</address>
       </article>
     </div>
@@ -452,13 +466,17 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
   var reduz=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var alvoX=.75,alvoY=.5,x=alvoX,y=alvoY,ultimo=0,visivel=true,raf=0,t0=performance.now();
   function set(){h.style.setProperty('--x',(x*100).toFixed(2)+'%');h.style.setProperty('--y',(y*100).toFixed(2)+'%');}
+  if(('ontouchstart' in window)||navigator.maxTouchPoints>0){var d=h.querySelector('.dica-luz');if(d&&!matchMedia('(hover:hover)').matches){d.querySelector('.mouse').style.display='none';d.querySelector('.toque').style.display='inline';}}
   if(reduz){h.style.setProperty('--x','70%');h.style.setProperty('--y','45%');return;}
-  h.addEventListener('pointermove',function(e){var r=h.getBoundingClientRect();alvoX=(e.clientX-r.left)/r.width;alvoY=(e.clientY-r.top)/r.height;ultimo=performance.now();loop();},{passive:true});
+  function mira(e){var r=h.getBoundingClientRect();alvoX=(e.clientX-r.left)/r.width;alvoY=(e.clientY-r.top)/r.height;ultimo=performance.now();loop();}
+  h.addEventListener('pointermove',mira,{passive:true});
+  h.addEventListener('pointerdown',mira,{passive:true});
+  h.addEventListener('touchmove',function(e){var t=e.touches[0];if(t)mira(t);},{passive:true});
   new IntersectionObserver(function(es){visivel=es[0].isIntersecting;if(visivel)loop();}).observe(h);
   function loop(){if(!raf)raf=requestAnimationFrame(passo);}
   function passo(now){
     raf=0; if(!visivel) return;
-    if(now-ultimo>1800){var t=(now-t0)/1000;var m=innerWidth<960;alvoX=(m?.5:.74)+(m?.35:.2)*Math.sin(t*.45);alvoY=(m?.78:.5)+(m?.14:.28)*Math.sin(t*.7+1);}
+    if(now-ultimo>1800){var t=(now-t0)/1000;var m=innerWidth<1200,hh=h.offsetHeight,fx=m?1-(150/hh):.5;alvoX=(m?.45:.76)+(m?.38:.18)*Math.sin(t*.5);alvoY=fx+(m?Math.min(.12,110/hh):.26)*Math.sin(t*.8+1);}
     x+=(alvoX-x)*.08;y+=(alvoY-y)*.08;set();loop();
   }
   loop();

@@ -133,7 +133,9 @@
 .faixa{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);padding:.6rem 0}
 .trilho{display:flex;width:max-content;animation:rola 95s linear infinite}
 .faixa--rev .trilho{animation-direction:reverse;animation-duration:85s}
-.faixa:hover .trilho{animation-play-state:paused}
+.faixa.is-js{cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.faixa.is-js .trilho{animation:none;will-change:transform}
+.faixa.is-arrastando{cursor:grabbing}
 .trilho ul{display:flex;gap:1.1rem;padding:0 .55rem;margin:0;list-style:none}
 .trilho li{flex:none;display:grid;place-items:center;width:180px;height:86px;background:#fff;border:1px solid #ececec;border-radius:14px}
 .trilho li.esc{background:var(--ink);border-color:var(--ink)}
@@ -321,7 +323,7 @@
   <div class="wrap">
     <h2 id="h-faq">Perguntas frequentes</h2>
     <div class="faq">
-      <details><summary>A live é só um jeito de vender assessoria depois?</summary><p>Vamos ser diretos: a Conceito Prime vende assessoria, e você vai saber disso. Mas a live é feita para entregar valor de verdade. Mesmo que você nunca contrate nada, vai sair com o que aplicar.</p></details>
+      <details open><summary>A live é só um jeito de vender assessoria depois?</summary><p>Vamos ser diretos: a Conceito Prime vende assessoria, e você vai saber disso. Mas a live é feita para entregar valor de verdade. Mesmo que você nunca contrate nada, vai sair com o que aplicar.</p></details>
       <details><summary>Minha empresa já sabe onde está o problema. Faz sentido participar?</summary><p>Faz. Saber o problema é diferente de saber o que fazer primeiro. A live mostra a ordem de prioridade e o critério para decidir.</p></details>
       <details><summary>Por que o grupo de WhatsApp?</summary><p>É onde chegam o link da live, o lembrete no dia e o material de apoio. Quem não estiver no grupo pode perder a transmissão.</p></details>
       <details><summary>Funciona para empresa pequena?</summary><p>Funciona para quem já investe em marketing e quer parar de gastar sem enxergar retorno. Se você investe <span class="var">[R$ 5 MIL/MÊS OU MAIS]</span>, a live foi pensada para você.</p></details>
@@ -366,12 +368,12 @@
     <div class="units">
       <article class="unit">
         <header><h3>Curitiba</h3><a href="https://www.google.com/maps/search/?api=1&amp;query=Conceito+Prime+R.+Ant%C3%B4nio+Rodrigues+76+Curitiba" target="_blank" rel="noopener">Ver no Google</a></header>
-        <div class="map"><button type="button" aria-label="Mapa do escritório de Curitiba" data-mapa="https://maps.google.com/maps?q=Conceito+Prime+Antonio+Rodrigues+76+Curitiba&amp;hl=pt-BR&amp;z=14&amp;output=embed"><span>Carregar o mapa</span></button></div>
+        <div class="map"><iframe src="https://maps.google.com/maps?q=Conceito+Prime,+R.+Ant%C3%B4nio+Rodrigues,+76,+Curitiba+-+PR&amp;hl=pt-BR&amp;z=15&amp;output=embed" title="Mapa do escritório da Conceito Prime em Curitiba" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
         <address><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><use href="#i-pin"/></svg>R. Antônio Rodrigues, 76, Seminário, Curitiba, PR, 80740-560</address>
       </article>
       <article class="unit">
         <header><h3>Cascavel</h3><a href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Rocha+Pombo+2005+Cascavel+PR" target="_blank" rel="noopener">Ver no Google</a></header>
-        <div class="map"><button type="button" aria-label="Mapa do escritório de Cascavel" data-mapa="https://www.google.com/maps?q=Av.%20Rocha%20Pombo%2C%202005%20-%20Regi%C3%A3o%20do%20Lago%2C%20Cascavel%20-%20PR%2C%2085816-540&amp;output=embed"><span>Carregar o mapa</span></button></div>
+        <div class="map"><iframe src="https://maps.google.com/maps?q=Av.+Rocha+Pombo,+2005,+Regi%C3%A3o+do+Lago,+Cascavel+-+PR,+85816-540&amp;hl=pt-BR&amp;z=15&amp;output=embed" title="Mapa do escritório da Conceito Prime em Cascavel" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
         <address><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><use href="#i-pin"/></svg>Av. Rocha Pombo, 2005, Região do Lago, Cascavel, PR, 85816-540</address>
       </article>
     </div>
@@ -465,6 +467,33 @@
     (function a(t){var k=Math.min(1,(t-ini)/1200);el.textContent=pre+Math.round(fim*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(a);})(ini);
   });},{threshold:.6});
   els.forEach(function(el){io.observe(el);});
+})();
+/* Carrossel de clientes: igual ao do site. Anda sozinho, não pausa no hover e pode ser arrastado (mouse e toque) com inércia */
+(function(){
+  var faixas=document.querySelectorAll('.faixa'); if(!faixas.length||!window.requestAnimationFrame) return;
+  var reduz=matchMedia('(prefers-reduced-motion: reduce)');
+  faixas.forEach(function(faixa){
+    var trilho=faixa.querySelector('.trilho'),grupo=trilho&&trilho.querySelector('ul'); if(!grupo) return;
+    faixa.classList.add('is-js');
+    faixa.querySelectorAll('img').forEach(function(img){img.draggable=false;});
+    var reversa=faixa.classList.contains('faixa--rev'),vel=reversa?90:75;
+    var larg=grupo.offsetWidth,x=reversa?-larg:0,arr=false,iniX=0,iniP=0,ultX=0,ultT=0,inercia=0,visivel=true,ant=0;
+    function norm(){if(larg>0)x=((x%larg)-larg)%larg;}
+    function aplica(){trilho.style.transform='translate3d('+x+'px,0,0)';}
+    function quadro(t){
+      var dt=ant?Math.min((t-ant)/1000,.05):0;ant=t;
+      if(!arr&&visivel){var auto=reduz.matches?0:vel*(reversa?1:-1);x+=(auto+inercia)*dt;inercia*=Math.pow(.04,dt);if(Math.abs(inercia)<1)inercia=0;norm();aplica();}
+      requestAnimationFrame(quadro);
+    }
+    faixa.addEventListener('pointerdown',function(e){if(e.pointerType==='mouse'&&e.button!==0)return;arr=true;inercia=0;iniX=ultX=e.clientX;iniP=x;ultT=e.timeStamp;faixa.setPointerCapture(e.pointerId);faixa.classList.add('is-arrastando');});
+    faixa.addEventListener('pointermove',function(e){if(!arr)return;var dt=(e.timeStamp-ultT)/1000;if(dt>0)inercia=(e.clientX-ultX)/dt;ultX=e.clientX;ultT=e.timeStamp;x=iniP+(e.clientX-iniX);norm();aplica();});
+    function solta(e){if(!arr)return;arr=false;if(e.timeStamp-ultT>80)inercia=0;inercia=Math.max(-2500,Math.min(2500,inercia));faixa.classList.remove('is-arrastando');}
+    faixa.addEventListener('pointerup',solta);faixa.addEventListener('pointercancel',solta);faixa.addEventListener('lostpointercapture',solta);
+    addEventListener('resize',function(){larg=grupo.offsetWidth;norm();aplica();});
+    if('IntersectionObserver' in window)new IntersectionObserver(function(es){visivel=es[0].isIntersecting;}).observe(faixa);
+    faixa.querySelectorAll('img').forEach(function(img){if(!img.complete)img.addEventListener('load',function(){larg=grupo.offsetWidth;},{once:true});});
+    aplica();requestAnimationFrame(quadro);
+  });
 })();
 </script>
 </body>
