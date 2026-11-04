@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sala Secreta | Aula ao vivo do Método Prime | Conceito Prime</title>
+<meta name="description" content="Aula ao vivo e gratuita: o que fazer pra dobrar o faturamento da sua empresa em 2027. Abrimos o Método Prime e escolhemos ao vivo uma empresa pra virar nosso próximo case, com 80% de desconto.">
+<link rel="canonical" href="https://salasecreta.conceitop.com.br/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0d0d0d">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Sala Secreta: o que fazer pra dobrar o faturamento em 2027">
+<meta property="og:description" content="Aula ao vivo e gratuita com o Método Prime. O link só é enviado no grupo do WhatsApp.">
+<meta property="og:url" content="https://salasecreta.conceitop.com.br/">
+<meta property="og:image" content="https://salasecreta.conceitop.com.br/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/share-tech.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/cairo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/base.css">
+<style>
+/* ===== Hero: a sala escura e a lanterna ===== */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:var(--ink-2);color:#fff;padding:clamp(3.5rem,9vw,7rem) 0 clamp(4rem,9vw,6.5rem);--x:72%;--y:40%}
+.hero::before{content:"";position:absolute;inset:0;z-index:-3;background:radial-gradient(60% 70% at 85% 10%,rgba(247,204,25,.10),transparent 60%),linear-gradient(180deg,#0d0d0d,#121212)}
+/* Dossiê escondido: uma cópia quase apagada e outra que só aparece dentro do facho de luz */
+.dossie{position:absolute;inset:0;z-index:-2;pointer-events:none;user-select:none}
+.dossie--luz{-webkit-mask-image:radial-gradient(circle 240px at var(--x) var(--y),#000 0%,rgba(0,0,0,.6) 42%,transparent 72%);mask-image:radial-gradient(circle 240px at var(--x) var(--y),#000 0%,rgba(0,0,0,.6) 42%,transparent 72%)}
+.dossie--base{opacity:.09}
+.dossie-in{position:absolute;top:50%;left:50%;right:-6%;transform:translateY(-50%) rotate(-7deg);display:grid;gap:.2rem}
+.dossie-in span{display:block;font-family:var(--display);text-transform:uppercase;white-space:nowrap;font-size:clamp(4rem,9vw,8.6rem);line-height:.95;color:transparent;-webkit-text-stroke:2px var(--yellow)}
+.dossie-in span:nth-child(2){padding-left:3.5vw;-webkit-text-stroke-color:#fff}
+.dossie-in span:nth-child(3){padding-left:7vw}
+.dossie-in i{font-style:normal;font-family:var(--mono);font-size:14px;letter-spacing:.3em;color:var(--yellow);padding-left:7.5vw;margin-top:.8rem}
+.carimbo-bg{position:absolute;right:7%;top:12%;transform:rotate(11deg);border:3px solid #ff4d4d;color:#ff4d4d;font-family:var(--display);font-size:clamp(1.3rem,2.6vw,2rem);letter-spacing:.14em;text-transform:uppercase;padding:.25rem .9rem;border-radius:6px}
+@media(max-width:959px){.hero{padding-bottom:15rem}.dossie-in{left:-3%;right:auto;top:auto;bottom:1.5rem;transform:rotate(-6deg)}.dossie-in span{font-size:clamp(3rem,14vw,5.5rem)}.dossie-in i{font-size:14px;letter-spacing:.2em}.carimbo-bg{display:none}}
+.hero .wrap{position:relative}
+.hero-txt{max-width:760px}
+.tag{display:inline-flex;flex-wrap:wrap;align-items:center;gap:.55rem .9rem;border:1px solid rgba(247,204,25,.5);color:var(--yellow);border-radius:999px;padding:.5rem 1.1rem;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.6rem;background:rgba(13,13,13,.6)}
+.tag .dot{width:9px;height:9px;border-radius:50%;background:#ff3b30;box-shadow:0 0 0 0 rgba(255,59,48,.6);animation:pulso 1.8s infinite}
+.tag .sep{width:5px;height:5px;background:var(--yellow);transform:rotate(45deg)}
+@keyframes pulso{70%{box-shadow:0 0 0 9px rgba(255,59,48,0)}100%{box-shadow:0 0 0 0 rgba(255,59,48,0)}}
+.hero h1{color:#fff;font-size:clamp(2.35rem,6.2vw,4.4rem);line-height:1.02}
+.hero h1 em{font-style:normal;color:var(--ink);background:var(--yellow);padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hero .sub{margin-top:1.5rem;font-size:clamp(17px,2vw,20px);font-weight:300;color:rgba(255,255,255,.85);max-width:640px}
+.hero .sub b{color:var(--yellow);font-weight:700}
+.hero .acoes{margin-top:2.2rem}
+.hero .micro{color:rgba(255,255,255,.75)}
+.dica-luz{margin-top:2.5rem;font-size:14px;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:.6rem}
+.dica-luz::before{content:"";width:28px;height:1px;background:rgba(247,204,25,.6)}
+@media (hover:none){.dica-luz{display:none}}
+
+/* Contagem regressiva (aparece quando o horário for definido) */
+.contagem{display:inline-grid;grid-auto-flow:column;gap:.5rem;margin-top:1.8rem}
+.contagem div{min-width:68px;text-align:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.55rem .4rem}
+.contagem b{display:block;font-family:var(--display);font-weight:400;font-size:32px;line-height:1;color:var(--yellow)}
+.contagem small{font-size:14px;color:rgba(255,255,255,.6)}
+
+/* ===== Recado do Rafael ===== */
+.recado{background:#fff;padding:clamp(4rem,9vw,7rem) 0}
+.recado .wrap{display:grid;gap:3rem;align-items:center}
+@media(min-width:960px){.recado .wrap{grid-template-columns:1.15fr .85fr;gap:4.5rem}}
+.recado blockquote{margin:0;font-family:var(--display);color:var(--ink);font-size:clamp(1.55rem,2.9vw,2.15rem);line-height:1.32}
+.recado blockquote::before{content:"“";display:block;font-size:5rem;line-height:.6;color:var(--yellow-2);margin-bottom:.4rem}
+.assina{margin-top:1.8rem;padding-top:1.2rem;border-top:3px solid var(--yellow);display:inline-block}
+.assina b{display:block;font-family:var(--display);font-weight:400;font-size:22px;text-transform:uppercase;color:var(--ink)}
+.assina span{font-size:16px}
+.foto{position:relative;background:var(--ink);border-radius:18px;padding:1.4rem 1.4rem 0 3.4rem;max-width:460px;justify-self:center;width:100%}
+.foto img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;border-radius:4px 4px 0 0}
+.foto span{position:absolute;left:1.1rem;bottom:2rem;transform-origin:left bottom;transform:rotate(-90deg) translateX(0);font-family:var(--mono);font-size:14px;letter-spacing:.24em;color:var(--yellow);white-space:nowrap}
+
+/* ===== Dor + calculadora ===== */
+.dor{background:var(--ink);color:rgba(255,255,255,.82);padding:clamp(4rem,9vw,7rem) 0}
+.dor h2{color:#fff;font-size:clamp(2rem,4.6vw,3.3rem);max-width:820px}
+.dor .lead{margin-top:1.3rem;max-width:700px;font-size:18px;font-weight:300}
+.dor-grid{display:grid;gap:2rem;margin-top:3rem}
+@media(min-width:960px){.dor-grid{grid-template-columns:1.05fr .95fr;gap:3rem;align-items:start}}
+.calc{background:#fff;color:var(--text);border-radius:18px;padding:clamp(1.5rem,3vw,2.2rem);border-top:5px solid var(--yellow);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.calc h3{font-size:24px}
+.calc .ajuda{font-size:15px;color:var(--muted);margin-top:.3rem}
+.campo{margin-top:1.6rem}
+.campo label{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;font-weight:700;color:var(--ink);font-size:16px;line-height:1.35}
+.campo output{font-family:var(--display);font-weight:400;font-size:24px;color:var(--ink);white-space:nowrap}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:36px;background:transparent;margin-top:.4rem;--p:30%}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--yellow) var(--p),#e6e6e6 var(--p))}
+input[type=range]::-moz-range-track{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--yellow) var(--p),#e6e6e6 var(--p))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-10px;border-radius:50%;background:var(--ink);border:4px solid var(--yellow);box-shadow:0 3px 10px rgba(0,0,0,.25)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--ink);border:4px solid var(--yellow)}
+.resultado{margin-top:1.8rem;background:var(--ink);color:#fff;border-radius:14px;padding:1.4rem 1.5rem}
+.resultado small{display:block;font-size:15px;color:rgba(255,255,255,.7)}
+.resultado strong{display:block;font-family:var(--display);font-weight:400;font-size:clamp(2.3rem,6vw,3.4rem);line-height:1.05;color:var(--yellow);margin:.2rem 0 .3rem;font-variant-numeric:tabular-nums}
+.resultado p{font-size:15px;color:rgba(255,255,255,.75)}
+.dores{list-style:none;margin:0;padding:0;display:grid;gap:.9rem}
+.dores li{display:flex;gap:1rem;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1.15rem 1.25rem;font-size:17px}
+.dores svg{flex:none;width:22px;height:22px;color:var(--yellow);margin-top:.2rem}
+.fecha{margin-top:2rem;font-family:var(--display);text-transform:uppercase;color:#fff;font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.25;border-left:4px solid var(--yellow);padding-left:1.1rem}
+.fecha span{color:var(--yellow)}
+
+/* ===== Método ===== */
+.metodo{background:#fff;padding:clamp(4rem,9vw,7rem) 0}
+.selo{display:inline-block;font-family:var(--mono);font-size:14px;letter-spacing:.22em;color:var(--ink);background:var(--yellow);padding:.4rem .8rem;border-radius:4px;margin-bottom:1.3rem}
+.metodo h2{font-size:clamp(1.9rem,4.4vw,3.1rem);max-width:900px}
+.metodo .lead{margin-top:1.2rem;font-size:18px;max-width:700px}
+.pilares{list-style:none;padding:0;margin:3rem 0 0;display:grid;gap:1.25rem;counter-reset:p}
+@media(min-width:900px){.pilares{grid-template-columns:repeat(3,1fr);gap:0}}
+.pilar{position:relative;padding:2rem 1.75rem 2.1rem;background:var(--mist);border-radius:16px}
+@media(min-width:900px){
+  .pilar{border-radius:0;clip-path:polygon(0 0,calc(100% - 26px) 0,100% 50%,calc(100% - 26px) 100%,0 100%,26px 50%);padding:2.2rem 3.2rem 2.4rem 3.4rem}
+  .pilar:first-child{clip-path:polygon(0 0,calc(100% - 26px) 0,100% 50%,calc(100% - 26px) 100%,0 100%);border-radius:16px 0 0 16px;padding-left:2.2rem}
+  .pilar:nth-child(2){background:#ebebeb}
+  .pilar:last-child{background:var(--ink);color:rgba(255,255,255,.82);clip-path:polygon(0 0,100% 0,100% 100%,0 100%,26px 50%);border-radius:0 16px 16px 0}
+  .pilar:last-child h3{color:var(--yellow)}
+}
+.pilar .n{font-family:var(--display);font-size:16px;letter-spacing:.14em;color:var(--yellow-2);text-transform:uppercase}
+.pilar h3{font-size:clamp(1.8rem,3vw,2.3rem);margin:.4rem 0 .7rem}
+.pilar p{font-size:17px}
+.metodo .acoes{margin-top:2.6rem}
+
+/* ===== Seleção ao vivo ===== */
+.selecao{background:var(--yellow);color:var(--ink);padding:clamp(4rem,9vw,7rem) 0;overflow:hidden}
+.selecao .wrap{display:grid;gap:3rem;align-items:center}
+@media(min-width:960px){.selecao .wrap{grid-template-columns:1.1fr .9fr}}
+.selecao h2{font-size:clamp(2rem,4.6vw,3.2rem)}
+.selecao p{margin-top:1.2rem;font-size:18px;color:#2b2b2b;max-width:600px}
+.selecao .alerta{color:#fff}
+.alerta{margin-top:1.8rem;background:var(--ink);color:#fff;border-radius:12px;padding:1.1rem 1.3rem;font-weight:700;font-size:17px;display:flex;gap:.8rem;align-items:center;max-width:600px}
+.alerta svg{flex:none;width:24px;height:24px;color:var(--yellow)}
+.fichas{position:relative;height:340px;max-width:420px;width:100%;justify-self:center}
+.ficha{position:absolute;inset:auto 0 0 0;height:250px;border-radius:14px;background:#fff;border:1px solid rgba(0,0,0,.08);box-shadow:0 12px 30px rgba(0,0,0,.12);padding:1.4rem}
+.ficha:nth-child(1){transform:translate(-18px,-6px) rotate(-7deg);opacity:.55}
+.ficha:nth-child(2){transform:translate(16px,-14px) rotate(5deg);opacity:.75}
+.ficha--top{transform:translateY(-40px);transition:transform .9s var(--ease)}
+.selecao .on .ficha--top{transform:translateY(-70px) rotate(-1.5deg)}
+.ficha .linha{height:12px;border-radius:6px;background:#eee;margin-bottom:.8rem}
+.ficha .linha.c{width:55%}.ficha .linha.m{width:78%}
+.ficha small{display:block;font-family:var(--mono);font-size:14px;letter-spacing:.18em;color:var(--muted);margin-bottom:1rem}
+.ficha .nome{font-family:var(--display);font-size:24px;text-transform:uppercase;color:var(--ink);margin-bottom:1rem}
+.stamp{position:absolute;right:-6px;bottom:22px;transform:rotate(-14deg) scale(1.6);opacity:0;border:4px solid #c8102e;color:#c8102e;border-radius:8px;padding:.35rem .8rem;text-align:center;font-family:var(--display);text-transform:uppercase;line-height:1;transition:transform .45s cubic-bezier(.3,1.6,.5,1) .55s,opacity .2s .55s;background:rgba(255,255,255,.85)}
+.stamp b{display:block;font-weight:400;font-size:46px}
+.stamp span{font-size:16px;letter-spacing:.12em}
+.selecao .on .stamp{opacity:1;transform:rotate(-14deg) scale(1)}
+
+/* ===== Quem vai ensinar ===== */
+.quem{background:#fff;padding:clamp(4rem,9vw,7rem) 0}
+.quem .wrap{display:grid;gap:2.5rem;align-items:center}
+@media(min-width:960px){.quem .wrap{grid-template-columns:.95fr 1.05fr;gap:4rem}}
+.quem h2{font-size:clamp(1.9rem,4.2vw,3rem)}
+.quem p{margin-top:1.2rem;font-size:18px;max-width:560px}
+.quem-fotos{display:grid;grid-template-columns:1.2fr 1fr;gap:.9rem}
+.quem-fotos img{border-radius:14px;width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+.quem-fotos img:last-child{aspect-ratio:auto;align-self:end;height:78%}
+
+/* ===== Por que o grupo ===== */
+.grupo{background:var(--ink-2);color:rgba(255,255,255,.82);padding:clamp(4rem,9vw,7rem) 0}
+.grupo .wrap{display:grid;gap:3rem;align-items:center}
+@media(min-width:960px){.grupo .wrap{grid-template-columns:1fr .85fr;gap:4rem}}
+.grupo h2{color:#fff;font-size:clamp(1.9rem,4.2vw,3rem)}
+.razoes{list-style:none;padding:0;margin:2rem 0 2.4rem;display:grid;gap:1rem}
+.razoes li{display:flex;gap:1rem;font-size:18px;align-items:flex-start}
+.razoes li b{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--yellow);color:var(--ink);font-family:var(--display);font-weight:400;font-size:18px}
+.celular{justify-self:center;width:100%;max-width:340px;background:#0b141a;border-radius:34px;padding:12px;box-shadow:0 30px 70px rgba(0,0,0,.5),inset 0 0 0 2px #2a2a2a}
+.cel-topo{display:flex;align-items:center;gap:.7rem;background:#202c33;color:#e9edef;padding:.8rem 1rem;border-radius:24px 24px 0 0}
+.cel-topo i{width:38px;height:38px;border-radius:50%;background:var(--yellow);display:grid;place-items:center;font-style:normal;font-family:var(--display);color:var(--ink);font-size:16px}
+.cel-topo b{display:block;font-size:15px}
+.cel-topo small{font-size:14px;color:#8696a0}
+.cel-chat{background:#0b141a radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px) 0 0/14px 14px;padding:1rem .8rem 1.4rem;display:grid;gap:.6rem;border-radius:0 0 24px 24px;min-height:300px;align-content:end}
+.msg{background:#202c33;color:#e9edef;border-radius:10px 10px 10px 2px;padding:.6rem .8rem;font-size:15px;line-height:1.45;max-width:92%;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s var(--ease)}
+.msg small{display:block;text-align:right;font-size:14px;color:#8696a0;margin-top:.15rem}
+.msg u{color:#53bdeb;text-decoration:none}
+.on .msg{opacity:1;transform:none}
+.on .msg:nth-child(2){transition-delay:.5s}.on .msg:nth-child(3){transition-delay:1s}
+
+/* ===== FAQ ===== */
+.perguntas{background:#fafafa;padding:clamp(4rem,9vw,7rem) 0}
+.perguntas .wrap{max-width:860px}
+.perguntas h2{text-align:center;font-size:clamp(1.9rem,4.2vw,2.8rem);margin-bottom:2.4rem}
+.faq{background:#fff;border:1px solid #ececec;box-shadow:0 10px 30px rgba(22,22,22,.06)}
+
+/* ===== CTA final ===== */
+.final{position:relative;background:var(--ink);color:rgba(255,255,255,.85);padding:clamp(4.5rem,10vw,8rem) 0;text-align:center;overflow:hidden;isolation:isolate}
+.final::before{content:"";position:absolute;inset:-30% 20% auto;height:120%;z-index:-1;background:radial-gradient(closest-side,rgba(247,204,25,.18),transparent)}
+.final h2{color:#fff;font-size:clamp(2.6rem,8vw,5.4rem)}
+.final h2 span{color:var(--yellow)}
+.final p{max-width:640px;margin:1.4rem auto 2.4rem;font-size:19px;font-weight:300}
+
+/* ===== Endereços ===== */
+.enderecos{background:#fff;padding:clamp(4rem,9vw,6.5rem) 0}
+.enderecos h2{font-size:clamp(1.8rem,4vw,2.6rem)}
+.enderecos .lead{margin-top:.8rem;font-size:18px}
+</style>
+<script>
+  /* Variáveis da página. Trocar quando chegarem:
+     grupo: link de convite do grupo do WhatsApp (enquanto não houver, os botões abrem o WhatsApp do comercial com mensagem pronta)
+     evento: data e horário da aula em ISO, ex.: "2026-11-13T19:00:00-03:00" (liga a contagem regressiva) */
+  window.LP = {
+    pagina: "salasecreta",
+    grupo: "[LINK DO GRUPO]",
+    evento: "",
+    whatsapp: "5541993270087",
+    mensagem: "Oi! Quero entrar no grupo da aula ao vivo da Conceito Prime (Sala Secreta)."
+  };
+</script>
+</head>
+<body>
+
+<header class="top top--dark">
+  <div class="wrap">
+    <img src="/assets/img/logo-footer.webp" alt="Conceito Prime" width="400" height="114">
+    <a class="btn btn--y btn--sm" data-cta="cabecalho" href="#">Entrar no grupo</a>
+  </div>
+</header>
+
+<main>
+<!-- 2. Hero -->
+<section class="hero" id="hero" aria-labelledby="h1">
+  <div class="dossie dossie--base" aria-hidden="true"><div class="dossie-in"><span>Atrair</span><span>Convencer</span><span>Converter</span><i>MÉTODO PRIME / ACESSO RESTRITO</i></div><div class="carimbo-bg">Confidencial</div></div>
+  <div class="dossie dossie--luz" aria-hidden="true"><div class="dossie-in"><span>Atrair</span><span>Convencer</span><span>Converter</span><i>MÉTODO PRIME / ACESSO RESTRITO</i></div><div class="carimbo-bg">Confidencial</div></div>
+  <div class="wrap">
+    <div class="hero-txt">
+      <p class="tag"><span class="dot" aria-hidden="true"></span>Aula ao vivo<span class="sep" aria-hidden="true"></span>Sexta, 13/11, às <span class="var">[HORÁRIO]</span><span class="sep" aria-hidden="true"></span>Vagas no grupo</p>
+      <h1 id="h1">O que você precisa fazer pra <em>dobrar o faturamento</em> da sua empresa em 2027.</h1>
+      <p class="sub">Uma aula ao vivo e gratuita em que vamos abrir o Método Prime, o mesmo passo a passo que a gente usa pra colocar dinheiro no bolso de empresas que estão começando. E no final, <b>uma empresa ao vivo vai ser escolhida pra ser nosso próximo case, com 80% de desconto no projeto.</b></p>
+      <div class="acoes">
+        <a class="btn btn--y" data-cta="hero" href="#"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#i-wa"/></svg>Quero entrar no grupo da aula</a>
+        <p class="micro">O link da aula só é enviado no grupo do WhatsApp.</p>
+      </div>
+      <div class="contagem" data-contagem hidden aria-label="Tempo até a aula">
+        <div><b data-d>00</b><small>dias</small></div><div><b data-h>00</b><small>horas</small></div><div><b data-m>00</b><small>min</small></div><div><b data-s>00</b><small>seg</small></div>
+      </div>
+      <p class="dica-luz">Passe o mouse pela sala. Tem coisa escondida aqui.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Recado do Rafael -->
+<section class="recado">
+  <div class="wrap">
+    <div class="rv">
+      <blockquote>Vamos ser diretos com você: a sua empresa não fatura pouco porque é pequena. Ela fatura pouco porque está deixando dinheiro na mesa todo dia, e você nem sabe onde. Na sexta, vamos te mostrar exatamente onde está esse dinheiro e o que fazer pra buscar ele em 2027.</blockquote>
+      <div class="assina"><b>Rafael Ribeiro</b><span>Conceito Prime</span></div>
+    </div>
+    <figure class="foto rv" style="margin:0">
+      <img src="/assets/img/rafael-600.webp" srcset="/assets/img/rafael-600.webp 600w, /assets/img/rafael-ribeiro.webp 900w" sizes="(min-width:960px) 420px, 90vw" width="600" height="900" loading="lazy" decoding="async" alt="Rafael Ribeiro, da Conceito Prime">
+      <span aria-hidden="true">RAFAEL RIBEIRO</span>
+    </figure>
+  </div>
+</section>
+
+<!-- 4. Dor -->
+<section class="dor" aria-labelledby="h-dor">
+  <div class="wrap">
+    <h2 id="h-dor" class="rv">Quanto dinheiro você deixou de ganhar em 2026?</h2>
+    <p class="lead rv">Faça a conta. Cada cliente que procurou o que você vende e achou o seu concorrente. Cada pessoa que viu seu Instagram e não confiou. Cada mês que fechou no aperto, sem sobrar nada pra você.</p>
+
+    <div class="dor-grid">
+      <form class="calc rv" id="calc" onsubmit="return false" aria-labelledby="h-calc">
+        <h3 id="h-calc">Faça a conta aqui</h3>
+        <p class="ajuda">Mexa nos dois valores. A conta usa só o que você colocar.</p>
+        <div class="campo">
+          <label for="c-qtd">Clientes que procuraram e não fecharam, por mês <output id="o-qtd" for="c-qtd">8</output></label>
+          <input type="range" id="c-qtd" min="1" max="60" step="1" value="8">
+        </div>
+        <div class="campo">
+          <label for="c-ticket">Quanto vale uma venda sua <output id="o-ticket" for="c-ticket">R$ 1.500</output></label>
+          <input type="range" id="c-ticket" min="0" max="100" step="1" value="45">
+        </div>
+        <div class="resultado" aria-live="polite">
+          <small>Em 12 meses, isso passa de</small>
+          <strong id="o-total">R$ 144.000</strong>
+          <p>que chegaram até a sua porta e foram embora.</p>
+        </div>
+      </form>
+
+      <div>
+        <ul class="dores">
+          <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg>Mês bom, mês ruim, e você nunca sabe quanto vai entrar</li>
+          <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/></svg>O caixa fecha no zero e o lucro não aparece na sua conta</li>
+          <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Você trabalha mais que ano passado e fatura igual</li>
+          <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3v18M17 7H9.5a3 3 0 000 6h5a3 3 0 010 6H6"/></svg>Seu concorrente cobra mais caro que você e vende mais</li>
+        </ul>
+        <p class="fecha rv">Se nada mudar, 2027 vai ser 2026 de novo. <span>Com as contas mais caras.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Mecanismo -->
+<section class="metodo" aria-labelledby="h-met">
+  <div class="wrap">
+    <span class="selo">MÉTODO PRIME</span>
+    <h2 id="h-met" class="rv">Não é sorte, não é post viral, não é "investir mais". É método.</h2>
+    <p class="lead rv">O Método Prime é a estrutura que a gente aplica pra transformar uma empresa pequena numa máquina de faturamento previsível. Na aula você vai ver os 3 pilares:</p>
+    <ol class="pilares">
+      <li class="pilar rv"><span class="n">Pilar 1</span><h3>Atrair</h3><p>Como aparecer pra quem já quer comprar o que você vende, sem queimar dinheiro.</p></li>
+      <li class="pilar rv"><span class="n">Pilar 2</span><h3>Convencer</h3><p>Como fazer seu Instagram e sua página passarem confiança em 5 segundos.</p></li>
+      <li class="pilar rv"><span class="n">Pilar 3</span><h3>Converter</h3><p>Como transformar contato em venda e venda em dinheiro no bolso.</p></li>
+    </ol>
+    <div class="acoes"><a class="btn btn--k" data-cta="metodo" href="#">Quero aprender o Método Prime</a></div>
+  </div>
+</section>
+
+<!-- 6. Seleção ao vivo -->
+<section class="selecao" aria-labelledby="h-sel">
+  <div class="wrap">
+    <div class="rv">
+      <h2 id="h-sel">Uma empresa vai sair da aula com 80% de desconto pra virar nosso case.</h2>
+      <p>No final da aula, vamos escolher ao vivo uma empresa entre os participantes pra aplicar o Método Prime com a nossa equipe e com 80% de desconto. Em troca, ela vira nosso próximo case de sucesso.</p>
+      <p class="alerta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5v.5"/></svg>Só participa quem estiver ao vivo. Não tem replay, não tem segunda chance.</p>
+    </div>
+    <div class="fichas rv" aria-hidden="true">
+      <div class="ficha"></div>
+      <div class="ficha"></div>
+      <div class="ficha ficha--top">
+        <small>PRÓXIMO CASE</small>
+        <div class="nome">Sua empresa</div>
+        <div class="linha m"></div><div class="linha"></div><div class="linha c"></div>
+        <div class="stamp"><b>80%</b><span>Selecionada</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Autoridade mínima -->
+<section class="quem" aria-labelledby="h-quem">
+  <div class="wrap">
+    <div class="quem-fotos rv">
+      <img src="/assets/img/escritorio-720.webp" width="720" height="405" loading="lazy" decoding="async" alt="Time da Conceito Prime trabalhando no escritório">
+      <img src="/assets/img/fachada-720.webp" width="720" height="376" loading="lazy" decoding="async" alt="Fachada do escritório da Conceito Prime">
+    </div>
+    <div class="rv">
+      <h2 id="h-quem">Quem vai te ensinar</h2>
+      <p>A Conceito Prime é uma assessoria de marketing com 9 anos de mercado, escritórios em Curitiba e Cascavel e um time de especialistas em tráfego, site e comercial.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Por que o grupo -->
+<section class="grupo" aria-labelledby="h-grupo">
+  <div class="wrap">
+    <div class="rv">
+      <h2 id="h-grupo">Entrar no grupo é obrigatório. Olha o porquê:</h2>
+      <ul class="razoes">
+        <li><b>1</b>O link da aula só é enviado lá</li>
+        <li><b>2</b>Você recebe o lembrete 1 hora antes e 10 minutos antes</li>
+        <li><b>3</b>Quem não está no grupo não está na aula, e quem não está na aula não concorre aos 80%</li>
+      </ul>
+      <a class="btn btn--y" data-cta="grupo" href="#"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#i-wa"/></svg>Quero entrar no grupo</a>
+    </div>
+    <div class="celular rv" aria-hidden="true">
+      <div class="cel-topo"><i>P</i><div><b>Sala Secreta | Conceito Prime</b><small>grupo</small></div></div>
+      <div class="cel-chat">
+        <p class="msg">Começa em 1 hora. Já deixa o celular carregando.<small>sexta</small></p>
+        <p class="msg">Faltam 10 minutos. A seleção dos 80% é só pra quem estiver ao vivo.<small>sexta</small></p>
+        <p class="msg">Estamos no ar! Entra aqui: <u>link da aula</u><small>sexta</small></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FAQ -->
+<section class="perguntas" aria-labelledby="h-faq">
+  <div class="wrap">
+    <h2 id="h-faq">Perguntas frequentes</h2>
+    <div class="faq">
+      <details><summary>É gratuito?</summary><p>Sim. A aula é 100% gratuita.</p></details>
+      <details><summary>Minha empresa é pequena. Serve pra mim?</summary><p>Foi feita exatamente pra empresas que querem dar o próximo passo no faturamento.</p></details>
+      <details><summary>Não tenho dinheiro pra investir agora.</summary><p>Então você precisa ainda mais dessa aula. Ela te mostra onde está o dinheiro que você já está perdendo.</p></details>
+      <details><summary>Vai ter gravação?</summary><p>Não. A aula e a seleção dos 80% acontecem só ao vivo.</p></details>
+      <details><summary>Quanto tempo dura?</summary><p>Cerca de 45 minutos.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 10. CTA final -->
+<section class="final" aria-labelledby="h-final">
+  <div class="wrap">
+    <h2 id="h-final" class="rv">2027 começa <span>na sexta.</span></h2>
+    <p class="rv">Você pode continuar fazendo o mesmo e torcer por um ano melhor. Ou pode entrar no grupo, assistir à aula e sair com o plano pra dobrar seu faturamento.</p>
+    <a class="btn btn--y rv" data-cta="final" href="#"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#i-wa"/></svg>Entrar no grupo agora</a>
+  </div>
+</section>
+
+<!-- 11. Endereços -->
+<section class="enderecos" aria-labelledby="h-end">
+  <div class="wrap">
+    <h2 id="h-end">Onde estamos</h2>
+    <p class="lead">Dois escritórios, em Curitiba e Cascavel. Pode vir tomar um café com a gente. #PartiuCafé</p>
+    <div class="units">
+      <article class="unit">
+        <header><h3>Curitiba</h3><a href="https://www.google.com/maps/search/?api=1&amp;query=Conceito+Prime+R.+Ant%C3%B4nio+Rodrigues+76+Curitiba" target="_blank" rel="noopener">Ver no Google</a></header>
+        <div class="map"><button type="button" aria-label="Mapa do escritório de Curitiba" data-mapa="https://maps.google.com/maps?q=Conceito+Prime+Antonio+Rodrigues+76+Curitiba&amp;hl=pt-BR&amp;z=14&amp;output=embed"><span>Carregar o mapa</span></button></div>
+        <address><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><use href="#i-pin"/></svg>R. Antônio Rodrigues, 76, Seminário, Curitiba, PR, 80740-560</address>
+      </article>
+      <article class="unit">
+        <header><h3>Cascavel</h3><a href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Rocha+Pombo+2005+Cascavel+PR" target="_blank" rel="noopener">Ver no Google</a></header>
+        <div class="map"><button type="button" aria-label="Mapa do escritório de Cascavel" data-mapa="https://www.google.com/maps?q=Av.%20Rocha%20Pombo%2C%202005%20-%20Regi%C3%A3o%20do%20Lago%2C%20Cascavel%20-%20PR%2C%2085816-540&amp;output=embed"><span>Carregar o mapa</span></button></div>
+        <address><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><use href="#i-pin"/></svg>Av. Rocha Pombo, 2005, Região do Lago, Cascavel, PR, 85816-540</address>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- 12. Rodapé -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img src="/assets/img/logo-footer.webp" alt="Conceito Prime - Marketing Digital" width="400" height="114" loading="lazy">
+        <p>Especialistas em posicionamento, branding e tráfego para marcas que buscam autoridade, elegância e resultados de altíssimo padrão.</p>
+        <ul class="addr">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><use href="#i-pin"/></svg>R. Antônio Rodrigues, 76, Seminário, Curitiba, PR</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><use href="#i-pin"/></svg>Av. Rocha Pombo, 2005, Região do Lago, Cascavel, PR</li>
+        </ul>
+      </div>
+      <nav aria-label="Menu do site">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="https://conceitop.com.br/">Início</a></li>
+          <li><a href="https://conceitop.com.br/quem-somos/">Quem somos</a></li>
+          <li><a href="https://conceitop.com.br/blog/">Blog</a></li>
+          <li><a href="https://conceitop.com.br/contato/">Contato</a></li>
+          <li><a href="https://conceitop.com.br/trabalhe-conosco/">Vagas e fornecedores</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h4>Social</h4>
+        <a class="ig" href="https://www.instagram.com/conceitoprimese/" target="_blank" rel="noopener noreferrer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".8" fill="currentColor"/></svg></span><span>@conceitoprimese</span></a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Conceito Prime.</p>
+      <p>Desenvolvido por <a href="https://conceitop.com.br" target="_blank" rel="noopener">Conceito Prime</a></p>
+    </div>
+  </div>
+</footer>
+
+<a class="float" data-cta="flutuante" href="#" aria-label="Entrar no grupo do WhatsApp da aula"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#i-wa"/></svg><b>Entrar no grupo</b></a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 32 32"><path fill="currentColor" d="M16.04 3C9.4 3 4 8.33 4 14.89c0 2.32.68 4.58 1.96 6.5L4 29l7.84-2.03a12.17 12.17 0 0 0 4.2.75C22.68 27.72 28 22.4 28 15.84 28 9.3 22.68 3 16.04 3Zm0 22.7c-1.3 0-2.58-.34-3.7-.97l-.53-.3-4.65 1.2 1.24-4.49-.35-.55a9.74 9.74 0 0 1-1.52-5.2c0-5.35 4.38-9.7 9.76-9.7 2.6 0 5.06 1 6.9 2.84A9.58 9.58 0 0 1 26.04 15c0 5.35-4.6 10.7-10 10.7Zm5.35-7.26c-.3-.14-1.74-.85-2.01-.95-.27-.1-.47-.14-.67.15-.2.29-.77.95-.94 1.14-.17.2-.34.22-.63.08-.3-.15-1.24-.45-2.36-1.46a8.8 8.8 0 0 1-1.64-2.02c-.17-.29-.02-.44.13-.59.13-.13.3-.34.44-.51.15-.17.2-.29.3-.48.09-.2.04-.37-.03-.51-.07-.15-.66-1.6-.91-2.2-.24-.57-.49-.49-.67-.5h-.57c-.2 0-.52.08-.8.37-.27.29-1.04 1.02-1.04 2.48s1.08 2.87 1.23 3.07c.14.19 2.12 3.2 5.13 4.49.72.3 1.28.49 1.71.63.72.23 1.37.2 1.89.12.58-.09 1.74-.7 1.99-1.39.24-.68.24-1.26.17-1.38-.07-.12-.27-.2-.56-.34Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+</svg>
+
+<script src="/assets/base.js" defer></script>
+<script>
+/* Lanterna do hero: segue o cursor; no celular, passeia sozinha enquanto o hero está na tela */
+(function(){
+  var h=document.getElementById('hero'); if(!h) return;
+  var reduz=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var alvoX=.75,alvoY=.5,x=alvoX,y=alvoY,ultimo=0,visivel=true,raf=0,t0=performance.now();
+  function set(){h.style.setProperty('--x',(x*100).toFixed(2)+'%');h.style.setProperty('--y',(y*100).toFixed(2)+'%');}
+  if(reduz){h.style.setProperty('--x','70%');h.style.setProperty('--y','45%');return;}
+  h.addEventListener('pointermove',function(e){var r=h.getBoundingClientRect();alvoX=(e.clientX-r.left)/r.width;alvoY=(e.clientY-r.top)/r.height;ultimo=performance.now();loop();},{passive:true});
+  new IntersectionObserver(function(es){visivel=es[0].isIntersecting;if(visivel)loop();}).observe(h);
+  function loop(){if(!raf)raf=requestAnimationFrame(passo);}
+  function passo(now){
+    raf=0; if(!visivel) return;
+    if(now-ultimo>1800){var t=(now-t0)/1000;var m=innerWidth<960;alvoX=(m?.5:.74)+(m?.35:.2)*Math.sin(t*.45);alvoY=(m?.78:.5)+(m?.14:.28)*Math.sin(t*.7+1);}
+    x+=(alvoX-x)*.08;y+=(alvoY-y)*.08;set();loop();
+  }
+  loop();
+})();
+
+/* Calculadora: valor da venda em escala logarítmica de R$ 100 a R$ 50.000 */
+(function(){
+  var q=document.getElementById('c-qtd'),t=document.getElementById('c-ticket');
+  var oq=document.getElementById('o-qtd'),ot=document.getElementById('o-ticket'),tot=document.getElementById('o-total');
+  var brl=function(v){return 'R$ '+Math.round(v).toLocaleString('pt-BR');};
+  var atual=0,anim=0;
+  function ticket(){var v=100*Math.pow(500,t.value/100);var p=v<1000?50:v<10000?100:500;return Math.round(v/p)*p;}
+  function pinta(el){el.style.setProperty('--p',((el.value-el.min)/(el.max-el.min)*100)+'%');}
+  function conta(){
+    var tk=ticket(),n=+q.value,total=n*tk*12;
+    oq.textContent=n;ot.textContent=brl(tk);pinta(q);pinta(t);
+    cancelAnimationFrame(anim);var de=atual,ini=performance.now();
+    (function a(now){var k=Math.min(1,(now-ini)/450);atual=de+(total-de)*(1-Math.pow(1-k,3));tot.textContent=brl(atual);if(k<1)anim=requestAnimationFrame(a);})(ini);
+  }
+  var mexeu=false;
+  [q,t].forEach(function(el){el.addEventListener('input',function(){conta();if(!mexeu){mexeu=true;(window.dataLayer=window.dataLayer||[]).push({event:'calculadora_uso',pagina:'salasecreta'});}});});
+  conta();
+})();
+</script>
+</body>
+</html>
