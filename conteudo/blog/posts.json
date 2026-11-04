@@ -1027,5 +1027,56 @@
     "categoria": "Vendas",
     "descricao": "Entenda o que é um lead, como qualificá-lo com um script de perguntas e dicas práticas para transformar curiosos em compradores dentro do funil de vendas.",
     "titulo_seo": "Como qualificar um lead | Conceito Prime"
+  },
+  {
+    "slug": "marketing-para-imobiliaria-em-cascavel",
+    "titulo": "Marketing para imobiliária em Cascavel: Google, Meta, portais e atendimento até o contrato",
+    "titulo_seo": "Marketing para imobiliária em Cascavel: plano de 90 dias",
+    "descricao": "Marketing para imobiliária em Cascavel e no oeste do Paraná: plano de 90 dias, papel de Google Ads, Meta Ads e portais e os números para cobrar todo mês.",
+    "linha_fina": "Em cidade média, cada contato pesa mais: o plano precisa juntar anúncio certo, atendimento rápido e medição até o contrato.",
+    "data": "2026-11-04",
+    "atualizado": "2026-11-04",
+    "categoria": "Estratégias de Marketing",
+    "palavras_chave": [
+      "marketing para imobiliária cascavel",
+      "marketing para imobiliária",
+      "marketing para imobiliárias",
+      "agência de marketing para imobiliárias",
+      "publicidade imobiliária",
+      "propaganda de imobiliária"
+    ],
+    "local": "Cascavel",
+    "faq": [
+      {
+        "pergunta": "Como fazer marketing para imobiliária em Cascavel?",
+        "resposta": "Separando os públicos (comprador, proprietário e investidor), usando Google Ads para quem já procura, Meta Ads para alcance local e remarketing, mantendo site próprio com páginas de imóveis e medindo tudo até visita e contrato."
+      },
+      {
+        "pergunta": "Vale a pena anunciar no Google sendo imobiliária de cidade média?",
+        "resposta": "Sim, desde que as campanhas sejam separadas por venda, locação e captação, usem termos com bairro e tipo de imóvel e tenham palavras negativas. Em praça menor, verba concentrada rende mais do que verba espalhada."
+      },
+      {
+        "pergunta": "Portal imobiliário basta para gerar clientes?",
+        "resposta": "Portal é vitrine importante, mas o contato que chega por ele também chega para quem anuncia o mesmo imóvel. Site próprio e anúncios permitem medir origem, fazer remarketing e construir base da empresa."
+      },
+      {
+        "pergunta": "Quais números acompanhar no marketing da imobiliária?",
+        "resposta": "Leads por canal e objetivo, tempo de primeira resposta, percentual de leads que viram visita, propostas e contratos com origem, imóveis captados e custo por lead, por visita e por contrato."
+      },
+      {
+        "pergunta": "A Conceito Prime atende imobiliárias em Cascavel?",
+        "resposta": "Sim. Temos escritórios em Curitiba e Cascavel e atendemos imobiliárias de Cascavel e do oeste do Paraná com reuniões presenciais ou online."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "IRIB, Vendas de imóveis avançam 5,4% no primeiro semestre e MCMV registra participação recorde (Indicadores Imobiliários Nacionais da CBIC, 2º trimestre de 2026, ago/2026)",
+        "url": "https://www.irib.org.br/vendas-de-imoveis-avancam-54-no-primeiro-semestre-e-mcmv-registra-participacao-recorde/"
+      },
+      {
+        "nome": "Google Ads, Planejador de palavras-chave (consulta de 30/10/2026, Brasil e Paraná, out/2025 a set/2026)",
+        "url": "https://ads.google.com/home/tools/keyword-planner/"
+      }
+    ]
   }
 ]
