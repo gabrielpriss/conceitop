@@ -1078,5 +1078,55 @@
         "url": "https://ads.google.com/home/tools/keyword-planner/"
       }
     ]
+  },
+  {
+    "slug": "agencia-de-marketing-imobiliario",
+    "titulo": "Agência de marketing imobiliário: como escolher, o que exigir no contrato e como medir a entrega",
+    "titulo_seo": "Agência de marketing imobiliário: 8 perguntas para fazer",
+    "descricao": "Agência de marketing imobiliário para incorporadora, construtora ou imobiliária: 8 perguntas antes de contratar, alertas e o que exigir no contrato.",
+    "linha_fina": "Portfólio bonito não paga o estande: a agência certa mede visita, proposta e contrato, e deixa as contas e os dados com a sua empresa.",
+    "data": "2026-11-04",
+    "atualizado": "2026-11-04",
+    "categoria": "Vendas",
+    "palavras_chave": [
+      "agência de marketing imobiliário",
+      "agência de marketing para imobiliárias",
+      "agência de marketing para construtora",
+      "agência de marketing para incorporadora",
+      "marketing imobiliário"
+    ],
+    "local": "Brasil",
+    "faq": [
+      {
+        "pergunta": "Vale a pena contratar uma agência de marketing imobiliário?",
+        "resposta": "Vale quando a empresa já investe em anúncios e portais mas não sabe quanto custa cada visita, proposta e contrato, ou quando há lançamento previsto sem estrutura interna para planejar as fases de venda."
+      },
+      {
+        "pergunta": "O que uma agência de marketing imobiliário faz?",
+        "resposta": "Depende do modelo. Uma agência de marketing com estratégia e mídia planeja campanhas, opera Google Ads e Meta Ads, cria páginas de empreendimento, configura rastreamento e acompanha o lead até a venda. Agências de branding e produtoras cuidam de marca e conteúdo."
+      },
+      {
+        "pergunta": "Como escolher uma agência de marketing imobiliário?",
+        "resposta": "Pergunte como ela mede resultado, de quem são as contas e os dados, como o lead chega ao corretor, como divide a verba por fase do empreendimento e quem atende a conta no dia a dia. Peça contato de clientes do setor."
+      },
+      {
+        "pergunta": "Agência pode garantir número de vendas?",
+        "resposta": "Desconfie. A venda depende também de produto, preço, momento do mercado e atendimento da equipe. Quem garante resultado costuma garantir volume de contatos, não de negócios."
+      },
+      {
+        "pergunta": "A Conceito Prime atende incorporadoras de fora do Paraná?",
+        "resposta": "Sim. Temos escritórios em Curitiba e Cascavel e atendemos empresas de outros estados com reuniões online."
+      }
+    ],
+    "fontes": [
+      {
+        "nome": "IRIB, Vendas de imóveis avançam 5,4% no primeiro semestre e MCMV registra participação recorde (Indicadores Imobiliários Nacionais da CBIC, 2º trimestre de 2026, ago/2026)",
+        "url": "https://www.irib.org.br/vendas-de-imoveis-avancam-54-no-primeiro-semestre-e-mcmv-registra-participacao-recorde/"
+      },
+      {
+        "nome": "Google Ads, Planejador de palavras-chave (consulta de 30/10/2026, Brasil e Paraná, out/2025 a set/2026)",
+        "url": "https://ads.google.com/home/tools/keyword-planner/"
+      }
+    ]
   }
 ]
