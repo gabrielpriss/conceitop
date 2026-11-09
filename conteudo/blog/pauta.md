@@ -2,6 +2,8 @@
 
 Registro de tudo o que a pesquisa avaliou. Toda linha leva a fonte do sinal de busca (Planejador, Search Console, termos do Ads, perguntas do Google, pesquisa do setor) e o número quando houver.
 
+Mudança de foco em 2026-11-09 (pedido do Gabriel): a pauta deixa de ser só mercado imobiliário e passa a ser o que empresas que querem vender mais pesquisam (REGRAS.md, seções 1 e 2). As ideias imobiliárias e as antigas de indústria e B2B do estoque continuam valendo como recorte de setor (degrau 4) ou como revisão, nunca como foco exclusivo.
+
 ## Publicados
 
 | Data | Frente | Slug | Palavra-chave principal | Local | Fonte do sinal |
