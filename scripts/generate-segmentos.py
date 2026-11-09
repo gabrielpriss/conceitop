@@ -87,7 +87,7 @@ PAGINAS = [
             'Existe um comercial para atender e orçar os pedidos que chegarem.',
             'O objetivo é pedido qualificado, mesmo com volume menor, num trabalho de 3 a 6 meses.',
         ],
-        'h1': 'Estratégia e execução para sua indústria <span class="text-gold-400">vender mais</span>',
+        'h1': 'Marketing industrial para sua indústria <span class="text-gold-400">vender mais</span>',
         'sub': 'Somos uma agência de marketing B2B que estrutura Google Ads, Meta Ads, site e medição para a sua indústria gerar leads de empresas compradoras, e não de consumidor final atrás de peça avulsa. Escritórios em Curitiba e Cascavel.',
         'logos_titulo': 'Algumas indústrias e distribuidores que <span class="text-gold-400">trabalham com a gente</span>',
         'logos': ['plasfix', 'naciopetro', 'rolpro', 'ladaniuski', 'atlas-eletromotores', 'do-valle', 'cactos',
@@ -134,7 +134,7 @@ PAGINAS = [
             'O objetivo é lead qualificado e venda, mesmo com volume menor.',
             'Vocês topam um trabalho de médio prazo, de 3 a 6 meses, para o resultado ficar consistente.',
         ],
-        'h1': 'Estratégia e execução para sua empresa <span class="text-gold-400">vender mais</span>',
+        'h1': 'Agência de marketing B2B para sua empresa <span class="text-gold-400">vender mais</span>',
         'sub': 'Somos uma agência de marketing digital focada em empresas B2B: tráfego pago no Google Ads e no Meta Ads, site, marca e processo comercial trabalhando juntos para atrair decisores com perfil de compra e transformar esses contatos em contratos. Escritórios em Curitiba e Cascavel.',
         'logos_titulo': 'Algumas empresas B2B que <span class="text-gold-400">trabalham com a gente</span>',
         'logos': ['adriano-cobuccio', 'auxiliadora-predial', 'reda', 'do-valle', 'brasilcard', 'german-financial', 'sinc-capital', 'rgm-service', 'naciopetro', 'cactos', 'ice-cargo',
@@ -498,6 +498,53 @@ def videos_secao(pg):
   </section>'''
 
 
+# Variantes de oferta por parâmetro de URL (nov/2026). Os anúncios do grupo de tráfego pago apontam para
+# /b2b/?oferta=auditoria: a página é a mesma, só o topo, o botão e o título do formulário mudam, e o lead sai
+# com servico "Auditoria Google Ads". Nenhuma agência do PR e de SC oferece isso com esse nome (pesquisa 08/11/2026).
+VARIANTES = {
+    'b2b': {
+        'auditoria': {
+            'eyebrow': 'Auditoria gratuita de Google Ads',
+            'h1': 'Sua conta de Google Ads <span class="text-gold-400">auditada em 48 horas</span>',
+            'sub': 'Lemos a sua conta de Google Ads de ponta a ponta: termos de pesquisa, negativas, lances, anúncios e página de destino. Em até 48 horas úteis vocês recebem o que está travando o resultado e o que mudar primeiro, sem compromisso. Escritórios em Curitiba e Cascavel.',
+            'cta': 'Pedir auditoria gratuita',
+            'form_titulo': 'Peça sua auditoria gratuita de Google Ads',
+            'form_desc': 'Em até 48 horas úteis enviamos a leitura da sua conta e o próximo passo.',
+            'servico': 'Auditoria Google Ads',
+        },
+    },
+}
+
+
+def js_variantes(pg):
+    v = VARIANTES.get(pg['slug'])
+    if not v:
+        return ''
+    dados = json.dumps(v, ensure_ascii=False)
+    return f"""  var VARIANTES = {dados};
+  var oferta = new URLSearchParams(location.search).get('oferta');
+  var v = oferta && VARIANTES[oferta];
+  if (v) {{
+    var troca = function (sel, html) {{ var el = document.querySelector(sel); if (el && html) el.innerHTML = html; }};
+    troca('.seg-hero .text-gold-400.uppercase', v.eyebrow);
+    troca('#seg-titulo', v.h1);
+    troca('#seg-sub', v.sub);
+    document.querySelectorAll('a[href="#orcamento"].cb-cta, a[href="#orcamento"].cb-topo-cta').forEach(function (a) {{
+      a.innerHTML = '<i class="fas fa-magnifying-glass" aria-hidden="true"></i> ' + v.cta;
+    }});
+    document.querySelectorAll('form[data-diagnostico]').forEach(function (f) {{
+      f.dataset.titulo = v.form_titulo; f.dataset.desc = v.form_desc; f.dataset.servico = v.servico;
+      var t = f.querySelector('[data-diag-titulo]'); if (t) t.textContent = v.form_titulo;
+      var d = f.querySelector('[data-diag-desc]'); if (d) d.textContent = v.form_desc;
+      var h = f.querySelector('input[name="servico"]');
+      if (!h) {{ h = document.createElement('input'); h.type = 'hidden'; h.name = 'servico'; f.appendChild(h); }}
+      h.value = v.servico;
+    }});
+    document.title = 'Auditoria Gratuita de Google Ads | Conceito Prime';
+    window.dataLayer = window.dataLayer || []; window.dataLayer.push({{ event: 'oferta_variante', oferta: oferta }});
+  }}"""
+
+
 def pagina(pg):
     url = f'{SITE}/{pg["slug"]}/'
     schema = json.dumps([
@@ -522,7 +569,7 @@ def pagina(pg):
       <p class="cb-selo"><i class="fas fa-check" aria-hidden="true"></i> Para empresas com faturamento acima de R$ 100 mil/mês</p>
       <p class="text-gold-400 font-semibold uppercase tracking-[0.3em] text-[11px] mb-6">{pg['eyebrow']}</p>
       <h1 id="seg-titulo" class="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.1] mb-8 uppercase">{pg['h1']}</h1>
-      <p class="text-white/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10">{pg['sub']}</p>
+      <p id="seg-sub" class="text-white/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10">{pg['sub']}</p>
       <a href="#orcamento" class="cb-cta" data-cta="hero-{pg['slug']}"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> Solicitar diagnóstico gratuito</a>
     </div>
   </section>
@@ -545,6 +592,7 @@ def pagina(pg):
       <div class="grid md:grid-cols-3 gap-6">
 {cards_html(pg['problemas'])}
       </div>
+      <p class="text-center" style="margin-top:2.5rem"><a href="#orcamento" class="cb-cta" data-cta="problemas-{pg['slug']}"><i class="fas fa-comments" aria-hidden="true"></i> Esse é o nosso caso, quero conversar</a></p>
     </div>
   </section>
 
@@ -584,7 +632,7 @@ def pagina(pg):
   </section>
   </main>
 
-''' + rodape(JS_CABECALHO)
+''' + rodape(JS_CABECALHO + ('\n' + js_variantes(pg) if js_variantes(pg) else ''))
 
 
 OBRIGADO = [

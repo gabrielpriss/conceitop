@@ -1396,9 +1396,9 @@ html, body { overflow-x: clip; }
 .diag-campos { display: grid; gap: .85rem; margin-bottom: 1rem; }
 .diag-campo { display: block; }
 .diag-campo > span:first-child { display: block; font-size: 14px; font-weight: 700; color: var(--brand-dark); margin-bottom: .35rem; }
-.diag-campo input { width: 100%; border: 1px solid var(--brand-gray-200); border-radius: 10px; padding: .8rem .9rem; font: inherit; font-size: 16px; color: var(--brand-dark); background: #fff; transition: border-color .2s, box-shadow .2s; }
-.diag-campo input:focus { outline: none; border-color: var(--brand-dark); box-shadow: 0 0 0 3px rgba(247, 204, 25, .45); }
-.diag-campo input.is-invalid { border-color: #c62828; box-shadow: 0 0 0 3px rgba(198, 40, 40, .12); }
+.diag-campo input, .diag-campo select { width: 100%; border: 1px solid var(--brand-gray-200); border-radius: 10px; padding: .8rem .9rem; font: inherit; font-size: 16px; color: var(--brand-dark); background: #fff; transition: border-color .2s, box-shadow .2s; }
+.diag-campo input:focus, .diag-campo select:focus { outline: none; border-color: var(--brand-dark); box-shadow: 0 0 0 3px rgba(247, 204, 25, .45); }
+.diag-campo input.is-invalid, .diag-campo select.is-invalid { border-color: #c62828; box-shadow: 0 0 0 3px rgba(198, 40, 40, .12); }
 .diag-tel { display: flex; align-items: stretch; gap: .5rem; }
 .diag-ddi { display: flex; align-items: center; padding: 0 .75rem; border: 1px solid var(--brand-gray-200); border-radius: 10px; background: var(--brand-gray-100); font-size: .875rem; font-weight: 600; color: var(--brand-dark); white-space: nowrap; }
 .diag-tel input { flex: 1; min-width: 0; }
@@ -1416,6 +1416,15 @@ html, body { overflow-x: clip; }
 .diag-voltar:hover { color: var(--brand-dark); }
 .diag-voltar[hidden] { display: none; }
 .diag-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+/* Formulário em uma tela (nov/2026): select de segmento, campo de telefone escondido na porteira de WhatsApp e nota */
+.diag-campo select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23161616' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .9rem center; padding-right: 2.5rem; cursor: pointer; }
+.diag-campo select:invalid, .diag-campo select option[value=""] { color: #6b6b6b; }
+.diag-campo[hidden] { display: none; }
+.diag-nota { font-size: 14px; color: var(--brand-gray-400); line-height: 1.5; margin: .75rem 0 0; text-align: center; }
+.diag--wa .diag-nota { color: #54656f; }
+.diag--porteira .diag-nota { display: none; }
+.diag--porteira .diag-enviar { background: #25d366; color: #fff; }
+.diag--porteira .diag-enviar:hover { background: #1fb85a; }
 .diag-ok { text-align: center; padding: 1rem 0 .5rem; animation: diag-entra .35s ease; }
 .diag-ok[hidden] { display: none; }
 .diag-ok > i { font-size: 2.75rem; color: #1fa855; margin-bottom: .75rem; display: inline-block; animation: diag-pulo .5s cubic-bezier(.34, 1.56, .64, 1); }
@@ -1456,8 +1465,8 @@ html, body { overflow-x: clip; }
 .diag--wa .diag-opcao input:checked + span i { color: #fff; }
 .diag--wa .diag-opcao input:focus-visible + span { box-shadow: 0 0 0 3px rgba(37, 211, 102, .45); }
 .diag--wa .diag-campo > span:first-child { color: #54656f; font-weight: 600; }
-.diag--wa .diag-campo input { border: 0; border-radius: 22px; padding: .75rem 1rem; box-shadow: 0 1px .5px rgba(11, 20, 26, .13); }
-.diag--wa .diag-campo input:focus { box-shadow: 0 0 0 2px #25d366; }
+.diag--wa .diag-campo input, .diag--wa .diag-campo select { border: 0; border-radius: 22px; padding: .75rem 1rem; box-shadow: 0 1px .5px rgba(11, 20, 26, .13); }
+.diag--wa .diag-campo input:focus, .diag--wa .diag-campo select:focus { box-shadow: 0 0 0 2px #25d366; }
 .diag--wa .diag-ddi { border: 0; border-radius: 22px; background: #fff; box-shadow: 0 1px .5px rgba(11, 20, 26, .13); }
 .diag--wa .diag-avancar, .diag--wa .diag-enviar { background: #25d366; color: #fff; border-radius: 24px; letter-spacing: .06em; }
 .diag--wa .diag-avancar:hover, .diag--wa .diag-enviar:hover { background: #1ebe5b; }

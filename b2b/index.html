@@ -165,8 +165,8 @@ body[data-tipos-conversao] #wa-float { display: none !important; }
     <div class="hero-content max-w-4xl mx-auto px-6 lg:px-8 text-center">
       <p class="cb-selo"><i class="fas fa-check" aria-hidden="true"></i> Para empresas com faturamento acima de R$ 100 mil/mês</p>
       <p class="text-gold-400 font-semibold uppercase tracking-[0.3em] text-[11px] mb-6">Agência de marketing digital B2B</p>
-      <h1 id="seg-titulo" class="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.1] mb-8 uppercase">Estratégia e execução para sua empresa <span class="text-gold-400">vender mais</span></h1>
-      <p class="text-white/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10">Somos uma agência de marketing digital focada em empresas B2B: tráfego pago no Google Ads e no Meta Ads, site, marca e processo comercial trabalhando juntos para atrair decisores com perfil de compra e transformar esses contatos em contratos. Escritórios em Curitiba e Cascavel.</p>
+      <h1 id="seg-titulo" class="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.1] mb-8 uppercase">Agência de marketing B2B para sua empresa <span class="text-gold-400">vender mais</span></h1>
+      <p id="seg-sub" class="text-white/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10">Somos uma agência de marketing digital focada em empresas B2B: tráfego pago no Google Ads e no Meta Ads, site, marca e processo comercial trabalhando juntos para atrair decisores com perfil de compra e transformar esses contatos em contratos. Escritórios em Curitiba e Cascavel.</p>
       <a href="#orcamento" class="cb-cta" data-cta="hero-b2b"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> Solicitar diagnóstico gratuito</a>
     </div>
   </section>
@@ -304,6 +304,7 @@ body[data-tipos-conversao] #wa-float { display: none !important; }
           <p class="text-prime-600 font-light text-[15px] leading-[1.8]">Sem saber porte, segmento e necessidade, o time abre a conversa do zero e perde para quem responde com proposta.</p>
         </article>
       </div>
+      <p class="text-center" style="margin-top:2.5rem"><a href="#orcamento" class="cb-cta" data-cta="problemas-b2b"><i class="fas fa-comments" aria-hidden="true"></i> Esse é o nosso caso, quero conversar</a></p>
     </div>
   </section>
 
@@ -597,6 +598,28 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   var header = document.getElementById('header');
   if (header) window.addEventListener('scroll', function () { header.classList.toggle('scrolled', window.scrollY > 20); });
+  var VARIANTES = {"auditoria": {"eyebrow": "Auditoria gratuita de Google Ads", "h1": "Sua conta de Google Ads <span class=\"text-gold-400\">auditada em 48 horas</span>", "sub": "Lemos a sua conta de Google Ads de ponta a ponta: termos de pesquisa, negativas, lances, anúncios e página de destino. Em até 48 horas úteis vocês recebem o que está travando o resultado e o que mudar primeiro, sem compromisso. Escritórios em Curitiba e Cascavel.", "cta": "Pedir auditoria gratuita", "form_titulo": "Peça sua auditoria gratuita de Google Ads", "form_desc": "Em até 48 horas úteis enviamos a leitura da sua conta e o próximo passo.", "servico": "Auditoria Google Ads"}};
+  var oferta = new URLSearchParams(location.search).get('oferta');
+  var v = oferta && VARIANTES[oferta];
+  if (v) {
+    var troca = function (sel, html) { var el = document.querySelector(sel); if (el && html) el.innerHTML = html; };
+    troca('.seg-hero .text-gold-400.uppercase', v.eyebrow);
+    troca('#seg-titulo', v.h1);
+    troca('#seg-sub', v.sub);
+    document.querySelectorAll('a[href="#orcamento"].cb-cta, a[href="#orcamento"].cb-topo-cta').forEach(function (a) {
+      a.innerHTML = '<i class="fas fa-magnifying-glass" aria-hidden="true"></i> ' + v.cta;
+    });
+    document.querySelectorAll('form[data-diagnostico]').forEach(function (f) {
+      f.dataset.titulo = v.form_titulo; f.dataset.desc = v.form_desc; f.dataset.servico = v.servico;
+      var t = f.querySelector('[data-diag-titulo]'); if (t) t.textContent = v.form_titulo;
+      var d = f.querySelector('[data-diag-desc]'); if (d) d.textContent = v.form_desc;
+      var h = f.querySelector('input[name="servico"]');
+      if (!h) { h = document.createElement('input'); h.type = 'hidden'; h.name = 'servico'; f.appendChild(h); }
+      h.value = v.servico;
+    });
+    document.title = 'Auditoria Gratuita de Google Ads | Conceito Prime';
+    window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: 'oferta_variante', oferta: oferta });
+  }
 });
   </script>
 </body>

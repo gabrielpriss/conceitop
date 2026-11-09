@@ -29,12 +29,16 @@ function abrirWhatsApp(url, posicao) {
 
 /* ========== FORMULÁRIO "SOLICITE UM DIAGNÓSTICO" ==========
    O mesmo em todas as páginas (inline, popup do site e popup de WhatsApp das LPs).
-   Em etapas: primeiro o segmento (um clique), depois nome e empresa, por último o WhatsApp.
+   Uma tela só (nov/2026): segmento em lista, nome, empresa e WhatsApp. As três etapas anteriores foram
+   abandonadas depois de 17 dias de campanha em que ninguém clicou no botão principal e só 2 pessoas abriram
+   o popup (Clarity, 73 visitas pagas em /b2b).
    A pergunta de faturamento saiu do formulário (out/2026); o campo segue existindo no envio, só não é mais preenchido.
    Envio:
    - no site: grava o lead (/api/lead) e abre o WhatsApp com a mensagem pronta;
    - nas LPs da campanha (body data-contato="formulario"): envia para /api/lead-b2b e redireciona para
-     /obrigado-qualificado/ (a partir de R$ 100 mil/mês) ou /obrigado/.
+     /obrigado-qualificado/ (a partir de R$ 100 mil/mês) ou /obrigado/;
+   - porteira de WhatsApp (LPs, modo "whatsapp"): só nome e empresa, grava o lead com canal whatsapp,
+     dispara o evento whatsapp_comercial (conversão no GTM) e abre a conversa no WhatsApp.
    Marcação na página: <form data-diagnostico data-pagina="b2b" data-segmento="industria" data-servico="Branding"
    data-desc="..." data-titulo-id="..."></form>. O conteúdo é montado aqui. */
 const DIAG_SEGMENTOS = [
@@ -60,54 +64,40 @@ const DIAG_FATURAMENTO = [
   ['acima-5m', 'Acima de R$ 5 milhões'],
   ['nao-faturou', 'Ainda não faturamos']
 ];
-const DIAG_TOTAL = 3;
-const DIAG_DICAS = ['Leva menos de 1 minuto', 'Boa! Já passou da metade', 'Último passo'];
 const FAIXAS_QUALIFICADAS = ['100k-500k', '500k-1m', '1m-5m', 'acima-5m'];
 
 function diagEsc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
 function diagHTML(o) {
-  const segs = DIAG_SEGMENTOS.map(function (s) {
-    return `<label class="diag-opcao"><input type="radio" name="segmento" value="${s[0]}"${o.segmento === s[0] ? ' checked' : ''}><span><i class="fas ${s[2]}" aria-hidden="true"></i>${s[1]}</span></label>`;
+  const segs = '<option value=""' + (o.segmento ? '' : ' selected') + ' disabled>Escolha o segmento</option>' + DIAG_SEGMENTOS.map(function (s) {
+    return `<option value="${s[0]}"${o.segmento === s[0] ? ' selected' : ''}>${s[1]}</option>`;
   }).join('');
   const b2b = o.envio === 'lead-b2b';
   const botaoFinal = b2b
-    ? '<i class="fas fa-paper-plane" aria-hidden="true"></i> Solicitar diagnóstico'
+    ? '<i class="fas fa-paper-plane" aria-hidden="true"></i> Solicitar diagnóstico gratuito'
     : '<i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar e abrir o WhatsApp';
-  const desc = o.desc || (o.servico ? 'Interesse em <strong>' + diagEsc(o.servico) + '</strong>. São 3 perguntas rápidas.' : 'São 3 perguntas rápidas e seguimos a conversa com você.');
+  const desc = o.desc || (o.servico ? 'Interesse em <strong>' + diagEsc(o.servico) + '</strong>. Quatro campos e seguimos a conversa com você.' : 'Quatro campos e seguimos a conversa com você.');
   return `
     <div class="diag-topo">
-      <p class="diag-eyebrow"><i class="fas fa-bolt" aria-hidden="true"></i> <span data-diag-dica>${DIAG_DICAS[0]}</span></p>
-      <h2 class="diag-titulo" id="${o.tituloId}">Solicite seu diagnóstico gratuito</h2>
-      <p class="diag-desc">${desc}</p>
-      <div class="diag-barra" aria-hidden="true"><span data-diag-barra></span></div>
-      <p class="diag-contador" data-diag-contador>Etapa 1 de ${DIAG_TOTAL}</p>
+      <p class="diag-eyebrow"><i class="fas fa-bolt" aria-hidden="true"></i> <span data-diag-dica>Leva menos de 1 minuto</span></p>
+      <h2 class="diag-titulo" id="${o.tituloId}" data-diag-titulo>Solicite seu diagnóstico gratuito</h2>
+      <p class="diag-desc" data-diag-desc>${desc}</p>
     </div>
     <div class="diag-hist" data-diag-hist aria-live="polite">
-      <p class="diag-msg diag-msg--in">Olá! 👋 Para preparar o seu diagnóstico, são só 3 perguntas rápidas.</p>
+      <p class="diag-msg diag-msg--in" data-diag-hist-intro>Olá! 👋 Nos conte quem é você e abrimos a conversa.</p>
     </div>
     <fieldset class="diag-etapa" data-etapa="1">
-      <legend class="diag-pergunta">Qual o segmento da sua empresa?</legend>
-      <div class="diag-opcoes">${segs}</div>
-      <button type="button" class="diag-avancar diag-avancar--opcao" data-diag-avancar hidden>Continuar <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-    </fieldset>
-    <fieldset class="diag-etapa" data-etapa="2" hidden>
-      <legend class="diag-pergunta">Como podemos te chamar?</legend>
+      <legend class="sr-only">Seus dados</legend>
       <div class="diag-campos">
+        <label class="diag-campo" data-diag-campo-segmento><span>Segmento da empresa</span><select name="segmento" autocomplete="off">${segs}</select></label>
         <label class="diag-campo"><span>Seu nome</span><input type="text" name="nome" autocomplete="given-name" placeholder="Primeiro nome" maxlength="80" enterkeyhint="next"></label>
         <label class="diag-campo"><span>Nome da empresa</span><input type="text" name="empresa" autocomplete="organization" placeholder="Empresa" maxlength="120" enterkeyhint="next"></label>
+        <label class="diag-campo" data-diag-campo-tel><span>WhatsApp com DDD</span><span class="diag-tel"><span class="diag-ddi" aria-hidden="true">🇧🇷 +55</span><input type="tel" name="telefone" inputmode="tel" autocomplete="tel-national" placeholder="(41) 99999-9999" data-phone-mask enterkeyhint="send"></span></label>
       </div>
-      <button type="button" class="diag-avancar" data-diag-avancar>Continuar <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-    </fieldset>
-    <fieldset class="diag-etapa" data-etapa="3" hidden>
-      <legend class="diag-pergunta" data-diag-pergunta-tel>Qual o seu WhatsApp?</legend>
-      <div class="diag-campos">
-        <label class="diag-campo"><span>WhatsApp com DDD</span><span class="diag-tel"><span class="diag-ddi" aria-hidden="true">🇧🇷 +55</span><input type="tel" name="telefone" inputmode="tel" autocomplete="tel-national" placeholder="(41) 99999-9999" data-phone-mask enterkeyhint="send"></span></label>
-      </div>
-      <button type="submit" class="diag-enviar">${botaoFinal}</button>
+      <button type="submit" class="diag-enviar" data-diag-enviar-padrao="${diagEsc(botaoFinal)}">${botaoFinal}</button>
+      <p class="diag-nota">Sem spam e sem lista de e-mail. Falamos com você pelo WhatsApp informado.</p>
     </fieldset>
     <p class="diag-erro" data-diag-erro role="alert" aria-live="assertive"></p>
-    <button type="button" class="diag-voltar" data-diag-voltar hidden><i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar</button>
     <input type="hidden" name="pagina" value="${diagEsc(o.pagina)}">
     ${o.servico ? `<input type="hidden" name="servico" value="${diagEsc(o.servico)}">` : ''}
     <div class="diag-hp" aria-hidden="true"><label>Não preencha<input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
@@ -160,21 +150,23 @@ function initDiagnostico(form) {
   });
 
   const etapas = Array.prototype.slice.call(form.querySelectorAll('.diag-etapa'));
-  etapas.forEach(function (e) { e.setAttribute('tabindex', '-1'); });
   const hist = form.querySelector('[data-diag-hist]');
   const erroBox = form.querySelector('[data-diag-erro]');
-  const voltar = form.querySelector('[data-diag-voltar]');
-  const barra = form.querySelector('[data-diag-barra]');
-  const contador = form.querySelector('[data-diag-contador]');
-  const dica = form.querySelector('[data-diag-dica]');
   const ok = form.querySelector('[data-diag-ok]');
   const tel = form.querySelector('[name="telefone"]');
+  const campoTel = form.querySelector('[data-diag-campo-tel]');
   const enviar = form.querySelector('.diag-enviar');
   const enviarHTML = enviar.innerHTML;
+  const titulo = form.querySelector('[data-diag-titulo]');
+  const descEl = form.querySelector('[data-diag-desc]');
+  const tituloPadrao = titulo.textContent;
+  const descPadrao = descEl.innerHTML;
   maskPhone(tel);
-  let atual = 1;
   let iniciou = false;
   let ocupado = false;
+
+  /* Porteira de WhatsApp (LPs): só nome e empresa, sem telefone, e a conversa abre no WhatsApp. */
+  function porteira() { return envio === 'lead-b2b' && form.dataset.modo === 'whatsapp'; }
 
   function valor(nome) {
     const el = form.querySelector('[name="' + nome + '"]:checked') || form.querySelector('[name="' + nome + '"]:not([type=radio])');
@@ -182,108 +174,93 @@ function initDiagnostico(form) {
   }
   function marcar(el, valido) { el.classList.toggle('is-invalid', !valido); el.setAttribute('aria-invalid', String(!valido)); }
   function erro(msg) { erroBox.textContent = msg || ''; }
-  function comecar() { if (!iniciou) { iniciou = true; track('form_start', { formulario: form.id || 'diagnostico', pagina: location.pathname }); } }
+  function comecar() { if (!iniciou) { iniciou = true; track('form_start', { formulario: form.id || 'diagnostico', pagina: location.pathname, modo: porteira() ? 'whatsapp' : 'formulario' }); } }
 
-  function atualizarOpcao(n) {
-    const etapa = etapas[n - 1];
-    const btn = etapa.querySelector('.diag-avancar--opcao');
-    if (btn) btn.hidden = !etapa.querySelector('input:checked');
+  function aplicarModo() {
+    const p = porteira();
+    campoTel.hidden = p;
+    form.classList.toggle('diag--porteira', p);
+    if (p) {
+      titulo.textContent = 'Falar com a gente no WhatsApp';
+      descEl.textContent = 'Nos diga quem é você e a empresa. Abrimos a conversa já com o nosso comercial.';
+      enviar.innerHTML = '<i class="fab fa-whatsapp" aria-hidden="true"></i> Abrir o WhatsApp';
+    } else {
+      titulo.textContent = form.dataset.titulo || tituloPadrao;
+      if (form.dataset.desc) descEl.textContent = form.dataset.desc; else descEl.innerHTML = descPadrao;
+      enviar.innerHTML = enviarHTML;
+    }
   }
 
   function ir(n, focar) {
-    atual = n;
-    etapas.forEach(function (e, i) { e.hidden = i !== n - 1; });
-    voltar.hidden = n === 1;
-    barra.style.width = Math.max(6, (n - 1) / DIAG_TOTAL * 100) + '%';
-    contador.textContent = 'Etapa ' + n + ' de ' + DIAG_TOTAL;
-    dica.textContent = DIAG_DICAS[n - 1];
-    if (n === 3) {
-      const nome = valor('nome').split(' ')[0];
-      form.querySelector('[data-diag-pergunta-tel]').textContent = nome ? 'Prazer, ' + nome + '! Qual o seu WhatsApp?' : 'Qual o seu WhatsApp?';
-    }
-    if (n === 1) atualizarOpcao(n);
+    etapas.forEach(function (e) { e.hidden = false; });
     erro('');
-    form.dispatchEvent(new CustomEvent('diag:etapa', { detail: { etapa: n, total: DIAG_TOTAL } }));
+    form.dispatchEvent(new CustomEvent('diag:etapa', { detail: { etapa: 1, total: 1 } }));
     if (focar) {
       setTimeout(function () {
-        const etapa = etapas[n - 1];
-        /* etapa de clique sem opção marcada: foco no grupo (sem destacar nenhuma opção como se estivesse escolhida) */
-        const alvo = etapa.querySelector('input:checked') || etapa.querySelector('input:not([type=hidden]):not([type=radio])') || etapa;
-        alvo.focus({ preventScroll: true });
+        const alvo = (!valor('segmento') && form.querySelector('[name="segmento"]')) || form.querySelector('[name="nome"]') || etapas[0];
+        if (alvo && alvo.focus) alvo.focus({ preventScroll: true });
       }, 60);
     }
   }
 
-  function validar(n) {
-    if (n === 1 && !valor('segmento')) { erro('Escolha o segmento da empresa para continuar.'); return false; }
-    if (n === 2) {
-      const nome = form.querySelector('[name="nome"]');
-      const emp = form.querySelector('[name="empresa"]');
-      const okNome = nome.value.trim().length >= 2;
-      const okEmp = emp.value.trim().length >= 2;
-      marcar(nome, okNome); marcar(emp, okEmp);
-      if (!okNome || !okEmp) { erro('Preencha o seu nome e o nome da empresa.'); (okNome ? emp : nome).focus(); return false; }
-    }
-    if (n === 3) {
-      const okTel = tel.value.replace(/\D/g, '').length >= 10;
-      marcar(tel, okTel);
-      if (!okTel) { erro('Confira o WhatsApp: precisa ter DDD e o número completo.'); tel.focus(); return false; }
-    }
+  function validar() {
+    const seg = form.querySelector('[name="segmento"]');
+    const nome = form.querySelector('[name="nome"]');
+    const emp = form.querySelector('[name="empresa"]');
+    const okSeg = !!valor('segmento');
+    const okNome = nome.value.trim().length >= 2;
+    const okEmp = emp.value.trim().length >= 2;
+    const okTel = porteira() || tel.value.replace(/\D/g, '').length >= 10;
+    marcar(seg, okSeg); marcar(nome, okNome); marcar(emp, okEmp); marcar(tel, okTel);
+    if (!okSeg) { erro('Escolha o segmento da empresa.'); seg.focus(); return false; }
+    if (!okNome || !okEmp) { erro('Preencha o seu nome e o nome da empresa.'); (okNome ? emp : nome).focus(); return false; }
+    if (!okTel) { erro('Confira o WhatsApp: precisa ter DDD e o número completo.'); tel.focus(); return false; }
     return true;
   }
 
-  function resposta(n) {
-    if (n === 1) return diagRotulo(DIAG_SEGMENTOS, valor('segmento'));
-    if (n === 2) return valor('nome') + ', da ' + valor('empresa');
-    return valor('telefone');
-  }
-
-  function registrar(n) {
-    const pergunta = etapas[n - 1].querySelector('legend').textContent;
+  function registrar() {
+    const resumo = valor('nome') + ', da ' + valor('empresa') + ' (' + diagRotulo(DIAG_SEGMENTOS, valor('segmento')) + ')';
     hist.insertAdjacentHTML('beforeend',
-      '<p class="diag-msg diag-msg--in" data-hist="' + n + '">' + diagEsc(pergunta) + '</p>' +
-      '<p class="diag-msg diag-msg--out" data-hist="' + n + '">' + diagEsc(resposta(n)) + ' <i class="fas fa-check-double" aria-hidden="true"></i></p>');
-    /* Rolagem suave até a última mensagem, como uma conversa subindo no WhatsApp */
+      '<p class="diag-msg diag-msg--out" data-hist="1">' + diagEsc(resumo) + ' <i class="fas fa-check-double" aria-hidden="true"></i></p>');
     if (hist.scrollTo) hist.scrollTo({ top: hist.scrollHeight, behavior: 'smooth' });
     else hist.scrollTop = hist.scrollHeight;
   }
 
-  function avancar() {
-    if (!validar(atual)) return;
-    comecar();
-    registrar(atual);
-    track('form_etapa', { formulario: form.id || 'diagnostico', etapa: atual + 1 });
-    if (atual < DIAG_TOTAL) ir(atual + 1, true);
-  }
-
-  etapas.slice(0, 1).forEach(function (etapa, i) {
-    etapa.querySelectorAll('input[type=radio]').forEach(function (r) {
-      r.addEventListener('change', function () {
-        comecar();
-        atualizarOpcao(i + 1);
-        /* um clique já avança: dá tempo de ver a opção marcada */
-        setTimeout(function () { if (atual === i + 1) avancar(); }, 260);
-      });
-    });
-  });
-  form.querySelectorAll('[data-diag-avancar]').forEach(function (b) { b.addEventListener('click', avancar); });
-  voltar.addEventListener('click', function () {
-    if (atual <= 1) return;
-    hist.querySelectorAll('[data-hist="' + (atual - 1) + '"]').forEach(function (m) { m.remove(); });
-    ir(atual - 1, true);
-  });
   form.querySelector('[name="nome"]').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') { e.preventDefault(); form.querySelector('[name="empresa"]').focus(); }
   });
   form.querySelector('[name="empresa"]').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') { e.preventDefault(); avancar(); }
+    if (e.key === 'Enter') { e.preventDefault(); if (porteira()) form.requestSubmit ? form.requestSubmit() : enviar.click(); else tel.focus(); }
   });
   form.addEventListener('input', function (e) { comecar(); if (e.target.classList.contains('is-invalid')) marcar(e.target, true); });
+  form.addEventListener('change', function (e) { comecar(); if (e.target.classList.contains('is-invalid')) marcar(e.target, true); });
 
   function coletar() {
     const d = {};
     ['segmento', 'faturamento', 'nome', 'empresa', 'telefone', 'pagina', 'servico', 'hp'].forEach(function (k) { const v = valor(k); if (v) d[k] = v; });
     return d;
+  }
+
+  /* Porteira de WhatsApp das LPs: grava o lead (canal whatsapp), conta a conversão whatsapp_comercial e abre a conversa */
+  function concluirPorteira(d) {
+    d.origem = 'campanha-google-ads';
+    d.canal = 'whatsapp';
+    Object.keys(RASTREIO).forEach(function (k) { d[k] = RASTREIO[k]; });
+    try {
+      const corpo = JSON.stringify(d);
+      if (navigator.sendBeacon) navigator.sendBeacon('/api/lead-b2b', new Blob([corpo], { type: 'application/json' }));
+      else fetch('/api/lead-b2b', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: corpo, keepalive: true }).catch(function () {});
+    } catch (e) { /* a conversa abre mesmo assim */ }
+    track('form_submit', { formulario: form.id || 'diagnostico', pagina: location.pathname, segmento: d.segmento, canal: 'whatsapp' });
+    track('whatsapp_comercial', { posicao: form.dataset.canal || 'popup-whatsapp', pagina: location.pathname, segmento: d.segmento, lead_id: String(Date.now()) });
+    try { sessionStorage.setItem('cp_lead_enviado', '1'); } catch (e) { /* segue */ }
+    const url = waLink(diagMensagem(d));
+    abrirWhatsApp(url, 'porteira-' + (form.dataset.canal || 'popup-whatsapp'));
+    etapas.forEach(function (e) { e.hidden = true; });
+    form.querySelector('[data-diag-ok-titulo]').textContent = 'Pronto, ' + d.nome.split(' ')[0] + '!';
+    form.querySelector('[data-diag-wa]').href = url;
+    ok.hidden = false;
+    form.dispatchEvent(new CustomEvent('diag:enviado', { detail: { qualificado: false, canal: 'whatsapp' } }));
   }
 
   function concluirWhatsApp(d, qualificado) {
@@ -302,10 +279,6 @@ function initDiagnostico(form) {
     if (atraso) setTimeout(function () { abrirWhatsApp(url, form.dataset.canal || 'formulario'); }, atraso);
     else abrirWhatsApp(url, form.dataset.canal || 'formulario');
     etapas.forEach(function (e) { e.hidden = true; });
-    voltar.hidden = true;
-    barra.style.width = '100%';
-    contador.textContent = 'Concluído';
-    dica.textContent = 'Tudo certo';
     form.querySelector('[data-diag-ok-titulo]').textContent = 'Pronto, ' + d.nome.split(' ')[0] + '!';
     form.querySelector('[data-diag-wa]').href = url;
     ok.hidden = false;
@@ -348,30 +321,33 @@ function initDiagnostico(form) {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (ocupado) return;
-    if (atual < DIAG_TOTAL) { avancar(); return; }
-    if (!validar(DIAG_TOTAL)) return;
+    if (!validar()) return;
     const d = coletar();
     if (d.hp) return; /* robô */
-    registrar(DIAG_TOTAL);
+    comecar();
+    registrar();
     const qualificado = FAIXAS_QUALIFICADAS.indexOf(d.faturamento) !== -1;
-    if (envio === 'lead-b2b') concluirB2B(d, qualificado);
+    if (porteira()) concluirPorteira(d);
+    else if (envio === 'lead-b2b') concluirB2B(d, qualificado);
     else concluirWhatsApp(d, qualificado);
   });
 
   function reset() {
     form.reset();
-    if (segPadrao) { const r = form.querySelector('[name="segmento"][value="' + segPadrao + '"]'); if (r) r.checked = true; }
+    const sel = form.querySelector('[name="segmento"]');
+    if (sel) sel.value = segPadrao || '';
     form.querySelectorAll('.is-invalid').forEach(function (el) { marcar(el, true); });
     hist.querySelectorAll('[data-hist]').forEach(function (m) { m.remove(); });
     ok.hidden = true;
     ocupado = false;
     enviar.disabled = false;
-    enviar.innerHTML = enviarHTML;
+    aplicarModo();
     ir(1, false);
   }
 
+  aplicarModo();
   ir(1, false);
-  form._diag = { reset: reset, ir: ir, focar: function () { ir(atual, true); } };
+  form._diag = { reset: reset, ir: ir, focar: function () { ir(1, true); }, modo: aplicarModo };
   return form._diag;
 }
 
@@ -409,7 +385,7 @@ function initDiagnostico(form) {
   }
   const diag = initDiagnostico(form);
   const status = overlay.querySelector('[data-wa-status]');
-  form.addEventListener('diag:etapa', function (e) { status.textContent = 'online · etapa ' + e.detail.etapa + ' de ' + e.detail.total; });
+  form.addEventListener('diag:etapa', function () { status.textContent = 'online'; });
 
   let ultimoFoco = null;
   let fechar = null;
@@ -428,6 +404,8 @@ function initDiagnostico(form) {
     overlay.classList.toggle('lead-overlay--wa', wa);
     form.classList.toggle('diag--wa', wa);
     form.dataset.canal = wa ? 'popup-whatsapp' : 'popup';
+    /* Nas LPs, o modo WhatsApp vira porteira: nome e empresa e a conversa abre no WhatsApp */
+    if (wa) form.dataset.modo = 'whatsapp'; else delete form.dataset.modo;
     diag.reset();
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -548,6 +526,11 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
   if (!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1024px)').matches) return;
 
   const IMG = '/assets/images/popup-consultor-v2.webp';
+  /* Nas LPs da campanha (nov/2026): só para quem já se interessou (20 s na página ou 25% de rolagem).
+     Em 30 dias de Clarity, o "×" de fechar popup foi o elemento mais clicado da /b2b no computador, na maior
+     parte por quem voltava para o Google em segundos. Para esse visitante o popup só atrapalha. */
+  const lp = document.body.dataset.contato === 'formulario';
+  const abertura = Date.now();
   let armado = false;
   let mostrado = false;
   /* 1,5 s de carência: evita disparar com o mouse que ainda está na barra do navegador quando a página abre */
@@ -556,11 +539,18 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
     const pre = new Image(); pre.src = IMG; /* carrega a foto só agora, sem pesar na abertura da página */
   }, 1500);
 
+  function engajado() {
+    if (!lp) return true;
+    if (Date.now() - abertura >= 20000) return true;
+    const alt = Math.max(document.documentElement.scrollHeight - innerHeight, 1);
+    return (scrollY / alt) >= 0.25;
+  }
+
   function bloqueado() {
     let enviado = false;
     try { enviado = !!sessionStorage.getItem('cp_lead_enviado'); } catch (e) { enviado = false; }
-    return enviado || !!document.querySelector('#lead-overlay.open, .saida-overlay, .serv-overlay') ||
-      (window.dataLayer || []).some(function (e) { return e && /^(form_submit|lead_b2b|lead_qualificado)$/.test(e.event); });
+    return enviado || !engajado() || !!document.querySelector('#lead-overlay.open, .saida-overlay, .serv-overlay') ||
+      (window.dataLayer || []).some(function (e) { return e && /^(form_submit|lead_b2b|lead_qualificado|whatsapp_comercial)$/.test(e.event); });
   }
 
   function mostrar() {
