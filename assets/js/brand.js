@@ -37,7 +37,8 @@ function abrirWhatsApp(url, posicao) {
    - no site: grava o lead (/api/lead) e abre o WhatsApp com a mensagem pronta;
    - nas LPs da campanha (body data-contato="formulario"): envia para /api/lead-b2b e redireciona para
      /obrigado-qualificado/ (a partir de R$ 100 mil/mês) ou /obrigado/;
-   - porteira de WhatsApp (LPs, modo "whatsapp"): só nome e empresa, grava o lead com canal whatsapp,
+   - porteira de WhatsApp (LPs, modo "whatsapp"): nome, empresa e WhatsApp (obrigatório desde 11/11/2026,
+     porque leads que desistiam antes de enviar a mensagem ficavam sem telefone), grava o lead com canal whatsapp,
      dispara o evento whatsapp_comercial (conversão no GTM) e abre a conversa no WhatsApp.
    Marcação na página: <form data-diagnostico data-pagina="b2b" data-segmento="industria" data-servico="Branding"
    data-desc="..." data-titulo-id="..."></form>. O conteúdo é montado aqui. */
@@ -118,7 +119,7 @@ function diagMensagem(d) {
   const linhas = ['Olá! Vim pelo site da Conceito Prime e quero solicitar um diagnóstico.', ''];
   linhas.push('Nome: ' + d.nome);
   linhas.push('Empresa: ' + d.empresa);
-  linhas.push('WhatsApp: ' + d.telefone);
+  if (d.telefone) linhas.push('WhatsApp: ' + d.telefone);
   linhas.push('Segmento: ' + diagRotulo(DIAG_SEGMENTOS, d.segmento));
   if (d.faturamento) linhas.push('Faturamento mensal: ' + diagRotulo(DIAG_FATURAMENTO, d.faturamento));
   if (d.servico) linhas.push('Interesse: ' + d.servico);
@@ -165,7 +166,8 @@ function initDiagnostico(form) {
   let iniciou = false;
   let ocupado = false;
 
-  /* Porteira de WhatsApp (LPs): só nome e empresa, sem telefone, e a conversa abre no WhatsApp. */
+  /* Porteira de WhatsApp (LPs): nome, empresa e WhatsApp, e a conversa abre no WhatsApp.
+     O telefone é obrigatório: sem ele, quem fecha o WhatsApp sem enviar vira lead sem contato. */
   function porteira() { return envio === 'lead-b2b' && form.dataset.modo === 'whatsapp'; }
 
   function valor(nome) {
@@ -178,11 +180,11 @@ function initDiagnostico(form) {
 
   function aplicarModo() {
     const p = porteira();
-    campoTel.hidden = p;
+    campoTel.hidden = false;
     form.classList.toggle('diag--porteira', p);
     if (p) {
       titulo.textContent = 'Falar com a gente no WhatsApp';
-      descEl.textContent = 'Nos diga quem é você e a empresa. Abrimos a conversa já com o nosso comercial.';
+      descEl.textContent = 'Nos diga quem é você, a empresa e o seu WhatsApp. Abrimos a conversa já com o nosso comercial.';
       enviar.innerHTML = '<i class="fab fa-whatsapp" aria-hidden="true"></i> Abrir o WhatsApp';
     } else {
       titulo.textContent = form.dataset.titulo || tituloPadrao;
@@ -210,7 +212,7 @@ function initDiagnostico(form) {
     const okSeg = !!valor('segmento');
     const okNome = nome.value.trim().length >= 2;
     const okEmp = emp.value.trim().length >= 2;
-    const okTel = porteira() || tel.value.replace(/\D/g, '').length >= 10;
+    const okTel = tel.value.replace(/\D/g, '').length >= 10;
     marcar(seg, okSeg); marcar(nome, okNome); marcar(emp, okEmp); marcar(tel, okTel);
     if (!okSeg) { erro('Escolha o segmento da empresa.'); seg.focus(); return false; }
     if (!okNome || !okEmp) { erro('Preencha o seu nome e o nome da empresa.'); (okNome ? emp : nome).focus(); return false; }
@@ -230,7 +232,7 @@ function initDiagnostico(form) {
     if (e.key === 'Enter') { e.preventDefault(); form.querySelector('[name="empresa"]').focus(); }
   });
   form.querySelector('[name="empresa"]').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') { e.preventDefault(); if (porteira()) form.requestSubmit ? form.requestSubmit() : enviar.click(); else tel.focus(); }
+    if (e.key === 'Enter') { e.preventDefault(); tel.focus(); }
   });
   form.addEventListener('input', function (e) { comecar(); if (e.target.classList.contains('is-invalid')) marcar(e.target, true); });
   form.addEventListener('change', function (e) { comecar(); if (e.target.classList.contains('is-invalid')) marcar(e.target, true); });
@@ -404,7 +406,7 @@ function initDiagnostico(form) {
     overlay.classList.toggle('lead-overlay--wa', wa);
     form.classList.toggle('diag--wa', wa);
     form.dataset.canal = wa ? 'popup-whatsapp' : 'popup';
-    /* Nas LPs, o modo WhatsApp vira porteira: nome e empresa e a conversa abre no WhatsApp */
+    /* Nas LPs, o modo WhatsApp vira porteira: nome, empresa e WhatsApp, e a conversa abre no WhatsApp */
     if (wa) form.dataset.modo = 'whatsapp'; else delete form.dataset.modo;
     diag.reset();
     overlay.classList.add('open');

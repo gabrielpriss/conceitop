@@ -139,8 +139,10 @@ async function receberLeadB2B(request, env) {
   if (corpo.hp) return new Response(null, { status: 204 }); // honeypot
   /* Faturamento deixou de ser obrigatório: a pergunta saiu do formulário em 28/10/2026 e o servidor recusava todo lead das LPs.
      Porteira de WhatsApp (nov/2026, canal "whatsapp"): só nome e empresa; o telefone chega pela própria conversa. */
-  const porteira = corpo.canal === 'whatsapp';
-  if (!corpo.nome || (!corpo.telefone && !(porteira && corpo.empresa))) return new Response(null, { status: 422 });
+  // Telefone obrigatório em todos os canais, inclusive a porteira de WhatsApp (11/11/2026):
+  // lead sem telefone não tem como ser recuperado se a pessoa não enviar a mensagem no WhatsApp.
+  const digitos = String(corpo.telefone || '').replace(/\D/g, '');
+  if (!corpo.nome || digitos.length < 10) return new Response(null, { status: 422 });
   const destino = env.LEAD_B2B_WEBHOOK || env.LEAD_WEBHOOK;
   if (!destino) return new Response(null, { status: 503 });
 

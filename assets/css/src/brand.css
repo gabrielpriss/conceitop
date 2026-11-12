@@ -1416,7 +1416,7 @@ html, body { overflow-x: clip; }
 .diag-voltar:hover { color: var(--brand-dark); }
 .diag-voltar[hidden] { display: none; }
 .diag-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-/* Formulário em uma tela (nov/2026): select de segmento, campo de telefone escondido na porteira de WhatsApp e nota */
+/* Formulário em uma tela (nov/2026): select de segmento e nota (desde 11/11/2026 a porteira de WhatsApp também pede o telefone) */
 .diag-campo select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23161616' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .9rem center; padding-right: 2.5rem; cursor: pointer; }
 .diag-campo select:invalid, .diag-campo select option[value=""] { color: #6b6b6b; }
 .diag-campo[hidden] { display: none; }
