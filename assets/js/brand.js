@@ -212,7 +212,7 @@ function initDiagnostico(form) {
     const okSeg = !!valor('segmento');
     const okNome = nome.value.trim().length >= 2;
     const okEmp = emp.value.trim().length >= 2;
-    const okTel = tel.value.replace(/\D/g, '').length >= 10;
+    const okTel = telefoneValido(tel.value);
     marcar(seg, okSeg); marcar(nome, okNome); marcar(emp, okEmp); marcar(tel, okTel);
     if (!okSeg) { erro('Escolha o segmento da empresa.'); seg.focus(); return false; }
     if (!okNome || !okEmp) { erro('Preencha o seu nome e o nome da empresa.'); (okNome ? emp : nome).focus(); return false; }
@@ -461,11 +461,23 @@ document.querySelectorAll('a[href^="#"]').forEach(function (a) {
   });
 });
 
+/* DDD válido (sem zero) + celular com 9 dígitos começando em 9, ou fixo com 8 dígitos.
+   Barra números como "(55) 48998-0101", que tem 11 dígitos mas não é celular. */
+function telefoneValido(valor) {
+  const d = String(valor || '').replace(/\D/g, '');
+  return /^[1-9]{2}9\d{8}$/.test(d) || /^[1-9]{2}[2-8]\d{7}$/.test(d);
+}
+
 function maskPhone(input) {
   if (input.dataset.masked) return;
   input.dataset.masked = '1';
   input.addEventListener('input', function (e) {
-    let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+    /* Quem digita com o código do país (55) ou o zero da operadora passava de 11 dígitos e a máscara
+       cortava o fim do número (caso real: "+55 48 99801-0139" virou "(55) 48998-0101"). Tiramos o prefixo antes de cortar. */
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length > 11 && v.indexOf('55') === 0) v = v.slice(2);
+    if (v.length > 11 && v.charAt(0) === '0') v = v.slice(1);
+    v = v.slice(0, 11);
     if (v.length > 10) v = v.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
     else if (v.length > 6) v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
     else if (v.length > 2) v = v.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
